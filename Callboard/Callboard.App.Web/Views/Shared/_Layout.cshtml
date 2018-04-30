@@ -7,7 +7,10 @@
     <title>_Shared</title>
 </head>
 <body>
-    <div> 
+    <div>
+        @{ Html.RenderAction("Menu", "Nav"); }
+    </div>
+    <div>
         @RenderBody()
     </div>
 </body>
