@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Callboard.App.Common.Entities
+﻿namespace Callboard.App.General.Entities
 {
     public class Subcategory
     {
