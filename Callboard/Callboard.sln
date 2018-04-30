@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.General", "Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Business", "Callboard.App.Business\Callboard.App.Business.csproj", "{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Dependency", "Callboard.App.Dependency\Callboard.App.Dependency.csproj", "{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.IoC", "Callboard.App.IoC\Callboard.App.IoC.csproj", "{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
