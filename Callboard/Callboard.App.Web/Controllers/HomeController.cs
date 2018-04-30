@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Callboard.App.Business.Abstract;
+using Callboard.App.General.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,17 @@ namespace Callboard.App.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IAdRepository _repository;
+        public HomeController(IAdRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var model = _repository.Items.ToList();
+            return View(model);
         }
     }
 }

@@ -1,1 +1,8 @@
-﻿<h1>Hello from HomeController</h1>
+﻿@model IReadOnlyCollection<Callboard.App.General.Entities.Ad>
+
+<h1>Hello from HomeController</h1>
+
+@foreach (var item in Model)
+{
+    <li>@item.Name; @item.Description; @item.Price</li>
+}
