@@ -20,6 +20,7 @@ namespace Callboard.App.Business.DependencyResolution
                 scan.WithDefaultConventions();
             });
             For<IAdRepository>().Use<AdRepository>();
+            For<ICategoryRepository>().Use<CategoryRepository>();
         }
     }
 }
