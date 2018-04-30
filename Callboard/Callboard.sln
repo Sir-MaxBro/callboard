@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.General", "Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Business", "Callboard.App.Business\Callboard.App.Business.csproj", "{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Dependency", "Callboard.App.Dependency\Callboard.App.Dependency.csproj", "{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{5F306D78-5888-46BE-817C-755548C98D4C} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
+		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 	EndGlobalSection
 EndGlobal
