@@ -40,6 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Ad.cs" />
+    <Compile Include="Entities\AdsInCategories.cs" />
+    <Compile Include="Entities\AdsInSubcategories.cs" />
+    <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Membership.cs" />
+    <Compile Include="Entities\Phone.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Subcategory.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UsersInRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
