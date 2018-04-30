@@ -3,8 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{F6D4BCE4-6996-49BB-845C-439958205E17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Web", "Callboard.App.Web\Callboard.App.Web.csproj", "{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.General", "Callboard.App.General\Callboard.App.General.csproj", "{5F306D78-5888-46BE-817C-755548C98D4C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F306D78-5888-46BE-817C-755548C98D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F306D78-5888-46BE-817C-755548C98D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F306D78-5888-46BE-817C-755548C98D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F306D78-5888-46BE-817C-755548C98D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
+		{5F306D78-5888-46BE-817C-755548C98D4C} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 	EndGlobalSection
 EndGlobal
