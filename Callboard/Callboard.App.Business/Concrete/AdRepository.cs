@@ -16,9 +16,14 @@ namespace Callboard.App.Business.Concrete
             for (int i = 0; i < 5; i++)
             {
                 Ad ad = new Ad();
+                ad.ID = i;
                 ad.Name = $"Name {i}";
                 ad.Description = $"Description {i}";
                 ad.Price = i + 1000;
+                ad.Categories = new List<Category>
+                {
+                    new Category { ID = i, Name = $"Category {i}"}
+                };
                 _source.Add(ad);
             }
         }
@@ -27,6 +32,16 @@ namespace Callboard.App.Business.Concrete
         {
             get { return _source.ToList(); }
             set { throw new NotImplementedException(); }
+        }
+
+        public Ad GetAd(int adID)
+        {
+            return _source.First(x => x.ID == adID);
+        }
+
+        public IReadOnlyCollection<Ad> GetCategoryAds(int categoryID)
+        {
+            return _source.Where(x => x.Categories?.Select(y => y.ID == categoryID).Count() != 0).ToList(); // replace on stored procedure
         }
     }
 }
