@@ -1,17 +1,29 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_Shared</title>
+    @Styles.Render("~/bundles/css")
 </head>
 <body>
-    <div>
-        @{ Html.RenderAction("Menu", "Nav"); }
-    </div>
-    <div>
-        @RenderBody()
+    <div class="container">
+        <div class="page">
+
+            <div class="page__header header header_dark_theme">
+                <h1>This is header</h1>
+            </div>
+
+            <div class="clearfix">
+                <div class="page__navs page__navs_left navs navs_size_4 ">
+                    @{ Html.RenderAction("Menu", "Nav"); }
+                </div>
+
+                <div class="page__content page__content_right content content_size_8 ">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
