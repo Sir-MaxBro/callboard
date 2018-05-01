@@ -1,0 +1,7 @@
+﻿@model Ad
+
+<li>
+    @Html.ActionLink(Model.Name, "GetAd", "Ad", routeValues: new { adID = Model.ID, returnUrl = Request.RawUrl }, htmlAttributes: null)
+    Description: @Model.Description
+    Price: @Model.Price
+</li>

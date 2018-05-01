@@ -159,7 +159,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
-    <Content Include="Views\Shared\AdPartialView.cshtml" />
+    <Content Include="Views\Shared\AdMinPartialView.cshtml" />
+    <Content Include="Views\Ad\AdInformation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -35,5 +35,12 @@ namespace Callboard.App.Web.Controllers
             };
             return View("Index", model);
         }
+
+        public ActionResult GetAd(int adID, string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            var model = _repository.GetAd(adID);
+            return View("AdInformation", model);
+        }
     }
 }
