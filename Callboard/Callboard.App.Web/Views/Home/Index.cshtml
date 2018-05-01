@@ -1,8 +1,8 @@
-﻿@model IReadOnlyCollection<Callboard.App.General.Entities.Ad>
+﻿@model AdViewModel
 
 <h1>Hello from HomeController</h1>
 
-@foreach (var item in Model)
+@foreach (var item in Model.Ads)
 {
-    <li>@item.Name; @item.Description; @item.Price</li>
+    @{ Html.RenderPartial("AdPartialView"); }
 }

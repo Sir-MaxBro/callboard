@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Abstract;
 using Callboard.App.General.Entities;
+using Callboard.App.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,10 @@ namespace Callboard.App.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var model = _repository.Items.ToList();
+            AdViewModel model = new AdViewModel
+            {
+                Ads = _repository.Items.ToList()
+            };
             return View(model);
         }
     }
