@@ -3,6 +3,8 @@
 <ul>
     @foreach (var item in Model.Categories)
     {
-        <li>@item.Name</li>
+        <li>
+            @Html.ActionLink(item.Name, "GetCategoryAds", "Ad", routeValues: new { categoryID = item.ID }, htmlAttributes: null);
+        </li>
     }
 </ul>

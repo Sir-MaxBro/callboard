@@ -1,0 +1,8 @@
+﻿@model AdViewModel
+
+<h1>Hello from HomeController</h1>
+
+@foreach (var item in Model.Ads)
+{
+    Html.RenderPartial("AdPartialView", model: item);
+}

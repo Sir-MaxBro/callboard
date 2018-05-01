@@ -26,5 +26,14 @@ namespace Callboard.App.Web.Controllers
             };
             return View(model);
         }
+
+        public ActionResult GetCategoryAds(int categoryID)
+        {
+            AdViewModel model = new AdViewModel
+            {
+                Ads = _repository.GetCategoryAds(categoryID).ToList()
+            };
+            return View("Index", model);
+        }
     }
 }

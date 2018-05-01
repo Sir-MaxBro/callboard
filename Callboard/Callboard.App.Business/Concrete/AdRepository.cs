@@ -41,7 +41,7 @@ namespace Callboard.App.Business.Concrete
 
         public IReadOnlyCollection<Ad> GetCategoryAds(int categoryID)
         {
-            return _source.Where(x => x.Categories?.Select(y => y.ID == categoryID).Count() != 0).ToList(); // replace on stored procedure
+            return _source.Where(x => x.Categories?.Where(y => y.ID == categoryID).Count() != 0).ToList(); // replace on stored procedure
         }
     }
 }
