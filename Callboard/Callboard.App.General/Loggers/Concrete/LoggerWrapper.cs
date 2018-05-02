@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Callboard.App.General.Loggers
 {
-    internal class LoggerWrapper : ILoggerWrapper
+    public class LoggerWrapper : ILoggerWrapper
     {
         private ILog _logger;
         public LoggerWrapper()

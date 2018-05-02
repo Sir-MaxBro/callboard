@@ -17,7 +17,6 @@ namespace Callboard.App.IoC.DependencyResolution
                                scan.AssemblyContainingType<IEntityRepository<object>>();
                                scan.AssemblyContainingType<ILoggerWrapper>();
                                //scan.Assembly("Callboard.App.Business");
-                               scan.WithDefaultConventions();
                                scan.LookForRegistries();
                            }
                        )
