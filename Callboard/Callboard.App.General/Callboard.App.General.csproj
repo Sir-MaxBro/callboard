@@ -33,6 +33,9 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyResolution\GeneralRegistry.cs" />
     <Compile Include="Entities\Ad.cs" />
     <Compile Include="Entities\AdsInCategories.cs" />
     <Compile Include="Entities\AdsInSubcategories.cs" />
@@ -58,11 +62,15 @@
     <Compile Include="Entities\Subcategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UsersInRoles.cs" />
+    <Compile Include="Loggers\Abstract\ILoggerWrapper.cs" />
+    <Compile Include="Loggers\Concrete\LoggerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="logger.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

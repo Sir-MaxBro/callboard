@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Abstract;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Loggers;
 using Callboard.App.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace Callboard.App.Web.Controllers
     public class AdController : Controller
     {
         private IAdRepository _repository;
-        public AdController(IAdRepository repository)
+        private ILoggerWrapper _logger;
+        public AdController(IAdRepository repository, ILoggerWrapper logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         // GET: Home
@@ -33,6 +36,9 @@ namespace Callboard.App.Web.Controllers
             {
                 Ads = _repository.GetCategoryAds(categoryID).ToList()
             };
+
+            _logger.InfoFormat($"Get elements by categoryID: { categoryID }", null);
+
             return View("Index", model);
         }
 
@@ -40,6 +46,9 @@ namespace Callboard.App.Web.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             var model = _repository.GetAd(adID);
+
+            _logger.InfoFormat($"Get ad by adID: { adID }", null);
+
             return View("AdInformation", model);
         }
     }
