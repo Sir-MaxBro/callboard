@@ -161,7 +161,10 @@
     <Content Include="Views\Nav\Menu.cshtml" />
     <Content Include="Views\Shared\AdMinPartialView.cshtml" />
     <Content Include="Views\Ad\AdInformation.cshtml" />
-    <Content Include="logger.config" />
+    <Content Include="..\logger.config">
+      <Link>logger.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

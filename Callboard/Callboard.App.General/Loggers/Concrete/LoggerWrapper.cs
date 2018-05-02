@@ -4,6 +4,7 @@ using log4net.Config;
 using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,16 +16,19 @@ namespace Callboard.App.General.Loggers
     public class LoggerWrapper : ILoggerWrapper
     {
         private ILog _logger;
+        private const string LOGGER_CONFIG = "logger.config";
+        private const string LOGGER_NAME = "LOGGER";
         public LoggerWrapper()
         {
-            //var assembly = Assembly.GetEntryAssembly();
-            //var applicationPath = Path.GetDirectoryName(assembly.Location);
-            //var configFile = new FileInfo(Path.Combine(applicationPath, "logger.config"));
-            //XmlConfigurator.ConfigureAndWatch(configFile);
+            _logger = LogManager.GetLogger(LOGGER_NAME);
+            InitLogger();
+        }
 
-            _logger = LogManager.GetLogger("LOGGER");
-
-            //XmlConfigurator.Configure();
+        private void InitLogger()
+        { 
+            var appConfigPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath, LOGGER_CONFIG);
+            var configFile = new FileInfo(appConfigPath);
+            XmlConfigurator.ConfigureAndWatch(configFile);
         }
 
         public void DebugFormat(string message, params object[] values)
