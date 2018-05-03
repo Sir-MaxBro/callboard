@@ -1,7 +1,14 @@
 ﻿@model Ad
 
-<li>
-    @Html.ActionLink(Model.Name, "GetAd", "Ad", routeValues: new { adID = Model.ID, returnUrl = Request.RawUrl }, htmlAttributes: null)
-    Description: @Model.Description
-    Price: @Model.Price
-</li>
+<div class="ad clearfix">
+    <div class="ad__image ad__image_left ad__image_size_4">
+
+    </div>
+    <div class="ad__content ad__content_right ad__content_size_8">
+        @Html.ActionLink(Model.Name, "GetAd", "Ad",
+               routeValues: new { adID = Model.ID, returnUrl = Request.RawUrl },
+               htmlAttributes: new { @class = "link" })
+        Description: @Model.Description
+        Price: @Model.Price
+    </div>
+</div>

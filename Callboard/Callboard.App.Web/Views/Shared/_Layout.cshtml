@@ -7,19 +7,20 @@
     @Styles.Render("~/bundles/css")
 </head>
 <body>
-    <div class="container">
-        <div class="page">
-
-            <div class="page__header header header_dark_theme">
-                <h1>This is header</h1>
+    <div class="page">
+        <div class="header page__header header_dark_theme">
+            <div class="container">
+                <h1>Callboard</h1>
             </div>
+        </div>
 
+        <div class="container">
             <div class="clearfix">
-                <div class="page__navs page__navs_left navs navs_size_4 ">
+                <div class="page__navs page__navs_left page__navs_size_4">
                     @{ Html.RenderAction("Menu", "Nav"); }
                 </div>
 
-                <div class="page__content page__content_right content content_size_8 ">
+                <div class="page__content page__content_right content content_size_8">
                     @RenderBody()
                 </div>
             </div>

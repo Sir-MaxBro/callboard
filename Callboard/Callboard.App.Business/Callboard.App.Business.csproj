@@ -50,8 +50,6 @@
     <Compile Include="Concrete\AdRepository.cs" />
     <Compile Include="Concrete\CategoryRepository.cs" />
     <Compile Include="DependencyResolution\BusinessRegistry.cs" />
-    <Compile Include="DependencyResolution\IoC.cs" />
-    <Compile Include="DependencyResolution\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

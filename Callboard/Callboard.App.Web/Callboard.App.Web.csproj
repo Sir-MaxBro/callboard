@@ -119,11 +119,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\ad\ad.css" />
+    <Content Include="Content\css\ad\__content\ad__content.css" />
+    <Content Include="Content\css\ad\__content\_right\ad__content_right.css" />
+    <Content Include="Content\css\ad\__content\_size\_8\ad__content_size_8.css" />
+    <Content Include="Content\css\ad\__image\ad__image.css" />
+    <Content Include="Content\css\ad\__image\_left\ad__image_left.css" />
+    <Content Include="Content\css\ad\__image\_size\_4\ad__image_size_4.css" />
+    <Content Include="Content\css\button\button.css" />
+    <Content Include="Content\css\button\_block\button_block.css" />
+    <Content Include="Content\css\button\_dark\_hover\button_dark_hover.css" />
+    <Content Include="Content\css\button\_full_width\button_full_width.css" />
+    <Content Include="Content\css\button\_gap\_1\button_gap_1.css" />
     <Content Include="Content\css\clearfix\clearfix.css" />
     <Content Include="Content\css\container\container.css" />
     <Content Include="Content\css\content\_size_8\content_size_8.css" />
-    <Content Include="Content\css\header\_dark_theme\header_dark_theme.css" />
-    <Content Include="Content\css\navs\_size_4\navs_size_4.css" />
+    <Content Include="Content\css\header\header.css" />
+    <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
+    <Content Include="Content\css\link\link.css" />
+    <Content Include="Content\css\navs\__item\_dark\_underline\navs__item_dark_underline.css" />
+    <Content Include="Content\css\page\__navs\_size\_4\page__navs_size_4.css" />
+    <Content Include="Content\css\navs\__item\_dark\_theme\navs__item_dark_theme.css" />
+    <Content Include="Content\css\navs\__item\_vertical\navs__item_vertical.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
     <Content Include="Content\css\page\__content\_right\page__content_right.css" />
     <Content Include="Content\css\page\__header\page__header.css" />
@@ -174,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\ad-container\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
