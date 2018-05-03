@@ -1,12 +1,6 @@
-﻿using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Callboard.App.Business.Abstract;
+﻿using Callboard.App.Business.Abstract;
 using Callboard.App.Business.Concrete;
-using System.Threading.Tasks;
-using Callboard.App.General.Entities;
+using StructureMap;
 
 namespace Callboard.App.Business.DependencyResolution
 {
