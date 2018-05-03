@@ -13,7 +13,8 @@ namespace Callboard.App.General.DependencyResolution
                 scan.TheCallingAssembly();
                 scan.WithDefaultConventions();
             });
-            For<ILoggerWrapper>().Singleton().Use<LoggerWrapper>();
+            //For<ILoggerWrapper>().Singleton().Use<LoggerWrapper>();
+            For<ILoggerWrapper>().Use(LoggerWrapper.GetInstance());
         }
     }
 }

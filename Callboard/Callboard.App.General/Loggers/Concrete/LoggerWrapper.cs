@@ -15,13 +15,27 @@ namespace Callboard.App.General.Loggers
 {
     public class LoggerWrapper : ILoggerWrapper
     {
+        private static LoggerWrapper _loggerWrapper;
+        private static object _lockObject = new object();
         private ILog _logger;
         private const string LOGGER_CONFIG = "logger.config";
         private const string LOGGER_NAME = "LOGGER";
-        public LoggerWrapper()
+        private LoggerWrapper()
         {
             _logger = LogManager.GetLogger(LOGGER_NAME);
             InitLogger();
+        }
+
+        public static LoggerWrapper GetInstance()
+        {
+            lock (_lockObject)
+            {
+                if (_loggerWrapper == null)
+                {
+                    _loggerWrapper = new LoggerWrapper();
+                }
+            }
+            return _loggerWrapper;
         }
 
         private void InitLogger()
