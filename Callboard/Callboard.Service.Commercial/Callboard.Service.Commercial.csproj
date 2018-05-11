@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -46,15 +47,16 @@
   <ItemGroup>
     <Compile Include="Abstract\ICommercialRepository.cs" />
     <Compile Include="Concrete\CommercialRepository.cs" />
+    <Compile Include="Config\Elements\PathElement.cs" />
+    <Compile Include="Config\Collections\PathCollection.cs" />
+    <Compile Include="Config\Sections\StartupCommercialConfigSection.cs" />
     <Compile Include="Entities\Commercial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
