@@ -55,7 +55,8 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Country.cs" />
-    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Mail.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Membership.cs" />
     <Compile Include="Entities\Phone.cs" />

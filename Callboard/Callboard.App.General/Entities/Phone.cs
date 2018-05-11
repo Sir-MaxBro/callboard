@@ -6,6 +6,6 @@
 
         public int UserID { get; set; }
 
-        public string Value { get; set; }
+        public string Number { get; set; }
     }
 }

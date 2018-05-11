@@ -12,7 +12,7 @@ namespace Callboard.App.General.Entities
 
         public string PhotoMimeType { get; set; }
 
-        public ICollection<Email> Emails { get; set; }
+        public ICollection<Mail> Emails { get; set; }
 
         public ICollection<Phone> Phones { get; set; }
     }

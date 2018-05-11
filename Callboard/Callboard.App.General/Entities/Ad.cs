@@ -19,13 +19,13 @@ namespace Callboard.App.General.Entities
 
         public DateTime CreationDate { get; set; }
 
+        // get from db
         public string Type { get; set; }
 
+        // get from db
         public string State { get; set; }
 
-        public byte[] ImageData { get; set; }
-
-        public string ImageMimeType { get; set; }
+        public ICollection<Image> Images { get; set; }
 
         public ICollection<Category> Categories { get; set; }
     }

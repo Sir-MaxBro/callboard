@@ -1,11 +1,11 @@
 ﻿namespace Callboard.App.General.Entities
 {
-    public class Email
+    public class Mail
     {
         public int ID { get; set; }
 
         public int UserID { get; set; }
 
-        public string Value { get; set; }
+        public string Email { get; set; }
     }
 }
