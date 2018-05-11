@@ -1,0 +1,24 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Callboard</title>
+    @Styles.Render("~/bundles/css")
+</head>
+<body class="page">
+
+    @{ Html.RenderPartial("HeaderPartial"); }
+
+    @{ Html.RenderPartial("SliderPartial"); }
+
+    <div class="container">
+        <div class="clearfix">
+            <div class="page__content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
