@@ -142,7 +142,7 @@
     <Content Include="Content\css\page\__navs\_size\_3\page__navs_size_3.css" />
     <Content Include="Content\css\page\__slider\page__slider.css" />
     <Content Include="Content\css\page\__slider\_bottom_gap\page__slider_bottom_gap.css" />
-    <Content Include="Content\css\page\__slider\__image\page__slider__image.css" />
+    <Content Include="Content\css\page\__image\page__slider__image.css" />
     <Content Include="Content\css\header\__title\header__title.css" />
     <Content Include="Content\css\header\__title\_large\header__title_large.css" />
     <Content Include="Content\css\link\link.css" />
