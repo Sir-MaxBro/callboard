@@ -18,7 +18,7 @@ namespace Callboard.App.General.Loggers
         private static LoggerWrapper _loggerWrapper;
         private static object _lockObject = new object();
         private ILog _logger;
-        private const string LOGGER_CONFIG = "logger.config";
+        private const string PATH_CONFIG = "logger.config";
         private const string LOGGER_NAME = "LOGGER";
         private LoggerWrapper()
         {
@@ -40,7 +40,7 @@ namespace Callboard.App.General.Loggers
 
         private void InitLogger()
         { 
-            var appConfigPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath, LOGGER_CONFIG);
+            var appConfigPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath, PATH_CONFIG);
             var configFile = new FileInfo(appConfigPath);
             XmlConfigurator.ConfigureAndWatch(configFile);
         }
