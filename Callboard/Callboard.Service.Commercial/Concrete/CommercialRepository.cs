@@ -40,7 +40,7 @@ namespace Callboard.Service.Commercial
                 Commercial commercial = new Commercial
                 {
                     ImageData = image,
-                    ImageMimeType = _pathways.Values.ElementAt(index)
+                    ImageExtension = _pathways.Values.ElementAt(index)
                 };
                 resultCollection.Add(commercial);
             }

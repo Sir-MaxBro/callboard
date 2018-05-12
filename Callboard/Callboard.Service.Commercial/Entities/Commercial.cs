@@ -14,6 +14,6 @@ namespace Callboard.Service.Commercial
         public byte[] ImageData { get; set; }
 
         [DataMember]
-        public string ImageMimeType { get; set; }
+        public string ImageExtension { get; set; }
     }
 }
