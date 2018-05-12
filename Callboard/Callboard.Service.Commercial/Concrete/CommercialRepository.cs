@@ -12,11 +12,40 @@ namespace Callboard.Service.Commercial
 {
     public class CommercialRepository : ICommercialRepository
     {
-        public IReadOnlyCollection<Commercial> GetCommercials()
+        private IDictionary<string, string> _pathways;
+        private const int COMMERCIAL_COUNT = 3;
+        public CommercialRepository()
         {
-            var section = ((StartupCommercialConfigSection)ConfigurationManager.GetSection("commercialSettings")).Pathways;
+            _pathways = new Dictionary<string, string>();
+            var pathwaysSection = ((StartupCommercialConfigSection)ConfigurationManager.GetSection("commercialSettings")).Pathways;
+            foreach (CommercialPathElement item in pathwaysSection)
+            {
+                DirectoryInfo directory = new DirectoryInfo(item.Path);
+                FileInfo[] files = directory.GetFiles();
+                foreach (var fileInfo in files)
+                {
+                    _pathways.Add(fileInfo.FullName, fileInfo.Extension);
+                }
+            }
+        }
 
-            return null;
+        public Commercial[] GetCommercials()
+        {
+            var resultCollection = new List<Commercial>();
+            Random random = new Random();
+            for (int i = 0; i < COMMERCIAL_COUNT; i++)
+            {
+                int index = random.Next(0, _pathways.Count);
+                byte[] image = File.ReadAllBytes(_pathways.Keys.ElementAt(index));
+                Commercial commercial = new Commercial
+                {
+                    ImageData = image,
+                    ImageMimeType = _pathways.Values.ElementAt(index)
+                };
+                resultCollection.Add(commercial);
+            }
+
+            return resultCollection.ToArray();
         }
     }
 }

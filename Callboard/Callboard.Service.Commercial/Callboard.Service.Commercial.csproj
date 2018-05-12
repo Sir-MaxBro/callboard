@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Abstract\ICommercialRepository.cs" />
     <Compile Include="Concrete\CommercialRepository.cs" />
-    <Compile Include="Config\Elements\PathElement.cs" />
+    <Compile Include="Config\Elements\CommercialPathElement.cs" />
     <Compile Include="Config\Collections\PathCollection.cs" />
     <Compile Include="Config\Sections\StartupCommercialConfigSection.cs" />
     <Compile Include="Entities\Commercial.cs" />

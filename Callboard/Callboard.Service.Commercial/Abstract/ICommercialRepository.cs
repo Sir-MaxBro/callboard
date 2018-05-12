@@ -11,6 +11,6 @@ namespace Callboard.Service.Commercial
     public interface ICommercialRepository
     {
         [OperationContract]
-        IReadOnlyCollection<Commercial> GetCommercials();
+        Commercial[] GetCommercials();
     }
 }
