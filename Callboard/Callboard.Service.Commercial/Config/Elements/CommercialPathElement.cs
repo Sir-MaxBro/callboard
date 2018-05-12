@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Callboard.Service.Commercial.Config
 {
-    public class PathElement : ConfigurationElement
+    public class CommercialPathElement : ConfigurationElement
     {
         [ConfigurationProperty("path", DefaultValue = "", IsKey = true, IsRequired = true)]
         public string Path
