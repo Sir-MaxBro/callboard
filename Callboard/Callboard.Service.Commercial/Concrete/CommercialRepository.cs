@@ -36,12 +36,18 @@ namespace Callboard.Service.Commercial
             for (int i = 0; i < COMMERCIAL_COUNT; i++)
             {
                 int index = random.Next(0, _pathways.Count);
-                byte[] image = File.ReadAllBytes(_pathways.Keys.ElementAt(index));
+                byte[] byteImage = File.ReadAllBytes(_pathways.Keys.ElementAt(index));
+                Image image = new Image
+                {
+                    Data = byteImage,
+                    Extension = _pathways.Values.ElementAt(index).TrimStart('.')
+                };
+
                 Commercial commercial = new Commercial
                 {
-                    ImageData = image,
-                    ImageExtension = _pathways.Values.ElementAt(index).TrimStart('.')
+                    Image = image
                 };
+
                 resultCollection.Add(commercial);
             }
 

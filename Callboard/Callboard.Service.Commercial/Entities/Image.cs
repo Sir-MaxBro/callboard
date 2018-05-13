@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 
 namespace Callboard.Service.Commercial
 {
     [DataContract]
-    public class Commercial
+    public class Image
     {
         [DataMember]
-        public int Id { get; set; }
+        public byte[] Data { get; set; }
 
         [DataMember]
-        public Image Image { get; set; }
+        public string Extension { get; set; }
     }
 }
