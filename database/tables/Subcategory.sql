@@ -1,11 +1,11 @@
-CREATE TABLE [SubcategoryInCategories]
+CREATE TABLE [Subcategory]
 (
-    [SubcategoryInCategoriesId] INT IDENTITY(1, 1) NOT NULL,
+    [SubcategoryId] INT IDENTITY(1, 1) NOT NULL,
     [CategoryId] INT NOT NULL,
-    [SubcategoryId] INT NOT NULL,
+    [ParentCategoryId] INT NOT NULL,
 
     PRIMARY KEY CLUSTERED ([SubcategoryInCategoriesId] ASC),
     FOREIGN KEY ([CategoryId]) REFERENCES [Category]([CategoryId]),
-    FOREIGN KEY ([SubcategoryId]) REFERENCES [Category]([CategoryId])
+    FOREIGN KEY ([ParentCategoryId]) REFERENCES [Category]([CategoryId])
 );
 GO

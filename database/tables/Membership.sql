@@ -6,6 +6,6 @@ CREATE TABLE [Membership]
     [Password] NVARCHAR(MAX) NOT NULL,
 
     PRIMARY KEY CLUSTERED ([MembershipId] ASC, [UserId] ASC),
-    FOREIGN KEY [UserId] REFERENCES [User]([UserId])
+    FOREIGN KEY ([UserId]) REFERENCES [User]([UserId])
 );
 GO
