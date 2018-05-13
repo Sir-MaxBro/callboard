@@ -4,9 +4,9 @@ namespace Callboard.App.General.Entities
 {
     public class Area
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         public string Name { get; set; }
 

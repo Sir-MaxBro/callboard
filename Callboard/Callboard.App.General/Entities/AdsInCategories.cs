@@ -2,8 +2,8 @@
 {
     public class AdsInCategories
     {
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
 
-        public int AdID { get; set; }
+        public int AdId { get; set; }
     }
 }

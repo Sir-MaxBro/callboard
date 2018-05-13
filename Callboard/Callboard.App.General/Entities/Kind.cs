@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Callboard.App.General.Entities
 {
-    public class Image
+    public class Kind
     {
         public int Id { get; set; }
 
-        public byte[] Data { get; set; }
-
-        public string MimeType { get; set; }
+        public string Type { get; set; }
     }
 }

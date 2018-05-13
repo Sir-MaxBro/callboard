@@ -5,11 +5,11 @@ namespace Callboard.App.General.Entities
 {
     public class Ad
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
-        public int LocationID { get; set; }
+        public int LocationId { get; set; }
 
         public string Name { get; set; }
 

@@ -2,13 +2,13 @@
 {
     public class Location
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int CityID { get; set; }
+        public int CityId { get; set; }
 
-        public int AreaID { get; set; }
+        public int AreaId { get; set; }
 
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         public string AddressLine { get; set; }
     }

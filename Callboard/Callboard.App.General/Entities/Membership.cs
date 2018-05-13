@@ -2,9 +2,9 @@
 {
     public class Membership
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         public string Login { get; set; }
 
