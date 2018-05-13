@@ -16,7 +16,10 @@
     <div class="container">
         <div class="clearfix">
             <div class="page__content">
-                @RenderBody()
+                @RenderBody()          
+            </div>
+            <div>
+                @{ Html.RenderAction("GetCommercial", "Commercial"); }
             </div>
         </div>
     </div>
