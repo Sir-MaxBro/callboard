@@ -19,19 +19,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.IoC", "Callboard.App.IoC\Callboard.App.IoC.csproj", "{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Config", "App_Config", "{87573256-FB7C-444D-B732-2113ED5C7B1C}"
-	ProjectSection(SolutionItems) = preProject
-		logger.config = logger.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.Service.Commercial", "Callboard.Service.Commercial\Callboard.Service.Commercial.csproj", "{F7F84421-3212-4284-B6DB-745C2976F783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6D0346A8-5D3A-45B0-BED0-267F1D585BA5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceConfig", "ServiceConfig", "{DDAD9F3F-C130-46A3-ABE6-D14AB0C0F225}"
 	ProjectSection(SolutionItems) = preProject
-		behaviors.config = behaviors.config
-		bindings.config = bindings.config
-		client.config = client.config
+		_config\serviceConfig\behaviors.config = _config\serviceConfig\behaviors.config
+		_config\serviceConfig\bindings.config = _config\serviceConfig\bindings.config
+		_config\serviceConfig\client.config = _config\serviceConfig\client.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggerConfig", "LoggerConfig", "{61F5FD6B-3221-4DB7-9566-C3EA397B3F79}"
+	ProjectSection(SolutionItems) = preProject
+		_config\loggerConfig\logger.config = _config\loggerConfig\logger.config
 	EndProjectSection
 EndProject
 Global
@@ -60,10 +60,6 @@ Global
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D0346A8-5D3A-45B0-BED0-267F1D585BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D0346A8-5D3A-45B0-BED0-267F1D585BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D0346A8-5D3A-45B0-BED0-267F1D585BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D0346A8-5D3A-45B0-BED0-267F1D585BA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,8 +71,8 @@ Global
 		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{87573256-FB7C-444D-B732-2113ED5C7B1C} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{F7F84421-3212-4284-B6DB-745C2976F783} = {F6D4BCE4-6996-49BB-845C-439958205E17}
-		{6D0346A8-5D3A-45B0-BED0-267F1D585BA5} = {F6D4BCE4-6996-49BB-845C-439958205E17}
 		{DDAD9F3F-C130-46A3-ABE6-D14AB0C0F225} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
+		{61F5FD6B-3221-4DB7-9566-C3EA397B3F79} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ED571E0-4DF6-4F2A-915E-7A99999E07D3}
