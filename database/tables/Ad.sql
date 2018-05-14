@@ -10,7 +10,7 @@ CREATE TABLE [Ad]
     [Price] DECIMAL(18, 2) NOT NULL,
     [CreationDate] DATETIME NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([UserId] ASC),
+    PRIMARY KEY CLUSTERED ([AdId] ASC),
     FOREIGN KEY ([UserId]) REFERENCES [User]([UserId]),
     FOREIGN KEY ([LocationId]) REFERENCES [Location]([LocationId]),
     FOREIGN KEY ([KindId]) REFERENCES [Kind]([KindId]),
