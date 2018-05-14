@@ -1,4 +1,5 @@
-CREATE TABLE [callboardDB].[Membership]
+USE [callboardDB];
+CREATE TABLE [callboardDB].[dbo].[Membership]
 (
     [MembershipId] INT IDENTITY(1, 1) NOT NULL,
     [UserId] INT NOT NULL,

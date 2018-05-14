@@ -1,4 +1,5 @@
-CREATE TABLE [callboardDB].[Ad]
+USE [callboardDB];
+CREATE TABLE [dbo].[Ad]
 (
     [AdId] INT IDENTITY(1, 1) NOT NULL,
     [UserId] INT NOT NULL,
@@ -11,9 +12,9 @@ CREATE TABLE [callboardDB].[Ad]
     [CreationDate] DATETIME NOT NULL,
 
     PRIMARY KEY CLUSTERED ([AdId] ASC),
-    FOREIGN KEY ([UserId]) REFERENCES [callboardDB].[User]([UserId]),
-    FOREIGN KEY ([LocationId]) REFERENCES [callboardDB].[Location]([LocationId]),
-    FOREIGN KEY ([KindId]) REFERENCES [callboardDB].[Kind]([KindId]),
-    FOREIGN KEY ([StateId]) REFERENCES [callboardDB].[State]([StateId])
+    FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([UserId]),
+    FOREIGN KEY ([LocationId]) REFERENCES [dbo].[Location]([LocationId]),
+    FOREIGN KEY ([KindId]) REFERENCES [dbo].[Kind]([KindId]),
+    FOREIGN KEY ([StateId]) REFERENCES [dbo].[State]([StateId])
 );
 GO
