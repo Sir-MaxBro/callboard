@@ -14,7 +14,7 @@ namespace Callboard.App.Business.Concrete
             for (int i = 0; i < 5; i++)
             {
                 Category category = new Category();
-                category.ID = i;
+                category.Id = i;
                 category.Name = $"Category {i}";
                 _source.Add(category);
             }

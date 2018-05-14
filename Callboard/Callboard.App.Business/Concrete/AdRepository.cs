@@ -14,13 +14,13 @@ namespace Callboard.App.Business.Concrete
             for (int i = 0; i < 5; i++)
             {
                 Ad ad = new Ad();
-                ad.ID = i;
+                ad.Id = i;
                 ad.Name = $"Name {i}";
                 ad.Description = $"Description {i}";
                 ad.Price = i + 1000;
                 ad.Categories = new List<Category>
                 {
-                    new Category { ID = i, Name = $"Category {i}"}
+                    new Category { Id = i, Name = $"Category {i}"}
                 };
                 _source.Add(ad);
             }
@@ -34,12 +34,12 @@ namespace Callboard.App.Business.Concrete
 
         public Ad GetAd(int adID)
         {
-            return _source.First(x => x.ID == adID);
+            return _source.First(x => x.Id == adID);
         }
 
         public IReadOnlyCollection<Ad> GetCategoryAds(int categoryID)
         {
-            return _source.Where(x => x.Categories?.Where(y => y.ID == categoryID).Count() != 0).ToList(); // replace on stored procedure
+            return _source.Where(x => x.Categories?.Where(y => y.Id == categoryID).Count() != 0).ToList(); // replace on stored procedure
         }
     }
 }
