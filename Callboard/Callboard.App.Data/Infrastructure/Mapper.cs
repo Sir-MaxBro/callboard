@@ -10,24 +10,24 @@ namespace Callboard.App.Data.Infrastructure
 {
     internal class Mapper
     {
-
         public static IReadOnlyCollection<T> MapCollection<T>(DbDataReader reader)
             where T : new()
         {
             var mappingCollection = new List<T>();
             T item = new T();
 
-            while (reader.HasRows)
+            while (reader.Read())
             {
-                reader.Read();
-                item = Map<T>(reader);
+                var dic = Enumerable.Range(0, reader.FieldCount).ToDictionary(reader.GetName, reader.GetValue);
+                item = Map<T>(dic);
+                //item = Map<T>(reader);           
                 mappingCollection.Add(item);
             }
 
             return mappingCollection;
         }
 
-        private static T Map<T>(DbDataReader reader)
+        private static T Map<T>(/*DbDataReader reader*/IDictionary<string, object> dicReader)
             where T : new()
         {
             T item = new T();
@@ -38,16 +38,27 @@ namespace Callboard.App.Data.Infrastructure
                 var columnType = properties[i].PropertyType;
                 var columnName = properties[i].GetCustomAttributes(typeof(ColumnAttribute), false)
                     .OfType<ColumnAttribute>()
-                    .ElementAt(0)
+                    .ElementAtOrDefault(0)?
                     .ColumnName;
                 if (columnName == null)
                 {
                     columnName = properties[i].Name;
                 }
 
-                var columnValue = (T)reader[columnName];
+                try
+                {
+                    var columnValue = dicReader[columnName];
+                    //var columnValue = reader[columnName];
+                    if (columnValue != null)
+                    {
+                        columnValue = Convert.ChangeType(columnValue, columnType);
+                        properties[i].SetValue(item, columnValue);
+                    }
+                }
+                catch (KeyNotFoundException ex)
+                {
 
-                item = (T)Convert.ChangeType(columnValue, columnType);
+                }
             }
             return item;
         }
