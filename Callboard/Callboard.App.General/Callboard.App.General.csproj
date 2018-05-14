@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ColumnAttribute.cs" />
+    <Compile Include="Attributes\ForeignKeyAttribute.cs" />
+    <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DependencyResolution\GeneralRegistry.cs" />
     <Compile Include="Entities\Ad.cs" />
     <Compile Include="Entities\AdsInCategories.cs" />
