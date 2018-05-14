@@ -1,4 +1,4 @@
-CREATE TABLE [callboard_db].[Role]
+CREATE TABLE [callboardDB].[Role]
 (
     [RoleId] INT IDENTITY(1, 1) NOT NULL,
     [Name] NVARCHAR(50) NOT NULL

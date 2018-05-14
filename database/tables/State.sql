@@ -1,4 +1,4 @@
-CREATE TABLE [callboard_db].[State]
+CREATE TABLE [callboardDB].[State]
 (
     [StateId]   INT NOT NULL,
     [Condition] NVARCHAR(50) NOT NULL,

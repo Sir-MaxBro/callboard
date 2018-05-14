@@ -1,4 +1,4 @@
-CREATE TABLE [callboard_db].[Category]
+CREATE TABLE [callboardDB].[Category]
 (
     [CategoryId] INT NOT NULL,
     [Name] NVARCHAR(MAX) NOT NULL,
