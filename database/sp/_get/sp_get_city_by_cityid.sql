@@ -1,9 +1,9 @@
-CREATE PROCEDURE [sp_get_city_by_cityid]
+CREATE PROCEDURE [callboard_db].[sp_get_city_by_cityid]
     @CityId INT
 AS
 (
     SELECT [CityId], [AreaId], [CountryId], [Name]  
-    FROM [City]
-    WHERE [City].[CityId] = @CityId
+    FROM [callboard_db].[City]
+    WHERE [CityId] = @CityId
 );
 GO

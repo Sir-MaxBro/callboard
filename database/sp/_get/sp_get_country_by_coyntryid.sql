@@ -1,9 +1,9 @@
-CREATE PROCEDURE [sp_get_country_by_coyntryid]
+CREATE PROCEDURE [callboard_db].[sp_get_country_by_coyntryid]
     @CountryId int 
 AS
 (
-    SELECT [Country].[CountryId], [Country].[Name]
-    FROM [Country]
-    WHERE [Country].[CountryId] = @CountryId
+    SELECT [CountryId], [Name]
+    FROM [callboard_db].[Country]
+    WHERE [CountryId] = @CountryId
 );
 GO
