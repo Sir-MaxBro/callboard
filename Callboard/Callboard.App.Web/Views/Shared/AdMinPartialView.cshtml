@@ -7,8 +7,8 @@
     <div class="ad__content ad__content_right ad__content_size_8">
         <div>
             @Html.ActionLink(Model.Name, "GetAd", "Ad",
-                                  routeValues: new { adID = Model.ID, returnUrl = Request.RawUrl },
-                                  htmlAttributes: new { @class = "link" })
+                                       routeValues: new { adId = Model.Id, returnUrl = Request.RawUrl },
+                                       htmlAttributes: new { @class = "link" })
         </div>
         <div>
             Description: @Model.Description
@@ -23,11 +23,14 @@
             Type: @Model.Type / State: @Model.State
         </div>
         <div>
-            @foreach (var item in Model.Categories)
+            @if (Model.Categories != null)
             {
-                @Html.ActionLink(item.Name, "GetCategoryAds", "Ad",
-             routeValues: new { categoryID = item.ID },
-             htmlAttributes: new { @class = "link" })
+                foreach (var item in Model?.Categories)
+                {
+                    @Html.ActionLink(item.Name, "GetCategoryAds", "Ad",
+                               routeValues: new { categoryId = item.Id },
+                               htmlAttributes: new { @class = "link" })
+                }
             }
         </div>
     </div>

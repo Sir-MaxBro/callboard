@@ -30,24 +30,24 @@ namespace Callboard.App.Web.Controllers
             return View(model);
         }
 
-        public ActionResult GetCategoryAds(int categoryID)
+        public ActionResult GetCategoryAds(int categoryId)
         {
             AdViewModel model = new AdViewModel
             {
-                Ads = _repository.GetCategoryAds(categoryID).ToList()
+                Ads = _repository.GetCategoryAds(categoryId).ToList()
             };
 
-            _logger.InfoFormat($"Get elements by categoryID: { categoryID }", null);
+            _logger.InfoFormat($"Get elements by categoryID: { categoryId }", null);
 
             return View("Index", model);
         }
 
-        public ActionResult GetAd(int adID, string returnUrl)
+        public ActionResult GetAd(int adId, string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            var model = _repository.GetAd(adID);
+            var model = _repository.GetAd(adId);
 
-            _logger.InfoFormat($"Get ad by adID: { adID }", null);
+            _logger.InfoFormat($"Get ad by adID: { adId }", null);
 
             return View("AdInformation", model);
         }

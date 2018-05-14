@@ -8,7 +8,7 @@
                  routeValues: new { categoryID = item.ID },
                  htmlAttributes: new { @class = "button button_block button_gap_1 button_dark_hover" })*@
         @Html.ActionLink(item.Name, "GetCategoryAds", "Ad",
-                 routeValues: new { categoryID = item.ID },
+                 routeValues: new { categoryId = item.Id },
                  htmlAttributes: new { @class = "link link_block link_gap_1 link_red" })
     </div>
     }
