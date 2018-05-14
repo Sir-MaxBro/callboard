@@ -11,13 +11,14 @@ using Callboard.App.Data.Infrastructure;
 
 namespace Callboard.App.Data.Abstract
 {
-    public abstract class SqlDbContext<T>
+    public class SqlDbContext<T>
         where T : new()
     {
         private DbConnection _dbConnection = new SqlConnection();
         public SqlDbContext(string connectionString)
         {
-            _dbConnection.ConnectionString = connectionString;
+            //_dbConnection.ConnectionString = connectionString;
+            _dbConnection.ConnectionString = "Data Source=SQL6002.site4now.net;Initial Catalog=DB_A33657_callboarddb;Persist Security Info=True;User ID=DB_A33657_callboarddb_admin;Password=maxbro2968";
         }
 
         public void Open()
@@ -46,13 +47,19 @@ namespace Callboard.App.Data.Abstract
                 .ToList();
 
             string spName = $"sp_select_{ tableNames[0].ToLower() }";
+
             DbCommand command = new SqlCommand(spName);
             command.Connection = _dbConnection;
             command.CommandType = CommandType.StoredProcedure;
-
-            using (var reader = command.ExecuteReader())
+            DbDataReader reader = null;
+            try
             {
+                reader = command.ExecuteReader();
                 mappingCollection = Mapper.MapCollection<T>(reader).ToList();
+            }
+            finally
+            {
+                reader?.Close();
             }
 
             return mappingCollection;
