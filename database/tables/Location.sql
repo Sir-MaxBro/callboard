@@ -1,4 +1,5 @@
-CREATE TABLE [callboard_db].[Location]
+USE [callboardDB];
+CREATE TABLE [dbo].[Location]
 (
     [LocationId] INT IDENTITY(1, 1) NOT NULL,
     [CityId]      INT NOT NULL,
@@ -7,6 +8,6 @@ CREATE TABLE [callboard_db].[Location]
     [AddressLine] NVARCHAR(MAX) NULL,
 
     PRIMARY KEY CLUSTERED ([LocationId] ASC, [CityId] ASC, [AreaId] ASC, [CountryId] ASC),
-    FOREIGN KEY ([CityId], [AreaId], [CountryId]) REFERENCES [callboard_db].[City]([CityId], [AreaId], [CountryId])
+    FOREIGN KEY ([CityId], [AreaId], [CountryId]) REFERENCES [dbo].[City]([CityId], [AreaId], [CountryId])
 );
 GO

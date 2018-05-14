@@ -1,1 +1,1 @@
-CREATE DATABASE [callboard_db]
+CREATE DATABASE [callboardDB]

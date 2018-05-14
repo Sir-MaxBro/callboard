@@ -1,7 +1,9 @@
-CREATE PROCEDURE [callboard_db].[sp_select_category]
+USE [callboardDB];
+GO
+CREATE PROCEDURE [dbo].[sp_select_category]
 AS
 (
     SELECT [CategoryId], [Name] 
-    FROM [callboard_db].[Category]
+    FROM [dbo].[Category]
 );
 GO

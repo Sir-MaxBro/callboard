@@ -1,4 +1,5 @@
-CREATE TABLE [callboard_db].[User]
+USE [callboardDB];
+CREATE TABLE [dbo].[User]
 (
     [UserId] INT NOT NULL IDENTITY(1, 1),
     [Name] NVARCHAR(MAX) NOT NULL,

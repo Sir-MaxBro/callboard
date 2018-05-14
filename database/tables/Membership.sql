@@ -1,4 +1,5 @@
-CREATE TABLE [callboard_db].[Membership]
+USE [callboardDB];
+CREATE TABLE [callboardDB].[dbo].[Membership]
 (
     [MembershipId] INT IDENTITY(1, 1) NOT NULL,
     [UserId] INT NOT NULL,
@@ -6,6 +7,6 @@ CREATE TABLE [callboard_db].[Membership]
     [Password] NVARCHAR(MAX) NOT NULL,
 
     PRIMARY KEY CLUSTERED ([MembershipId] ASC, [UserId] ASC),
-    FOREIGN KEY ([UserId]) REFERENCES [callboard_db].[User]([UserId])
+    FOREIGN KEY ([UserId]) REFERENCES [callboardDB].[User]([UserId])
 );
 GO

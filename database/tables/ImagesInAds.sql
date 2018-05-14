@@ -1,10 +1,11 @@
-CREATE TABLE [callboard_db].[ImagesInAds]
+USE [callboardDB];
+CREATE TABLE [dbo].[ImagesInAds]
 (
     [ImageId] INT NOT NULL,
     [AdId] INT NOT NULL,
 
     PRIMARY KEY CLUSTERED ([ImageId] ASC, [AdId] ASC),
-    FOREIGN KEY ([ImageId]) REFERENCES [callboard_db].[Image]([ImageId]),
-    FOREIGN KEY ([AdId]) REFERENCES [callboard_db].[Ad]([AdId])
+    FOREIGN KEY ([ImageId]) REFERENCES [dbo].[Image]([ImageId]),
+    FOREIGN KEY ([AdId]) REFERENCES [dbo].[Ad]([AdId])
 );
 GO

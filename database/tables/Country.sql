@@ -1,4 +1,5 @@
-CREATE TABLE [callboard_db].[Country]
+USE [callboardDB];
+CREATE TABLE [dbo].[Country]
 (
     [CountryId] INT NOT NULL,
     [Name]      NVARCHAR(50) NOT NULL,
