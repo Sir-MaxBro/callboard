@@ -1,4 +1,4 @@
-CREATE TABLE [Ad]
+CREATE TABLE [callboard_db].[Ad]
 (
     [AdId] INT IDENTITY(1, 1) NOT NULL,
     [UserId] INT NOT NULL,
@@ -10,10 +10,10 @@ CREATE TABLE [Ad]
     [Price] DECIMAL(18, 2) NOT NULL,
     [CreationDate] DATETIME NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([UserId] ASC),
-    FOREIGN KEY ([UserId]) REFERENCES [User]([UserId]),
-    FOREIGN KEY ([LocationId]) REFERENCES [Location]([LocationId]),
-    FOREIGN KEY ([KindId]) REFERENCES [Kind]([KindId]),
-    FOREIGN KEY ([StateId]) REFERENCES [State]([StateId])
+    PRIMARY KEY CLUSTERED ([AdId] ASC),
+    FOREIGN KEY ([UserId]) REFERENCES [callboard_db].[User]([UserId]),
+    FOREIGN KEY ([LocationId]) REFERENCES [callboard_db].[Location]([LocationId]),
+    FOREIGN KEY ([KindId]) REFERENCES [callboard_db].[Kind]([KindId]),
+    FOREIGN KEY ([StateId]) REFERENCES [callboard_db].[State]([StateId])
 );
 GO

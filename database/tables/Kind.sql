@@ -1,4 +1,4 @@
-CREATE TABLE [Kind]
+CREATE TABLE [callboard_db].[Kind]
 (
     [KindId] INT NOT NULL,
     [Type]   NVARCHAR(50) NOT NULL,
