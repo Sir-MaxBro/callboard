@@ -1,11 +1,22 @@
-﻿namespace Callboard.App.General.Entities
+﻿using Callboard.App.General.Attributes;
+
+namespace Callboard.App.General.Entities
 {
+    [Table("City")]
     public class City
     {
-        public int ID { get; set; }
+        [Column("CityId")]
+        public int Id { get; set; }
 
-        public int AreaID { get; set; }
+        [Column("AreaId")]
+        public int AreaId { get; set; }
 
+        //public Area Area { get; set; }
+        [Column("CountryId")]
+        public int CountryId { get; set; }
+
+        //public Country Country { get; set; }
+        [Column("Name")]
         public string Name { get; set; }
     }
 }

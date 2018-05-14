@@ -1,28 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using Callboard.App.General.Attributes;
 
 namespace Callboard.App.General.Entities
 {
+    [Table("Ad")]
     public class Ad
     {
-        public int ID { get; set; }
+        [Column("AdId")]
+        public int Id { get; set; }
 
-        public int UserID { get; set; }
+        //public int UserId { get; set; }
 
-        public int LocationID { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
 
+        //public int LocationId { get; set; }
+        [ForeignKey("LocationId")]
+        public Location Location { get; set; }
+
+        [Column("Name")]
         public string Name { get; set; }
 
+        [Column("Description")]
         public string Description { get; set; }
 
+        [Column("Price")]
         public decimal Price { get; set; }
 
+        [Column("CreationDate")]
         public DateTime CreationDate { get; set; }
 
         // get from db
+        [Column("Type")]
         public string Type { get; set; }
 
         // get from db
+        [Column("State")]
         public string State { get; set; }
 
         public ICollection<Image> Images { get; set; }

@@ -2,10 +2,14 @@
 {
     public class Subcategory
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int CategoryID { get; set; }
+        //public int CategoryId { get; set; }
 
-        public string Name { get; set; }
+        public Category Category { get; set; }
+
+        //public int ParentCategoryId { get; set; }
+
+        public Category ParentCategory { get; set; }
     }
 }
