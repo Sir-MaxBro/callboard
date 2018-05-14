@@ -1,4 +1,5 @@
-CREATE TABLE [callboardDB].[Image]
+USE [callboardDB];
+CREATE TABLE [dbo].[Image]
 (
     [ImageId] INT IDENTITY(1, 1) NOT NULL,
     [Data] VARBINARY(MAX) NOT NULL,

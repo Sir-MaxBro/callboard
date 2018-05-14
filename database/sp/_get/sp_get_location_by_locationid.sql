@@ -1,9 +1,11 @@
-CREATE PROCEDURE [callboardDB].[sp_get_location_by_locationid]
+USE [callboardDB];
+GO
+CREATE PROCEDURE [dbo].[sp_get_location_by_locationid]
     @LocationId int 
 AS
 (
     SELECT [LocationId], [AddressLine], [CityId], [AreaId], [CountryId]
-    FROM [callboardDB].[Location]
+    FROM [dbo].[Location]
     WHERE [LocationId] = @LocationId
 );
 GO
