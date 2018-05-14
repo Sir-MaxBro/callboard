@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
+using Callboard.App.Data.Infrastructure;
 
 namespace Callboard.App.Data.Abstract
 {
     public abstract class SqlDbContext<T>
+        where T : new()
     {
         private DbConnection _dbConnection = new SqlConnection();
         public SqlDbContext(string connectionString)
@@ -37,22 +39,23 @@ namespace Callboard.App.Data.Abstract
 
         public IReadOnlyCollection<T> Select()
         {
-            var result = new List<T>();
+            IReadOnlyCollection<T> mappingCollection = null;
             var tableNames = typeof(T).GetCustomAttributes(false)
                 .OfType<TableAttribute>()
                 .Select(attr => attr.TableName)
                 .ToList();
 
-            string spName = $"sp_select_{ tableNames[0] }";
+            string spName = $"sp_select_{ tableNames[0].ToLower() }";
             DbCommand command = new SqlCommand(spName);
             command.Connection = _dbConnection;
             command.CommandType = CommandType.StoredProcedure;
 
-            var reader = command.ExecuteReader();
+            using (var reader = command.ExecuteReader())
+            {
+                mappingCollection = Mapper.MapCollection<T>(reader).ToList();
+            }
 
-
-
-            return result;
+            return mappingCollection;
         }
     }
 }
