@@ -1,4 +1,5 @@
 ﻿using Callboard.App.Business.Abstract;
+using Callboard.App.Data.Abstract;
 using Callboard.App.General.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,22 +9,29 @@ namespace Callboard.App.Business.Concrete
 {
     internal class CategoryRepository : ICategoryRepository
     {
-        private ICollection<Category> _source = new List<Category>();
+        private IReadOnlyCollection<Category> _source = new List<Category>();
+        private SqlDbContext<Category> _context;
         public CategoryRepository()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Category category = new Category();
-                category.Id = i;
-                category.Name = $"Category {i}";
-                _source.Add(category);
-            }
+            _context = new SqlDbContext<Category>();
         }
 
         public IReadOnlyCollection<Category> Items
         {
-            get => _source.ToList();
-            set => throw new NotImplementedException();
+            get
+            {
+                try
+                {
+                    _context.Open();
+                    _context.Select().Include("Subcategory");
+                    _source = _context.Items;
+                }
+                finally
+                {
+                    _context.Close();
+                }
+                return _source;
+            }
         }
     }
 }
