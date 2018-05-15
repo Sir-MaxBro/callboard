@@ -1,15 +1,19 @@
-﻿namespace Callboard.App.General.Entities
-{
-    public class Subcategory
-    {
-        public int Id { get; set; }
+﻿//using Callboard.App.General.Attributes;
 
-        //public int CategoryId { get; set; }
+//namespace Callboard.App.General.Entities
+//{
+//    public class Subcategory
+//    {
+//        public int Id { get; set; }
 
-        public Category Category { get; set; }
+//        //public int CategoryId { get; set; }
 
-        //public int ParentCategoryId { get; set; }
+//        [ForeignKey("CategoryId", tableName: "Category")]
+//        public Category Category { get; set; }
 
-        public Category ParentCategory { get; set; }
-    }
-}
+//        //public int ParentCategoryId { get; set; }
+
+//        [ForeignKey("CategoryId", tableName: "Category")]
+//        public Category ParentCategory { get; set; }
+//    }
+//}

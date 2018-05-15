@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Callboard.App.General.Attributes;
 
 namespace Callboard.App.General.Entities

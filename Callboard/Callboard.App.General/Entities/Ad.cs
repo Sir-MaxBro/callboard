@@ -12,11 +12,11 @@ namespace Callboard.App.General.Entities
 
         //public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
+        [ForeignKey("UserId", tableName: "User")]
         public User User { get; set; }
 
         //public int LocationId { get; set; }
-        [ForeignKey("LocationId")]
+        [ForeignKey("LocationId", tableName: "Location")]
         public Location Location { get; set; }
 
         [Column("Name")]
@@ -32,7 +32,7 @@ namespace Callboard.App.General.Entities
         public DateTime CreationDate { get; set; }
 
         // get from db
-        [Column("Type")]
+        [Column("Kind")]
         public string Type { get; set; }
 
         // get from db

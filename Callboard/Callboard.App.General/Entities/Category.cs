@@ -12,6 +12,9 @@ namespace Callboard.App.General.Entities
         [Column("Name")]
         public string Name { get; set; }
 
-        public ICollection<Subcategory> Subcategories { get; set; }
+        //public ICollection<Subcategory> Subcategories { get; set; }
+
+        [Include("Subcategory", "CategoryId")]
+        public ICollection<Category> Subcategories { get; set; }
     }
 }

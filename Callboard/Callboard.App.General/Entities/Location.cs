@@ -9,15 +9,15 @@ namespace Callboard.App.General.Entities
         public int Id { get; set; }
 
         //public int CityId { get; set; }
-        [ForeignKey("CityId")]
+        [ForeignKey("CityId", tableName: "City")]
         public City City { get; set; }
 
         //public int AreaId { get; set; }
-        [ForeignKey("AreaId")]
+        [ForeignKey("AreaId", tableName: "Area")]
         public Area Area { get; set; }
 
         //public int CountryId { get; set; }
-        [ForeignKey("CountryId")]
+        [ForeignKey("CountryId", tableName: "Country")]
         public Country Country { get; set; }
 
         [Column("AddressLine")]
