@@ -1,4 +1,5 @@
 ﻿using Callboard.App.Business.Abstract;
+using Callboard.App.Data.Abstract;
 using Callboard.App.General.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,27 +9,24 @@ namespace Callboard.App.Business.Concrete
 {
     internal class AdRepository : IAdRepository
     {
-        private ICollection<Ad> _source = new List<Ad>();
+        private IReadOnlyCollection<Ad> _source;
         public AdRepository()
         {
-            for (int i = 0; i < 5; i++)
+            SqlDbContext<Ad> context = new SqlDbContext<Ad>("");
+            try
             {
-                Ad ad = new Ad();
-                ad.Id = i;
-                ad.Name = $"Name {i}";
-                ad.Description = $"Description {i}";
-                ad.Price = i + 1000;
-                ad.Categories = new List<Category>
-                {
-                    new Category { Id = i, Name = $"Category {i}"}
-                };
-                _source.Add(ad);
+                context.Open();
+                _source = context.Select();
+            }
+            finally
+            {
+                context.Close();
             }
         }
 
         public IReadOnlyCollection<Ad> Items
         {
-            get { return _source.ToList(); }
+            get { return _source; }
             set { throw new NotImplementedException(); }
         }
 

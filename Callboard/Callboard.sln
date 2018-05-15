@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggerConfig", "LoggerConfi
 		_config\loggerConfig\logger.config = _config\loggerConfig\logger.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Data", "Callboard.App.Data\Callboard.App.Data.csproj", "{5D256D90-0AE1-4E51-9299-CB00294D2A55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F84421-3212-4284-B6DB-745C2976F783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D256D90-0AE1-4E51-9299-CB00294D2A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D256D90-0AE1-4E51-9299-CB00294D2A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D256D90-0AE1-4E51-9299-CB00294D2A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D256D90-0AE1-4E51-9299-CB00294D2A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{F7F84421-3212-4284-B6DB-745C2976F783} = {F6D4BCE4-6996-49BB-845C-439958205E17}
 		{DDAD9F3F-C130-46A3-ABE6-D14AB0C0F225} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
 		{61F5FD6B-3221-4DB7-9566-C3EA397B3F79} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
+		{5D256D90-0AE1-4E51-9299-CB00294D2A55} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ED571E0-4DF6-4F2A-915E-7A99999E07D3}
