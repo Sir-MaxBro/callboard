@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Callboard.App.General.Attributes
 {
-    public class ForeignKeyAttribute : Attribute
+    public class IncludeAttribute : Attribute
     {
-        private string _fKey;
         private string _tableName;
-        public ForeignKeyAttribute(string fKey, string tableName)
+        private string _fKey;
+        public IncludeAttribute(string tableName, string fKey)
         {
-            _fKey = fKey;
             _tableName = tableName;
-        }
-
-        public string FKey
-        {
-            get => _fKey;
+            _fKey = fKey;
         }
 
         public string TableName
         {
             get => _tableName;
+        }
+
+        public string FKey
+        {
+            get => _fKey;
         }
     }
 }
