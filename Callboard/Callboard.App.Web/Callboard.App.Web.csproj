@@ -147,6 +147,12 @@
     </Content>
     <Content Include="..\_config\loggerConfig\logger.config">
       <Link>logger.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\_config\dbConfig\db.config">
+      <Link>Config\DbConfig\db.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Connected Services\CommercialService\CommercialRepository.wsdl" />
     <None Include="Connected Services\CommercialService\item.disco" />
@@ -200,6 +206,7 @@
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\ads.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -214,6 +221,7 @@
     </Compile>
     <Compile Include="Controllers\AdController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
@@ -255,6 +263,10 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerNotResponding.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

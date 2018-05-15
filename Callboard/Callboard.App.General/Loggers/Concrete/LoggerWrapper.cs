@@ -28,11 +28,14 @@ namespace Callboard.App.General.Loggers
 
         public static LoggerWrapper GetInstance()
         {
-            lock (_lockObject)
+            if (_loggerWrapper == null)
             {
-                if (_loggerWrapper == null)
+                lock (_lockObject)
                 {
-                    _loggerWrapper = new LoggerWrapper();
+                    if (_loggerWrapper == null)
+                    {
+                        _loggerWrapper = new LoggerWrapper();
+                    }
                 }
             }
             return _loggerWrapper;
