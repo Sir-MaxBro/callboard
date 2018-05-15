@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Subcategory]
     [CategoryId] INT NOT NULL,
     [ParentCategoryId] INT NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([SubcategoryInCategoriesId] ASC),
+    PRIMARY KEY CLUSTERED ([SubcategoryId] ASC),
     FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Category]([CategoryId]),
     FOREIGN KEY ([ParentCategoryId]) REFERENCES [dbo].[Category]([CategoryId])
 );
