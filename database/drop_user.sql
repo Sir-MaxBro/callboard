@@ -1,0 +1,2 @@
+DROP LOGIN maxbr
+GO
