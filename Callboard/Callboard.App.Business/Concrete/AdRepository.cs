@@ -10,34 +10,58 @@ namespace Callboard.App.Business.Concrete
     internal class AdRepository : IAdRepository
     {
         private IReadOnlyCollection<Ad> _source;
+        private SqlDbContext<Ad> _context;
         public AdRepository()
         {
-            SqlDbContext<Ad> context = new SqlDbContext<Ad>("");
-            try
-            {
-                context.Open();
-                _source = context.Select();
-            }
-            finally
-            {
-                context.Close();
-            }
+            _context = new SqlDbContext<Ad>();
         }
 
         public IReadOnlyCollection<Ad> Items
         {
-            get { return _source; }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                try
+                {
+                    _context.Open();
+                    _context.Select().Join(new string[] { "Location", "User" });
+                    _source = _context.Items;
+                }
+                finally
+                {
+                    _context.Close();
+                }
+                return _source;
+            }
         }
 
         public Ad GetAd(int adID)
         {
+            try
+            {
+                _context.Open();
+                _context.Select().Join(new string[] { "Location", "User" });
+                _source = _context.Items;
+            }
+            finally
+            {
+                _context.Close();
+            }
             return _source.First(x => x.Id == adID);
         }
 
         public IReadOnlyCollection<Ad> GetCategoryAds(int categoryID)
         {
-            return _source.Where(x => x.Categories?.Where(y => y.Id == categoryID).Count() != 0).ToList(); // replace on stored procedure
+            try
+            {
+                _context.Open();
+                _context.FiltrBy("CategoryId", categoryID);
+                _source = _context.Items;
+            }
+            finally
+            {
+                _context.Close();
+            }
+            return _source;
         }
     }
 }
