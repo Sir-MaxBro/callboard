@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Area]
     [CountryId] INT NOT NULL,
     [Name]      NVARCHAR(50) NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([AreaId] ASC, [CountryId] ASC),
+    PRIMARY KEY CLUSTERED ([AreaId] ASC),
     FOREIGN KEY ([CountryId]) REFERENCES [dbo].[Country]([CountryId])
 );
 GO
