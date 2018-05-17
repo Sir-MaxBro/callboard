@@ -1,6 +1,6 @@
 USE [callboardDB]
 GO
-ALTER PROCEDURE [dbo].[sp_select_ad]
+CREATE PROCEDURE [dbo].[sp_select_ad]
 AS
 (
     SELECT  [AdId], [Name], [Price], [CreationDate], [CityId],
