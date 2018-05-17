@@ -1,4 +1,4 @@
-USE [callboardDB];
+USE [callboardDB]
 GO
 CREATE PROCEDURE [dbo].[sp_get_user_by_userid]
     @UserId int 
