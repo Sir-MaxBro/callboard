@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Mail]
     [UserId] INT NOT NULL,
     [Email] NVARCHAR(MAX) NOT NULL,
     
-    PRIMARY KEY CLUSTERED ([EmailId] ASC, [UserId] ASC),
+    PRIMARY KEY CLUSTERED ([EmailId] ASC),
     FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([UserId])
 );
 GO
