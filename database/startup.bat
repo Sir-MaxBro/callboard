@@ -1,53 +1,62 @@
-sqlcmd -S (localdb)\MSSQLLocalDB -i drop_user.sql
+set user="max_bro"
+set password="1111"
+set server="DESKTOP-4I1O878\SQLEXPRESS"
 
-sqlcmd -S (localdb)\MSSQLLocalDB -i create_user.sql
+sqlcmd -S %server% -U %user% -P %password% -i drop_db.sql
+sqlcmd -S %server% -i drop_user.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i drop_db.sql
+sqlcmd -S %server% -i create_user.sql
+sqlcmd -S %server% -i create_db.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i create_db.sql
+sqlcmd -S %server% -U %user% -P %password% -i create_db_user.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Role.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\User.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Category.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\State.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Kind.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Image.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Country.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Membership.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\UsersInRoles.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Mail.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Phone.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Subcategory.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Area.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\City.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Location.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\Ad.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\AdsInCategories.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i tables\ImagesInAds.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Role.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\User.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Category.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\State.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Kind.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Image.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Country.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Membership.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\UsersInRoles.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Mail.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Phone.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Area.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\City.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\Ad.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\AdDetails.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\AdsInCategories.sql
+sqlcmd -S %server% -U %user% -P %password% -i tables\ImagesInAds.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\UserInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\StateInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\KindInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\CountryInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\AreaInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\CityInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\LocationInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\AdInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\CategoryInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\SubcategoryInsert.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i inserts\AdsInCategoriesInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\UserInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\PhoneInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\MailInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\StateInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\KindInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\CountryInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\AreaInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\CityInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\AdInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\AdDetailsInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\CategoryInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\AdsInCategoriesInsert.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_select\sp_select_category.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_select\sp_select_ad.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kind_by_kindid.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_location_by_cityid.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_state_by_stateid.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_filter\sp_filter_ad_by_categoryid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_category.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_image_by_adid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_mail_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_phone_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_subcategory_by_parentid.sql
 
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_include\sp_include_category_on_subcategory_by_categoryid.sql
-
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_get\sp_get_area_by_areaid.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_get\sp_get_city_by_cityid.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_get\sp_get_country_by_coyntryid.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_get\sp_get_location_by_locationid.sql
-sqlcmd -S (localdb)\MSSQLLocalDB -U maxbr -P maxbro2968 -i sp\_get\sp_get_user_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_area_by_areaid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_city_by_cityid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_country_by_countryid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 
 pause
