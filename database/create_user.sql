@@ -1,5 +1,13 @@
-CREATE LOGIN maxbr WITH PASSWORD = 'maxbro2968';
+USE MASTER;
 GO
 
-EXEC master..sp_addsrvrolemember @loginame = N'maxbr', @rolename = N'sysadmin'
+CREATE LOGIN max_bro 
+    WITH PASSWORD = N'1111', 
+    DEFAULT_DATABASE = MASTER, 
+    DEFAULT_LANGUAGE = US_ENGLISH;
 GO
+
+ALTER LOGIN max_bro ENABLE;
+GO
+
+ALTER SERVER ROLE  sysadmin  ADD MEMBER max_bro;  

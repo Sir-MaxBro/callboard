@@ -1,10 +1,12 @@
-USE [callboardDB];
+CREATE LOGIN max_bro WITH PASSWORD = '1111'
 GO
-CREATE LOGIN admin_max 
-    WITH PASSWORD    = N'maxbro2968',
-    CHECK_POLICY     = OFF,
-    CHECK_EXPIRATION = OFF;
+
+Use [callboardDB];
 GO
-EXEC sp_addsrvrolemember 
-    @loginame = N'admin_max', 
-    @rolename = N'sysadmin';
+
+IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'max_bro')
+BEGIN
+    CREATE USER [max_bro] FOR LOGIN [max_bro]
+    EXEC sp_addrolemember N'db_owner', N'max_bro'
+END;
+GO
