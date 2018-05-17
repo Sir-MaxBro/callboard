@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Phone]
     [UserId] INT NOT NULL,
     [Number] NVARCHAR(50) NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([PhoneId] ASC, [UserId] ASC),
+    PRIMARY KEY CLUSTERED ([PhoneId] ASC),
     FOREIGN KEY ([UserId]) REFERENCES [dbo].[User](UserId)
 );
 GO
