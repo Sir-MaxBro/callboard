@@ -1,24 +1,30 @@
 USE [callboardDB];
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 1, 0, 1, 'Laptop Samsung', 'This laptop is very good', 1000, '2012-06-18 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(1, 2, 1, 'Product 1', 100, '2018-05-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 1, 1, 0, 'Product 6', 'Description 6', 500, '2016-06-18 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(2, 1, 2, 'Product 2', 200, '2018-06-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 3, 0, 1, 'Product 1', 'Description 1', 400, '2017-08-11 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(1, 2, 3, 'Product 3', 300, '2018-07-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 2, 0, 1, 'Product 2', 'Description 2', 3250, '2018-01-30 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(2, 1, 4, 'Product 4', 400, '2018-08-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 1, 1, 0, 'Product 3', 'Description 3', 457, '2018-02-22 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(1, 2, 1, 'Product 5', 500, '2018-09-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 1, 0, 1, 'Product 4', 'Description 4', 785, '2018-03-14 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(2, 1, 2, 'Product 6', 600, '2018-10-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 2, 1, 0, 'Product 5', 'Description 5', 120, '2018-04-18 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(1, 2, 3, 'Product 7', 700, '2018-11-05 12:00:00')
 
-INSERT INTO [dbo].[Ad]([UserId], [LocationId], [KindId], [StateId], [Name], [Description], [Price], [CreationDate]) 
-VALUES(1, 3, 0, 1, 'Product 6', 'Description 6', 399, '2018-05-05 12:00:00')
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(2, 1, 4, 'Product 8', 800, '2018-12-05 12:00:00')
+
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(1, 2, 1, 'Product 9', 900, '2018-1-05 12:00:00')
+
+INSERT INTO [dbo].[Ad]([KindId], [StateId], [CityId], [Name], [Price], [CreationDate]) 
+VALUES(2, 1, 2, 'Product 10', 1000, '2018-1-05 12:00:00')
