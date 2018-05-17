@@ -1,12 +1,11 @@
-USE [callboardDB];
+USE [callboardDB]
 GO
-CREATE PROCEDURE [dbo].[sp_select_ad]
+ALTER PROCEDURE [dbo].[sp_select_ad]
 AS
 (
-    SELECT  [AdId], [Name], [Description], [Price], [CreationDate],
-            [UserId], [LocationId],
-            (SELECT [Type] FROM [dbo].[Kind] WHERE [Kind].[KindId] = [Ad].[KindId]) AS [Kind],
-            (SELECT [Condition] FROM [dbo].[State] WHERE [State].[StateId] = [Ad].[StateId]) AS [State]
+    SELECT  [AdId], [Name], [Price], [CreationDate], [CityId],
+            [dbo].func_get_kind_by_kindid([Ad].[KindId]) AS [Kind],
+            [dbo].func_get_state_by_stateid([Ad].[StateId]) AS [State]
     FROM [dbo].[Ad]
 );
 GO
