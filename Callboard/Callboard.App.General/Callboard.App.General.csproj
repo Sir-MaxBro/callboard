@@ -69,6 +69,7 @@
     <Compile Include="Entities\Subcategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UsersInRoles.cs" />
+    <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Helpers\Checker.cs" />
     <Compile Include="Loggers\Abstract\ILoggerWrapper.cs" />
     <Compile Include="Loggers\Concrete\LoggerWrapper.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Callboard.App.General.Exceptions;
+using System;
 
 namespace Callboard.App.General.Helpers
 {
@@ -9,7 +10,15 @@ namespace Callboard.App.General.Helpers
         {
             if (Equals(obj, null))
             {
-                throw new NullReferenceException($"Object { typeof(T) } is null");
+                throw new NullReferenceException($"Object { typeof(T) } is null.");
+            }
+        }
+
+        public static void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException($"Id { id } is not valid.");
             }
         }
     }
