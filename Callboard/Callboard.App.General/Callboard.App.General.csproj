@@ -47,10 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\ColumnAttribute.cs" />
-    <Compile Include="Attributes\ForeignKeyAttribute.cs" />
-    <Compile Include="Attributes\IncludeAttribute.cs" />
-    <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DependencyResolution\GeneralRegistry.cs" />
     <Compile Include="Entities\Ad.cs" />
     <Compile Include="Entities\AdsInCategories.cs" />
@@ -66,7 +62,6 @@
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\State.cs" />
-    <Compile Include="Entities\Subcategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UsersInRoles.cs" />
     <Compile Include="Loggers\Abstract\ILoggerWrapper.cs" />
