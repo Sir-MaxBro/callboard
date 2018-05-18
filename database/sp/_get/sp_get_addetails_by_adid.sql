@@ -4,13 +4,10 @@ CREATE PROCEDURE [dbo].[sp_get_addetails_by_adid]
     @AdId INT
 AS
 (
-    SELECT  [Ad].[AdId] AS [AdId], [Name], [Price], [CreationDate], [CityId],
-            [dbo].func_get_kind_by_kindid([Ad].[KindId]) AS [Kind],
-            [dbo].func_get_state_by_stateid([Ad].[StateId]) AS [State],
-            [UserId], [Description], [AddressLine]
-    FROM [dbo].[Ad]
+    SELECT  ads.*, [UserId], [Description], [AddressLine]
+    FROM [dbo].func_select_ad() AS ads
     INNER JOIN [dbo].[AdDetails]
-    ON [AdDetails].[AdId] = [Ad].[AdId]
-    WHERE [Ad].[AdId] = @AdId
+    ON [AdDetails].[AdId] = ads.[AdId]
+    WHERE ads.[AdId] = @AdId
 );
 GO
