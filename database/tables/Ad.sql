@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Ad]
     [KindId] INT NULL,
     [StateId] INT NULL,
     [CityId] INT NULL,
-    [Name] NVARCHAR(50) NOT NULL,
+    [Name] NVARCHAR(MAX) NOT NULL,
     [Price] DECIMAL(18, 2) NOT NULL,
     [CreationDate] DATETIME NOT NULL,
 
