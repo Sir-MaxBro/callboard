@@ -20,12 +20,11 @@ namespace Callboard.App.Web.Controllers
             _logger = logger;
         }
 
-        // GET: Home
         public ActionResult Index()
         {
             AdViewModel model = new AdViewModel
             {
-                Ads = _repository.Items.ToList()
+                Ads = _repository.Items
             };
             return View(model);
         }
@@ -34,7 +33,7 @@ namespace Callboard.App.Web.Controllers
         {
             AdViewModel model = new AdViewModel
             {
-                Ads = _repository.GetCategoryAds(categoryId).ToList()
+                Ads = _repository.GetCategoryAds(categoryId)
             };
 
             _logger.InfoFormat($"Get elements by categoryID: { categoryId }", null);
