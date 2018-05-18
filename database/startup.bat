@@ -44,8 +44,10 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\AdsInCategoriesInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kind_by_kindid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_location_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_state_by_stateid.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_select_ad.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_category.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_categoryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_image_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_mail_by_userid.sql
