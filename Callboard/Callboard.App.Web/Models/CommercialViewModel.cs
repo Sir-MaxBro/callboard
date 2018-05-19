@@ -7,6 +7,6 @@ namespace Callboard.App.Web.Models
 {
     public class CommercialViewModel
     {
-        public IReadOnlyCollection<CommercialService.Commercial> Commercials { get; set; }
+        public IReadOnlyCollection<object> Commercials { get; set; }
     }
 }
