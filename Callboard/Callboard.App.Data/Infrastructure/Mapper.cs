@@ -6,22 +6,19 @@ namespace Callboard.App.Data.Infrastructure
 {
     internal class Mapper
     {
-        public static IReadOnlyCollection<T> MapCollection<T>(DbDataReader reader)
-            where T : new()
+        public static IReadOnlyCollection<TResult> MapCollection<TResult>(DbDataReader reader, Func<DbDataReader, TResult> mapping)
         {
-            throw new NotImplementedException();
-        }
-
-        public static T MapElement<T>(DbDataReader reader)
-            where T : new()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static T Map<T>(DbDataReader reader)
-            where T : new()
-        {
-            throw new NotImplementedException();
+            List<TResult> items = null;
+            if (!reader.IsClosed)
+            {
+                items = new List<TResult>();
+                while (reader.Read())
+                {
+                    TResult item = mapping(reader);
+                    items.Add(item);
+                }
+            }
+            return items;
         }
     }
 }
