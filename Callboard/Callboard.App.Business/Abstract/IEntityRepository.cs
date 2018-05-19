@@ -4,6 +4,6 @@ namespace Callboard.App.Business.Abstract
 {
     public interface IEntityRepository<T>
     {
-        IReadOnlyCollection<T> Items { get; }    
+        IReadOnlyCollection<T> Items { get; }
     }
 }
