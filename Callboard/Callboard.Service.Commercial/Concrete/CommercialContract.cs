@@ -1,24 +1,22 @@
-﻿using System;
+﻿using Callboard.Service.Commercial.Config;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Callboard.Service.Commercial.Config;
 
 namespace Callboard.Service.Commercial
 {
-    public class CommercialRepository : ICommercialRepository
+    public class CommercialContract : ICommercialContract
     {
         private IDictionary<string, string> _pathways;
         private const int COMMERCIAL_COUNT = 3;
-        public CommercialRepository()
+        private const string SECTION_NAME = "commercialSettings";
+        public CommercialContract()
         {
             _pathways = new Dictionary<string, string>();
-            var pathwaysSection = ((StartupCommercialConfigSection)ConfigurationManager.GetSection("commercialSettings")).Pathways;
-            foreach (CommercialPathElement item in pathwaysSection)
+            var pathwaysSection = ((StartupCommercialConfigSection)ConfigurationManager.GetSection(SECTION_NAME)).Pathways;
+            foreach (ImagePathElement item in pathwaysSection)
             {
                 DirectoryInfo directory = new DirectoryInfo(item.Path);
                 FileInfo[] files = directory.GetFiles();

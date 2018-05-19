@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace Callboard.Service.Commercial.Config
 {
-    public class CommercialPathElement : ConfigurationElement
+    public class ImagePathElement : ConfigurationElement
     {
         [ConfigurationProperty("path", DefaultValue = "", IsKey = true, IsRequired = true)]
         public string Path

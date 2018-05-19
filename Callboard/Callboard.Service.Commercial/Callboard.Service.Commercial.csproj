@@ -45,11 +45,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICommercialRepository.cs" />
-    <Compile Include="Concrete\CommercialRepository.cs" />
-    <Compile Include="Config\Elements\CommercialPathElement.cs" />
-    <Compile Include="Config\Collections\PathCollection.cs" />
-    <Compile Include="Config\Sections\StartupCommercialConfigSection.cs" />
+    <Compile Include="Contracts\ICommercialContract.cs" />
+    <Compile Include="Concrete\CommercialContract.cs" />
+    <Compile Include="Config\Elements\ImagePathElement.cs" />
+    <Compile Include="Config\Collections\ImagePathCollection.cs" />
+    <Compile Include="Config\Sections\CommercialConfigSection.cs" />
     <Compile Include="Entities\Commercial.cs" />
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
