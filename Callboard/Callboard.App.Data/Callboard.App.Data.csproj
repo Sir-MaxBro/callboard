@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IAdRepository.cs" />
-    <Compile Include="Abstract\ICategoryRepository.cs" />
-    <Compile Include="Abstract\IEntityRepository.cs" />
-    <Compile Include="Concrete\AdRepository.cs" />
+    <Compile Include="DbInfractructure\Abstract\IDbConnection.cs" />
+    <Compile Include="DbInfractructure\Abstract\IDbContext.cs" />
+    <Compile Include="DbInfractructure\Concrete\SqlDbContext.cs" />
+    <Compile Include="Infrastructure\DataContext.cs" />
+    <Compile Include="Repositories\Abstract\IAdRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
+    <Compile Include="Repositories\Realizations\AdRepository.cs" />
     <Compile Include="Config\Collections\ColumnCollection.cs" />
     <Compile Include="Config\Collections\ProcedureCollection.cs" />
     <Compile Include="Config\Collections\TableCollection.cs" />
