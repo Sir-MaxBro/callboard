@@ -53,6 +53,10 @@
     <Compile Include="Config\Elements\TableElement.cs" />
     <Compile Include="Config\Main\ConfigSection.cs" />
     <Compile Include="Config\Sections\DataSettingsConfigSection.cs" />
+    <Compile Include="Entities\Column.cs" />
+    <Compile Include="Entities\Procedure.cs" />
+    <Compile Include="Entities\Table.cs" />
+    <Compile Include="Infrastructure\DataConfiguration.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,7 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="db.config" />
+    <Content Include="Callboard.App.Data.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
