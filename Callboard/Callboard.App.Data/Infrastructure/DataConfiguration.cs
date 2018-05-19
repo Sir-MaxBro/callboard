@@ -34,10 +34,16 @@ namespace Callboard.App.Data.Infrastructure
         {
             var connStringsSection = configuration.ConnectionStrings;
             Checker.CheckForNull(connStringsSection, $"Cannot find ConnectionStrings section in { assembly.FullName }");
-
-            var connStrings = connStringsSection.ConnectionStrings[DB_NAME]?.ConnectionString;
-            Checker.CheckForNull(connStrings, $"Cannot find connection string with name { DB_NAME } in { assembly.FullName }");
-
+            string connStrings = null;
+            try
+            {
+                connStrings = connStringsSection.ConnectionStrings[DB_NAME]?.ConnectionString;
+                Checker.CheckForNull(connStrings, $"Cannot find connection string with name { DB_NAME } in { assembly.FullName }");
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+                throw ex;
+            }
             return connStrings;
         }
 
