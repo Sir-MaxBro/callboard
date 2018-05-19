@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdRepository.cs" />
+    <Compile Include="Abstract\ICategoryRepository.cs" />
     <Compile Include="Abstract\IEntityRepository.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
