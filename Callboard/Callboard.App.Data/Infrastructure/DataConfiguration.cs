@@ -27,7 +27,7 @@ namespace Callboard.App.Data.Infrastructure
             return tables;
         }
 
-        private Table GetTable(string tableName)
+        public Table GetTable(string tableName)
         {
             Table table = null;
             var tableElem = _dataSettings.Tables.FirstOrDefault(item => item.Name == tableName);
