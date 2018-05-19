@@ -41,8 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\SqlDbContext.cs" />
-    <Compile Include="Entities\MapperItem.cs" />
+    <Compile Include="Abstract\IAdRepository.cs" />
+    <Compile Include="Abstract\ICategoryRepository.cs" />
+    <Compile Include="Abstract\IEntityRepository.cs" />
+    <Compile Include="Concrete\AdRepository.cs" />
+    <Compile Include="Config\Collections\ColumnCollection.cs" />
+    <Compile Include="Config\Collections\ProcedureCollection.cs" />
+    <Compile Include="Config\Collections\TableCollection.cs" />
+    <Compile Include="Config\Elements\ColumnElement.cs" />
+    <Compile Include="Config\Elements\ProcedureElement.cs" />
+    <Compile Include="Config\Elements\TableElement.cs" />
+    <Compile Include="Config\Main\ConfigSection.cs" />
+    <Compile Include="Config\Sections\DataSettingsConfigSection.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,5 +62,6 @@
       <Name>Callboard.App.General</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

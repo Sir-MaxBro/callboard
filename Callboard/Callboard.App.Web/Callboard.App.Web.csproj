@@ -130,9 +130,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Connected Services\CommercialService\Callboard.App.Web.CommercialService.Commercial.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="..\_config\serviceConfig\behaviors.config">
       <Link>Config\ServiceConfig\behaviors.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -154,14 +151,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Connected Services\CommercialService\CommercialRepository.wsdl" />
-    <None Include="Connected Services\CommercialService\item.disco" />
-    <None Include="Connected Services\CommercialService\configuration91.svcinfo" />
-    <None Include="Connected Services\CommercialService\configuration.svcinfo" />
-    <None Include="Connected Services\CommercialService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Content\css\ad\ad.css" />
     <Content Include="Content\css\ad\__content\ad__content.css" />
     <Content Include="Content\css\ad\__content\_right\ad__content_right.css" />
@@ -214,11 +203,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
-    <Compile Include="Connected Services\CommercialService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AdController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -253,15 +237,6 @@
     <Content Include="Views\Shared\_StartLayout.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\Shared\SliderPartial.cshtml" />
-    <None Include="Connected Services\CommercialService\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CommercialService\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CommercialService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -295,9 +270,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CommercialService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
