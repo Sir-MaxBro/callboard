@@ -20,5 +20,27 @@ namespace Callboard.App.Data.Infrastructure
             }
             return items;
         }
+
+        public static T MapProperty<T>(DbDataReader reader, string mapPropertyName, Func<string, string> getName)
+        {
+            T obj = default(T);
+            if (!reader.IsClosed)
+            {
+                mapPropertyName = mapPropertyName.ToLower();
+                string name = getName(mapPropertyName);
+                if (name != null)
+                {
+                    try
+                    {
+                        obj = (T)reader[name];
+                    }
+                    catch (IndexOutOfRangeException ex)
+                    {
+                       
+                    }
+                }
+            }
+            return obj;
+        }
     }
 }
