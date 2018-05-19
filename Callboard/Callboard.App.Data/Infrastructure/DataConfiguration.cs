@@ -6,18 +6,46 @@ using Callboard.App.General.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Reflection;
 
 namespace Callboard.App.Data.Infrastructure
 {
     internal class DataConfiguration
     {
         private const string SECTION_NAME = "dataSettings";
+        private const string DB_NAME = "callboardDB";
         private DataSettingsConfigSection _dataSettings;
+        private string _connectionString;
         public DataConfiguration()
         {
-            Configuration dllConfig = ConfigurationManager.OpenExeConfiguration(this.GetType().Assembly.Location);
-            _dataSettings = (DataSettingsConfigSection)dllConfig.GetSection(SECTION_NAME);
-            Checker.CheckForNull(_dataSettings);
+            var assembly = ConfigurationHelper.GetObjAssembly(this);
+            var configuration = ConfigurationHelper.GetAssemblyConfiguration(assembly);
+
+            _dataSettings = GetDataSettingsSection(assembly, configuration);
+            _connectionString = GetConnectionString(assembly, configuration);
+        }
+
+        public string ConnectionString
+        {
+            get => _connectionString;
+        }
+
+        private string GetConnectionString(Assembly assembly, Configuration configuration)
+        {
+            var connStringsSection = configuration.ConnectionStrings;
+            Checker.CheckForNull(connStringsSection, $"Cannot find ConnectionStrings section in { assembly.FullName }");
+
+            var connStrings = connStringsSection.ConnectionStrings[DB_NAME]?.ConnectionString;
+            Checker.CheckForNull(connStrings, $"Cannot find connection string with name { DB_NAME } in { assembly.FullName }");
+
+            return connStrings;
+        }
+
+        private DataSettingsConfigSection GetDataSettingsSection(Assembly assembly, Configuration configuration)
+        {
+            var dataSettings = (DataSettingsConfigSection)configuration.GetSection(SECTION_NAME);
+            Checker.CheckForNull(dataSettings, errorMessage: $"Cannot find { SECTION_NAME } section in { assembly.FullName }");
+            return dataSettings;
         }
 
         public IReadOnlyCollection<Table> GetTables()
