@@ -6,7 +6,6 @@ using Callboard.App.General.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Reflection;
 
 namespace Callboard.App.Data.Infrastructure
 {
@@ -15,30 +14,31 @@ namespace Callboard.App.Data.Infrastructure
         private const string SECTION_NAME = "dataSettings";
         private const string DB_NAME = "callboardDB";
         private DataSettingsConfigSection _dataSettings;
-        private string _connectionString;
+        private string _assemblyName;
+        private Configuration _configuration;
         public DataConfiguration()
         {
             var assembly = ConfigurationHelper.GetObjAssembly(this);
-            var configuration = ConfigurationHelper.GetAssemblyConfiguration(assembly);
+            _configuration = ConfigurationHelper.GetAssemblyConfiguration(assembly);
 
-            _dataSettings = GetDataSettingsSection(assembly, configuration);
-            _connectionString = GetConnectionString(assembly, configuration);
+            _assemblyName = assembly.FullName;
+            _dataSettings = GetDataSettingsSection();
         }
 
         public string ConnectionString
         {
-            get => _connectionString;
+            get => GetConnectionString();
         }
 
-        private string GetConnectionString(Assembly assembly, Configuration configuration)
+        private string GetConnectionString()
         {
-            var connStringsSection = configuration.ConnectionStrings;
-            Checker.CheckForNull(connStringsSection, $"Cannot find ConnectionStrings section in { assembly.FullName }");
+            var connStringsSection = _configuration.ConnectionStrings;
+            Checker.CheckForNull(connStringsSection, $"Cannot find ConnectionStrings section in { _assemblyName }");
             string connStrings = null;
             try
             {
                 connStrings = connStringsSection.ConnectionStrings[DB_NAME]?.ConnectionString;
-                Checker.CheckForNull(connStrings, $"Cannot find connection string with name { DB_NAME } in { assembly.FullName }");
+                Checker.CheckForNull(connStrings, $"Cannot find connection string with name { DB_NAME } in { _assemblyName }");
             }
             catch (ConfigurationErrorsException ex)
             {
@@ -47,10 +47,10 @@ namespace Callboard.App.Data.Infrastructure
             return connStrings;
         }
 
-        private DataSettingsConfigSection GetDataSettingsSection(Assembly assembly, Configuration configuration)
+        private DataSettingsConfigSection GetDataSettingsSection()
         {
-            var dataSettings = (DataSettingsConfigSection)configuration.GetSection(SECTION_NAME);
-            Checker.CheckForNull(dataSettings, errorMessage: $"Cannot find { SECTION_NAME } section in { assembly.FullName }");
+            var dataSettings = (DataSettingsConfigSection)_configuration.GetSection(SECTION_NAME);
+            Checker.CheckForNull(dataSettings, errorMessage: $"Cannot find { SECTION_NAME } section in { _assemblyName }");
             return dataSettings;
         }
 
@@ -64,7 +64,8 @@ namespace Callboard.App.Data.Infrastructure
         public Table GetTable(string tableName)
         {
             Table table = null;
-            var tableElem = _dataSettings.Tables.FirstOrDefault(item => item.Name == tableName);
+            tableName = tableName.ToLower();
+            var tableElem = _dataSettings.Tables.FirstOrDefault(item => item.Name.ToLower() == tableName);
             if (tableElem != null)
             {
                 table = MapTable(tableElem);

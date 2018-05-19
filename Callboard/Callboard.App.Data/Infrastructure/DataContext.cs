@@ -40,16 +40,5 @@ namespace Callboard.App.Data.Infrastructure
         {
             _context.Dispose();
         }
-
-        private IReadOnlyCollection<TResult> MapCollection<TResult>(DbDataReader reader, Func<DbDataReader, TResult> mapping)
-        {
-            IReadOnlyCollection<TResult> mappingCollection = null;
-            if (!reader.IsClosed)
-            {
-                mappingCollection = Mapper.MapCollection(reader, mapping);
-                reader.Close();
-            }
-            return mappingCollection;
-        }
     }
 }

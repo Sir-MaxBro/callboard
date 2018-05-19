@@ -62,6 +62,7 @@
     <Compile Include="Entities\Ad\State.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
+    <Compile Include="Extensions\IReadOnlyCollectionExtension.cs" />
     <Compile Include="Helpers\Checker.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Loggers\Abstract\ILoggerWrapper.cs" />
