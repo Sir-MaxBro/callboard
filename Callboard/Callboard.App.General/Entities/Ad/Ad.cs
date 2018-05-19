@@ -14,7 +14,7 @@ namespace Callboard.App.General.Entities
 
         public DateTime CreationDate { get; set; }
 
-        public string Type { get; set; }
+        public string Kind { get; set; }
 
         public string State { get; set; }
     }
