@@ -18,11 +18,11 @@ namespace Callboard.App.Data.Config.Elements
             set { base["type"] = value; }
         }
 
-        [ConfigurationProperty("by", DefaultValue = "")]
-        public string By
+        [ConfigurationProperty("params", DefaultValue = "")]
+        public string Params
         {
-            get { return ((string)(base["by"])); }
-            set { base["by"] = value; }
+            get { return ((string)(base["params"])); }
+            set { base["params"] = value; }
         }
     }
 }
