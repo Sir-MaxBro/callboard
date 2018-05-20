@@ -1,24 +1,18 @@
-﻿using Callboard.App.Data.Entities;
-using Callboard.App.Data.Infrastructure;
+﻿using Callboard.App.Data.Infrastructure;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Callboard.App.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    internal class CategoryRepository : EntityRepository, ICategoryRepository
     {
-        private string _connectionString;
         private const string TABLE_NAME = "Category";
-        private Table _table;
         public CategoryRepository()
-        {
-            var configuration = new DataConfiguration();
-            _connectionString = configuration.ConnectionString;
-            _table = configuration.GetTable(TABLE_NAME);
-        }
+            : base() { }
+
+        protected override string TableName => TABLE_NAME;
 
         public IReadOnlyCollection<Category> Items => GetCategories();
 
@@ -28,7 +22,7 @@ namespace Callboard.App.Data.Repositories
             using (var context = new DataContext(_connectionString))
             {
                 Func<DbDataReader, Category> mapCategory = MapCategory;
-                var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectAll");
+                var procedure = base.GetProcedure("selectAll");
                 if (procedure != null)
                 {
                     categories = context.ExecuteProcedure(procedure.ProcedureName, null, mapCategory);
@@ -39,18 +33,11 @@ namespace Callboard.App.Data.Repositories
 
         private Category MapCategory(DbDataReader reader)
         {
-            var columns = _table.Columns;
-            Func<string, string> getName = propertyName =>
-            {
-                string name = columns.FirstOfDefault(item => item.MapPropertyName.ToLower() == propertyName)?.Name;
-                return name;
-            };
-
             return new Category
             {
-                CategoryId = Mapper.MapProperty<int>(reader, "CategoryId", getName),
-                Name = Mapper.MapProperty<string>(reader, "Name", getName),
-                ParentId = Mapper.MapProperty<int>(reader, "ParentId", getName)
+                CategoryId = Mapper.MapProperty<int>(reader, "CategoryId", base.GetName),
+                Name = Mapper.MapProperty<string>(reader, "Name", base.GetName),
+                ParentId = Mapper.MapProperty<int>(reader, "ParentId", base.GetName)
             };
         }
 
@@ -60,7 +47,7 @@ namespace Callboard.App.Data.Repositories
             using (var context = new DataContext(_connectionString))
             {
                 Func<DbDataReader, Category> mapCategory = MapCategory;
-                var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectByParentId");
+                var procedure = base.GetProcedure("selectByParentId");
                 if (procedure != null)
                 {
                     IDictionary<string, object> values = new Dictionary<string, object>
