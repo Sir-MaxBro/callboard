@@ -36,7 +36,11 @@ namespace Callboard.App.Data.Infrastructure
                     }
                     catch (IndexOutOfRangeException ex)
                     {
-                       
+
+                    }
+                    catch (InvalidCastException ex)
+                    {
+
                     }
                 }
             }
