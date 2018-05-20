@@ -11,12 +11,13 @@ namespace Callboard.App.Data.Repositories
     public class AdRepository : IAdRepository
     {
         private string _connectionString;
+        private const string TABLE_NAME = "Ad";
         private Table _table;
         public AdRepository()
         {
             var configuration = new DataConfiguration();
             _connectionString = configuration.ConnectionString;
-            _table = configuration.GetTable("Ad");
+            _table = configuration.GetTable(TABLE_NAME);
         }
 
         public IReadOnlyCollection<Ad> Items => GetAds();
@@ -26,7 +27,6 @@ namespace Callboard.App.Data.Repositories
             IReadOnlyCollection<Ad> ads = null;
             using (var context = new DataContext(_connectionString))
             {
-                context.Open();
                 Func<DbDataReader, Ad> mapAd = MapAd;
                 var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectAll");
                 if (procedure != null)
@@ -54,18 +54,28 @@ namespace Callboard.App.Data.Repositories
                 CityId = Mapper.MapProperty<int>(dataReader, "CityId", getName),
                 CreationDate = Mapper.MapProperty<DateTime>(dataReader, "CreationDate", getName),
                 Kind = Mapper.MapProperty<string>(dataReader, "Kind", getName),
-                State = Mapper.MapProperty<string>(dataReader, "State", getName),
+                State = Mapper.MapProperty<string>(dataReader, "State", getName)
             };
-        }
-
-        public Ad GetAd(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
         {
-            throw new NotImplementedException();
+            IReadOnlyCollection<Ad> ads = null;
+            using (var context = new DataContext(_connectionString))
+            {
+                Func<DbDataReader, Ad> mapAd = MapAd;
+                var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectByCategoryId");
+                if (procedure != null)
+                {
+                    IDictionary<string, object> values = new Dictionary<string, object>
+                    {
+                        { procedure.Params[0], categoryId }
+                    };
+
+                    ads = context.ExecuteProcedure(procedure.ProcedureName, values, mapAd);
+                }
+            }
+            return ads;
         }
     }
 }
