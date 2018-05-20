@@ -16,5 +16,14 @@ namespace Callboard.App.General.Extensions
             }
             return default(T);
         }
+
+        public static T FirstOfDefault<T>(this IReadOnlyCollection<T> source)
+        {
+            foreach (var item in source)
+            {
+                return item;
+            }
+            return default(T);
+        }
     }
 }
