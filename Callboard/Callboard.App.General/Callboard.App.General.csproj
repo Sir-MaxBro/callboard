@@ -48,19 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyResolution\GeneralRegistry.cs" />
-    <Compile Include="Entities\Ad\Ad.cs" />
-    <Compile Include="Entities\Ad\AdDetails.cs" />
-    <Compile Include="Entities\Location\Location.cs" />
-    <Compile Include="Entities\Location\Area.cs" />
-    <Compile Include="Entities\Ad\Category.cs" />
-    <Compile Include="Entities\Location\City.cs" />
-    <Compile Include="Entities\Location\Country.cs" />
-    <Compile Include="Entities\Ad\Kind.cs" />
-    <Compile Include="Entities\User\Mail.cs" />
-    <Compile Include="Entities\Ad\Image.cs" />
-    <Compile Include="Entities\User\Phone.cs" />
-    <Compile Include="Entities\Ad\State.cs" />
-    <Compile Include="Entities\User\User.cs" />
+    <Compile Include="Entities\Data\Ad\Ad.cs" />
+    <Compile Include="Entities\Data\Ad\AdDetails.cs" />
+    <Compile Include="Entities\Commercial\Commercial.cs" />
+    <Compile Include="Entities\Commercial\Image.cs" />
+    <Compile Include="Entities\Data\Location\Location.cs" />
+    <Compile Include="Entities\Data\Location\Area.cs" />
+    <Compile Include="Entities\Data\Ad\Category.cs" />
+    <Compile Include="Entities\Data\Location\City.cs" />
+    <Compile Include="Entities\Data\Location\Country.cs" />
+    <Compile Include="Entities\Data\Ad\Kind.cs" />
+    <Compile Include="Entities\Data\User\Mail.cs" />
+    <Compile Include="Entities\Data\Ad\Image.cs" />
+    <Compile Include="Entities\Data\User\Phone.cs" />
+    <Compile Include="Entities\Data\Ad\State.cs" />
+    <Compile Include="Entities\Data\User\User.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Extensions\IReadOnlyCollectionExtension.cs" />
     <Compile Include="Helpers\Checker.cs" />
