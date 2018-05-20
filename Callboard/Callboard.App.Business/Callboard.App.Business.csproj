@@ -44,11 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IAdRepository.cs" />
-    <Compile Include="Abstract\ICategoryRepository.cs" />
-    <Compile Include="Abstract\IEntityRepository.cs" />
-    <Compile Include="Concrete\AdRepository.cs" />
-    <Compile Include="Concrete\CategoryRepository.cs" />
+    <Compile Include="DependencyResolution\DataContainer.cs" />
+    <Compile Include="Repositories\Abstract\IAdDetailsRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAdRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
+    <Compile Include="Repositories\Concrete\AdDetailsRepository.cs" />
+    <Compile Include="Repositories\Concrete\AdRepository.cs" />
+    <Compile Include="Repositories\Concrete\CategoryRepository.cs" />
     <Compile Include="DependencyResolution\BusinessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
