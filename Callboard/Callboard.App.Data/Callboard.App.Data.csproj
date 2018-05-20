@@ -63,6 +63,7 @@
     <Compile Include="Infrastructure\DataConfiguration.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Realizations\CategoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">

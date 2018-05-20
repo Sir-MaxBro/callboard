@@ -25,6 +25,8 @@ namespace Callboard.App.Data.Infrastructure
 
         public IReadOnlyCollection<TResult> ExecuteProcedure<TResult>(string procedureName, IDictionary<string, object> values, Func<DbDataReader, TResult> mapping)
         {
+            this.Open();
+
             var reader = _context.ExecuteProcedure(procedureName, values);
 
             IReadOnlyCollection<TResult> mappingCollection = null;
@@ -33,12 +35,15 @@ namespace Callboard.App.Data.Infrastructure
                 mappingCollection = Mapper.MapCollection(reader, mapping);
                 reader.Close();
             }
+
+            this.Dispose();
+
             return mappingCollection;
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            _context?.Dispose();
         }
     }
 }
