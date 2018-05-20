@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Abstract;
+﻿using Callboard.App.Business.Repositories;
 using Callboard.App.General.Loggers;
 using StructureMap;
 
@@ -16,7 +16,6 @@ namespace Callboard.App.IoC.DependencyResolution
                            {
                                scan.AssemblyContainingType<IEntityRepository<object>>();
                                scan.AssemblyContainingType<ILoggerWrapper>();
-                               //scan.Assembly("Callboard.App.Business");
                                scan.LookForRegistries();
                            }
                        )

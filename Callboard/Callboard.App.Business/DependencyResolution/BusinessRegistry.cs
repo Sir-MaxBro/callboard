@@ -1,5 +1,4 @@
-﻿using Callboard.App.Business.Abstract;
-using Callboard.App.Business.Concrete;
+﻿using Callboard.App.Business.Repositories;
 using StructureMap;
 
 namespace Callboard.App.Business.DependencyResolution
@@ -15,6 +14,7 @@ namespace Callboard.App.Business.DependencyResolution
             });
             For<IAdRepository>().Use<AdRepository>();
             For<ICategoryRepository>().Use<CategoryRepository>();
+            For<IAdDetailsRepository>().Use<AdDetailsRepository>();
         }
     }
 }
