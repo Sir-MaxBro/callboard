@@ -42,6 +42,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\CommercialService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="DbInfractructure\Abstract\IDbConnection.cs" />
     <Compile Include="DbInfractructure\Abstract\IDbContext.cs" />
     <Compile Include="DbInfractructure\Concrete\SqlDbContext.cs" />
@@ -59,6 +66,7 @@
     <Compile Include="Repositories\Abstract\IAdDetailsRepository.cs" />
     <Compile Include="Repositories\Abstract\IAdRepository.cs" />
     <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICommercialRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
     <Compile Include="Repositories\Realizations\AdDetailsRepository.cs" />
     <Compile Include="Repositories\Realizations\AdRepository.cs" />
@@ -77,6 +85,7 @@
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Realizations\CategoryRepository.cs" />
+    <Compile Include="Repositories\Realizations\CommercialRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
@@ -88,9 +97,35 @@
     <Content Include="Callboard.App.Data.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Connected Services\CommercialService\Callboard.App.Data.CommercialService.Commercial.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CommercialService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\CommercialService\configuration.svcinfo" />
+    <None Include="Connected Services\CommercialService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\CommercialService\Callboard.Service.Commercial.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CommercialService\service.wsdl" />
+    <None Include="Connected Services\CommercialService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CommercialService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CommercialService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

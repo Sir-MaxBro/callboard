@@ -10,6 +10,7 @@ namespace Callboard.App.Data.DependencyResolution
             For<IAdRepository>().Use<AdRepository>();
             For<ICategoryRepository>().Use<CategoryRepository>();
             For<IAdDetailsRepository>().Use<AdDetailsRepository>();
+            For<ICommercialRepository>().Use<CommercialRepository>();
         }
     }
 }
