@@ -1,24 +1,18 @@
-﻿using Callboard.App.Data.Entities;
-using Callboard.App.Data.Infrastructure;
+﻿using Callboard.App.Data.Infrastructure;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Callboard.App.Data.Repositories
 {
-    public class AdRepository : IAdRepository
+    internal class AdRepository : EntityRepository, IAdRepository
     {
-        private string _connectionString;
         private const string TABLE_NAME = "Ad";
-        private Table _table;
         public AdRepository()
-        {
-            var configuration = new DataConfiguration();
-            _connectionString = configuration.ConnectionString;
-            _table = configuration.GetTable(TABLE_NAME);
-        }
+            : base() { }
+
+        protected override string TableName => TABLE_NAME;
 
         public IReadOnlyCollection<Ad> Items => GetAds();
 
@@ -28,7 +22,7 @@ namespace Callboard.App.Data.Repositories
             using (var context = new DataContext(_connectionString))
             {
                 Func<DbDataReader, Ad> mapAd = MapAd;
-                var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectAll");
+                var procedure = base.GetProcedure("selectAll");
                 if (procedure != null)
                 {
                     ads = context.ExecuteProcedure(procedure.ProcedureName, null, mapAd);
@@ -39,22 +33,15 @@ namespace Callboard.App.Data.Repositories
 
         private Ad MapAd(DbDataReader dataReader)
         {
-            var columns = _table.Columns;
-            Func<string, string> getName = propertyName =>
-            {
-                string name = columns.FirstOfDefault(item => item.MapPropertyName.ToLower() == propertyName)?.Name;
-                return name;
-            };
-
             return new Ad
             {
-                AdId = Mapper.MapProperty<int>(dataReader, "AdId", getName),
-                Name = Mapper.MapProperty<string>(dataReader, "Name", getName),
-                Price = Mapper.MapProperty<decimal>(dataReader, "Price", getName),
-                CityId = Mapper.MapProperty<int>(dataReader, "CityId", getName),
-                CreationDate = Mapper.MapProperty<DateTime>(dataReader, "CreationDate", getName),
-                Kind = Mapper.MapProperty<string>(dataReader, "Kind", getName),
-                State = Mapper.MapProperty<string>(dataReader, "State", getName)
+                AdId = Mapper.MapProperty<int>(dataReader, "AdId", base.GetName),
+                Name = Mapper.MapProperty<string>(dataReader, "Name", base.GetName),
+                Price = Mapper.MapProperty<decimal>(dataReader, "Price", base.GetName),
+                CityId = Mapper.MapProperty<int>(dataReader, "CityId", base.GetName),
+                CreationDate = Mapper.MapProperty<DateTime>(dataReader, "CreationDate", base.GetName),
+                Kind = Mapper.MapProperty<string>(dataReader, "Kind", base.GetName),
+                State = Mapper.MapProperty<string>(dataReader, "State", base.GetName)
             };
         }
 
@@ -64,7 +51,7 @@ namespace Callboard.App.Data.Repositories
             using (var context = new DataContext(_connectionString))
             {
                 Func<DbDataReader, Ad> mapAd = MapAd;
-                var procedure = _table.Procedures.FirstOfDefault(item => item.Type == "selectByCategoryId");
+                var procedure = base.GetProcedure("selectByCategoryId");
                 if (procedure != null)
                 {
                     IDictionary<string, object> values = new Dictionary<string, object>
