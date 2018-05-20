@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Callboard.App.Data.DbInfractructure
 {
@@ -17,7 +18,10 @@ namespace Callboard.App.Data.DbInfractructure
         {
             try
             {
-                _connection.Open();
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
             }
             catch (InvalidOperationException ex)
             {
@@ -43,7 +47,7 @@ namespace Callboard.App.Data.DbInfractructure
         {
             SqlCommand command = new SqlCommand(procedureName, _connection)
             {
-                CommandType = System.Data.CommandType.StoredProcedure
+                CommandType = CommandType.StoredProcedure
             };
 
             if (values != null)
