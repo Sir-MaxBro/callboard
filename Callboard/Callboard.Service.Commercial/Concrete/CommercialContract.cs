@@ -15,7 +15,8 @@ namespace Callboard.Service.Commercial
         public CommercialContract()
         {
             _pathways = new Dictionary<string, string>();
-            var pathwaysSection = ((StartupCommercialConfigSection)ConfigurationManager.GetSection(SECTION_NAME)).Pathways;
+            var pathwaysSection = ((CommercialConfigSection)ConfigurationManager.GetSection(SECTION_NAME)).Pathways;
+            
             foreach (ImagePathElement item in pathwaysSection)
             {
                 DirectoryInfo directory = new DirectoryInfo(item.Path);

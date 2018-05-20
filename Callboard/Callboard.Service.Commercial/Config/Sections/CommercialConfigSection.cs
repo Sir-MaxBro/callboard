@@ -2,7 +2,7 @@
 
 namespace Callboard.Service.Commercial.Config
 {
-    public class StartupCommercialConfigSection : ConfigurationSection
+    public class CommercialConfigSection : ConfigurationSection
     {
         [ConfigurationProperty("pathways")]
         public ImagePathCollection Pathways
