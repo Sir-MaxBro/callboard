@@ -48,12 +48,14 @@
     <Compile Include="Repositories\Abstract\IAdDetailsRepository.cs" />
     <Compile Include="Repositories\Abstract\IAdRepository.cs" />
     <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICommercialRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
     <Compile Include="Repositories\Concrete\AdDetailsRepository.cs" />
     <Compile Include="Repositories\Concrete\AdRepository.cs" />
     <Compile Include="Repositories\Concrete\CategoryRepository.cs" />
     <Compile Include="DependencyResolution\BusinessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Concrete\CommercialRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Data\Callboard.App.Data.csproj">
