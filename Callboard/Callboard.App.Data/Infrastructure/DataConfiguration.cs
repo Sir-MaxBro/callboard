@@ -13,14 +13,13 @@ namespace Callboard.App.Data.Infrastructure
     {
         private const string SECTION_NAME = "dataSettings";
         private const string DB_NAME = "callboardDB";
-        private DataSettingsConfigSection _dataSettings;
         private string _assemblyName;
+        private DataSettingsConfigSection _dataSettings;
         private Configuration _configuration;
         public DataConfiguration()
         {
             var assembly = ConfigurationHelper.GetObjAssembly(this);
-            _configuration = ConfigurationHelper.GetAssemblyConfiguration(assembly);
-
+            _configuration = ConfigurationHelper.GetExecutingAssemblyConfig(this);
             _assemblyName = assembly.FullName;
             _dataSettings = GetDataSettingsSection();
         }

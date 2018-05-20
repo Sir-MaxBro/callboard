@@ -20,6 +20,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -44,10 +53,14 @@
     <Compile Include="DbInfractructure\Abstract\IDbConnection.cs" />
     <Compile Include="DbInfractructure\Abstract\IDbContext.cs" />
     <Compile Include="DbInfractructure\Concrete\SqlDbContext.cs" />
+    <Compile Include="DependencyResolution\DataRegistry.cs" />
     <Compile Include="Infrastructure\DataContext.cs" />
+    <Compile Include="Repositories\Abstract\EntityRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAdDetailsRepository.cs" />
     <Compile Include="Repositories\Abstract\IAdRepository.cs" />
     <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
+    <Compile Include="Repositories\Realizations\AdDetailsRepository.cs" />
     <Compile Include="Repositories\Realizations\AdRepository.cs" />
     <Compile Include="Config\Collections\ColumnCollection.cs" />
     <Compile Include="Config\Collections\ProcedureCollection.cs" />
@@ -76,6 +89,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
