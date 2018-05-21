@@ -2,6 +2,7 @@
 using Callboard.App.General.Loggers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 using Service = Callboard.App.Data.CommercialService;
@@ -15,10 +16,10 @@ namespace Callboard.App.Data.Repositories
 
         private IReadOnlyCollection<Commercial> GetCommercials()
         {
-            Service::ICommercialContract contract = new Service::CommercialContractClient();
             List<Commercial> commercials = null;
             try
             {
+                Service::ICommercialContract contract = new Service::CommercialContractClient();
                 Func<Service::Commercial, Commercial> mapper = commercial =>
                 {
                     var resCommercial = new Commercial
@@ -32,6 +33,10 @@ namespace Callboard.App.Data.Repositories
                     return resCommercial;
                 };
                 commercials = contract.GetCommercials().Select(mapper).ToList();
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+                _logger.ErrorFormat($"{ ex.Message }");
             }
             catch (TimeoutException ex)
             {
