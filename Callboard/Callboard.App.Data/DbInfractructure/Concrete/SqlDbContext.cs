@@ -50,7 +50,7 @@ namespace Callboard.App.Data.DbInfractructure
 
         public DbDataReader ExecuteProcedure(string procedureName, IDictionary<string, object> values = null)
         {
-            SqlCommand command = new SqlCommand("", _connection)
+            SqlCommand command = new SqlCommand(procedureName, _connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
