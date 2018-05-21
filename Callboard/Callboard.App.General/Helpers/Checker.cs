@@ -1,16 +1,20 @@
 ﻿using Callboard.App.General.Exceptions;
+using Callboard.App.General.Loggers;
 using System;
 
 namespace Callboard.App.General.Helpers
 {
     public static class Checker
     {
+        private static ILoggerWrapper _logger = LoggerWrapper.GetInstance();
         public static void CheckForNull<T>(T obj)
             where T : class
         {
             if (Equals(obj, null))
             {
-                throw new NullReferenceException($"Object { typeof(T) } is null.");
+                string errorMessage = $"Object { typeof(T) } is null.";
+                _logger.ErrorFormat(errorMessage);
+                throw new NullReferenceException(errorMessage);
             }
         }
 
@@ -19,7 +23,9 @@ namespace Callboard.App.General.Helpers
         {
             if (Equals(obj, null))
             {
-                throw new NullReferenceException($"Object { typeof(T) } is null.\n { errorMessage }");
+                errorMessage = $"Object { typeof(T) } is null.\n { errorMessage }";
+                _logger.ErrorFormat(errorMessage);
+                throw new NullReferenceException(errorMessage);
             }
         }
 
@@ -27,7 +33,9 @@ namespace Callboard.App.General.Helpers
         {
             if (id < 1)
             {
-                throw new InvalidIdException($"Id { id } is not valid.");
+                string infoMessage = $"Id { id } is not valid.";
+                _logger.InfoFormat(infoMessage);
+                throw new InvalidIdException(infoMessage);
             }
         }
     }
