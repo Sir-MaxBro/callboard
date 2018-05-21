@@ -23,7 +23,7 @@ namespace Callboard.App.Web.Controllers
             return PartialView("CategoryList", model);
         }
 
-        public PartialViewResult GetSubcategoryByCategoryId(int categoryId)
+        public PartialViewResult GetSubcategories(int categoryId)
         {
             CategoryViewModel model = new CategoryViewModel
             {
