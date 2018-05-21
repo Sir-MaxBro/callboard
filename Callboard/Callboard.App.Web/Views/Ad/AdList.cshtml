@@ -1,0 +1,8 @@
+﻿@model AdViewModel
+
+<div class="ad-container">
+    @foreach (var item in Model.Ads)
+    {
+        Html.RenderPartial("Partial\\AdMinPartial", model: item);
+    }
+</div>
