@@ -187,6 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\AdController.cs" />
+    <Compile Include="Controllers\AdDetailsController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -210,11 +211,9 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Ad\Index.cshtml" />
     <Content Include="Views\Shared\_AdLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\AdMinPartialView.cshtml" />
-    <Content Include="Views\Ad\AdInformation.cshtml" />
+    <Content Include="Views\Ad\Partial\AdMinPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_StartLayout.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
@@ -225,6 +224,8 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerNotResponding.cshtml" />
     <Content Include="Views\Category\CategoryList.cshtml" />
+    <Content Include="Views\Ad\AdList.cshtml" />
+    <Content Include="Views\AdDetails\AdDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
