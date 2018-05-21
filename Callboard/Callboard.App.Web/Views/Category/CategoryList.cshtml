@@ -1,0 +1,12 @@
+﻿@model CategoryViewModel
+
+<div class="navs">
+    @foreach (var item in Model.Categories)
+    {
+        <div class="navs__item_vertical navs__item_light_underline">
+            @Html.ActionLink(item.Name, "GetCategoryAds", "Ad",
+                                routeValues: new { categoryId = item.CategoryId },
+                                htmlAttributes: new { @class = "link link_block link_gap_1 link_red" })
+        </div>
+    }
+</div>

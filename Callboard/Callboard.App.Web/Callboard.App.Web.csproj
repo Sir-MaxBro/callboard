@@ -35,6 +35,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -130,27 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\_config\serviceConfig\behaviors.config">
-      <Link>Config\ServiceConfig\behaviors.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\_config\serviceConfig\bindings.config">
-      <Link>Config\ServiceConfig\bindings.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\_config\serviceConfig\client.config">
-      <Link>Config\ServiceConfig\client.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\_config\loggerConfig\logger.config">
-      <Link>logger.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\_config\dbConfig\db.config">
-      <Link>Config\DbConfig\db.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\css\ad\ad.css" />
     <Content Include="Content\css\ad\__content\ad__content.css" />
     <Content Include="Content\css\ad\__content\_right\ad__content_right.css" />
@@ -197,7 +178,9 @@
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -207,7 +190,7 @@
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -218,7 +201,7 @@
     <Compile Include="HtmlHelpers\HtmlImageExtension.cs" />
     <Compile Include="Models\AdViewModel.cs" />
     <Compile Include="Models\CommercialViewModel.cs" />
-    <Compile Include="Models\NavViewModel.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -230,7 +213,6 @@
     <Content Include="Views\Ad\Index.cshtml" />
     <Content Include="Views\Shared\_AdLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Nav\Menu.cshtml" />
     <Content Include="Views\Shared\AdMinPartialView.cshtml" />
     <Content Include="Views\Ad\AdInformation.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -242,6 +224,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerNotResponding.cshtml" />
+    <Content Include="Views\Category\CategoryList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
