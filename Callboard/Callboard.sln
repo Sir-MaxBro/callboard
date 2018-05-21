@@ -8,9 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{F6D4BCE4-6996-49BB-845C-439958205E17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Web", "Callboard.App.Web\Callboard.App.Web.csproj", "{E40DA3E6-DB6D-4091-AF7B-AC8234A18E81}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F7F84421-3212-4284-B6DB-745C2976F783} = {F7F84421-3212-4284-B6DB-745C2976F783}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.General", "Callboard.App.General\Callboard.App.General.csproj", "{5F306D78-5888-46BE-817C-755548C98D4C}"
 EndProject
@@ -18,30 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Business", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.IoC", "Callboard.App.IoC\Callboard.App.IoC.csproj", "{2AC576C8-CFDF-42A5-BFD2-38725FA181EE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Config", "App_Config", "{87573256-FB7C-444D-B732-2113ED5C7B1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.Service.Commercial", "Callboard.Service.Commercial\Callboard.Service.Commercial.csproj", "{F7F84421-3212-4284-B6DB-745C2976F783}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceConfig", "ServiceConfig", "{DDAD9F3F-C130-46A3-ABE6-D14AB0C0F225}"
-	ProjectSection(SolutionItems) = preProject
-		_config\serviceConfig\behaviors.config = _config\serviceConfig\behaviors.config
-		_config\serviceConfig\bindings.config = _config\serviceConfig\bindings.config
-		_config\serviceConfig\client.config = _config\serviceConfig\client.config
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggerConfig", "LoggerConfig", "{61F5FD6B-3221-4DB7-9566-C3EA397B3F79}"
-	ProjectSection(SolutionItems) = preProject
-		_config\loggerConfig\logger.config = _config\loggerConfig\logger.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Data", "Callboard.App.Data\Callboard.App.Data.csproj", "{5D256D90-0AE1-4E51-9299-CB00294D2A55}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F7F84421-3212-4284-B6DB-745C2976F783} = {F7F84421-3212-4284-B6DB-745C2976F783}
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbConfig", "DbConfig", "{0A2816B5-0C93-48EA-BD4C-000F1ADD3FFB}"
-	ProjectSection(SolutionItems) = preProject
-		db.config = db.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callboard.App.Test", "Callboard.App.Test\Callboard.App.Test.csproj", "{18B4203A-F391-4E09-B1E1-E7A7ABE62801}"
@@ -89,12 +67,8 @@ Global
 		{5F306D78-5888-46BE-817C-755548C98D4C} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{2AC576C8-CFDF-42A5-BFD2-38725FA181EE} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
-		{87573256-FB7C-444D-B732-2113ED5C7B1C} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 		{F7F84421-3212-4284-B6DB-745C2976F783} = {F6D4BCE4-6996-49BB-845C-439958205E17}
-		{DDAD9F3F-C130-46A3-ABE6-D14AB0C0F225} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
-		{61F5FD6B-3221-4DB7-9566-C3EA397B3F79} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
 		{5D256D90-0AE1-4E51-9299-CB00294D2A55} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
-		{0A2816B5-0C93-48EA-BD4C-000F1ADD3FFB} = {87573256-FB7C-444D-B732-2113ED5C7B1C}
 		{18B4203A-F391-4E09-B1E1-E7A7ABE62801} = {29F22CAF-E235-4A0F-A0F9-94B96EAA2E36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
