@@ -1,4 +1,5 @@
 ﻿using Callboard.App.General.Entities.Commercial;
+using Callboard.App.General.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Callboard.App.Data.Repositories
 {
     internal class CommercialRepository : ICommercialRepository
     {
+        private ILoggerWrapper _logger = LoggerWrapper.GetInstance();
         public IReadOnlyCollection<Commercial> Items => GetCommercials();
 
         private IReadOnlyCollection<Commercial> GetCommercials()
@@ -31,21 +33,21 @@ namespace Callboard.App.Data.Repositories
                 };
                 commercials = contract.GetCommercials().Select(mapper).ToList();
             }
-            catch(TimeoutException ex)
+            catch (TimeoutException ex)
             {
-
+                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
-            catch(FaultException ex)
+            catch (FaultException ex)
             {
-
+                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             catch (CommunicationException ex)
             {
-
+                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             return commercials;
         }
