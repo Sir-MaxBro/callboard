@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace Callboard.App.Data.Repositories.Realizations
+namespace Callboard.App.Data.Repositories
 {
     internal class CityRepository : EntityRepository, ICityRepository
     {
