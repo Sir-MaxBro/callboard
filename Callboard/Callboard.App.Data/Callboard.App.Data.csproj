@@ -97,6 +97,13 @@
     <Content Include="Callboard.App.Data.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="bindings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="behaviors.config" />
     <None Include="Connected Services\CommercialService\Callboard.App.Data.CommercialService.Commercial.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -108,7 +115,6 @@
     <None Include="Connected Services\CommercialService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Connected Services\CommercialService\Callboard.Service.Commercial.xsd">
       <SubType>Designer</SubType>
     </None>

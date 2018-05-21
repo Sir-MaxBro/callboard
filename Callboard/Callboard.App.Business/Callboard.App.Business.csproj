@@ -61,6 +61,7 @@
     <ProjectReference Include="..\Callboard.App.Data\Callboard.App.Data.csproj">
       <Project>{5d256d90-0ae1-4e51-9299-cb00294d2a55}</Project>
       <Name>Callboard.App.Data</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
       <Project>{5f306d78-5888-46be-817c-755548c98d4c}</Project>
