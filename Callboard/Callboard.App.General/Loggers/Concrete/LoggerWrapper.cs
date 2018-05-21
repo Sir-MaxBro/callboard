@@ -1,15 +1,7 @@
-﻿using Callboard.App.General.Loggers;
-using log4net;
+﻿using log4net;
 using log4net.Config;
-using log4net.Repository.Hierarchy;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Callboard.App.General.Loggers
 {
@@ -42,8 +34,8 @@ namespace Callboard.App.General.Loggers
         }
 
         private void InitLogger()
-        { 
-            var appConfigPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath, PATH_CONFIG);
+        {
+            var appConfigPath = Path.Combine(AppDomain.CurrentDomain.RelativeSearchPath, PATH_CONFIG);
             var configFile = new FileInfo(appConfigPath);
             XmlConfigurator.ConfigureAndWatch(configFile);
         }
