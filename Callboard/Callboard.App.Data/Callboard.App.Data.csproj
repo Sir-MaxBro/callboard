@@ -63,13 +63,19 @@
     <Compile Include="DependencyResolution\DataRegistry.cs" />
     <Compile Include="Infrastructure\DataContext.cs" />
     <Compile Include="Repositories\Abstract\EntityRepository.cs" />
-    <Compile Include="Repositories\Abstract\IAdDetailsRepository.cs" />
-    <Compile Include="Repositories\Abstract\IAdRepository.cs" />
-    <Compile Include="Repositories\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\Ad\IAdDetailsRepository.cs" />
+    <Compile Include="Repositories\Abstract\Ad\IAdRepository.cs" />
+    <Compile Include="Repositories\Abstract\Ad\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\Location\ICityRepository.cs" />
     <Compile Include="Repositories\Abstract\ICommercialRepository.cs" />
+    <Compile Include="Repositories\Abstract\Location\ICountryRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
-    <Compile Include="Repositories\Realizations\AdDetailsRepository.cs" />
-    <Compile Include="Repositories\Realizations\AdRepository.cs" />
+    <Compile Include="Repositories\Abstract\Ad\IImageRepository.cs" />
+    <Compile Include="Repositories\Abstract\User\IMailRepository.cs" />
+    <Compile Include="Repositories\Abstract\User\IPhoneRepository.cs" />
+    <Compile Include="Repositories\Abstract\User\IUserRepository.cs" />
+    <Compile Include="Repositories\Realizations\Ad\AdDetailsRepository.cs" />
+    <Compile Include="Repositories\Realizations\Ad\AdRepository.cs" />
     <Compile Include="Config\Collections\ColumnCollection.cs" />
     <Compile Include="Config\Collections\ProcedureCollection.cs" />
     <Compile Include="Config\Collections\TableCollection.cs" />
@@ -84,8 +90,14 @@
     <Compile Include="Infrastructure\DataConfiguration.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Realizations\CategoryRepository.cs" />
+    <Compile Include="Repositories\Realizations\Ad\CategoryRepository.cs" />
+    <Compile Include="Repositories\Realizations\Location\CityRepository.cs" />
     <Compile Include="Repositories\Realizations\CommercialRepository.cs" />
+    <Compile Include="Repositories\Realizations\Location\CountryRepository.cs" />
+    <Compile Include="Repositories\Realizations\Ad\ImageRepository.cs" />
+    <Compile Include="Repositories\Realizations\User\MailRepository.cs" />
+    <Compile Include="Repositories\Realizations\User\PhoneRepository.cs" />
+    <Compile Include="Repositories\Realizations\User\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
