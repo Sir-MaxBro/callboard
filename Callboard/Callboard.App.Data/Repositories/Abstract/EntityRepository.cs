@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Data.Entities;
 using Callboard.App.Data.Infrastructure;
 using Callboard.App.General.Extensions;
+using Callboard.App.General.Helpers;
 
 namespace Callboard.App.Data.Repositories
 {
@@ -13,6 +14,7 @@ namespace Callboard.App.Data.Repositories
             var configuration = new DataConfiguration();
             _connectionString = configuration.ConnectionString;
             _table = configuration.GetTable(this.TableName);
+            Checker.CheckForNull(_table, $"Cannot find table { this.TableName } in Callboard.App.Data.dll.config");
         }
 
         protected abstract string TableName { get; }
@@ -25,8 +27,7 @@ namespace Callboard.App.Data.Repositories
 
         protected string GetName(string propertyName)
         {
-            var columns = _table.Columns;
-            string name = columns.FirstOfDefault(item => item.MapPropertyName.ToLower() == propertyName)?.Name;
+            string name = _table.Columns.FirstOfDefault(item => item.MapPropertyName.ToLower() == propertyName)?.Name;
             return name;
         }
     }
