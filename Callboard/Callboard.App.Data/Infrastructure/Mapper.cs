@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Callboard.App.General.Loggers;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
@@ -6,6 +7,7 @@ namespace Callboard.App.Data.Infrastructure
 {
     internal class Mapper
     {
+        private static ILoggerWrapper _logger = LoggerWrapper.GetInstance();
         public static IReadOnlyCollection<TResult> MapCollection<TResult>(DbDataReader reader, Func<DbDataReader, TResult> mapping)
         {
             List<TResult> items = null;
@@ -32,15 +34,19 @@ namespace Callboard.App.Data.Infrastructure
                 {
                     try
                     {
-                        obj = (T)reader[name];
+                        var result = reader[name];
+                        if (result != null)
+                        {
+                            obj = (T)reader[name];
+                        }
                     }
                     catch (IndexOutOfRangeException ex)
                     {
-
+                        _logger.WarnFormat($"Cannot map '{ name }' to '{ mapPropertyName }', because '{ name }' not found.\n{ ex.Message }");
                     }
                     catch (InvalidCastException ex)
                     {
-
+                        _logger.InfoFormat($"Cannot map '{ name }' to '{ mapPropertyName }', because '{ name }' cannot cast to '{ mapPropertyName }'.\n{ ex.Message }");
                     }
                 }
             }
