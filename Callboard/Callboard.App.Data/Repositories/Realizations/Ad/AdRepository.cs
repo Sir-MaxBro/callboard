@@ -18,16 +18,7 @@ namespace Callboard.App.Data.Repositories
 
         private IReadOnlyCollection<Ad> GetAds()
         {
-            IReadOnlyCollection<Ad> ads = null;
-            using (var context = new DataContext(_connectionString))
-            {
-                Func<DbDataReader, Ad> mapAd = MapAd;
-                var procedure = base.GetProcedure("selectAll");
-                if (procedure != null)
-                {
-                    ads = context.ExecuteProcedure(procedure.ProcedureName, null, mapAd);
-                }
-            }
+            IReadOnlyCollection<Ad> ads = base.GetEntities<Ad>("selectAll", MapAd);
             return ads;
         }
 
@@ -47,21 +38,7 @@ namespace Callboard.App.Data.Repositories
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
         {
-            IReadOnlyCollection<Ad> ads = null;
-            using (var context = new DataContext(_connectionString))
-            {
-                Func<DbDataReader, Ad> mapAd = MapAd;
-                var procedure = base.GetProcedure("selectByCategoryId");
-                if (procedure != null)
-                {
-                    IDictionary<string, object> values = new Dictionary<string, object>
-                    {
-                        { procedure.Params[0], categoryId }
-                    };
-
-                    ads = context.ExecuteProcedure(procedure.ProcedureName, values, mapAd);
-                }
-            }
+            IReadOnlyCollection<Ad> ads = base.GetEntities<Ad>("selectByCategoryId", MapAd, categoryId);
             return ads;
         }
     }

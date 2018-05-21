@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Data.Infrastructure;
 using Callboard.App.General.Entities;
-using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
@@ -18,16 +17,7 @@ namespace Callboard.App.Data.Repositories
 
         private IReadOnlyCollection<Category> GetCategories()
         {
-            IReadOnlyCollection<Category> categories = null;
-            using (var context = new DataContext(_connectionString))
-            {
-                Func<DbDataReader, Category> mapCategory = MapCategory;
-                var procedure = base.GetProcedure("selectAll");
-                if (procedure != null)
-                {
-                    categories = context.ExecuteProcedure(procedure.ProcedureName, null, mapCategory);
-                }
-            }
+            IReadOnlyCollection<Category> categories = base.GetEntities<Category>("selectAll", MapCategory);
             return categories;
         }
 
@@ -43,21 +33,7 @@ namespace Callboard.App.Data.Repositories
 
         public IReadOnlyCollection<Category> GetSubcategories(int categoryId)
         {
-            IReadOnlyCollection<Category> categories = null;
-            using (var context = new DataContext(_connectionString))
-            {
-                Func<DbDataReader, Category> mapCategory = MapCategory;
-                var procedure = base.GetProcedure("selectByParentId");
-                if (procedure != null)
-                {
-                    IDictionary<string, object> values = new Dictionary<string, object>
-                    {
-                        { procedure.Params[0], categoryId }
-                    };
-
-                    categories = context.ExecuteProcedure(procedure.ProcedureName, values, mapCategory);
-                }
-            }
+            IReadOnlyCollection<Category> categories = base.GetEntities<Category>("selectByParentId", MapCategory, categoryId);
             return categories;
         }
     }
