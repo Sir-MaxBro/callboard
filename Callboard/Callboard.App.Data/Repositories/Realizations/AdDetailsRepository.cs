@@ -11,7 +11,7 @@ namespace Callboard.App.Data.Repositories
     {
         private const string TABLE_NAME = "AdDetails";
         public AdDetailsRepository()
-            :base() { }
+            : base() { }
 
         protected override string TableName => TABLE_NAME;
 
