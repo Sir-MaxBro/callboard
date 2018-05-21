@@ -1,8 +1,8 @@
 ﻿@model CommercialViewModel
 
-@if (Model != null)
+@if (Model.Commercials != null)
 {
-    foreach (var item in Model?.Commercials)
+    foreach (var item in Model.Commercials)
     {
         <div>
             @Html.RenderImage(item.Image.Data, item.Image.Extension, null, new { width = 300, height = 400 });
