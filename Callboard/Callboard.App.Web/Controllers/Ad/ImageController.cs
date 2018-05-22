@@ -15,6 +15,7 @@ namespace Callboard.App.Web.Controllers
 
         public PartialViewResult GetImagesByAdId(int adId)
         {
+            Checker.CheckId(adId, $"AdId in GetImagesByAdId method is not valid.");
             var model = _repository.GetImagesByAdId(adId);
             return PartialView("ImagesSlider", model);
         }

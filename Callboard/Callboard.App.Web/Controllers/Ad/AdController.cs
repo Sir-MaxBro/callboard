@@ -29,6 +29,7 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult GetAdsByCategoryId(int categoryId)
         {
+            Checker.CheckId(categoryId, $"CategoryId in GetAdsByCategoryId method is not valid.");
             AdViewModel model = new AdViewModel
             {
                 Ads = _repository.GetAdsByCategoryId(categoryId)
