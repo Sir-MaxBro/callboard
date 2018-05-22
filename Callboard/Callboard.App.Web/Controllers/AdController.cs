@@ -1,11 +1,7 @@
-﻿using Callboard.App.Business.Abstract;
-using Callboard.App.General.Entities;
+﻿using Callboard.App.Business.Repositories;
+using Callboard.App.General.Helpers;
 using Callboard.App.General.Loggers;
 using Callboard.App.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -16,39 +12,28 @@ namespace Callboard.App.Web.Controllers
         private ILoggerWrapper _logger;
         public AdController(IAdRepository repository, ILoggerWrapper logger)
         {
-            _repository = repository;
+            Checker.CheckForNull(logger);
+            Checker.CheckForNull(repository);
             _logger = logger;
+            _repository = repository;
         }
 
-        public ActionResult Index()
+        public ActionResult GetAdList()
         {
             AdViewModel model = new AdViewModel
             {
                 Ads = _repository.Items
             };
-            return View(model);
+            return View("AdList", model);
         }
 
-        public ActionResult GetCategoryAds(int categoryId)
+        public ActionResult GetAdsByCategoryId(int categoryId)
         {
             AdViewModel model = new AdViewModel
             {
-                Ads = _repository.GetCategoryAds(categoryId)
+                Ads = _repository.GetAdsByCategoryId(categoryId)
             };
-
-            _logger.InfoFormat($"Get elements by categoryID: { categoryId }", null);
-
-            return View("Index", model);
-        }
-
-        public ActionResult GetAd(int adId, string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            var model = _repository.GetAd(adId);
-
-            _logger.InfoFormat($"Get ad by adID: { adId }", null);
-
-            return View("AdInformation", model);
+            return View("AdList", model);
         }
     }
 }

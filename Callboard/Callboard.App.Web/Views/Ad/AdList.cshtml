@@ -3,6 +3,6 @@
 <div class="ad-container">
     @foreach (var item in Model.Ads)
     {
-        Html.RenderPartial("AdMinPartialView", model: item);
+        Html.RenderPartial("Partial\\AdMinPartial", model: item);
     }
 </div>
