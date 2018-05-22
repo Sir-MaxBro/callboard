@@ -1,0 +1,8 @@
+﻿.search-form__textbox {
+    border: none;
+    padding: 10px;
+    background: #fff;
+    color: #212121;
+    font-size: 14px;
+    width: 75%;
+}

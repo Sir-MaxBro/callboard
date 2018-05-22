@@ -132,50 +132,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\ad\ad.css" />
-    <Content Include="Content\css\ad\__content\ad__content.css" />
-    <Content Include="Content\css\ad\__content\_right\ad__content_right.css" />
-    <Content Include="Content\css\ad\__content\_size\_8\ad__content_size_8.css" />
-    <Content Include="Content\css\ad\__image\ad__image.css" />
-    <Content Include="Content\css\ad\__image\_left\ad__image_left.css" />
-    <Content Include="Content\css\ad\__image\_size\_4\ad__image_size_4.css" />
     <Content Include="Content\css\ad\_min\ad_min.css" />
+    <Content Include="Content\css\banner\__image\banner__image.css" />
     <Content Include="Content\css\button\button.css" />
-    <Content Include="Content\css\button\_block\button_block.css" />
-    <Content Include="Content\css\button\_dark\_hover\button_dark_hover.css" />
-    <Content Include="Content\css\button\_full_width\button_full_width.css" />
-    <Content Include="Content\css\button\_gap\_1\button_gap_1.css" />
+    <Content Include="Content\css\button\_hover\_green\button_hover_green.css" />
+    <Content Include="Content\css\button\_hover\_red\button_hover_red.css" />
+    <Content Include="Content\css\category-container\__item\category-container__item.css" />
+    <Content Include="Content\css\category-container\__item\_gray\category-container__item_gray.css" />
+    <Content Include="Content\css\category-container\__item\_hover\_green\category-container__item_hover_green.css" />
     <Content Include="Content\css\clearfix\clearfix.css" />
-    <Content Include="Content\css\container\container.css" />
-    <Content Include="Content\css\page\__content\_size\_8\page__content_size_8.css" />
-    <Content Include="Content\css\header\header.css" />
+    <Content Include="Content\css\float\_left\float_left.css" />
+    <Content Include="Content\css\float\_right\float_right.css" />
     <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
-    <Content Include="Content\css\header\_light\_theme\header_light_theme.css" />
-    <Content Include="Content\css\page\__content\_size\_9\page__content_size_9.css" />
-    <Content Include="Content\css\page\__navs\_size\_3\page__navs_size_3.css" />
-    <Content Include="Content\css\page\__slider\page__slider.css" />
-    <Content Include="Content\css\page\__slider\_bottom_gap\page__slider_bottom_gap.css" />
-    <Content Include="Content\css\page\__image\page__slider__image.css" />
-    <Content Include="Content\css\header\__title\header__title.css" />
-    <Content Include="Content\css\header\__title\_large\header__title_large.css" />
-    <Content Include="Content\css\link\link.css" />
-    <Content Include="Content\css\link\_block\link_block.css" />
-    <Content Include="Content\css\link\_gap\_1\link_gap_1.css" />
-    <Content Include="Content\css\link\_red\link_red.css" />
-    <Content Include="Content\css\navs\__item\_dark\_underline\navs__item_dark_underline.css" />
-    <Content Include="Content\css\navs\__item\_light\_underline\navs__item_light_underline.css" />
+    <Content Include="Content\css\header\_line\header_line.css" />
+    <Content Include="Content\css\header\__logo\header__logo.css" />
+    <Content Include="Content\css\header\__logo\_green\header__logo_green.css" />
+    <Content Include="Content\css\header\__main-link\header__main-link.css" />
+    <Content Include="Content\css\menu\_center\menu_center.css" />
+    <Content Include="Content\css\menu\__link\menu__link.css" />
+    <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
     <Content Include="Content\css\page\page.css" />
-    <Content Include="Content\css\page\__navs\_size\_4\page__navs_size_4.css" />
-    <Content Include="Content\css\navs\__item\_dark\_theme\navs__item_dark_theme.css" />
-    <Content Include="Content\css\navs\__item\_vertical\navs__item_vertical.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
-    <Content Include="Content\css\page\__content\_right\page__content_right.css" />
     <Content Include="Content\css\page\__header\page__header.css" />
-    <Content Include="Content\css\page\__navs\page__navs.css" />
-    <Content Include="Content\css\page\__navs\_left\page__navs_left.css" />
+    <Content Include="Content\css\page\__menu\page__menu.css" />
     <Content Include="Content\css\reset.css" />
-    <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\css\search-form\_center\search-form_center.css" />
+    <Content Include="Content\css\search-form\__button\search-form__button.css" />
+    <Content Include="Content\css\search-form\__textbox\search-form__textbox.css" />
+    <Content Include="Content\css\textbox\textbox.css" />
+    <Content Include="Content\css\user\_min\user_min.css" />
+    <Content Include="Content\css\width\_25per\width_25per.css" />
+    <Content Include="Content\css\width\_50per\width_50per.css" />
+    <Content Include="Content\css\width\_75per\width_75per.css" />
+    <Content Include="Content\css\wrapper\wrapper.css" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -214,13 +205,10 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared\_AdLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Ad\Partial\AdMinPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_StartLayout.cshtml" />
-    <Content Include="Views\Shared\HeaderPartial.cshtml" />
-    <Content Include="Views\Shared\SliderPartial.cshtml" />
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -232,6 +220,11 @@
     <Content Include="Views\Location\Location.cshtml" />
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\Image\ImagesSlider.cshtml" />
+    <Content Include="Views\Shared\_AdsLayout.cshtml" />
+    <Content Include="Views\Shared\Partial\SearchForm.cshtml" />
+    <Content Include="Views\Shared\Partial\Header.cshtml" />
+    <Content Include="Views\Shared\Partial\Menu.cshtml" />
+    <Content Include="Views\Shared\Partial\Banner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -242,7 +235,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\ad-container\" />
-    <Folder Include="Content\css\button\_light\_hover\" />
+    <Folder Include="Content\css\ad\__content\" />
+    <Folder Include="Content\css\ad\__image\" />
+    <Folder Include="Content\css\ad\__price\" />
+    <Folder Include="Content\css\category-container\__category-name\" />
+    <Folder Include="Content\css\category-container\__subcategory-link\" />
+    <Folder Include="Content\css\page\__search-form\" />
+    <Folder Include="Content\css\page\__user\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
