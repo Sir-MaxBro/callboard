@@ -1,23 +1,23 @@
 ﻿@model Ad
 
-<div class="ad ad_min clearfix">
-    <div class="ad__image ad__image_left ad__image_size_4">
+<div class="ad ad_min">
+    <div class="ad__image width_25per">
         This is image
     </div>
-    <div class="ad__content ad__content_right ad__content_size_8">
+    <div class="ad__content width_50per">
         <div>
             @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
                                        routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
                                        htmlAttributes: new { @class = "link" })
         </div>
         <div>
-            Price: @Model.Price
-        </div>
-        <div>
-            CreationDate: @Model.CreationDate
+            CreationDate: @Model.CreationDate.ToShortDateString()
         </div>
         <div>
             Type: @Model.Kind / State: @Model.State
         </div>
+    </div>
+    <div class="ad__price width_25per">
+        Price: @Model.Price
     </div>
 </div>

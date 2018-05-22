@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Callboard</title>
+    @Styles.Render("~/bundles/css")
+</head>
+<body class="page">
+    <div class="page__header">
+        @{ Html.RenderPartial("Partial\\Header"); }
+    </div>
+
+    <div class="page__menu">
+        @{ Html.RenderPartial("Partial\\Menu"); }
+    </div>
+
+    <div class="page__content clearfix">
+        <div class="width_25per float_left">
+            @{ Html.RenderAction("GetCategoryList", "Category"); }
+        </div>
+        <div class="width_75per float_right">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
