@@ -25,6 +25,7 @@ namespace Callboard.App.Web.Controllers
 
         public PartialViewResult GetSubcategories(int categoryId)
         {
+            Checker.CheckId(categoryId, $"CategoryId in GetSubcategories method is not valid.");
             CategoryViewModel model = new CategoryViewModel
             {
                 Categories = _repository.GetSubcategories(categoryId)

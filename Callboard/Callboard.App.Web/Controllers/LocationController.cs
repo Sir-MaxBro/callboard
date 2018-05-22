@@ -16,6 +16,7 @@ namespace Callboard.App.Web.Controllers
 
         public PartialViewResult GetLocationByCityId(int cityId)
         {
+            Checker.CheckId(cityId, $"CityId in GetLocationByCityId method is not valid.");
             Location location = _repository.GetLocationByCityId(cityId);
             return PartialView("Location", location);
         }

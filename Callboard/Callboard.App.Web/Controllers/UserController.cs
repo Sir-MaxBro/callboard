@@ -15,6 +15,7 @@ namespace Callboard.App.Web.Controllers
 
         public PartialViewResult GetUser(int userId)
         {
+            Checker.CheckId(userId, $"UserId in GetUser method is not valid.");
             var user = _repository.GetUserById(userId);
             return PartialView("User", user);
         }

@@ -10,12 +10,7 @@ namespace Callboard.App.General.Helpers
         public static void CheckForNull<T>(T obj)
             where T : class
         {
-            if (Equals(obj, null))
-            {
-                string errorMessage = $"Object { typeof(T) } is null.";
-                _logger.ErrorFormat(errorMessage);
-                throw new NullReferenceException(errorMessage);
-            }
+            CheckForNull(obj, "");
         }
 
         public static void CheckForNull<T>(T obj, string errorMessage)
@@ -31,9 +26,14 @@ namespace Callboard.App.General.Helpers
 
         public static void CheckId(int id)
         {
+            CheckId(id, "");
+        }
+
+        public static void CheckId(int id, string errorMessage)
+        {
             if (id < 1)
             {
-                string infoMessage = $"Id { id } is not valid.";
+                string infoMessage = $"Id { id } is not valid.\n { errorMessage }";
                 _logger.InfoFormat(infoMessage);
                 throw new InvalidIdException(infoMessage);
             }
