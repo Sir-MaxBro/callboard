@@ -180,11 +180,12 @@
     <Compile Include="Controllers\Ad\AdController.cs" />
     <Compile Include="Controllers\Ad\AdDetailsController.cs" />
     <Compile Include="Controllers\Ad\ImageController.cs" />
+    <Compile Include="Controllers\Location\CityController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
-    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\Location\LocationController.cs" />
     <Compile Include="Controllers\User\MailController.cs" />
     <Compile Include="Controllers\User\PhoneController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
@@ -244,6 +245,7 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
+    <Folder Include="Views\City\" />
     <Folder Include="Views\Mail\" />
     <Folder Include="Views\Phone\" />
   </ItemGroup>
