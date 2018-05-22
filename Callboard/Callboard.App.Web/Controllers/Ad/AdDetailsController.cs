@@ -14,9 +14,10 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
-        public ActionResult GetAdDetails(int adId)
+        public ActionResult GetAdDetails(int adId, string returnUrl)
         {
             Checker.CheckId(adId, $"AdId in GetAdDetails method is not valid.");
+            ViewBag.ReturnUrl = returnUrl;
             AdDetails model = _repository.GetAdDetails(adId);
             return View("AdDetails", model);
         }

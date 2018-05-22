@@ -2,13 +2,13 @@
 
 <div class="ad ad_min">
     <div class="ad__image width_25per">
-        This is image
+        @*@{ Html.RenderAction("GetImagesByAdId", "Image", new { adId = Model.AdId }); }*@
     </div>
     <div class="ad__content width_50per">
         <div>
             @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
-                                       routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
-                                       htmlAttributes: new { @class = "link" })
+                                         routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
+                                         htmlAttributes: new { @class = "link" })
         </div>
         <div>
             CreationDate: @Model.CreationDate.ToShortDateString()
