@@ -245,7 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
-      <Project>{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}</Project>
+      <Project>{bec9ebb2-8934-43e5-8719-b1429abde5bd}</Project>
       <Name>Callboard.App.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
