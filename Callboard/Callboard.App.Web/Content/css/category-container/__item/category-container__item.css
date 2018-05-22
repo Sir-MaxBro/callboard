@@ -1,0 +1,9 @@
+﻿.category-container__item {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    border-bottom: 1px dotted #cdcdcd;
+}
