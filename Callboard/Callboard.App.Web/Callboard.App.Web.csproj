@@ -186,12 +186,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
-    <Compile Include="Controllers\AdController.cs" />
-    <Compile Include="Controllers\AdDetailsController.cs" />
+    <Compile Include="Controllers\Ad\AdController.cs" />
+    <Compile Include="Controllers\Ad\AdDetailsController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -226,6 +228,8 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Ad\AdList.cshtml" />
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
+    <Content Include="Views\Location\Location.cshtml" />
+    <Content Include="Views\User\User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
