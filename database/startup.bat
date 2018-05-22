@@ -37,6 +37,8 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\CountryInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AreaInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\CityInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\ImageInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\ImagesInAdsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdDetailsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\CategoryInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdsInCategoriesInsert.sql
