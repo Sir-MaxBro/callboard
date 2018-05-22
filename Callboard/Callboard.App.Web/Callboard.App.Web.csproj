@@ -188,10 +188,11 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\Ad\AdController.cs" />
     <Compile Include="Controllers\Ad\AdDetailsController.cs" />
+    <Compile Include="Controllers\Ad\ImageController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\Ad\CategoryController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
     <Content Include="Views\Location\Location.cshtml" />
     <Content Include="Views\User\User.cshtml" />
+    <Content Include="Views\Image\ImagesSlider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
