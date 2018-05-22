@@ -185,7 +185,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\User\MailController.cs" />
+    <Compile Include="Controllers\User\PhoneController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -242,6 +244,8 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
+    <Folder Include="Views\Mail\" />
+    <Folder Include="Views\Phone\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
