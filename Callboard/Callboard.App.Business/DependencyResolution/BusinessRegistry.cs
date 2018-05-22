@@ -24,6 +24,7 @@ namespace Callboard.App.Business.DependencyResolution
             For<IMailRepository>().Use<MailRepository>();
             For<IPhoneRepository>().Use<PhoneRepository>();
 
+            For<ILocationRepository>().Use<LocationRepository>();
             For<ICityRepository>().Use<CityRepository>();
         }
     }
