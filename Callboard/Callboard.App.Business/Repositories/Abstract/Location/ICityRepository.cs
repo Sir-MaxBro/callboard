@@ -4,6 +4,6 @@ namespace Callboard.App.Business.Repositories
 {
     public interface ICityRepository : IEntityRepository<City>
     {
-        Location GetLocationByCityId(int cityId);
+        City GetCity(int cityId);
     }
 }

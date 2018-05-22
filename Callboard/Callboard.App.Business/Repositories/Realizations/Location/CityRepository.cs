@@ -18,9 +18,9 @@ namespace Callboard.App.Business.Repositories
             get => _repository.Items;
         }
 
-        public Location GetLocationByCityId(int cityId)
+        public City GetCity(int cityId)
         {
-            return _repository.GetLocationByCityId(cityId);
+            return _repository.GetCity(cityId);
         }
     }
 }

@@ -16,19 +16,19 @@ namespace Callboard.App.Data.Repositories
 
         public IReadOnlyCollection<City> Items => throw new NotImplementedException();
 
-        public Location GetLocationByCityId(int cityId)
+        public City GetCity(int cityId)
         {
-            Location location = base.GetEntity<Location>("getLocationById", MapLocation, cityId);
-            return location;
+            City city = base.GetEntity<City>("getById", MapCity, cityId);
+            return city;
         }
 
-        private Location MapLocation(DbDataReader reader)
+        private City MapCity(DbDataReader reader)
         {
-            return new Location
+            return new City
             {
-                Area = Mapper.MapProperty<string>(reader, "Area", base.GetName),
-                City = Mapper.MapProperty<string>(reader, "City", base.GetName),
-                Country = Mapper.MapProperty<string>(reader, "Country", base.GetName)
+                CityId = Mapper.MapProperty<int>(reader, "CityId", base.GetName),
+                AreaId = Mapper.MapProperty<int>(reader, "AreaId", base.GetName),
+                Name = Mapper.MapProperty<string>(reader, "Name", base.GetName)
             };
         }
     }

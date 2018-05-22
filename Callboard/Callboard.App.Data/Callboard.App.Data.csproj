@@ -71,6 +71,7 @@
     <Compile Include="Repositories\Abstract\Location\ICountryRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
     <Compile Include="Repositories\Abstract\Ad\IImageRepository.cs" />
+    <Compile Include="Repositories\Abstract\Location\ILocationRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IMailRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IPhoneRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IUserRepository.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Repositories\Realizations\Commercial\CommercialRepository.cs" />
     <Compile Include="Repositories\Realizations\Location\CountryRepository.cs" />
     <Compile Include="Repositories\Realizations\Ad\ImageRepository.cs" />
+    <Compile Include="Repositories\Realizations\Location\LocationRepository.cs" />
     <Compile Include="Repositories\Realizations\User\MailRepository.cs" />
     <Compile Include="Repositories\Realizations\User\PhoneRepository.cs" />
     <Compile Include="Repositories\Realizations\User\UserRepository.cs" />
