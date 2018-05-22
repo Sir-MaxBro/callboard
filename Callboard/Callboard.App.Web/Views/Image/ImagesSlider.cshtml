@@ -1,3 +1,8 @@
 ﻿@model IReadOnlyCollection<Image>
 
-<h1>Images slider</h1>
+@foreach (var item in Model)
+{
+    <div>
+        @Html.RenderImage(item.Data, item.MimeType, null, new { width = 300, height = 400 });
+    </div>
+}
