@@ -48,6 +48,7 @@
     <Compile Include="Repositories\Abstract\Ad\IAdDetailsRepository.cs" />
     <Compile Include="Repositories\Abstract\Ad\IAdRepository.cs" />
     <Compile Include="Repositories\Abstract\Ad\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Abstract\Location\IAreaRepository.cs" />
     <Compile Include="Repositories\Abstract\Location\ICityRepository.cs" />
     <Compile Include="Repositories\Abstract\Commercial\ICommercialRepository.cs" />
     <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Repositories\Realizations\Ad\CategoryRepository.cs" />
     <Compile Include="DependencyResolution\BusinessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Realizations\Location\AreaRepository.cs" />
     <Compile Include="Repositories\Realizations\Location\CityRepository.cs" />
     <Compile Include="Repositories\Realizations\Commercial\CommercialRepository.cs" />
     <Compile Include="Repositories\Realizations\Ad\ImageRepository.cs" />
