@@ -4,8 +4,10 @@
 <div class="ad-container">
     @{ Html.RenderPartial("Partial\\Banner"); }
 
-    @foreach (var item in Model.Ads)
-    {
-        Html.RenderPartial("Partial\\AdPartial", model: item);
-    }
+    <div class="ad-container__content">
+        @foreach (var item in Model.Ads)
+        {
+            Html.RenderPartial("Partial\\AdPartial", model: item);
+        }
+    </div>
 </div>

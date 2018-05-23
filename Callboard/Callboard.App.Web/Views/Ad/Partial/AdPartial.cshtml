@@ -7,24 +7,27 @@
         </script>
     </div>
     <div class="ad__content width_50per">
-        <div>
+        <div class="ad__name">
             @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
-                                 routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
-                                 htmlAttributes: new { @class = "link" })
+                                           routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
+                                           htmlAttributes: new { @class = "button button_green button_hover_red" })
         </div>
-        <div>
-            CreationDate: @Model.CreationDate.ToShortDateString()
+        <div class="ad__note">
+            <span class="ad__text">CreationDate: </span>@Model.CreationDate.ToShortDateString()
         </div>
-        <div>
-            Type: @Model.Kind / State: @Model.State
+        <div class="ad__note">
+            <span class="ad__text">Type: </span>@Model.Kind
         </div>
-        <div id="ad__location_@Model.AdId">
+        <div class="ad__note">
+            <span class="ad__text">State: </span>@Model.State
+        </div>
+        <div id="ad__location_@Model.AdId" class="ad__note ad__text">
             <script>
                 renderActionAsync({ cityId: @Model.CityId }, '@Url.Action("GetLocationByCityId", "Location")', 'ad__location_@Model.AdId');
             </script>
         </div>
     </div>
     <div class="ad__price width_25per">
-        Price: @Model.Price
+        $@Model.Price
     </div>
 </div>

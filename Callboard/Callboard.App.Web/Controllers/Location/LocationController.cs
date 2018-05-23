@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Business.Repositories;
-using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers;
 using System.Web.Mvc;
 
@@ -14,10 +13,11 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
+        [HttpPost]
         public PartialViewResult GetLocationByCityId(int cityId)
         {
             Checker.CheckId(cityId, $"CityId in GetLocationByCityId method is not valid.");
-            Location location = _repository.GetLocationByCityId(cityId);
+            var location = _repository.GetLocationByCityId(cityId);
             return PartialView("Location", location);
         }
     }
