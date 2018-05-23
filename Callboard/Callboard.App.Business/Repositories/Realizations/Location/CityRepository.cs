@@ -18,9 +18,9 @@ namespace Callboard.App.Business.Repositories
             get => _repository.Items;
         }
 
-        public City GetCity(int cityId)
+        public IReadOnlyCollection<City> GetCitiesByAreaId(int areaId)
         {
-            return _repository.GetCity(cityId);
+            return _repository.GetCitiesByAreaId(areaId);
         }
     }
 }
