@@ -16,12 +16,6 @@ namespace Callboard.App.Data.Repositories
 
         public IReadOnlyCollection<City> Items => throw new NotImplementedException();
 
-        public City GetCity(int cityId)
-        {
-            City city = base.GetEntity<City>("getById", MapCity, cityId);
-            return city;
-        }
-
         private City MapCity(DbDataReader reader)
         {
             return new City
@@ -30,6 +24,12 @@ namespace Callboard.App.Data.Repositories
                 AreaId = Mapper.MapProperty<int>(reader, "AreaId", base.GetName),
                 Name = Mapper.MapProperty<string>(reader, "Name", base.GetName)
             };
+        }
+
+        public IReadOnlyCollection<City> GetCitiesByAreaId(int areaId)
+        {
+            IReadOnlyCollection<City> cities = base.GetEntities<City>("selectByAreaId", MapCity, areaId);
+            return cities;
         }
     }
 }
