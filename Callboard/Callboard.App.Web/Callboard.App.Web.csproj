@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
+    <Compile Include="Controllers\Location\CountryController.cs" />
     <Compile Include="Controllers\Location\LocationController.cs" />
     <Compile Include="Controllers\User\MailController.cs" />
     <Compile Include="Controllers\User\PhoneController.cs" />
@@ -246,6 +247,7 @@
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
     <Folder Include="Views\City\" />
+    <Folder Include="Views\Country\" />
     <Folder Include="Views\Mail\" />
     <Folder Include="Views\Phone\" />
   </ItemGroup>
