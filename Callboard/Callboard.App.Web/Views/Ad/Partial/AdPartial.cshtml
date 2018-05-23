@@ -1,0 +1,30 @@
+﻿@model Ad
+
+<div class="ad ad_min">
+    <div id="ad__image_@Model.AdId" class="ad__image width_25per">
+        <script>
+            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image_@Model.AdId');
+        </script>
+    </div>
+    <div class="ad__content width_50per">
+        <div>
+            @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
+                                 routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
+                                 htmlAttributes: new { @class = "link" })
+        </div>
+        <div>
+            CreationDate: @Model.CreationDate.ToShortDateString()
+        </div>
+        <div>
+            Type: @Model.Kind / State: @Model.State
+        </div>
+        <div id="ad__location_@Model.AdId">
+            <script>
+                renderActionAsync({ cityId: @Model.CityId }, '@Url.Action("GetLocationByCityId", "Location")', 'ad__location_@Model.AdId');
+            </script>
+        </div>
+    </div>
+    <div class="ad__price width_25per">
+        Price: @Model.Price
+    </div>
+</div>

@@ -225,7 +225,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Ad\Partial\AdMinPartial.cshtml" />
+    <Content Include="Views\Ad\Partial\AdPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_StartLayout.cshtml" />
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />

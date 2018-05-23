@@ -1,10 +1,11 @@
 ﻿@model AdViewModel
+@Scripts.Render("~/bundles/ajax")
 
 <div class="ad-container">
     @{ Html.RenderPartial("Partial\\Banner"); }
 
     @foreach (var item in Model.Ads)
     {
-        Html.RenderPartial("Partial\\AdMinPartial", model: item);
+        Html.RenderPartial("Partial\\AdPartial", model: item);
     }
 </div>
