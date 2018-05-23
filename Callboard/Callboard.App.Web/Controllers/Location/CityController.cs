@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Repositories;
 using Callboard.App.General.Helpers;
+using Newtonsoft.Json;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -13,11 +14,12 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
-        public PartialViewResult GetCity(int cityId)
+        public JsonResult GetCitiesByAreaId(int areaId)
         {
-            Checker.CheckId(cityId, $"CityId in GetCity method is not valid.");
-            var model = _repository.GetCity(cityId);
-            return PartialView(model);
+            Checker.CheckId(areaId, $"AreaId in GetCitiesByAreaId method is not valid.");
+            var cities = _repository.GetCitiesByAreaId(areaId);
+            var model = JsonConvert.SerializeObject(cities);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }
