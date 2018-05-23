@@ -5,6 +5,13 @@
 <div>
     @Model.Name
 </div>
+
+<div id="ad__image_@Model.AdId" class="ad__image width_25per">
+    <script>
+            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image_@Model.AdId');
+    </script>
+</div>
+
 <div>
     @Model.Price
 </div>
@@ -15,8 +22,6 @@
     @Model.AddressLine
 </div>
 
-@{ Html.RenderAction("GetLocationByCityId", "Location", new { cityId = Model.CityId }); }
+@*@{ Html.RenderAction("GetLocationByCityId", "Location", new { cityId = Model.CityId }); }*@
 
-@{ Html.RenderAction("GetUser", "User", new { userId = Model.UserId }); }
-
-@{ Html.RenderAction("GetImagesByAdId", "Image", new { adId = Model.AdId }); }
+@*@{ Html.RenderAction("GetUser", "User", new { userId = Model.UserId }); }*@

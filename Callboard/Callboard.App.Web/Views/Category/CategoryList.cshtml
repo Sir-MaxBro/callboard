@@ -24,11 +24,11 @@
         <div class="category-container__item category-container__item_gray category-container__item_hover_green">
             <div class="category-container__category-name">
                 @Html.ActionLink(item.Name, "GetAdsByCategoryId", "Ad",
-                                                  routeValues: new { categoryId = item.CategoryId },
-                                                  htmlAttributes: new { @class = "button" })
+                                                routeValues: new { categoryId = item.CategoryId },
+                                                htmlAttributes: new { @class = "button width_75per" })
             </div>
             <div class="category-container__subcategory-link">
-                <a href="#" onclick="executeAction({ categoryId: @item.CategoryId, returnUrl: '@Request.QueryString["ReturlUrl"]' }, '@Url.Action("GetSubcategories", "Category")', 'category-container')" class="button">-></a>
+                <a onclick="renderActionAsync({ categoryId: @item.CategoryId, returnUrl: '@Request.QueryString["ReturlUrl"]' }, '@Url.Action("GetSubcategories", "Category")', 'category-container')" class="button width_25per">-></a>
             </div>
         </div>
     }
