@@ -18,7 +18,7 @@ namespace Callboard.App.Data.Repositories
 
         public Location GetLocationByCityId(int cityId)
         {
-            Location location = base.GetEntity<Location>("getLocationById", MapLocation, cityId);
+            Location location = base.GetEntity<Location>("getLocationByCityId", MapLocation, cityId);
             return location;
         }
 
