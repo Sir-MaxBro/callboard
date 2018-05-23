@@ -1,9 +1,10 @@
 ﻿using Callboard.App.General.Entities;
+using System.Collections.Generic;
 
 namespace Callboard.App.Business.Repositories
 {
     public interface ICityRepository : IEntityRepository<City>
     {
-        City GetCity(int cityId);
+        IReadOnlyCollection<City> GetCitiesByAreaId(int areaId);
     }
 }
