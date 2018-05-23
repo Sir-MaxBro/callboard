@@ -1,4 +1,4 @@
-﻿function executeAction(obj, url, updateTargetId) {
+﻿function renderActionAsync(obj, url, updateTargetId) {
     $.ajax({
         url: url,
         type: 'POST',
@@ -6,9 +6,6 @@
         data: JSON.stringify(obj),
         success: function (data) {
             $('#' + updateTargetId).html(data);
-        },
-        error: function () {
-            alert('Action by url = ' + url + 'not found');
         }
     });
 }

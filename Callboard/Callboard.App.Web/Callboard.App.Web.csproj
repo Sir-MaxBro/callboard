@@ -148,6 +148,8 @@
     <Content Include="Content\css\header\__logo\header__logo.css" />
     <Content Include="Content\css\header\__logo\_green\header__logo_green.css" />
     <Content Include="Content\css\header\__main-link\header__main-link.css" />
+    <Content Include="Content\css\img\_cover\img_cover.css" />
+    <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
     <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
@@ -159,6 +161,11 @@
     <Content Include="Content\css\search-form\_center\search-form_center.css" />
     <Content Include="Content\css\search-form\__button\search-form__button.css" />
     <Content Include="Content\css\search-form\__textbox\search-form__textbox.css" />
+    <Content Include="Content\css\slider\slider_relative.css" />
+    <Content Include="Content\css\slider\__img\slider__img.css" />
+    <Content Include="Content\css\slider\__item\slider__item.css" />
+    <Content Include="Content\css\slider\__next\slider__next.css" />
+    <Content Include="Content\css\slider\__prev\slider__prev.css" />
     <Content Include="Content\css\textbox\textbox.css" />
     <Content Include="Content\css\user\_min\user_min.css" />
     <Content Include="Content\css\width\_25per\width_25per.css" />
@@ -174,6 +181,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\slider.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
