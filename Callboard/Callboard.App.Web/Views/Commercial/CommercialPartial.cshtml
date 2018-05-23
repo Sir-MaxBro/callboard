@@ -1,15 +1,19 @@
 ﻿@model CommercialViewModel
 
-@if (Model.Commercials != null)
-{
-    foreach (var item in Model.Commercials)
+<div class="commercial">
+    @if (Model.Commercials != null)
     {
-        <div>
-            @Html.RenderImage(item.Image.Data, item.Image.Extension, null, new { width = 300, height = 400 });
+        foreach (var item in Model.Commercials)
+        {
+            <div class="commercial__item">
+                @Html.RenderImage(item.Image.Data, item.Image.Extension, imgclass: "commercial__image")
+            </div>
+        }
+    }
+    else
+    {
+        <div class="commercial__item">
+            <img class="commercial__image" src="~/Content/images/ads.jpg"/>
         </div>
     }
-}
-else
-{
-    <img src="~/Content/images/ads.jpg" width="300" height="400" />
-}
+</div>
