@@ -27,6 +27,7 @@ namespace Callboard.App.Business.DependencyResolution
             For<ILocationRepository>().Use<LocationRepository>();
             For<ICityRepository>().Use<CityRepository>();
             For<ICountryRepository>().Use<CountryRepository>();
+            For<IAreaRepository>().Use<AreaRepository>();
         }
     }
 }
