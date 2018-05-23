@@ -1,6 +1,7 @@
-﻿using Callboard.App.General.Entities;
-using System;
+﻿using Callboard.App.Data.Infrastructure;
+using Callboard.App.General.Entities;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Callboard.App.Data.Repositories
 {
@@ -16,7 +17,17 @@ namespace Callboard.App.Data.Repositories
 
         private IReadOnlyCollection<Country> GetCountries()
         {
-            throw new NotImplementedException();
+            IReadOnlyCollection<Country> countries = base.GetEntities<Country>("selectAll", MapCountry);
+            return countries;
+        }
+
+        private Country MapCountry(DbDataReader reader)
+        {
+            return new Country
+            {
+                CountryId = Mapper.MapProperty<int>(reader, "CountryId", base.GetName),
+                Name = Mapper.MapProperty<string>(reader, "Name", base.GetName)
+            };
         }
     }
 }
