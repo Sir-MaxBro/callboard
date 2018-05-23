@@ -8,14 +8,20 @@
     @Styles.Render("~/bundles/css")
 </head>
 <body class="page">
-    <div class="container">
-        <div class="clearfix">
-            <div class="page__content">
-                @RenderBody()          
-            </div>
-            <div>
-                @{ Html.RenderAction("GetCommercial", "Commercial"); }
-            </div>
+    <div class="page__header">
+        @{ Html.RenderPartial("Partial\\Header"); }
+    </div>
+
+    <div class="page__menu">
+        @{ Html.RenderPartial("Partial\\Menu"); }
+    </div>
+
+    <div class="page__content">
+        <div class="width_25per float_left">
+            @{ Html.RenderAction("GetCommercial", "Commercial"); }
+        </div>
+        <div class="width_75per float_right">
+            @RenderBody()
         </div>
     </div>
 </body>
