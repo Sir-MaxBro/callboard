@@ -1,8 +1,12 @@
 ﻿@model IReadOnlyCollection<Image>
 
-@foreach (var item in Model)
-{
-    <div>
-        @Html.RenderImage(item.Data, item.MimeType, null, new { width = 300, height = 400 });
-    </div>
-}
+<div class="slider slider_relative">
+    @foreach (var item in Model)
+    {
+        <div class="slider__item slider_@item.ImageId fade">
+            @Html.RenderImage(item.Data, item.MimeType, imgclass: "slider__img", htmlAttributes: new { })
+        </div>
+    }
+    <a class="slider__prev" onclick="plusSlides(-1)">&#10094</a>
+    <a class="slider__next" onclick="plusSlides(1)">&#10095</a>
+</div>
