@@ -23,9 +23,11 @@ namespace Callboard.App.Web.Controllers
             return PartialView("CategoryList", model);
         }
 
-        public PartialViewResult GetSubcategories(int categoryId)
+        [HttpPost]
+        public PartialViewResult GetSubcategories(int categoryId, string returnUrl = null)
         {
             Checker.CheckId(categoryId, $"CategoryId in GetSubcategories method is not valid.");
+            ViewBag.ReturnUrl = returnUrl;
             CategoryViewModel model = new CategoryViewModel
             {
                 Categories = _repository.GetSubcategories(categoryId)
