@@ -18,6 +18,8 @@
     <div class="page__content clearfix">
         <div class="width_25per float_left">
             @{ Html.RenderAction("GetCategories", "Category"); }
+
+            @{ Html.RenderAction("GetCommercial", "Commercial"); }
         </div>
         <div class="width_75per float_right">
             @RenderBody()
