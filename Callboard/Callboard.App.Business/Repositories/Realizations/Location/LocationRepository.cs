@@ -14,8 +14,6 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::ILocationRepository>();
         }
 
-        public IReadOnlyCollection<Location> Items => throw new NotImplementedException();
-
         public Location GetLocationByCityId(int cityId)
         {
             return _repository.GetLocationByCityId(cityId);

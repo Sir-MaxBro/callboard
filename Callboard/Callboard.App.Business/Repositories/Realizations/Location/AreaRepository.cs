@@ -14,8 +14,6 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::IAreaRepository>();
         }
 
-        IReadOnlyCollection<Area> IEntityRepository<Area>.Items => throw new NotImplementedException();
-
         public IReadOnlyCollection<Area> GetAreasByCountryId(int countryId)
         {
             return _repository.GetAreasByCountryId(countryId);

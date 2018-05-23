@@ -13,9 +13,7 @@ namespace Callboard.App.Data.Repositories
 
         protected override string TableName => TABLE_NAME;
 
-        public IReadOnlyCollection<Category> Items => GetCategories();
-
-        private IReadOnlyCollection<Category> GetCategories()
+        public IReadOnlyCollection<Category> GetCategories()
         {
             IReadOnlyCollection<Category> categories = base.GetEntities<Category>("selectAll", MapCategory);
             return categories;

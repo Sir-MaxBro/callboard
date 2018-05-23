@@ -13,9 +13,9 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::ICountryRepository>();
         }
 
-        public IReadOnlyCollection<Country> Items
+        public IReadOnlyCollection<Country> GetCountries()
         {
-            get => _repository.Items;
+            return _repository.GetCountries();
         }
     }
 }

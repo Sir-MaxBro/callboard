@@ -13,11 +13,6 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::IPhoneRepository>();
         }
 
-        public IReadOnlyCollection<Phone> Items
-        {
-            get => _repository.Items;
-        }
-
         public IReadOnlyCollection<Phone> GetPhonesByUserId(int userId)
         {
             return _repository.GetPhonesByUserId(userId);

@@ -14,9 +14,7 @@ namespace Callboard.App.Data.Repositories
 
         protected override string TableName => TABLE_NAME;
 
-        public IReadOnlyCollection<Ad> Items => GetAds();
-
-        private IReadOnlyCollection<Ad> GetAds()
+        public IReadOnlyCollection<Ad> GetAds()
         {
             IReadOnlyCollection<Ad> ads = base.GetEntities<Ad>("selectAll", MapAd);
             return ads;

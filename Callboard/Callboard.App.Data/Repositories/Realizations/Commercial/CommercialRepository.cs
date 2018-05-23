@@ -12,9 +12,8 @@ namespace Callboard.App.Data.Repositories
     internal class CommercialRepository : ICommercialRepository
     {
         private ILoggerWrapper _logger = LoggerWrapper.GetInstance();
-        public IReadOnlyCollection<Commercial> Items => GetCommercials();
 
-        private IReadOnlyCollection<Commercial> GetCommercials()
+        public IReadOnlyCollection<Commercial> GetCommercials()
         {
             List<Commercial> commercials = null;
             try

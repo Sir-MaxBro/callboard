@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Callboard.App.Data.Repositories
+﻿namespace Callboard.App.Data.Repositories
 {
-    public interface IEntityRepository<T>
-    {
-        IReadOnlyCollection<T> Items { get; }
-    }
+    public interface IEntityRepository<T> { }
 }

@@ -22,7 +22,7 @@ namespace Callboard.App.Web.Controllers
         {
             var model = new CommercialViewModel
             {
-                Commercials = _repository.Items
+                Commercials = _repository.GetCommercials()
             };
             return PartialView("CommercialPartial", model);
         }

@@ -13,9 +13,9 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::ICategoryRepository>();
         }
 
-        public IReadOnlyCollection<Category> Items
+        public IReadOnlyCollection<Category> GetCategories()
         {
-            get => _repository.Items;
+            return _repository.GetCategories();
         }
 
         public IReadOnlyCollection<Category> GetSubcategories(int categoryId)

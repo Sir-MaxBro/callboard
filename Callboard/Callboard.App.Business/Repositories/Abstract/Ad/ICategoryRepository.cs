@@ -6,5 +6,7 @@ namespace Callboard.App.Business.Repositories
     public interface ICategoryRepository : IEntityRepository<Category>
     {
         IReadOnlyCollection<Category> GetSubcategories(int categoryId);
+
+        IReadOnlyCollection<Category> GetCategories();
     }
 }

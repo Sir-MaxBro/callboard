@@ -13,9 +13,7 @@ namespace Callboard.App.Data.Repositories
 
         protected override string TableName => TABLE_NAME;
 
-        public IReadOnlyCollection<Country> Items => GetCountries();
-
-        private IReadOnlyCollection<Country> GetCountries()
+        public IReadOnlyCollection<Country> GetCountries()
         {
             IReadOnlyCollection<Country> countries = base.GetEntities<Country>("selectAll", MapCountry);
             return countries;

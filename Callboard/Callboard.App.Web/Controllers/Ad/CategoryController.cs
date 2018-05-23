@@ -14,11 +14,11 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
-        public PartialViewResult GetCategoryList()
+        public PartialViewResult GetCategories()
         {
             CategoryViewModel model = new CategoryViewModel
             {
-                Categories = _repository.Items
+                Categories = _repository.GetCategories()
             };
             return PartialView("CategoryList", model);
         }

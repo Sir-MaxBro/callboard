@@ -13,8 +13,6 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::IAdDetailsRepository>();
         }
 
-        public IReadOnlyCollection<AdDetails> Items => _repository.Items;
-
         public AdDetails GetAdDetails(int adId)
         {
             return _repository.GetAdDetails(adId);

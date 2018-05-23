@@ -22,7 +22,7 @@ namespace Callboard.App.Web.Controllers
         {
             AdViewModel model = new AdViewModel
             {
-                Ads = _repository.Items
+                Ads = _repository.GetAds()
             };
             return View("AdList", model);
         }

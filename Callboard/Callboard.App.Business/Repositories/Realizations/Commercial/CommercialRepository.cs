@@ -13,6 +13,9 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::ICommercialRepository>();
         }
 
-        public IReadOnlyCollection<Commercial> Items => _repository.Items;
+        public IReadOnlyCollection<Commercial> GetCommercials()
+        {
+            return _repository.GetCommercials();
+        }
     }
 }

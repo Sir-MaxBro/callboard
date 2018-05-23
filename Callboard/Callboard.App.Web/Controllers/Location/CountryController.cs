@@ -16,7 +16,7 @@ namespace Callboard.App.Web.Controllers
 
         public JsonResult GetCountries()
         {
-            var countries = _repository.Items;
+            var countries = _repository.GetCountries();
             var countriesData = JsonConvert.SerializeObject(countries);
             return Json(countriesData, JsonRequestBehavior.AllowGet);
         }

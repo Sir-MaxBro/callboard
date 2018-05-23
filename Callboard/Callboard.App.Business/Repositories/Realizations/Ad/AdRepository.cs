@@ -13,9 +13,9 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::IAdRepository>();
         }
 
-        public IReadOnlyCollection<Ad> Items
+        public IReadOnlyCollection<Ad> GetAds()
         {
-            get => _repository.Items;
+            return _repository.GetAds();
         }
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)

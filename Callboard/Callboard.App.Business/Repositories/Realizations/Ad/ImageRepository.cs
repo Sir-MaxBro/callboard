@@ -13,11 +13,6 @@ namespace Callboard.App.Business.Repositories
             _repository = DataContainer.GetInstance<Data::IImageRepository>();
         }
 
-        public IReadOnlyCollection<Image> Items
-        {
-            get => _repository.Items;
-        }
-
         public IReadOnlyCollection<Image> GetImagesByAdId(int adId)
         {
             return _repository.GetImagesByAdId(adId);

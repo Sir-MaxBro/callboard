@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Data.Infrastructure;
 using Callboard.App.General.Entities;
-using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
@@ -13,8 +12,6 @@ namespace Callboard.App.Data.Repositories
             : base() { }
 
         protected override string TableName => TABLE_NAME;
-
-        public IReadOnlyCollection<City> Items => throw new NotImplementedException();
 
         private City MapCity(DbDataReader reader)
         {
