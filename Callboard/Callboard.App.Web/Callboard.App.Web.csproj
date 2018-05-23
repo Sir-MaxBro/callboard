@@ -169,6 +169,11 @@
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\ajax-helper.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
