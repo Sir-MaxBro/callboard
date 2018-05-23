@@ -1,6 +1,7 @@
 ﻿.search-form__button {
+    display: inline-block;
     border: none;
     padding: 10px 0 10px;
-    background: #FA1818;
     width: 10%;
+    background: #FA1818;
 }

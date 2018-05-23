@@ -1,4 +1,5 @@
 ﻿.button {
+    display: block;
     outline: none;
     text-decoration: none;
     color: inherit;

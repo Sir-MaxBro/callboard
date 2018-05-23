@@ -132,15 +132,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\ad-container\__content\ad-container__content.css" />
     <Content Include="Content\css\ad\_min\ad_min.css" />
+    <Content Include="Content\css\ad\__content\ad__content.css" />
+    <Content Include="Content\css\ad\__name\ad__name.css" />
+    <Content Include="Content\css\ad\__note\ad__note.css" />
+    <Content Include="Content\css\ad\__price\ad__price.css" />
+    <Content Include="Content\css\ad\__text\ad__text.css" />
     <Content Include="Content\css\banner\__image\banner__image.css" />
     <Content Include="Content\css\button\button.css" />
+    <Content Include="Content\css\button\_green\button_green.css" />
     <Content Include="Content\css\button\_hover\_green\button_hover_green.css" />
     <Content Include="Content\css\button\_hover\_red\button_hover_red.css" />
     <Content Include="Content\css\category-container\__item\category-container__item.css" />
     <Content Include="Content\css\category-container\__item\_gray\category-container__item_gray.css" />
     <Content Include="Content\css\category-container\__item\_hover\_green\category-container__item_hover_green.css" />
     <Content Include="Content\css\clearfix\clearfix.css" />
+    <Content Include="Content\css\commercial\__image\commercial__image.css" />
+    <Content Include="Content\css\commercial\__item\commercial__item.css" />
     <Content Include="Content\css\float\_left\float_left.css" />
     <Content Include="Content\css\float\_right\float_right.css" />
     <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
@@ -168,6 +177,7 @@
     <Content Include="Content\css\slider\__prev\slider__prev.css" />
     <Content Include="Content\css\textbox\textbox.css" />
     <Content Include="Content\css\user\_min\user_min.css" />
+    <Content Include="Content\css\width\_100per\width_100per.css" />
     <Content Include="Content\css\width\_25per\width_25per.css" />
     <Content Include="Content\css\width\_50per\width_50per.css" />
     <Content Include="Content\css\width\_75per\width_75per.css" />
@@ -175,6 +185,7 @@
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\ads.jpg" />
+    <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -253,10 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\ad-container\" />
-    <Folder Include="Content\css\ad\__content\" />
     <Folder Include="Content\css\ad\__image\" />
-    <Folder Include="Content\css\ad\__price\" />
     <Folder Include="Content\css\category-container\__category-name\" />
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
