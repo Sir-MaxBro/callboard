@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Business.DependencyResolution;
 using Callboard.App.General.Entities;
-using System.Collections.Generic;
 using Data = Callboard.App.Data.Repositories;
 
 namespace Callboard.App.Business.Repositories
@@ -16,6 +15,11 @@ namespace Callboard.App.Business.Repositories
         public User GetUserById(int userId)
         {
             return _repository.GetUserById(userId);
+        }
+
+        public User GetUserByLogin(string login)
+        {
+            return _repository.GetUserByLogin(login);
         }
     }
 }

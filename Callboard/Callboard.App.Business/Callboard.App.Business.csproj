@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\LogginService.cs" />
+    <Compile Include="Auth\MembershipProvider.cs" />
+    <Compile Include="Auth\RoleProvider.cs" />
+    <Compile Include="Auth\UserPrinciple.cs" />
     <Compile Include="DependencyResolution\DataContainer.cs" />
     <Compile Include="Repositories\Abstract\Ad\IAdDetailsRepository.cs" />
     <Compile Include="Repositories\Abstract\Ad\IAdRepository.cs" />

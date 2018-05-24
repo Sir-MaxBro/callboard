@@ -5,5 +5,7 @@ namespace Callboard.App.Business.Repositories
     public interface IUserRepository : IEntityRepository<User>
     {
         User GetUserById(int userId);
+
+        User GetUserByLogin(string login);
     }
 }
