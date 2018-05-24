@@ -18,6 +18,12 @@ namespace Callboard.App.Data.Repositories
             return user;
         }
 
+        public User GetUserByLogin(string login)
+        {
+            User user = base.GetEntity<User>("getByLogin", MapUser, login);
+            return user;
+        }
+
         private User MapUser(DbDataReader reader)
         {
             return new User
