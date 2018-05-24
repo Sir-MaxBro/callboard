@@ -75,6 +75,7 @@
     <Compile Include="Repositories\Abstract\Location\ILocationRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IMailRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IPhoneRepository.cs" />
+    <Compile Include="Repositories\Abstract\User\IRoleRepository.cs" />
     <Compile Include="Repositories\Abstract\User\IUserRepository.cs" />
     <Compile Include="Repositories\Realizations\Ad\AdDetailsRepository.cs" />
     <Compile Include="Repositories\Realizations\Ad\AdRepository.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Repositories\Realizations\Location\LocationRepository.cs" />
     <Compile Include="Repositories\Realizations\User\MailRepository.cs" />
     <Compile Include="Repositories\Realizations\User\PhoneRepository.cs" />
+    <Compile Include="Repositories\Realizations\User\RoleRepository.cs" />
     <Compile Include="Repositories\Realizations\User\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
