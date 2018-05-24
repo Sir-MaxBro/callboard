@@ -2,26 +2,44 @@
 
 <a href="@ViewBag.ReturnUrl">Back</a>
 
-<div>
-    @Model.Name
-</div>
+<div class="ad ad_full">
+    <div id="ad__image" class="ad__image ad__image_big">
+        <script>
+            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image');
+        </script>
+    </div>
 
-<div id="ad__image_@Model.AdId" class="ad__image width_25per">
-    <script>
-            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image_@Model.AdId');
-    </script>
+    <div class="ad__content">
+        <div class="ad__name">
+            @Model.Name
+        </div>
+        <div class="">
+            @Model.Price
+        </div>
+        <div>
+            @Model.Description
+        </div>
+        <div>
+            @Model.AddressLine
+        </div>
+        <div>
+            @Model.CreationDate
+        </div>
+        <div>
+            @Model.Kind
+        </div>
+        <div>
+            @Model.State
+        </div>
+        <div id="ad__location">
+            <script>
+                renderActionAsync({ cityId: @Model.CityId }, '@Url.Action("GetLocationByCityId", "Location")', 'ad__location');
+            </script>
+        </div>
+        <div id="ad__user">
+            <script>
+                renderActionAsync({ userId: @Model.UserId }, '@Url.Action("GetUser", "User")', 'ad__user');
+            </script>
+        </div>
+    </div>
 </div>
-
-<div>
-    @Model.Price
-</div>
-<div>
-    @Model.Description
-</div>
-<div>
-    @Model.AddressLine
-</div>
-
-@*@{ Html.RenderAction("GetLocationByCityId", "Location", new { cityId = Model.CityId }); }*@
-
-@*@{ Html.RenderAction("GetUser", "User", new { userId = Model.UserId }); }*@
