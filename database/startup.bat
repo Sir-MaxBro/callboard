@@ -42,6 +42,9 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\ImagesInAdsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdDetailsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\CategoryInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdsInCategoriesInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\MembershipInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\RoleInsert.sql
+sqlcmd -S %server% -U %user% -P %password% -i inserts\UsersInRolesInsert.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kind_by_kindid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_location_by_cityid.sql
@@ -58,6 +61,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_subcategory_b
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_area_by_countryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_city_by_areaid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_country.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_role_by_userid.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_area_by_areaid.sql
@@ -65,5 +69,8 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_city_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_country_by_countryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
+
+sqlcmd -S %server% -U %user% -P %password% -i sp\_check\sp_check_membership.sql
 
 pause
