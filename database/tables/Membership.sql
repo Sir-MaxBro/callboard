@@ -1,12 +1,11 @@
 USE [callboardDB];
 CREATE TABLE [dbo].[Membership]
 (
-    [MembershipId] INT IDENTITY(1, 1) NOT NULL,
     [UserId] INT NOT NULL,
     [Login] NVARCHAR(MAX) NOT NULL,
     [Password] NVARCHAR(MAX) NOT NULL,
 
-    PRIMARY KEY CLUSTERED ([MembershipId] ASC, [UserId] ASC),
+    PRIMARY KEY CLUSTERED ([UserId] ASC),
     FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([UserId])
 );
 GO
