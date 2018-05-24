@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Repositories;
 using Callboard.App.General.Helpers;
+using Newtonsoft.Json;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -13,11 +14,13 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
-        public PartialViewResult GetPhonesByUserId(int userId)
+        [HttpPost]
+        public JsonResult GetPhonesByUserId(int userId)
         {
             Checker.CheckId(userId, $"UserId in GetPhonesByUserId method is not valid.");
-            var model = _repository.GetPhonesByUserId(userId);
-            return PartialView(model);
+            var phones = _repository.GetPhonesByUserId(userId);
+            var phonesData = JsonConvert.SerializeObject(phones);
+            return Json(phonesData, JsonRequestBehavior.AllowGet);
         }
     }
 }
