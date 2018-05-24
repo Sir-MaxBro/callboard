@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Repositories;
 using Callboard.App.General.Helpers;
+using Newtonsoft.Json;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -13,11 +14,13 @@ namespace Callboard.App.Web.Controllers
             _repository = repository;
         }
 
-        public PartialViewResult GetMailsByUserId(int userId)
+        [HttpPost]
+        public JsonResult GetMailsByUserId(int userId)
         {
             Checker.CheckId(userId, $"UserId in GetMailsByUserId method is not valid.");
-            var model = _repository.GetMailsByUserId(userId);
-            return PartialView(model);
+            var mails = _repository.GetMailsByUserId(userId);
+            var mailsData = JsonConvert.SerializeObject(mails);
+            return Json(mailsData, JsonRequestBehavior.AllowGet);
         }
     }
 }

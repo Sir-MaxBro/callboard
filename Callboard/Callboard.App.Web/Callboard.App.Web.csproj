@@ -133,8 +133,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\ad-container\__content\ad-container__content.css" />
+    <Content Include="Content\css\ad\_full\ad_full.css" />
     <Content Include="Content\css\ad\_min\ad_min.css" />
     <Content Include="Content\css\ad\__content\ad__content.css" />
+    <Content Include="Content\css\ad\__image\_square\ad__image_big.css" />
     <Content Include="Content\css\ad\__name\ad__name.css" />
     <Content Include="Content\css\ad\__note\ad__note.css" />
     <Content Include="Content\css\ad\__price\ad__price.css" />
@@ -264,7 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\ad\__image\" />
     <Folder Include="Content\css\category-container\__category-name\" />
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
@@ -272,8 +273,6 @@
     <Folder Include="Views\Area\" />
     <Folder Include="Views\City\" />
     <Folder Include="Views\Country\" />
-    <Folder Include="Views\Mail\" />
-    <Folder Include="Views\Phone\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
