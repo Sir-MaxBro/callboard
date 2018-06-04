@@ -30,12 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,38 +48,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auth\LogginService.cs" />
-    <Compile Include="Auth\MembershipProvider.cs" />
-    <Compile Include="Auth\RoleProvider.cs" />
-    <Compile Include="Auth\UserPrinciple.cs" />
-    <Compile Include="DependencyResolution\DataContainer.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IAdDetailsRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IAdRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\ICategoryRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\IAreaRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ICityRepository.cs" />
-    <Compile Include="Repositories\Abstract\Commercial\ICommercialRepository.cs" />
-    <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IImageRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ICountryRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ILocationRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IMailRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IPhoneRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IUserRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\AdDetailsRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\AdRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\CategoryRepository.cs" />
+    <Compile Include="Providers\Main\IAreaProvider.cs" />
+    <Compile Include="Providers\Main\ICityProvider.cs" />
+    <Compile Include="Providers\Main\ICountryProvider.cs" />
+    <Compile Include="Providers\Realization\AreaProvider.cs" />
+    <Compile Include="Providers\Realization\CityProvider.cs" />
+    <Compile Include="Providers\Realization\CountryProvider.cs" />
+    <Compile Include="Services\Main\ILogginService.cs" />
+    <Compile Include="Services\Realizations\LogginService.cs" />
+    <Compile Include="Providers\Main\IAdDetailsProvider.cs" />
+    <Compile Include="Providers\Main\IAdProvider.cs" />
+    <Compile Include="Providers\Main\ICategoryProvider.cs" />
+    <Compile Include="Providers\Main\ICommercialProvider.cs" />
+    <Compile Include="Providers\Main\IEntityProvider.cs" />
+    <Compile Include="Providers\Main\IUserProvider.cs" />
+    <Compile Include="Providers\Realization\AdDetailsProvider.cs" />
+    <Compile Include="Providers\Realization\AdProvider.cs" />
+    <Compile Include="Providers\Realization\CategoryProvider.cs" />
+    <Compile Include="Providers\Realization\CommercialProvider.cs" />
+    <Compile Include="Providers\Realization\UserProvider.cs" />
     <Compile Include="DependencyResolution\BusinessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Realizations\Location\AreaRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\CityRepository.cs" />
-    <Compile Include="Repositories\Realizations\Commercial\CommercialRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\ImageRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\CountryRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\LocationRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\MailRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\PhoneRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Data\Callboard.App.Data.csproj">
