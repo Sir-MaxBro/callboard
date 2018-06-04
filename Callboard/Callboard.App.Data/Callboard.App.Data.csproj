@@ -57,53 +57,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DbInfractructure\Abstract\IDbConnection.cs" />
-    <Compile Include="DbInfractructure\Abstract\IDbContext.cs" />
-    <Compile Include="DbInfractructure\Concrete\SqlDbContext.cs" />
+    <Compile Include="DataProviders\Main\IDataProvider.cs" />
+    <Compile Include="DataProviders\Main\ISqlDataProvider.cs" />
+    <Compile Include="DataProviders\Realizations\SqlDataProvider.cs" />
+    <Compile Include="Context\Realizations\SqlDbContext.cs" />
+    <Compile Include="Context\Main\ISqlDbContext.cs" />
     <Compile Include="DependencyResolution\DataRegistry.cs" />
-    <Compile Include="Infrastructure\DataContext.cs" />
-    <Compile Include="Repositories\Abstract\EntityRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IAdDetailsRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IAdRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\ICategoryRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\IAreaRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ICityRepository.cs" />
-    <Compile Include="Repositories\Abstract\Commercial\ICommercialRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ICountryRepository.cs" />
-    <Compile Include="Repositories\Abstract\IEntityRepository.cs" />
-    <Compile Include="Repositories\Abstract\Ad\IImageRepository.cs" />
-    <Compile Include="Repositories\Abstract\Location\ILocationRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IMailRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IPhoneRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IRoleRepository.cs" />
-    <Compile Include="Repositories\Abstract\User\IUserRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\AdDetailsRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\AdRepository.cs" />
-    <Compile Include="Config\Collections\ColumnCollection.cs" />
-    <Compile Include="Config\Collections\ProcedureCollection.cs" />
-    <Compile Include="Config\Collections\TableCollection.cs" />
-    <Compile Include="Config\Elements\ColumnElement.cs" />
-    <Compile Include="Config\Elements\ProcedureElement.cs" />
-    <Compile Include="Config\Elements\TableElement.cs" />
-    <Compile Include="Config\Main\ConfigSection.cs" />
-    <Compile Include="Config\Sections\DataSettingsConfigSection.cs" />
-    <Compile Include="Entities\Column.cs" />
-    <Compile Include="Entities\Procedure.cs" />
-    <Compile Include="Entities\Table.cs" />
-    <Compile Include="Infrastructure\DataConfiguration.cs" />
-    <Compile Include="Infrastructure\Mapper.cs" />
+    <Compile Include="Exceptions\EmptyConnectionStringException.cs" />
+    <Compile Include="Mappers\Mapper.cs" />
+    <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Realizations\Ad\CategoryRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\AreaRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\CityRepository.cs" />
-    <Compile Include="Repositories\Realizations\Commercial\CommercialRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\CountryRepository.cs" />
-    <Compile Include="Repositories\Realizations\Ad\ImageRepository.cs" />
-    <Compile Include="Repositories\Realizations\Location\LocationRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\MailRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\PhoneRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\RoleRepository.cs" />
-    <Compile Include="Repositories\Realizations\User\UserRepository.cs" />
+    <Compile Include="Providers\Main\IAdDetailsProvider.cs" />
+    <Compile Include="Providers\Main\IAdProvider.cs" />
+    <Compile Include="Providers\Main\ICommercialProvider.cs" />
+    <Compile Include="Providers\Main\IMembershipProvider.cs" />
+    <Compile Include="Providers\Realizations\Service\CommercialServiceProvider.cs" />
+    <Compile Include="Providers\Realizations\Sql\AdDetailsSqlProvider.cs" />
+    <Compile Include="Providers\Realizations\Sql\AdSqlProvider.cs" />
+    <Compile Include="Providers\Realizations\Sql\MembershipSqlProvider.cs" />
+    <Compile Include="Repositories\Main\IAreaRepository.cs" />
+    <Compile Include="Repositories\Main\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Main\ICityRepository.cs" />
+    <Compile Include="Repositories\Main\ICountryRepository.cs" />
+    <Compile Include="Repositories\Main\IRoleRepository.cs" />
+    <Compile Include="Repositories\Main\IUserRepository.cs" />
+    <Compile Include="Repositories\Main\IRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\AreaSqlRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\CategorySqlRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\CitySqlRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\CountrySqlRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\RoleSqlRepository.cs" />
+    <Compile Include="Providers\Main\SqlProvider.cs" />
+    <Compile Include="Repositories\Realizations\Sql\UserSqlRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
@@ -114,6 +99,7 @@
   <ItemGroup>
     <Content Include="Callboard.App.Data.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="bindings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -121,7 +107,6 @@
     <Content Include="client.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="behaviors.config" />
     <None Include="Connected Services\CommercialService\Callboard.App.Data.CommercialService.Commercial.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -131,6 +116,7 @@
     </None>
     <None Include="Connected Services\CommercialService\configuration.svcinfo" />
     <None Include="Connected Services\CommercialService\configuration91.svcinfo" />
+    <None Include="behaviors.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CommercialService\Callboard.Service.Commercial.xsd">
@@ -151,5 +137,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CommercialService\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
