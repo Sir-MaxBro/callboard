@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ea01a2ef-21ee-4ebd-bad6-cf39e116e6a5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="36d444cb-8281-4ca8-b242-586c42ce7705" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bcab8fa9-f10b-4c24-8e9d-0ce6c4298fdb" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d4ff628b-23ec-46ee-a567-e88a733e6e08" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="6e31fc45-87b7-4703-8f04-d6345c1ebb4c" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
-    <MetadataFile FileName="Callboard.Service.Commercial.xsd" MetadataType="Schema" ID="c59c0fa6-2a65-4ceb-a387-83c99238bf78" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="fe4b8dd6-676c-433f-a51a-5c444909bfd7" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="260458d6-ab0a-4b20-b39b-35ef84964618" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="37666797-9578-483b-8ded-c8d41b1c3176" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
+    <MetadataFile FileName="Callboard.Service.Commercial.xsd" MetadataType="Schema" ID="30786907-551a-4cb1-8085-1dd65e4c080e" SourceId="1" SourceUrl="http://localhost:8733/Callboard.Service.Commercial.CommercialContract.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

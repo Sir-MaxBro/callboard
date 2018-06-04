@@ -3,8 +3,8 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Callboard.Service.Commercial" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICommercialContract_GetCommercials_InputMessage">
@@ -13,10 +13,14 @@
   <wsdl:message name="ICommercialContract_GetCommercials_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCommercialsResponse" />
   </wsdl:message>
+  <wsdl:message name="ICommercialContract_GetCommercials_CommercialNotFoundFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Callboard.Service.Commercial" name="detail" element="q1:CommercialNotFound" />
+  </wsdl:message>
   <wsdl:portType name="ICommercialContract">
     <wsdl:operation name="GetCommercials">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommercialContract/GetCommercials" message="tns:ICommercialContract_GetCommercials_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommercialContract/GetCommercialsResponse" message="tns:ICommercialContract_GetCommercials_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ICommercialContract/GetCommercialsCommercialNotFoundFault" name="CommercialNotFoundFault" message="tns:ICommercialContract_GetCommercials_CommercialNotFoundFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICommercialContract" type="tns:ICommercialContract">
@@ -29,6 +33,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="CommercialNotFoundFault">
+        <soap:fault use="literal" name="CommercialNotFoundFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CommercialContract">
