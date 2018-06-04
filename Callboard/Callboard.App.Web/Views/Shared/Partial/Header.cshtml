@@ -7,12 +7,26 @@
     </div>
     <div class="header__user width_25per">
         <div class="user user_min">
-            <div class="user__name">
-                UserName
-            </div>
-            <div class="user__photo">
-                UserPhoto
-            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="user__name">
+                    @{
+                        var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+                        if (user != null)
+                        {
+                            <span>@user.Name</span>
+                        }
+                    }
+                </div>
+                @*<div class="user__photo">
+                        UserPhoto
+                    </div>*@
+                <div>@Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "button" })</div>
+            }
+            else
+            {
+                <div>@Html.ActionLink("Log in", "Login", "Account", null, htmlAttributes: new { @class = "button" })</div>
+            }
         </div>
     </div>
 </div>

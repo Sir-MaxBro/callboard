@@ -1,10 +1,8 @@
 ﻿@model Ad
 
 <div class="ad ad_min">
-    <div id="ad__image_@Model.AdId" class="ad__image width_25per">
-        <script>
-            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image_@Model.AdId');
-        </script>
+    <div id="ad__image" class="ad__image width_25per">
+        @{  Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
     </div>
     <div class="ad__content width_50per">
         <div class="ad__name">
@@ -21,10 +19,14 @@
         <div class="ad__note">
             <span class="ad__text">State: </span>@Model.State
         </div>
-        <div id="ad__location_@Model.AdId" class="ad__note ad__text">
-            <script>
-                renderActionAsync({ cityId: @Model.CityId }, '@Url.Action("GetLocationByCityId", "Location")', 'ad__location_@Model.AdId');
-            </script>
+        <div id="ad__location" class="ad__note ad__text">
+            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
+        </div>
+        <div>
+            @foreach (var item in Model.Categories)
+            {
+                <span>@item.Name;</span>
+            }
         </div>
     </div>
     <div class="ad__price width_25per">

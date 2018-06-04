@@ -1,0 +1,15 @@
+﻿@model LoginViewModel
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.EditorFor(x => x.Login)
+    </div>
+
+    <div>
+        @Html.EditorFor(x => x.Password)
+    </div>
+    <div>
+        <input type="submit" value="Sing in" class="button" />
+    </div>
+}

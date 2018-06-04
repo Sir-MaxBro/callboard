@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -11,6 +10,15 @@
     <div class="page__header">
         @{ Html.RenderPartial("Partial\\Header"); }
     </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1>Hello, User</h1>
+    }
+    else
+    {
+        <h1>Hello, Guest</h1>
+    }
 
     <div class="page__menu">
         @{ Html.RenderPartial("Partial\\Menu"); }

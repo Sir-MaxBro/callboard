@@ -4,9 +4,7 @@
 
 <div class="ad ad_full">
     <div id="ad__image" class="ad__image ad__image_big">
-        <script>
-            renderActionAsync({ adId: @Model.AdId }, '@Url.Action("GetImagesByAdId", "Image")', 'ad__image');
-        </script>
+        @{ Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
     </div>
 
     <div class="ad__content">
@@ -32,14 +30,10 @@
             @Model.State
         </div>
         <div id="ad__location">
-            <script>
-                renderActionAsync({ cityId: @Model.CityId }, '@Url.Action("GetLocationByCityId", "Location")', 'ad__location');
-            </script>
+            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
         </div>
         <div id="ad__user">
-            <script>
-                renderActionAsync({ userId: @Model.UserId }, '@Url.Action("GetUser", "User")', 'ad__user');
-            </script>
+            @{ Html.RenderPartial("Partial\\User", Model.User); }
         </div>
     </div>
 </div>

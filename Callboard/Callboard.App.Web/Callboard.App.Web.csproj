@@ -65,8 +65,8 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -203,20 +203,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Attributes\AdminAttribute.cs" />
+    <Compile Include="Attributes\EditorAttribute.cs" />
+    <Compile Include="Attributes\UserAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Ad\AdController.cs" />
     <Compile Include="Controllers\Ad\AdDetailsController.cs" />
-    <Compile Include="Controllers\Ad\ImageController.cs" />
-    <Compile Include="Controllers\Location\AreaController.cs" />
-    <Compile Include="Controllers\Location\CityController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
-    <Compile Include="Controllers\Location\CountryController.cs" />
-    <Compile Include="Controllers\Location\LocationController.cs" />
-    <Compile Include="Controllers\User\MailController.cs" />
-    <Compile Include="Controllers\User\PhoneController.cs" />
-    <Compile Include="Controllers\User\UserController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -225,10 +222,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\HtmlImageExtension.cs" />
-    <Compile Include="Models\AdViewModel.cs" />
+    <Compile Include="Models\AdListViewModel.cs" />
     <Compile Include="Models\CommercialViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -249,14 +247,14 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Ad\AdList.cshtml" />
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
-    <Content Include="Views\Location\Location.cshtml" />
-    <Content Include="Views\User\User.cshtml" />
-    <Content Include="Views\Image\ImagesSlider.cshtml" />
+    <Content Include="Views\Shared\Partial\User.cshtml" />
+    <Content Include="Views\Shared\Partial\ImagesSlider.cshtml" />
     <Content Include="Views\Shared\_AdsLayout.cshtml" />
     <Content Include="Views\Shared\Partial\SearchForm.cshtml" />
     <Content Include="Views\Shared\Partial\Header.cshtml" />
     <Content Include="Views\Shared\Partial\Menu.cshtml" />
     <Content Include="Views\Shared\Partial\Banner.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -270,9 +268,6 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
-    <Folder Include="Views\Area\" />
-    <Folder Include="Views\City\" />
-    <Folder Include="Views\Country\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">

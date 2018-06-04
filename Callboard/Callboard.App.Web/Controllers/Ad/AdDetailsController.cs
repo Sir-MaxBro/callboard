@@ -1,24 +1,30 @@
-﻿using Callboard.App.Business.Repositories;
+﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers;
+using Callboard.App.General.Helpers.Main;
+using System;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AdDetailsController : Controller
     {
-        private IAdDetailsRepository _repository;
-        public AdDetailsController(IAdDetailsRepository repository)
+        private IChecker _checker;
+        private IAdDetailsProvider _adDetailsProvider;
+        public AdDetailsController(IAdDetailsProvider adDetailsProvider, IChecker checker)
         {
-            Checker.CheckForNull(repository);
-            _repository = repository;
+            if (checker == null)
+            {
+                throw new NullReferenceException(nameof(checker));
+            }
+            _checker = checker;
+            _checker.CheckForNull(adDetailsProvider);
+            _adDetailsProvider = adDetailsProvider;
         }
 
         public ActionResult GetAdDetails(int adId, string returnUrl)
         {
-            Checker.CheckId(adId, $"AdId in GetAdDetails method is not valid.");
             ViewBag.ReturnUrl = returnUrl;
-            AdDetails model = _repository.GetAdDetails(adId);
+            AdDetails model = _adDetailsProvider.GetAdDetailsById(adId);
             return View("AdDetails", model);
         }
     }

@@ -1,11 +1,9 @@
+using Callboard.App.Web.App_Start;
+using StructureMap.Web.Pipeline;
+using System.Web;
+
 namespace Callboard.App.Web.DependencyResolution
 {
-    using System.Web;
-
-    using Callboard.App.Web.App_Start;
-
-    using StructureMap.Web.Pipeline;
-
     public class StructureMapScopeModule : IHttpModule
     {
         #region Public Methods and Operators

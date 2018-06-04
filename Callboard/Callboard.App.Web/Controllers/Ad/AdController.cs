@@ -1,38 +1,44 @@
-﻿using Callboard.App.Business.Repositories;
-using Callboard.App.General.Helpers;
-using Callboard.App.General.Loggers;
+﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
+using System;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AdController : Controller
     {
-        private IAdRepository _repository;
+        private IAdProvider _adProvider;
         private ILoggerWrapper _logger;
-        public AdController(IAdRepository repository, ILoggerWrapper logger)
+        private IChecker _checker;
+        public AdController(IAdProvider adProvider, ILoggerWrapper logger, IChecker checker)
         {
-            Checker.CheckForNull(logger);
-            Checker.CheckForNull(repository);
+            if (checker == null)
+            {
+                throw new NullReferenceException(nameof(checker));
+            }
+            _checker = checker;
+            _checker.CheckForNull(adProvider);
+            _checker.CheckForNull(logger);
             _logger = logger;
-            _repository = repository;
+            _adProvider = adProvider;
         }
 
         public ActionResult GetAdList()
         {
-            AdViewModel model = new AdViewModel
+            AdListViewModel model = new AdListViewModel
             {
-                Ads = _repository.GetAds()
+                Ads = _adProvider.GetAds()
             };
             return View("AdList", model);
         }
 
         public ActionResult GetAdsByCategoryId(int categoryId)
         {
-            Checker.CheckId(categoryId, $"CategoryId in GetAdsByCategoryId method is not valid.");
-            AdViewModel model = new AdViewModel
+            AdListViewModel model = new AdListViewModel
             {
-                Ads = _repository.GetAdsByCategoryId(categoryId)
+                Ads = _adProvider.GetAdsByCategoryId(categoryId)
             };
             return View("AdList", model);
         }

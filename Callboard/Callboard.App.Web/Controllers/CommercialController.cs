@@ -1,28 +1,35 @@
-﻿using Callboard.App.Business.Repositories;
-using Callboard.App.General.Helpers;
-using Callboard.App.General.Loggers;
+﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
+using System;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class CommercialController : Controller
     {
+        private IChecker _checker;
         private ILoggerWrapper _logger;
-        private ICommercialRepository _repository;
-        public CommercialController(ILoggerWrapper logger, ICommercialRepository repository)
+        private ICommercialProvider _commercialProvider;
+        public CommercialController(ILoggerWrapper logger, ICommercialProvider commercialProvider, IChecker checker)
         {
-            Checker.CheckForNull(logger);
-            Checker.CheckForNull(repository);
+            if (checker == null)
+            {
+                throw new NullReferenceException(nameof(checker));
+            }
+            _checker = checker;
+            _checker.CheckForNull(logger);
+            _checker.CheckForNull(commercialProvider);
             _logger = logger;
-            _repository = repository;
+            _commercialProvider = commercialProvider;
         }
 
         public PartialViewResult GetCommercial()
         {
             var model = new CommercialViewModel
             {
-                Commercials = _repository.GetCommercials()
+                Commercials = _commercialProvider.GetCommercials()
             };
             return PartialView("CommercialPartial", model);
         }
