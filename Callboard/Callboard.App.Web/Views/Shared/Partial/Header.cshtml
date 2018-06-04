@@ -1,0 +1,32 @@
+﻿<div class="header header_dark_theme header_line">
+    <div class="header__logo header__logo_green width_25per">
+        <a href="#" class="button header__main-link">Callboard</a>
+    </div>
+    <div class="header__search-form width_50per">
+        @{ Html.RenderPartial("Partial\\SearchForm"); }
+    </div>
+    <div class="header__user width_25per">
+        <div class="user user_min">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="user__name">
+                    @{
+                        var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+                        if (user != null)
+                        {
+                            <span>@user.Name</span>
+                        }
+                    }
+                </div>
+                @*<div class="user__photo">
+                        UserPhoto
+                    </div>*@
+                <div>@Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "button" })</div>
+            }
+            else
+            {
+                <div>@Html.ActionLink("Log in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
+            }
+        </div>
+    </div>
+</div>

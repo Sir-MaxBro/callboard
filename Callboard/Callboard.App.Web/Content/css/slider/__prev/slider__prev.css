@@ -1,0 +1,5 @@
+﻿.slider__prev {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Callboard.Service.Commercial" />
+  <xs:element name="GetCommercials">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommercialsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Callboard.Service.Commercial" minOccurs="0" name="GetCommercialsResult" nillable="true" type="q1:ArrayOfCommercial" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

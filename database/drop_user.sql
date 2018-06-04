@@ -1,0 +1,4 @@
+ALTER SERVER ROLE  sysadmin  DROP MEMBER max_bro;
+GO
+DROP LOGIN max_bro
+GO

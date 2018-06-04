@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BEC9EBB2-8934-43E5-8719-B1429ABDE5BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Callboard.App.Business</RootNamespace>
+    <AssemblyName>Callboard.App.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Providers\Main\IAreaProvider.cs" />
+    <Compile Include="Providers\Main\ICityProvider.cs" />
+    <Compile Include="Providers\Main\ICountryProvider.cs" />
+    <Compile Include="Providers\Realization\AreaProvider.cs" />
+    <Compile Include="Providers\Realization\CityProvider.cs" />
+    <Compile Include="Providers\Realization\CountryProvider.cs" />
+    <Compile Include="Services\Main\ILogginService.cs" />
+    <Compile Include="Services\Realizations\LogginService.cs" />
+    <Compile Include="Providers\Main\IAdDetailsProvider.cs" />
+    <Compile Include="Providers\Main\IAdProvider.cs" />
+    <Compile Include="Providers\Main\ICategoryProvider.cs" />
+    <Compile Include="Providers\Main\ICommercialProvider.cs" />
+    <Compile Include="Providers\Main\IEntityProvider.cs" />
+    <Compile Include="Providers\Main\IUserProvider.cs" />
+    <Compile Include="Providers\Realization\AdDetailsProvider.cs" />
+    <Compile Include="Providers\Realization\AdProvider.cs" />
+    <Compile Include="Providers\Realization\CategoryProvider.cs" />
+    <Compile Include="Providers\Realization\CommercialProvider.cs" />
+    <Compile Include="Providers\Realization\UserProvider.cs" />
+    <Compile Include="DependencyResolution\BusinessRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Callboard.App.Data\Callboard.App.Data.csproj">
+      <Project>{5d256d90-0ae1-4e51-9299-cb00294d2a55}</Project>
+      <Name>Callboard.App.Data</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+    <ProjectReference Include="..\Callboard.App.General\Callboard.App.General.csproj">
+      <Project>{5f306d78-5888-46be-817c-755548c98d4c}</Project>
+      <Name>Callboard.App.General</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

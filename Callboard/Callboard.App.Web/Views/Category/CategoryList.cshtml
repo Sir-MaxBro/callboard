@@ -1,0 +1,35 @@
+﻿@model CategoryViewModel
+@Scripts.Render("~/bundles/ajax")
+
+<div id="category-container" class="category-container">
+    @if (ViewBag.ReturnUrl != null)
+    {
+        <div class="category-container__item category-container__item_gray category-container__item_hover_green">
+            <div class="category-container__category-name width_100per">
+                <a href="@ViewBag.ReturnUrl" class="button button_hover_green">&#10094 Back</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="category-container__item category-container__item_gray category-container__item_hover_green">
+            <div class="category-container__category-name width_100per">
+                @Html.ActionLink("All", "GetAdList", "Ad", null, htmlAttributes: new { @class = "button" })
+            </div>
+        </div>
+    }
+
+    @foreach (var item in Model.Categories)
+    {
+        <div class="category-container__item category-container__item_gray category-container__item_hover_green">
+            <div class="category-container__category-name width_100per">
+                @Html.ActionLink(item.Name, "GetAdsByCategoryId", "Ad",
+                                                routeValues: new { categoryId = item.CategoryId },
+                                                htmlAttributes: new { @class = "button button_hover_green" })
+            </div>
+            <div class="category-container__subcategory-link">
+                <a onclick="renderActionAsync({ categoryId: @item.CategoryId, returnUrl: '@Request.QueryString["ReturlUrl"]' }, '@Url.Action("GetSubcategories", "Category")', 'category-container')" class="button button_hover_red width_25per">&#10095</a>
+            </div>
+        </div>
+    }
+</div>
