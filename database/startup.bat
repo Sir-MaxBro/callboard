@@ -46,10 +46,15 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\MembershipInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\RoleInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\UsersInRolesInsert.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_imagestable.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_categorytable.sql
+
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kind_by_kindid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_location_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_state_by_stateid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_select_ad.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kindid_by_type.sql
+sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_stateid_by_condition.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_category.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_categoryid.sql
@@ -70,7 +75,13 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_country_by_countryi
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login_password.sql
 
-sqlcmd -S %server% -U %user% -P %password% -i sp\_check\sp_check_membership.sql
+
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_addetails.sql
+
+sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
 
 pause
