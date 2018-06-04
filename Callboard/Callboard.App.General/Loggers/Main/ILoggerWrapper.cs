@@ -1,4 +1,4 @@
-﻿namespace Callboard.App.General.Loggers
+﻿namespace Callboard.App.General.Loggers.Main
 {
     public interface ILoggerWrapper
     {

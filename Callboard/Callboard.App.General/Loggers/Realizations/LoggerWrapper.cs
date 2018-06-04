@@ -1,36 +1,20 @@
-﻿using log4net;
+﻿using Callboard.App.General.Loggers.Main;
+using log4net;
 using log4net.Config;
 using System;
 using System.IO;
 
-namespace Callboard.App.General.Loggers
+namespace Callboard.App.General.Loggers.Realizations
 {
-    public class LoggerWrapper : ILoggerWrapper
+    internal class LoggerWrapper : ILoggerWrapper
     {
-        private static LoggerWrapper _loggerWrapper;
-        private static object _lockObject = new object();
         private ILog _logger;
         private const string PATH_CONFIG = "logger.config";
         private const string LOGGER_NAME = "LOGGER";
-        private LoggerWrapper()
+        public LoggerWrapper()
         {
             _logger = LogManager.GetLogger(LOGGER_NAME);
             InitLogger();
-        }
-
-        public static LoggerWrapper GetInstance()
-        {
-            if (_loggerWrapper == null)
-            {
-                lock (_lockObject)
-                {
-                    if (_loggerWrapper == null)
-                    {
-                        _loggerWrapper = new LoggerWrapper();
-                    }
-                }
-            }
-            return _loggerWrapper;
         }
 
         private void InitLogger()
