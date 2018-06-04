@@ -1,4 +1,6 @@
-﻿using Callboard.App.Business.Repositories;
+﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.Business.Providers.Realization;
+using Callboard.App.Business.Services;
 using StructureMap;
 
 namespace Callboard.App.Business.DependencyResolution
@@ -7,27 +9,17 @@ namespace Callboard.App.Business.DependencyResolution
     {
         public BusinessRegistry()
         {
-            Scan(scan =>
-            {
-                scan.TheCallingAssembly();
-                scan.WithDefaultConventions();
-            });
+            For<ILogginService>().Use<LogginService>();
 
-            For<IAdRepository>().Use<AdRepository>();
-            For<ICategoryRepository>().Use<CategoryRepository>();
-            For<IAdDetailsRepository>().Use<AdDetailsRepository>();
-            For<IImageRepository>().Use<ImageRepository>();
+            For<IAdProvider>().Use<AdProvider>();
+            For<ICategoryProvider>().Use<CategoryProvider>();
+            For<IUserProvider>().Use<UserProvider>();
 
-            For<ICommercialRepository>().Use<CommercialRepository>();
-
-            For<IUserRepository>().Use<UserRepository>();
-            For<IMailRepository>().Use<MailRepository>();
-            For<IPhoneRepository>().Use<PhoneRepository>();
-
-            For<ILocationRepository>().Use<LocationRepository>();
-            For<ICityRepository>().Use<CityRepository>();
-            For<ICountryRepository>().Use<CountryRepository>();
-            For<IAreaRepository>().Use<AreaRepository>();
+            For<ICommercialProvider>().Use<CommercialProvider>();
+            For<IAdDetailsProvider>().Use<AdDetailsProvider>();
+            For<ICountryProvider>().Use<CountryProvider>();
+            For<IAreaProvider>().Use<AreaProvider>();
+            For<ICityProvider>().Use<CityProvider>();
         }
     }
 }
