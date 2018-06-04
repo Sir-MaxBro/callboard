@@ -8,5 +8,7 @@ namespace Callboard.App.Business.Providers.Main
         IReadOnlyCollection<Ad> GetAds();
 
         IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId);
+
+        IReadOnlyCollection<Ad> SearchByName(string name);
     }
 }

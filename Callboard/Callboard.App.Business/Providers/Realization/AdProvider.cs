@@ -9,24 +9,33 @@ namespace Callboard.App.Business.Providers.Realization
 {
     internal class AdProvider : IAdProvider
     {
-        private Data::IAdProvider _adRepository;
+        private Data::IAdProvider _adProvider;
         private IChecker _checker;
-        public AdProvider(Data::IAdProvider adRepository, IChecker checker)
+        public AdProvider(Data::IAdProvider adProvider, IChecker checker)
         {
             _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(adRepository);
-            _adRepository = adRepository;
+            _checker.CheckForNull(adProvider);
+            _adProvider = adProvider;
         }
 
         public IReadOnlyCollection<Ad> GetAds()
         {
-            return _adRepository.GetAll();
+            return _adProvider.GetAll();
         }
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
         {
             _checker.CheckId(categoryId);
-            return _adRepository.GetAdsByCategoryId(categoryId);
+            return _adProvider.GetAdsByCategoryId(categoryId);
+        }
+
+        public IReadOnlyCollection<Ad> SearchByName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+            return _adProvider.SearchByName(name);
         }
     }
 }
