@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 
 namespace Callboard.Service.Commercial
 {
@@ -14,9 +15,23 @@ namespace Callboard.Service.Commercial
         private const string SECTION_NAME = "commercialSettings";
         public CommercialContract()
         {
+            this.FillPathways();
+        }
+
+        private void FillPathways()
+        {
             _pathways = new Dictionary<string, string>();
-            var pathwaysSection = ((CommercialConfigSection)ConfigurationManager.GetSection(SECTION_NAME)).Pathways;
-            
+            var configSection = ConfigurationManager.GetSection(SECTION_NAME) as CommercialConfigSection;
+            var pathwaysSection = configSection?.Pathways;
+            if (pathwaysSection == null)
+            {
+                CommercialNotFound faultDetails = new CommercialNotFound
+                {
+                    Message = "Commercial not found"
+                };
+                throw new FaultException<CommercialNotFound>(faultDetails);
+            }
+
             foreach (ImagePathElement item in pathwaysSection)
             {
                 DirectoryInfo directory = new DirectoryInfo(item.Path);
@@ -41,15 +56,13 @@ namespace Callboard.Service.Commercial
                     Data = byteImage,
                     Extension = _pathways.Values.ElementAt(index).TrimStart('.')
                 };
-
                 Commercial commercial = new Commercial
                 {
+                    Id = i + 1,
                     Image = image
                 };
-
                 resultCollection.Add(commercial);
             }
-
             return resultCollection.ToArray();
         }
     }

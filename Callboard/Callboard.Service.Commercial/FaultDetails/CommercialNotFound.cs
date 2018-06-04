@@ -3,12 +3,9 @@
 namespace Callboard.Service.Commercial
 {
     [DataContract]
-    public class Commercial
+    public class CommercialNotFound
     {
         [DataMember]
-        public int Id { get; set; }
-
-        [DataMember]
-        public Image Image { get; set; }
+        public string Message { get; set; }
     }
 }

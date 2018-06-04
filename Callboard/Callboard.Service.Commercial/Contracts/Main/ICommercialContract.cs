@@ -6,6 +6,7 @@ namespace Callboard.Service.Commercial
     public interface ICommercialContract
     {
         [OperationContract]
+        [FaultContract(typeof(CommercialNotFound))]
         Commercial[] GetCommercials();
     }
 }
