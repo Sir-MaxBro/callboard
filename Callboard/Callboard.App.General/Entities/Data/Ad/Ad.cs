@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Callboard.App.General.Entities
 {
@@ -6,7 +7,7 @@ namespace Callboard.App.General.Entities
     {
         public int AdId { get; set; }
 
-        public int CityId { get; set; }
+        public Location Location { get; set; }
 
         public string Name { get; set; }
 
@@ -17,5 +18,9 @@ namespace Callboard.App.General.Entities
         public string Kind { get; set; }
 
         public string State { get; set; }
+
+        public IReadOnlyCollection<Image> Images { get; set; }
+
+        public IReadOnlyCollection<Category> Categories { get; set; }
     }
 }

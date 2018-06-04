@@ -1,4 +1,6 @@
-﻿namespace Callboard.App.General.Entities
+﻿using System.Collections.Generic;
+
+namespace Callboard.App.General.Entities
 {
     public class User
     {
@@ -8,6 +10,10 @@
 
         public byte[] PhotoData { get; set; }
 
-        public string PhotoMimeType { get; set; }
+        public string PhotoExtension { get; set; }
+
+        public IReadOnlyCollection<Phone> Phones { get; set; }
+
+        public IReadOnlyCollection<Mail> Mails { get; set; }
     }
 }
