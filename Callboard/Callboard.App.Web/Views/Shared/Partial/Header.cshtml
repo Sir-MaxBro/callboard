@@ -25,7 +25,7 @@
             }
             else
             {
-                <div>@Html.ActionLink("Log in", "Login", "Account", null, htmlAttributes: new { @class = "button" })</div>
+                <div>@Html.ActionLink("Log in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
             }
         </div>
     </div>

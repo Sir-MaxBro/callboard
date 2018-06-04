@@ -1,6 +1,6 @@
 ﻿@model LoginViewModel
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
 {
     <div>
         @Html.EditorFor(x => x.Login)

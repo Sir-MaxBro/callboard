@@ -21,8 +21,9 @@ namespace Callboard.App.Web.Controllers
             _logginService = logginService;
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View(new LoginViewModel());
         }
 
@@ -30,7 +31,14 @@ namespace Callboard.App.Web.Controllers
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             _logginService.Login(model.Login, model.Password);
-            return Redirect(returnUrl);
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public RedirectToRouteResult Logout()
