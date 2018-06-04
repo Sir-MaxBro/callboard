@@ -1,13 +1,20 @@
 ﻿@model AdListViewModel
-@Scripts.Render("~/bundles/ajax")
 
-<div class="ad-container">
-    @{ Html.RenderPartial("Partial\\Banner"); }
+<div class="width_25per float_left">
+    @{ Html.RenderAction("GetCategories", "Category"); }
 
-    <div class="ad-container__content">
-        @foreach (var item in Model.Ads)
-        {
-            Html.RenderPartial("Partial\\AdPartial", model: item);
-        }
+    @{ Html.RenderAction("GetCommercial", "Commercial"); }
+</div>
+<div class="width_75per float_right">
+    <div class="ad-container">
+        @{ Html.RenderPartial("Partial\\Banner"); }
+
+        <div class="ad-container__content">
+            @foreach (var item in Model.Ads)
+            {
+                Html.RenderPartial("Partial\\AdPartial", model: item);
+            }
+        </div>
     </div>
 </div>
+
