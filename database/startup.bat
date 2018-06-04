@@ -67,6 +67,8 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_area_by_count
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_city_by_areaid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_country.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_role_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_kind.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_state.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_area_by_areaid.sql
