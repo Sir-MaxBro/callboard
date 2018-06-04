@@ -190,11 +190,17 @@
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajax-helper.js" />
-    <Content Include="Scripts\country.js" />
+    <Content Include="Scripts\Search\area.js" />
+    <Content Include="Scripts\Search\city.js" />
+    <Content Include="Scripts\Search\country.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Search\kind.js" />
+    <Content Include="Scripts\Search\search-common.js" />
+    <Content Include="Scripts\Search\startup.js" />
+    <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\slider.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -214,10 +220,12 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
+    <Compile Include="Controllers\KindController.cs" />
     <Compile Include="Controllers\Location\AreaController.cs" />
     <Compile Include="Controllers\Location\CityController.cs" />
     <Compile Include="Controllers\Location\CountryController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -274,6 +282,8 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
+    <Folder Include="Views\Kind\" />
+    <Folder Include="Views\State\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
