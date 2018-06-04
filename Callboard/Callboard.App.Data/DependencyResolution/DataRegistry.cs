@@ -24,6 +24,8 @@ namespace Callboard.App.Data.DependencyResolution
             For<ISqlDataProvider<Area>>().Use<SqlDataProvider<Area>>();
             For<ISqlDataProvider<City>>().Use<SqlDataProvider<City>>();
             For<ISqlDataProvider<Country>>().Use<SqlDataProvider<Country>>();
+            For<ISqlDataProvider<Kind>>().Use<SqlDataProvider<Kind>>();
+            For<ISqlDataProvider<State>>().Use<SqlDataProvider<State>>();
 
             For<ISqlDbContext>().Use<SqlDbContext>();
 
@@ -33,6 +35,8 @@ namespace Callboard.App.Data.DependencyResolution
             For<ICityRepository>().Use<CitySqlRepository>();
             For<IAreaRepository>().Use<AreaSqlRepository>();
             For<ICountryRepository>().Use<CountrySqlRepository>();
+            For<IKindRepository>().Use<KindSqlRepository>();
+            For<IStateRepository>().Use<StateSqlRepository>();
 
             For<IMembershipProvider>().Use<MembershipSqlProvider>();
             For<IAdProvider>().Use<AdSqlProvider>();

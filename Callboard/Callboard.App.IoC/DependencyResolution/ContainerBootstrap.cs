@@ -54,6 +54,8 @@ namespace Callboard.App.IoC.DependencyResolution
             scan.AssemblyContainingType<IAreaRepository>();
             scan.AssemblyContainingType<ICityRepository>();
             scan.AssemblyContainingType<ICountryRepository>();
+            scan.AssemblyContainingType<IKindRepository>();
+            scan.AssemblyContainingType<IStateRepository>();
 
             scan.AssemblyContainingType<Data.Providers.Main.IAdProvider>();
             scan.AssemblyContainingType<Data.Providers.Main.IMembershipProvider>();
