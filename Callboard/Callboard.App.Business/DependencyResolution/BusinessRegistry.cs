@@ -20,6 +20,8 @@ namespace Callboard.App.Business.DependencyResolution
             For<ICountryProvider>().Use<CountryProvider>();
             For<IAreaProvider>().Use<AreaProvider>();
             For<ICityProvider>().Use<CityProvider>();
+            For<IKindProvider>().Use<KindProvider>();
+            For<IStateProvider>().Use<StateProvider>();
         }
     }
 }

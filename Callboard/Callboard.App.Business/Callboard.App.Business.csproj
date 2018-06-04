@@ -51,9 +51,13 @@
     <Compile Include="Providers\Main\IAreaProvider.cs" />
     <Compile Include="Providers\Main\ICityProvider.cs" />
     <Compile Include="Providers\Main\ICountryProvider.cs" />
+    <Compile Include="Providers\Main\IKindProvider.cs" />
+    <Compile Include="Providers\Main\IStateProvider.cs" />
     <Compile Include="Providers\Realization\AreaProvider.cs" />
     <Compile Include="Providers\Realization\CityProvider.cs" />
     <Compile Include="Providers\Realization\CountryProvider.cs" />
+    <Compile Include="Providers\Realization\KindProvider.cs" />
+    <Compile Include="Providers\Realization\StateProvider.cs" />
     <Compile Include="Services\Main\ILogginService.cs" />
     <Compile Include="Services\Realizations\LogginService.cs" />
     <Compile Include="Providers\Main\IAdDetailsProvider.cs" />
