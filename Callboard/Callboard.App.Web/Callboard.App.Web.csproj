@@ -190,6 +190,7 @@
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajax-helper.js" />
+    <Content Include="Scripts\country.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -213,6 +214,10 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
+    <Compile Include="Controllers\Location\AreaController.cs" />
+    <Compile Include="Controllers\Location\CityController.cs" />
+    <Compile Include="Controllers\Location\CountryController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -227,6 +232,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -236,9 +242,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Ad\Partial\AdPartial.cshtml" />
+    <Content Include="Views\Shared\Partial\AdPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_StartLayout.cshtml" />
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -249,12 +254,13 @@
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
     <Content Include="Views\Shared\Partial\User.cshtml" />
     <Content Include="Views\Shared\Partial\ImagesSlider.cshtml" />
-    <Content Include="Views\Shared\_AdsLayout.cshtml" />
     <Content Include="Views\Shared\Partial\SearchForm.cshtml" />
     <Content Include="Views\Shared\Partial\Header.cshtml" />
     <Content Include="Views\Shared\Partial\Menu.cshtml" />
     <Content Include="Views\Shared\Partial\Banner.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
