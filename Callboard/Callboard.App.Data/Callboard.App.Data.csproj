@@ -79,15 +79,19 @@
     <Compile Include="Repositories\Main\ICategoryRepository.cs" />
     <Compile Include="Repositories\Main\ICityRepository.cs" />
     <Compile Include="Repositories\Main\ICountryRepository.cs" />
+    <Compile Include="Repositories\Main\IKindRepository.cs" />
     <Compile Include="Repositories\Main\IRoleRepository.cs" />
+    <Compile Include="Repositories\Main\IStateRepository.cs" />
     <Compile Include="Repositories\Main\IUserRepository.cs" />
     <Compile Include="Repositories\Main\IRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\AreaSqlRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\CategorySqlRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\CitySqlRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\CountrySqlRepository.cs" />
+    <Compile Include="Repositories\Realizations\Sql\KindSqlRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\RoleSqlRepository.cs" />
     <Compile Include="Providers\Main\SqlProvider.cs" />
+    <Compile Include="Repositories\Realizations\Sql\StateSqlRepository.cs" />
     <Compile Include="Repositories\Realizations\Sql\UserSqlRepository.cs" />
   </ItemGroup>
   <ItemGroup>
