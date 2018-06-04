@@ -1,18 +1,29 @@
 ﻿@model SearchViewModel
-<script src="~/Scripts/country.js"></script>
+@Scripts.Render("~/search")
 
 <div class="width_25per float_left">
-    <select id="countries" onchange="fillAreas(this.options[this.selectedIndex].value)">
-        <option selected="selected">--- Choose country ---</option>    
-    </select>
-    <select id="areas" onchange="fillCities(this.options[this.selectedIndex].value)">
-        <option selected="selected">--- Choose area ---</option>
-    </select>
-    <select id="cities">
-        <option selected="selected">--- Choose city ---</option>
-    </select>
+    @using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "" }))
+    {
+        <select id="countries" onchange="fillAreas(this.options[this.selectedIndex].value)">
+            <option selected="selected">--- Choose country ---</option>
+        </select>
+        <select id="areas" onchange="fillCities(this.options[this.selectedIndex].value)">
+            <option selected="selected">--- Choose area ---</option>
+        </select>
+        <select id="cities">
+            <option selected="selected">--- Choose city ---</option>
+        </select>
 
-    <input type="submit" name="name" value="Search" class="button" />
+        <select id="kinds">
+            <option selected="selected">--- Choose kind ---</option>
+        </select>
+
+        <select id="states">
+            <option selected="selected">--- Choose state ---</option>
+        </select>
+
+        <input type="submit" name="name" value="Search" class="button" />
+    }
 </div>
 <div class="width_75per float_right">
     <div class="ad-container">
