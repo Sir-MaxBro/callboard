@@ -1,11 +1,19 @@
-﻿using System.Web.Mvc;
+﻿using Callboard.App.General.Loggers.Main;
+using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class ErrorController : Controller
     {
-        public ActionResult Index()
+        private ILoggerWrapper _logger;
+        public ErrorController(ILoggerWrapper logger)
         {
+            _logger = logger;
+        }
+
+        public ActionResult Index(string errorMessage)
+        {
+            _logger?.ErrorFormat(errorMessage);
             return View("Error");
         }
 

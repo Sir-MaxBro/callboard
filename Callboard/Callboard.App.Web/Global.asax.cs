@@ -43,5 +43,17 @@ namespace Callboard.App.Web
                 }
             }
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+            HttpException httpException = exception as HttpException;
+            if (httpException != null)
+            {
+                Server.ClearError();
+                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message }");
+            }
+        }
     }
 }
