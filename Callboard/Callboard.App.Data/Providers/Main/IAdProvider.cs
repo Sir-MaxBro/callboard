@@ -10,5 +10,7 @@ namespace Callboard.App.Data.Providers.Main
         IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId);
 
         void Delete(int id);
+
+        IReadOnlyCollection<Ad> SearchByName(string name);
     }
 }

@@ -41,6 +41,18 @@ namespace Callboard.App.Data.Providers.Realizations.Sql
             throw new NotImplementedException();
         }
 
+        public IReadOnlyCollection<Ad> SearchByName(string name)
+        {
+            var procedureName = "sp_search_ad_by_name";
+            var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
+            var values = new Dictionary<string, object>
+            {
+                { "SearchName", name }
+            };
+            var ads = base.GetAll(procedureName, mapper, values);
+            return ads;
+        }
+
         private IReadOnlyCollection<Ad> MapAdCollection(DataSet dataSet)
         {
             return dataSet.Tables[0].AsEnumerable().Select(ad =>
