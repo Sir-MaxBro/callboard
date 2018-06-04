@@ -1,5 +1,9 @@
-﻿using Callboard.App.General.Loggers;
-using log4net;
+﻿using Callboard.App.General.Cache.Main;
+using Callboard.App.General.Cache.Realizations;
+using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Helpers.Realizations;
+using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Loggers.Realizations;
 using StructureMap;
 
 namespace Callboard.App.General.DependencyResolution
@@ -13,8 +17,9 @@ namespace Callboard.App.General.DependencyResolution
                 scan.TheCallingAssembly();
                 scan.WithDefaultConventions();
             });
-            //For<ILoggerWrapper>().Singleton().Use<LoggerWrapper>();
-            For<ILoggerWrapper>().Use(LoggerWrapper.GetInstance());
+            For<ILoggerWrapper>().Singleton().Use<LoggerWrapper>();
+            For<IChecker>().Singleton().Use<Checker>();
+            For<ICacheStorage>().Singleton().Use<CacheStorage>();
         }
     }
 }
