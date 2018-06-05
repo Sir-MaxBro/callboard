@@ -13,7 +13,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class KindDbContext : EntityDbContext<Kind>, IKindContext
     {
-        public KindDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public KindDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
@@ -48,7 +48,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Save(Kind obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_kind";
+            var mapper = new Mapper<DataSet, Kind> { MapValues = this.MapKindValues };
+            base.Save(obj, procedureName, mapper);
+        }
+
+        private IDictionary<string, object> MapKindValues(Kind kind)
+        {
+            return new Dictionary<string, object>
+            {
+                { "KindId", kind.KindId },
+                { "Type", kind.Type }
+            };
         }
 
         private IReadOnlyCollection<Kind> MapKindCollection(DataSet dataSet)
