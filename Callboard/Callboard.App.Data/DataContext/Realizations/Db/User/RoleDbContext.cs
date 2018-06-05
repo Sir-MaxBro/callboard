@@ -4,7 +4,6 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -60,7 +59,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Save(Role obj)
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_save_role";
+            var mapper = new Mapper<DataSet, Role> { MapValues = this.MapRoleValues };
+            base.Save(obj, procedureName, mapper);
+        }
+
+        private IDictionary<string, object> MapRoleValues(Role role)
+        {
+            return new Dictionary<string, object>
+            {
+                { "RoleId", role.RoleId },
+                { "Name", role.Name }
+            };
         }
 
         private Role MapRole(DataSet dataSet)

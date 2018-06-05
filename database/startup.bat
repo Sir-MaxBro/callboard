@@ -102,6 +102,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_category.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_kind.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_state.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_country.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_role.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad.sql
