@@ -13,17 +13,25 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class RoleDbContext : EntityDbContext<Role>, IRoleContext
     {
-        public RoleDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public RoleDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_delete_role_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "RoleId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<Role> GetAll()
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_select_role";
+            var mapper = new Mapper<DataSet, Role> { MapCollection = this.MapRoleCollection };
+            var roles = base.GetAll(procedureName, mapper);
+            return roles;
         }
 
         public Role GetById(int id)

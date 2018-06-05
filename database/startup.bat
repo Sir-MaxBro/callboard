@@ -71,6 +71,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_kind.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_state.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_area.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_city.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_role.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
@@ -91,6 +92,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_state_by_id.s
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_area_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_city_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_country_by_id.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_role_by_id.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql
