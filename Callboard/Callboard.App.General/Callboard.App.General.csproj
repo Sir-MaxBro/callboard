@@ -57,6 +57,7 @@
     <Compile Include="Entities\Data\Ad\AdDetails.cs" />
     <Compile Include="Entities\Commercial\Commercial.cs" />
     <Compile Include="Entities\Commercial\Image.cs" />
+    <Compile Include="Entities\Data\Ad\SearchConfiguration.cs" />
     <Compile Include="Entities\Data\Location\Location.cs" />
     <Compile Include="Entities\Data\Location\Area.cs" />
     <Compile Include="Entities\Data\Ad\Category.cs" />
