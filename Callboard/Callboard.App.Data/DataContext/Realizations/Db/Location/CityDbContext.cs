@@ -13,12 +13,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class CityDbContext : EntityDbContext<City>, ICityContext
     {
-        public CityDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public CityDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_delete_city_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "CityId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<City> GetAll()
