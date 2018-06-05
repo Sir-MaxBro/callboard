@@ -18,13 +18,20 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_category_by_id";
+            var mapper = new Mapper<DataSet, Category> { MapItem = this.MapCategory };
+            var values = new Dictionary<string, object>
+            {
+                { "CategoryId", id }
+            };
+            var category = base.Get(procedureName, mapper, values);
+            return category;
         }
 
         public IReadOnlyCollection<Category> GetAll()
         {
             string procedureName = "sp_select_category";
-            var mapper = new Mapper<DataSet, Category> { MapCollection = MapCategoryCollection };
+            var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
             var categories = base.GetAll(procedureName, mapper);
             return categories;
         }
@@ -36,7 +43,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "ParentId", categoryId }
             };
-            var mapper = new Mapper<DataSet, Category> { MapCollection = MapCategoryCollection };
+            var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
             var subcategories = base.GetAll(procedureName, mapper, values);
             return subcategories;
         }
@@ -69,6 +76,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 })
                 .Where(category => category != null)
                 .ToList();
+        }
+
+        private Category MapCategory(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(category =>
+            {
+                return MapCategory(category);
+            }).First();
         }
 
         private Category MapCategory(DataRow row)
