@@ -13,7 +13,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class CountryDbContext : EntityDbContext<Country>, ICountryContext
     {
-        public CountryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public CountryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
@@ -36,7 +36,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public Country GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_country_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "CountryId", id }
+            };
+            var mapper = new Mapper<DataSet, Country> { MapItem = MapCountry };
+            var country = base.Get(procedureName, mapper, values);
+            return country;
         }
 
         public void Save(Country obj)
@@ -44,11 +51,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             throw new NotImplementedException();
         }
 
+        private Country MapCountry(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapCountry).FirstOrDefault();
+        }
+
         private IReadOnlyCollection<Country> MapCountryCollection(DataSet dataSet)
         {
-            return dataSet.Tables[0].AsEnumerable()
-                .Select(this.MapCountry)
-                .ToList();
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapCountry).ToList();
         }
 
         private Country MapCountry(DataRow row)
