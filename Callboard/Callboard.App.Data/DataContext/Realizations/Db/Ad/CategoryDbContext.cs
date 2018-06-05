@@ -50,12 +50,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Save(Category obj)
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_save_category";
+            var mapper = new Mapper<DataSet, Category> { MapValues = this.MapCategoryValues };
+            base.Save(obj, procedureName, mapper);
         }
 
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        private IDictionary<string, object> MapCategoryValues(Category category)
+        {
+            return new Dictionary<string, object>
+            {
+                { "CategoryId", category.CategoryId },
+                { "Name", category.Name },
+                { "ParentId", category.ParentId }
+            };
         }
 
         private IReadOnlyCollection<Category> MapCategoryCollection(DataSet dataSet)
