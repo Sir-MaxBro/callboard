@@ -84,6 +84,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_addetails.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_category.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad.sql
