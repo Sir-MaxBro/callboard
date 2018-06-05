@@ -13,7 +13,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class StateDbContext : EntityDbContext<State>, IStateContext
     {
-        public StateDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public StateDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
@@ -31,7 +31,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public State GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_state_by_id";
+            var mapper = new Mapper<DataSet, State> { MapItem = this.MapState };
+            var values = new Dictionary<string, object>
+            {
+                { "StateId", id }
+            };
+            var state = base.Get(procedureName, mapper, values);
+            return state;
         }
 
         public void Save(State obj)
@@ -48,6 +55,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "StateId", state.StateId },
                 { "Condition", state.Condition }
             };
+        }
+
+        private State MapState(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapState).FirstOrDefault();
         }
 
         private IReadOnlyCollection<State> MapStateCollection(DataSet dataSet)
