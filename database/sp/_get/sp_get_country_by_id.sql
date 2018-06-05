@@ -1,6 +1,6 @@
 USE [callboardDB]
 GO
-CREATE PROCEDURE [dbo].[sp_get_country_by_coyntryid]
+CREATE PROCEDURE [dbo].[sp_get_country_by_id]
     @CountryId int 
 AS
 (

@@ -4,7 +4,6 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -48,7 +47,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Save(Country obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_country";
+            var mapper = new Mapper<DataSet, Country> { MapValues = MapCountryValues };
+            base.Save(obj, procedureName, mapper);
+        }
+
+        private IDictionary<string, object> MapCountryValues(Country country)
+        {
+            return new Dictionary<string, object>
+            {
+                { "CountryId", country.CountryId },
+                { "Name", country.Name }
+            };
         }
 
         private Country MapCountry(DataSet dataSet)
