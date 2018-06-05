@@ -36,7 +36,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public Role GetById(int id)
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_get_role_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "RoleId", id }
+            };
+            var mapper = new Mapper<DataSet, Role> { MapItem = this.MapRole };
+            var role = base.Get(procedureName, mapper, values);
+            return role;
         }
 
         public IReadOnlyCollection<Role> GetRolesForUser(int userId)
@@ -46,10 +53,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "UserId", userId }
             };
-            var mapper = new Mapper<DataSet, Role>
-            {
-                MapCollection = MapRoleCollection
-            };
+            var mapper = new Mapper<DataSet, Role> { MapCollection = this.MapRoleCollection };
             var roles = base.GetAll(procedureName, mapper, values);
             return roles;
         }
@@ -59,11 +63,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             throw new NotImplementedException();
         }
 
+        private Role MapRole(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapRole).FirstOrDefault();
+        }
+
         private IReadOnlyCollection<Role> MapRoleCollection(DataSet dataSet)
         {
-            return dataSet.Tables[0].AsEnumerable()
-                .Select(this.MapRole)
-                .ToList();
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapRole).ToList();
         }
 
         private Role MapRole(DataRow row)
