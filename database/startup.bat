@@ -85,5 +85,6 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_addetails.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad.sql
 
 pause
