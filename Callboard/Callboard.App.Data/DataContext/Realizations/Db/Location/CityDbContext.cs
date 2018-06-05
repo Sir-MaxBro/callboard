@@ -36,7 +36,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public City GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_city_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "CityId", id }
+            };
+            var mapper = new Mapper<DataSet, City> { MapItem = this.MapCity };
+            var city = base.Get(procedureName, mapper, values);
+            return city;
         }
 
         public IReadOnlyCollection<City> GetCitiesByAreaId(int areaId)
@@ -54,6 +61,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public void Save(City obj)
         {
             throw new NotImplementedException();
+        }
+
+        private City MapCity(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapCity).FirstOrDefault();
         }
 
         private IReadOnlyCollection<City> MapCityCollection(DataSet dataSet)

@@ -73,8 +73,6 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_area.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_city.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_area_by_areaid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_city_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_country_by_countryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
@@ -84,6 +82,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_kind_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_state_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_area_by_id.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_city_by_id.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_ad_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_category_by_id.sql
