@@ -36,7 +36,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Save(State obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_state";
+            var mapper = new Mapper<DataSet, State> { MapValues = this.MapStateValues };
+            base.Save(obj, procedureName, mapper);
+        }
+
+        private IDictionary<string, object> MapStateValues(State state)
+        {
+            return new Dictionary<string, object>
+            {
+                { "StateId", state.StateId },
+                { "Condition", state.Condition }
+            };
         }
 
         private IReadOnlyCollection<State> MapStateCollection(DataSet dataSet)
