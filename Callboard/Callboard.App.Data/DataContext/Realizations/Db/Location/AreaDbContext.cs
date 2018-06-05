@@ -48,12 +48,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public Area GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_area_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "AreaId", id }
+            };
+            var mapper = new Mapper<DataSet, Area> { MapItem = this.MapArea };
+            var area = base.Get(procedureName, mapper, values);
+            return area;
         }
 
         public void Save(Area obj)
         {
             throw new NotImplementedException();
+        }
+
+        private Area MapArea(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapArea).FirstOrDefault();
         }
 
         private IReadOnlyCollection<Area> MapAreaCollection(DataSet dataSet)
