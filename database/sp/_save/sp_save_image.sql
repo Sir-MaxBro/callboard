@@ -26,5 +26,6 @@ AS BEGIN
 			UPDATE [Image]
 			SET [Data] = @Data,
 				[Extension] = @Extension
+			WHERE [Image].ImageId = @ImageId
 		END
 END
