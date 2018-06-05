@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Data.Ad;
 using Callboard.App.General.Helpers.Main;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,12 @@ namespace Callboard.App.Business.Providers.Realization
                 return null;
             }
             return _adProvider.SearchByName(name);
+        }
+
+        public IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration)
+        {
+
+            return _adProvider.Search(searchConfiguration);
         }
     }
 }
