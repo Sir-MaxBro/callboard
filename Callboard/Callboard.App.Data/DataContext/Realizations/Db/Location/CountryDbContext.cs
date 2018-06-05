@@ -18,12 +18,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_delete_country_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "CountryId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<Country> GetAll()
         {
-            var procedureName = "sp_select_country";
+            string procedureName = "sp_select_country";
             var mapper = new Mapper<DataSet, Country> { MapCollection = MapCountryCollection };
             var countries = base.GetAll(procedureName, mapper);
             return countries;
