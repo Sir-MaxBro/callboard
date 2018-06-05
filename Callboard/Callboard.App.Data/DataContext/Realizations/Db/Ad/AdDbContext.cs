@@ -2,6 +2,7 @@
 using Callboard.App.Data.DbContext.Main;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Data.Ad;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using System;
@@ -53,6 +54,25 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             var values = new Dictionary<string, object>
             {
                 { "SearchName", name }
+            };
+            var ads = base.GetAll(procedureName, mapper, values);
+            return ads;
+        }
+
+        public IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration)
+        {
+            string procedureName = "sp_search_ad";
+            var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
+            var values = new Dictionary<string, object>
+            {
+                { "Name", searchConfiguration.Name },
+                { "State", searchConfiguration.State },
+                { "Kind", searchConfiguration.Kind },
+                { "CountryId", searchConfiguration.CoutryId },
+                { "AreaId", searchConfiguration.AreaId },
+                { "CityId", searchConfiguration.CityId },
+                { "MinPrice", searchConfiguration.MinPrice },
+                { "MaxPrice", searchConfiguration.MaxPrice }
             };
             var ads = base.GetAll(procedureName, mapper, values);
             return ads;
