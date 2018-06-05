@@ -86,6 +86,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_ad_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_kind_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_state_by_id.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_area_by_id.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql
