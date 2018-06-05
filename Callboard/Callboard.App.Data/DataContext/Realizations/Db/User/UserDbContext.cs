@@ -23,7 +23,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IReadOnlyCollection<User> GetAll()
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_select_user";
+            var mapper = new Mapper<DataSet, User> { MapCollection = MapUserCollection };
+            var users = base.GetAll(procedureName, mapper);
+            return users;
         }
 
         public User GetById(int id)
@@ -48,7 +51,15 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return dataSet.Tables[0].AsEnumerable().Select(user =>
             {
                 return MapUser(user, dataSet.Tables[1], dataSet.Tables[2]);
-            }).First();
+            }).FirstOrDefault();
+        }
+
+        private IReadOnlyCollection<User> MapUserCollection(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(user =>
+            {
+                return MapUser(user, dataSet.Tables[1], dataSet.Tables[2]);
+            }).ToList();
         }
 
         private User MapUser(DataRow row, DataTable mails, DataTable phones)
