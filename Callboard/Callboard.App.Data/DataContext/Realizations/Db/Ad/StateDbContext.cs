@@ -4,7 +4,6 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,7 +17,12 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_delete_state_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "StateId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<State> GetAll()
