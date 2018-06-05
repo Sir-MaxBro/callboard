@@ -78,6 +78,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login_password.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
 
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
