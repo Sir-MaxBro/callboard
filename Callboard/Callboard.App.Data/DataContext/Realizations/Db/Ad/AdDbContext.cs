@@ -19,7 +19,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            string procedureName = "sp_delete_ad";
+            string procedureName = "sp_delete_ad_by_id";
             var values = new Dictionary<string, object>
             {
                 { "AdId", id }

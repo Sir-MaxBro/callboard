@@ -57,7 +57,12 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_delete_category_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "CategoryId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         private IDictionary<string, object> MapCategoryValues(Category category)
