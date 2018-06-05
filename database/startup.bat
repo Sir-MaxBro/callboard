@@ -79,6 +79,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login_password.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_kind_by_id.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_ad_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_category_by_id.sql

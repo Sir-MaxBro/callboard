@@ -36,7 +36,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public Kind GetById(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_get_kind_by_id";
+            var mapper = new Mapper<DataSet, Kind> { MapItem = this.MapKind };
+            var values = new Dictionary<string, object>
+            {
+                { "KindId", id }
+            };
+            var kind = base.Get(procedureName, mapper, values);
+            return kind;
         }
 
         public void Save(Kind obj)
@@ -47,6 +54,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         private IReadOnlyCollection<Kind> MapKindCollection(DataSet dataSet)
         {
             return dataSet.Tables[0].AsEnumerable().Select(this.MapKind).ToList();
+        }
+
+        private Kind MapKind(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable().Select(this.MapKind).FirstOrDefault();
         }
 
         private Kind MapKind(DataRow row)
