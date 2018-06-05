@@ -10,10 +10,11 @@ using System.Data.SqlClient;
 
 namespace Callboard.App.Data.Context.Realizations
 {
-    internal class SqlDbContext : ISqlDbContext
+    internal class SqlDbContext : IDbContext
     {
         private ILoggerWrapper _logger;
         private IChecker _checker;
+        private string _connectionString;
         public SqlDbContext(ILoggerWrapper logger, IChecker checker)
         {
             _checker = checker ?? throw new NullReferenceException(nameof(checker));
@@ -21,7 +22,11 @@ namespace Callboard.App.Data.Context.Realizations
             _logger = logger;
         }
 
-        public string ConnectionString { get; set; }
+        public string ConnectionString
+        {
+            get => _connectionString;
+            set => _connectionString = value;
+        }
 
         public DataSet ExecuteProcedure(string procedureName, IDictionary<string, object> values = null)
         {
@@ -112,9 +117,9 @@ namespace Callboard.App.Data.Context.Realizations
 
         private SqlConnection CreateConnection()
         {
-            if (!string.IsNullOrEmpty(this.ConnectionString))
+            if (!string.IsNullOrEmpty(_connectionString))
             {
-                return new SqlConnection(this.ConnectionString);
+                return new SqlConnection(_connectionString);
             }
             else
             {

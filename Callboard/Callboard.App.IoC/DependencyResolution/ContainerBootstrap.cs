@@ -1,7 +1,7 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.Business.Services;
 using Callboard.App.Data.Context.Main;
-using Callboard.App.Data.DataProviders.Main;
+using Callboard.App.Data.DataContext.Main;
 using Callboard.App.Data.Repositories.Main;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Helpers.Main;
@@ -45,8 +45,7 @@ namespace Callboard.App.IoC.DependencyResolution
 
         private static void AddDataDependency(IAssemblyScanner scan)
         {
-            scan.AssemblyContainingType<ISqlDataProvider<object>>();
-            scan.AssemblyContainingType<ISqlDbContext>();
+            scan.AssemblyContainingType<IDbContext>();
 
             scan.AssemblyContainingType<ICategoryRepository>();
             scan.AssemblyContainingType<IUserRepository>();
@@ -61,6 +60,20 @@ namespace Callboard.App.IoC.DependencyResolution
             scan.AssemblyContainingType<Data.Providers.Main.IMembershipProvider>();
             scan.AssemblyContainingType<Data.Providers.Main.ICommercialProvider>();
             scan.AssemblyContainingType<Data.Providers.Main.IAdDetailsProvider>();
+
+            scan.AssemblyContainingType<ICategoryContext>();
+            scan.AssemblyContainingType<ICategoryContext>();
+            scan.AssemblyContainingType<IAreaContext>();
+            scan.AssemblyContainingType<ICityContext>();
+            scan.AssemblyContainingType<ICountryContext>();
+            scan.AssemblyContainingType<IKindContext>();
+            scan.AssemblyContainingType<IRoleContext>();
+            scan.AssemblyContainingType<IStateContext>();
+            scan.AssemblyContainingType<IUserContext>();
+            scan.AssemblyContainingType<IAdContext>();
+            scan.AssemblyContainingType<IAdDetailsContext>();
+            scan.AssemblyContainingType<ICommercialContext>();
+            scan.AssemblyContainingType<IMembershipContext>();
         }
 
         public static IContainer Container

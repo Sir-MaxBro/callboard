@@ -1,0 +1,84 @@
+﻿using Callboard.App.Data.Context.Main;
+using Callboard.App.Data.DataContext.Main;
+using Callboard.App.Data.Mappers;
+using Callboard.App.General.Entities;
+using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Loggers.Main;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+namespace Callboard.App.Data.DataContext.Realizations.Db
+{
+    internal class CategoryDbContext : EntityDbContext<Category>, ICategoryContext
+    {
+        public CategoryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+            : base(context, logger, checker) { }
+
+        public Category GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyCollection<Category> GetAll()
+        {
+            string procedureName = "sp_select_category";
+            var mapper = new Mapper<DataSet, Category> { MapCollection = MapCategoryCollection };
+            var categories = base.GetAll(procedureName, mapper);
+            return categories;
+        }
+
+        public IReadOnlyCollection<Category> GetSubcategories(int categoryId)
+        {
+            var procedureName = "sp_select_subcategory_by_parentid";
+            var values = new Dictionary<string, object>
+            {
+                { "ParentId", categoryId }
+            };
+            var mapper = new Mapper<DataSet, Category> { MapCollection = MapCategoryCollection };
+            var subcategories = base.GetAll(procedureName, mapper, values);
+            return subcategories;
+        }
+
+        public void Save(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IReadOnlyCollection<Category> MapCategoryCollection(DataSet dataSet)
+        {
+            return dataSet.Tables[0].AsEnumerable()
+                .Select(categoryRow =>
+                {
+                    Category category = null;
+                    try
+                    {
+                        category = this.MapCategory(categoryRow);
+                    }
+                    catch (InvalidCastException ex)
+                    {
+                        _logger.ErrorFormat($"Cannot cast Category.\n{ ex.Message }");
+                    }
+                    return category;
+                })
+                .Where(category => category != null)
+                .ToList();
+        }
+
+        private Category MapCategory(DataRow row)
+        {
+            return new Category
+            {
+                CategoryId = row.Field<int>("CategoryId"),
+                Name = row.Field<string>("Name"),
+                ParentId = row.Field<int?>("ParentId") ?? default(int)
+            };
+        }
+    }
+}
