@@ -28,7 +28,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IReadOnlyCollection<City> GetAll()
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_select_city";
+            var mapper = new Mapper<DataSet, City> { MapCollection = this.MapCityCollection };
+            var cities = base.GetAll(procedureName, mapper);
+            return cities;
         }
 
         public City GetById(int id)
