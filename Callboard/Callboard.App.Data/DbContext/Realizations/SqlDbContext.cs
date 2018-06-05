@@ -1,4 +1,4 @@
-﻿using Callboard.App.Data.Context.Main;
+﻿using Callboard.App.Data.DbContext.Main;
 using Callboard.App.Data.Exceptions;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Callboard.App.Data.Context.Realizations
+namespace Callboard.App.Data.DbContext.Realizations
 {
     internal class SqlDbContext : IDbContext
     {

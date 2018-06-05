@@ -1,5 +1,5 @@
-﻿using Callboard.App.Data.Context.Main;
-using Callboard.App.Data.DataContext.Main;
+﻿using Callboard.App.Data.DataContext.Main;
+using Callboard.App.Data.DbContext.Main;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;

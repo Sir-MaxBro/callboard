@@ -83,8 +83,8 @@
     <Compile Include="DataContext\Realizations\Service\CommercialServiceContext.cs" />
     <Compile Include="DataContext\Realizations\Db\Ad\StateDbContext.cs" />
     <Compile Include="DataContext\Realizations\Db\User\UserDbContext.cs" />
-    <Compile Include="Context\Realizations\SqlDbContext.cs" />
-    <Compile Include="Context\Main\IDbContext.cs" />
+    <Compile Include="DbContext\Realizations\SqlDbContext.cs" />
+    <Compile Include="DbContext\Main\IDbContext.cs" />
     <Compile Include="DependencyResolution\DataRegistry.cs" />
     <Compile Include="Exceptions\EmptyConnectionStringException.cs" />
     <Compile Include="Mappers\Mapper.cs" />

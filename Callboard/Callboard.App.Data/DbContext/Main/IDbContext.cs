@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace Callboard.App.Data.Context.Main
+namespace Callboard.App.Data.DbContext.Main
 {
     public interface IDbContext
     {

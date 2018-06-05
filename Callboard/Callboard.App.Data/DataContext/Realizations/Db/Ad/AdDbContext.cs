@@ -1,5 +1,5 @@
-﻿using Callboard.App.Data.Context.Main;
-using Callboard.App.Data.DataContext.Main;
+﻿using Callboard.App.Data.DataContext.Main;
+using Callboard.App.Data.DbContext.Main;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
@@ -18,7 +18,12 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_delete_ad";
+            var values = new Dictionary<string, object>
+            {
+                { "AdId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
