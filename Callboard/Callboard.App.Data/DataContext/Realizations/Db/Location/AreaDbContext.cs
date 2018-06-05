@@ -28,7 +28,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IReadOnlyCollection<Area> GetAll()
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_select_area";
+            var mapper = new Mapper<DataSet, Area> { MapCollection = this.MapAreaCollection };
+            var areas = base.GetAll(procedureName, mapper);
+            return areas;
         }
 
         public IReadOnlyCollection<Area> GetAreasByCountryId(int countryId)
