@@ -1,6 +1,6 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Entities.Data.Ad;
+using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using System;
 using System.Collections.Generic;

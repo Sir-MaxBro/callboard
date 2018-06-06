@@ -1,5 +1,5 @@
 ﻿using Callboard.App.General.Entities;
-using Callboard.App.General.Entities.Data.Ad;
+using Callboard.App.General.Entities.Data;
 using System.Collections.Generic;
 
 namespace Callboard.App.Data.Providers.Main

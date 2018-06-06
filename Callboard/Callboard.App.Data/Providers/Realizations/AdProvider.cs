@@ -1,7 +1,7 @@
 ﻿using Callboard.App.Data.DataContext.Main;
 using Callboard.App.Data.Providers.Main;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Entities.Data.Ad;
+using Callboard.App.General.Entities.Data;
 using System;
 using System.Collections.Generic;
 

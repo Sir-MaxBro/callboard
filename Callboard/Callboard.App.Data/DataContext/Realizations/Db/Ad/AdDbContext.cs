@@ -2,7 +2,7 @@
 using Callboard.App.Data.DbContext.Main;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Entities.Data.Ad;
+using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using System;

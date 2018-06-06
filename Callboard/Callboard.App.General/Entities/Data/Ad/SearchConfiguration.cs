@@ -1,4 +1,4 @@
-﻿namespace Callboard.App.General.Entities.Data.Ad
+﻿namespace Callboard.App.General.Entities.Data
 {
     public class SearchConfiguration
     {
