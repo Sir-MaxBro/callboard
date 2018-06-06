@@ -39,6 +39,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return ads;
         }
 
+        public IReadOnlyCollection<Ad> GetAdsForUser(int userId)
+        {
+            string procedureName = "sp_select_ad_by_userid";
+            var values = new Dictionary<string, object>
+            {
+                { "UserId", userId }
+            };
+            var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
+            var ads = base.GetAll(procedureName, mapper, values);
+            return ads;
+        }
+
         public IReadOnlyCollection<Ad> GetAll()
         {
             var procedureName = "sp_select_ad";
