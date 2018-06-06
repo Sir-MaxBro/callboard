@@ -95,6 +95,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_area_by_id.sq
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_city_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_country_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_role_by_id.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_user_by_id.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_image.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_images.sql

@@ -18,7 +18,12 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var procedureName = "sp_delete_user_by_id";
+            var values = new Dictionary<string, object>
+            {
+                { "UserId", id }
+            };
+            base.Delete(procedureName, values);
         }
 
         public IReadOnlyCollection<User> GetAll()
