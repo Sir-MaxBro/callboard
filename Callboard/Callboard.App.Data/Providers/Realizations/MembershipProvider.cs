@@ -18,6 +18,11 @@ namespace Callboard.App.Data.Providers.Realizations.Sql
             return _context.GetUserByLogin(login);
         }
 
+        public User RegisterUser(string login, string password)
+        {
+            return _context.RegisterUser(login, password);
+        }
+
         public bool ValidateUser(string login, string password)
         {
             return _context.ValidateUser(login, password);

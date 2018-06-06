@@ -7,5 +7,7 @@ namespace Callboard.App.Data.Providers.Main
         bool ValidateUser(string login, string password);
 
         User GetUserByLogin(string login);
+
+        User RegisterUser(string login, string password);
     }
 }
