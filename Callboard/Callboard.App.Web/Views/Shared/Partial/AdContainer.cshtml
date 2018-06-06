@@ -1,0 +1,10 @@
+﻿@model IReadOnlyCollection<Ad>
+
+<div class="ad-container">
+    <div class="ad-container__content">
+        @foreach (var item in Model)
+        {
+            Html.RenderPartial("Partial\\AdPartial", model: item);
+        }
+    </div>
+</div>

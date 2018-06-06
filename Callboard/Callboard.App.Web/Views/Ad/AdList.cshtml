@@ -6,15 +6,8 @@
     @{ Html.RenderAction("GetCommercial", "Commercial"); }
 </div>
 <div class="width_75per float_right">
-    <div class="ad-container">
-        @{ Html.RenderPartial("Partial\\Banner"); }
+    @{ Html.RenderPartial("Partial\\Banner"); }
 
-        <div class="ad-container__content">
-            @foreach (var item in Model.Ads)
-            {
-                Html.RenderPartial("Partial\\AdPartial", model: item);
-            }
-        </div>
-    </div>
+    @{  Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
 </div>
 
