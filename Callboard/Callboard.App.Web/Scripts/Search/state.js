@@ -6,7 +6,7 @@ var renderStates = function (data) {
     var stateContainer = $('#states');
     var states = JSON.parse(data.States);
     for (var i = 0; i < states.length; i++) {
-        var option = createOption('stateId', states[i].StateId, states[i].Condition);
+        var option = createOption('state', states[i].Condition, states[i].Condition);
         stateContainer.append(option);
     }
 }
