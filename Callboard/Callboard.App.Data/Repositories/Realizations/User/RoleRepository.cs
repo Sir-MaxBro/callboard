@@ -38,5 +38,10 @@ namespace Callboard.App.Data.Repositories.Realizations
         {
             _context.Save(obj);
         }
+
+        public void SetRoleForUser(int userId, int roleId)
+        {
+            _context.SetRoleForUser(userId, roleId);
+        }
     }
 }
