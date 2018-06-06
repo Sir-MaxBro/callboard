@@ -8,7 +8,7 @@ namespace Callboard.App.Data.Repositories.Realizations
 {
     internal class RoleRepository : IRoleRepository
     {
-        private IRoleContext _context;
+        private IRoleContext _context; 
         public RoleRepository(IRoleContext context)
         {
             _context = context ?? throw new NullReferenceException(nameof(context));

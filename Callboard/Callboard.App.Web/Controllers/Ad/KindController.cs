@@ -24,7 +24,7 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public JsonResult GetKinds()
         {
-            var kinds = _kindProvider.GetKinds();
+            var kinds = _kindProvider.GetAll();
             var kindsData = JsonConvert.SerializeObject(kinds);
             return Json(new { Kinds = kindsData });
         }

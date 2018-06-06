@@ -18,9 +18,27 @@ namespace Callboard.App.Business.Providers.Realization
             _countryRepository = countryRepository;
         }
 
-        public IReadOnlyCollection<Country> GetCountries()
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _countryRepository.Delete(id);
+        }
+
+        public IReadOnlyCollection<Country> GetAll()
         {
             return _countryRepository.GetAll();
+        }
+
+        public Country GetById(int id)
+        {
+            _checker.CheckId(id);
+            return _countryRepository.GetById(id);
+        }
+
+        public void Save(Country obj)
+        {
+            _checker.CheckForNull(obj);
+            _countryRepository.Save(obj);
         }
     }
 }

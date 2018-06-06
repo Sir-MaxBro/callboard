@@ -25,7 +25,7 @@ namespace Callboard.App.Web.Controllers
         {
             CategoryViewModel model = new CategoryViewModel
             {
-                Categories = _categoryProvider.GetCategories()
+                Categories = _categoryProvider.GetAll()
             };
             return PartialView("CategoryList", model);
         }

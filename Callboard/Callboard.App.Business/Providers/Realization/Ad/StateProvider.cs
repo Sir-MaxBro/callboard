@@ -18,9 +18,27 @@ namespace Callboard.App.Business.Providers.Realization
             _stateRepository = stateRepository;
         }
 
-        public IReadOnlyCollection<State> GetStates()
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _stateRepository.Delete(id);
+        }
+
+        public IReadOnlyCollection<State> GetAll()
         {
             return _stateRepository.GetAll();
+        }
+
+        public State GetById(int id)
+        {
+            _checker.CheckId(id);
+            return _stateRepository.GetById(id);
+        }
+
+        public void Save(State obj)
+        {
+            _checker.CheckForNull(obj);
+            _stateRepository.Save(obj);
         }
     }
 }

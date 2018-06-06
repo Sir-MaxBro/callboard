@@ -18,9 +18,27 @@ namespace Callboard.App.Business.Providers.Realization
             _kindRepository = kindRepository;
         }
 
-        public IReadOnlyCollection<Kind> GetKinds()
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _kindRepository.Delete(id);
+        }
+
+        public IReadOnlyCollection<Kind> GetAll()
         {
             return _kindRepository.GetAll();
+        }
+
+        public Kind GetById(int id)
+        {
+            _checker.CheckId(id);
+            return _kindRepository.GetById(id);
+        }
+
+        public void Save(Kind obj)
+        {
+            _checker.CheckForNull(obj);
+            _kindRepository.Save(obj);
         }
     }
 }

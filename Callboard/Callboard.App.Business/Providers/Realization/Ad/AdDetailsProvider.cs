@@ -17,10 +17,16 @@ namespace Callboard.App.Business.Providers.Realization
             _adDetailsProvider = adDetailsProvider;
         }
 
-        public AdDetails GetAdDetailsById(int adId)
+        public AdDetails GetById(int id)
         {
-            _checker.CheckId(adId);
-            return _adDetailsProvider.GetById(adId);
+            _checker.CheckId(id);
+            return _adDetailsProvider.GetById(id);
+        }
+
+        public void Save(AdDetails obj)
+        {
+            _checker.CheckForNull(obj);
+            _adDetailsProvider.Save(obj);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Callboard.App.Business.Providers.Realization
         private Data::ICommercialProvider _commercialProvider;
         private ICacheStorage _cacheStorage;
         private const string CACHE_KEY = "commercials";
+        private const int CACHE_MINUTES = 15;
         public CommercialProvider(ICacheStorage cacheStorage, Data::ICommercialProvider commercialProvider, IChecker checker)
         {
             _checker = checker ?? throw new NullReferenceException(nameof(checker));
@@ -29,7 +30,7 @@ namespace Callboard.App.Business.Providers.Realization
             if (commercials == null)
             {
                 commercials = _commercialProvider.GetCommercials();
-                _cacheStorage.Add(CACHE_KEY, commercials, milliseconds: 100000);
+                _cacheStorage.Add(CACHE_KEY, commercials, CACHE_MINUTES);
             }
             return commercials;
         }

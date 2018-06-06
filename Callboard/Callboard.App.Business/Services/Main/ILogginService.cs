@@ -5,5 +5,7 @@
         bool Login(string login, string password);
 
         void Logout();
+
+        void Register(string login, string password);
     }
 }

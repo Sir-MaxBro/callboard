@@ -24,7 +24,7 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public JsonResult GetStates()
         {
-            var states = _stateProvider.GetStates();
+            var states = _stateProvider.GetAll();
             var statesData = JsonConvert.SerializeObject(states);
             return Json(new { States = statesData });
         }

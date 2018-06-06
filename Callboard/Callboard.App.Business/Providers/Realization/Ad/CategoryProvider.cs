@@ -18,15 +18,33 @@ namespace Callboard.App.Business.Providers.Realization
             _categoryRepository = categoryRepository;
         }
 
-        public IReadOnlyCollection<Category> GetCategories()
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _categoryRepository.Delete(id);
+        }
+
+        public IReadOnlyCollection<Category> GetAll()
         {
             return _categoryRepository.GetAll();
+        }
+
+        public Category GetById(int id)
+        {
+            _checker.CheckId(id);
+            return _categoryRepository.GetById(id);
         }
 
         public IReadOnlyCollection<Category> GetSubcategories(int categoryId)
         {
             _checker.CheckId(categoryId);
             return _categoryRepository.GetSubcategories(categoryId);
+        }
+
+        public void Save(Category obj)
+        {
+            _checker.CheckForNull(obj);
+            _categoryRepository.Save(obj);
         }
     }
 }

@@ -41,8 +41,20 @@ namespace Callboard.App.Business.Providers.Realization
 
         public IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration)
         {
-
+            _checker.CheckForNull(searchConfiguration);
             return _adProvider.Search(searchConfiguration);
+        }
+
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _adProvider.Delete(id);
+        }
+
+        public IReadOnlyCollection<Ad> GetAdsForUser(int userId)
+        {
+            _checker.CheckId(userId);
+            return _adProvider.GetAdsForUser(userId);
         }
     }
 }

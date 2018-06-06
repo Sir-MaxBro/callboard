@@ -24,7 +24,7 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public JsonResult GetCountries()
         {
-            var countries = _countryProvider.GetCountries();
+            var countries = _countryProvider.GetAll();
             var countriesData = JsonConvert.SerializeObject(countries);
             return Json(new { Countries = countriesData }, JsonRequestBehavior.AllowGet);
         }

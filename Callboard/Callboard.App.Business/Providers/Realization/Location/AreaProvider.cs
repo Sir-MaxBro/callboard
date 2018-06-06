@@ -18,10 +18,33 @@ namespace Callboard.App.Business.Providers.Realization
             _areaRepository = areaRepository;
         }
 
+        public void Delete(int id)
+        {
+            _checker.CheckId(id);
+            _areaRepository.Delete(id);
+        }
+
+        public IReadOnlyCollection<Area> GetAll()
+        {
+            return _areaRepository.GetAll();
+        }
+
         public IReadOnlyCollection<Area> GetAreasByCountryId(int countryId)
         {
             _checker.CheckId(countryId);
             return _areaRepository.GetAreasByCountryId(countryId);
+        }
+
+        public Area GetById(int id)
+        {
+            _checker.CheckId(id);
+            return _areaRepository.GetById(id);
+        }
+
+        public void Save(Area obj)
+        {
+            _checker.CheckForNull(obj);
+            _areaRepository.Save(obj);
         }
     }
 }

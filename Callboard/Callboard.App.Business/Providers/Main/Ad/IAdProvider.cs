@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Callboard.App.Business.Providers.Main
 {
-    public interface IAdProvider : IEntityProvider<Ad>
+    public interface IAdProvider
     {
         IReadOnlyCollection<Ad> GetAds();
 
@@ -13,5 +13,9 @@ namespace Callboard.App.Business.Providers.Main
         IReadOnlyCollection<Ad> SearchByName(string name);
 
         IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration);
+
+        void Delete(int id);
+
+        IReadOnlyCollection<Ad> GetAdsForUser(int userId);
     }
 }

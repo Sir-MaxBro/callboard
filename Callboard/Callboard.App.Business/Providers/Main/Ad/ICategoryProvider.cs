@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Callboard.App.Business.Providers.Main
 {
-    public interface IStateProvider : IEntityProvider<State>
+    public interface ICategoryProvider : IEntityProvider<Category>
     {
-        IReadOnlyCollection<State> GetStates();
+        IReadOnlyCollection<Category> GetSubcategories(int categoryId);
     }
 }

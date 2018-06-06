@@ -13,14 +13,14 @@ namespace Callboard.App.General.Cache.Realizations
             _cache = new MemoryCache(CACHE_NAME);
         }
 
-        public bool Add<T>(string key, T obj, int milliseconds)
+        public bool Add<T>(string key, T obj, int minutes)
             where T : class
         {
             if (obj == null)
             {
                 return false;
             }
-            return _cache.Add(key, obj, DateTime.Now.AddMilliseconds(milliseconds));
+            return _cache.Add(key, obj, DateTime.Now.AddMinutes(minutes));
         }
 
         public void Delete(string key)
@@ -38,14 +38,14 @@ namespace Callboard.App.General.Cache.Realizations
             return obj as T;
         }
 
-        public void Update<T>(string key, T obj, int milliseconds)
+        public void Update<T>(string key, T obj, int minutes)
             where T : class
         {
             if (obj == null)
             {
                 return;
             }
-            _cache.Set(key, obj, DateTime.Now.AddMilliseconds(milliseconds));
+            _cache.Set(key, obj, DateTime.Now.AddMinutes(minutes));
         }
     }
 }

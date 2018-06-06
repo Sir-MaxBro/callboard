@@ -22,7 +22,7 @@ namespace Callboard.App.Web.Controllers
 
         public PartialViewResult GetUser(int userId)
         {
-            var user = _userProvider.GetUserById(userId);
+            var user = _userProvider.GetById(userId);
             return PartialView("User", user);
         }
     }

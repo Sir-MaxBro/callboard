@@ -220,13 +220,13 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
-    <Compile Include="Controllers\KindController.cs" />
+    <Compile Include="Controllers\Ad\KindController.cs" />
     <Compile Include="Controllers\Location\AreaController.cs" />
     <Compile Include="Controllers\Location\CityController.cs" />
     <Compile Include="Controllers\Location\CountryController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\StateController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\Ad\StateController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
