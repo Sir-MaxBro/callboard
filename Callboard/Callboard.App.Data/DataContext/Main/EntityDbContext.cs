@@ -62,7 +62,7 @@ namespace Callboard.App.Data.DataContext.Main
             _context.ExecuteNonQuery(procedureName, values);
         }
 
-        protected void Delete(string procedureName, IDictionary<string, object> values = null)
+        protected void Execute(string procedureName, IDictionary<string, object> values = null)
         {
             _context.ExecuteNonQuery(procedureName, values);
         }
