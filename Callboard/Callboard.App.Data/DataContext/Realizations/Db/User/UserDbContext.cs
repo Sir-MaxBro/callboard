@@ -4,7 +4,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
-using System;
+using Microsoft.SqlServer.Server;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public void Delete(int id)
         {
-            var procedureName = "sp_delete_user_by_id";
+            string procedureName = "sp_delete_user_by_id";
             var values = new Dictionary<string, object>
             {
                 { "UserId", id }
@@ -28,27 +28,78 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IReadOnlyCollection<User> GetAll()
         {
-            var procedureName = "sp_select_user";
-            var mapper = new Mapper<DataSet, User> { MapCollection = MapUserCollection };
+            string procedureName = "sp_select_user";
+            var mapper = new Mapper<DataSet, User> { MapCollection = this.MapUserCollection };
             var users = base.GetAll(procedureName, mapper);
             return users;
         }
 
         public User GetById(int id)
         {
-            var procedureName = "sp_get_user_by_userid";
+            string procedureName = "sp_get_user_by_userid";
             var values = new Dictionary<string, object>
             {
                 { "UserId", id }
             };
-            var mapper = new Mapper<DataSet, User> { MapItem = MapUser };
+            var mapper = new Mapper<DataSet, User> { MapItem = this.MapUser };
             var user = base.Get(procedureName, mapper, values);
             return user;
         }
 
         public void Save(User obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_user";
+            var mapper = new Mapper<DataSet, User> { MapValues = this.MapUserValues };
+            base.Save(obj, procedureName, mapper);
+        }
+
+        private IDictionary<string, object> MapUserValues(User user)
+        {
+            return new Dictionary<string, object>
+            {
+                { "UserId", user.UserId },
+                { "Name", user.Name },
+                { "PhotoData", user.PhotoData },
+                { "PhotoExtension", user.PhotoExtension },
+                { "Phones", this.GetPhoneRecords(user.Phones) },
+                { "Mails", this.GetMailRecords(user.Mails) }
+            };
+        }
+
+        private IReadOnlyCollection<SqlDataRecord> GetMailRecords(IReadOnlyCollection<Mail> mails)
+        {
+            var records = new List<SqlDataRecord>();
+            var metadata = new SqlMetaData[]
+            {
+                new SqlMetaData("MailId", SqlDbType.Int),
+                new SqlMetaData("Email", SqlDbType.NVarChar, -1)
+            };
+            foreach (var item in mails)
+            {
+                SqlDataRecord record = new SqlDataRecord(metadata);
+                record.SetValue(0, item.MailId);
+                record.SetValue(1, item.Email);
+                records.Add(record);
+            }
+            return records;
+        }
+
+        private IReadOnlyCollection<SqlDataRecord> GetPhoneRecords(IReadOnlyCollection<Phone> phones)
+        {
+            var records = new List<SqlDataRecord>();
+            var metadata = new SqlMetaData[]
+            {
+                new SqlMetaData("PhoneId", SqlDbType.Int),
+                new SqlMetaData("Number", SqlDbType.NVarChar, 50)
+            };
+            foreach (var item in phones)
+            {
+                SqlDataRecord record = new SqlDataRecord(metadata);
+                record.SetValue(0, item.PhoneId);
+                record.SetValue(1, item.Number);
+                records.Add(record);
+            }
+            return records;
         }
 
         private User MapUser(DataSet dataSet)

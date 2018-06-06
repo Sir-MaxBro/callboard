@@ -48,6 +48,8 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\UsersInRolesInsert.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_imagestable.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_categorytable.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_mailtable.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_type_phonetable.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kind_by_kindid.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_location_by_cityid.sql
@@ -105,6 +107,11 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_kind.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_state.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_country.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_role.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_mail.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_phone.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_mails.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_phones.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_user.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad.sql

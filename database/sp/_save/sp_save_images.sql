@@ -9,7 +9,6 @@ AS BEGIN
 	DECLARE @cur_ImageId INT
 	DECLARE @cur_Data VARBINARY(MAX)
 	DECLARE @cur_Extension NVARCHAR(50)
-	DECLARE @cur_AdId INT
 
 	DECLARE image_cursor CURSOR LOCAL for
 		SELECT [ImageId], [Data], [Extension] FROM @Images
