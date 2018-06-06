@@ -116,4 +116,8 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_user.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad_by_name.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_search\sp_search_ad.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_set\sp_set_role_for_user.sql
+
+sqlcmd -S %server% -U %user% -P %password% -i sp\_create\sp_create_membership.sql
+
 pause

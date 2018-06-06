@@ -43,12 +43,25 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return user != null ? true : false;
         }
 
+        public User RegisterUser(string login, string password)
+        {
+            var procedureName = "sp_create_membership";
+            var values = new Dictionary<string, object>
+            {
+                { "Login", login },
+                { "Password", password }
+            };
+            var mapper = new Mapper<DataSet, User> { MapItem = MapUser };
+            var user = base.Get(procedureName, mapper, values);
+            return user;
+        }
+
         private User MapUserMin(DataSet dataSet)
         {
             return dataSet.Tables[0].AsEnumerable().Select(user =>
             {
                 return MapUser(user, null, null);
-            }).First();
+            }).FirstOrDefault();
         }
 
         private User MapUser(DataSet dataSet)
@@ -56,7 +69,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return dataSet.Tables[0].AsEnumerable().Select(user =>
             {
                 return MapUser(user, dataSet.Tables[1], dataSet.Tables[2]);
-            }).First();
+            }).FirstOrDefault();
         }
 
         private User MapUser(DataRow row, DataTable mails, DataTable phones)
