@@ -39,5 +39,10 @@ namespace Callboard.App.Data.Providers.Realizations.Sql
         {
             return _context.Search(searchConfiguration);
         }
+
+        public IReadOnlyCollection<Ad> GetAdsForUser(int userId)
+        {
+            return _context.GetAdsForUser(userId);
+        }
     }
 }

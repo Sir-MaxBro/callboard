@@ -15,5 +15,7 @@ namespace Callboard.App.Data.Providers.Main
         IReadOnlyCollection<Ad> SearchByName(string name);
 
         IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration);
+
+        IReadOnlyCollection<Ad> GetAdsForUser(int userId);
     }
 }
