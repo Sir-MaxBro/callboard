@@ -41,6 +41,30 @@ namespace Callboard.App.Web.Controllers
             }
         }
 
+        public ActionResult Register(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                _logginService.Register(model.Login, model.Password);
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(model);
+        }
+
         public RedirectToRouteResult Logout()
         {
             _logginService.Logout();
