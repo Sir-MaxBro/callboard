@@ -1,8 +1,11 @@
 ﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -27,11 +30,41 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult SearchAdsByName(string name)
         {
+            IReadOnlyCollection<Ad> ads = null;
+            if (string.IsNullOrEmpty(name))
+            {
+                ads = _adProvider.GetAds();
+            }
+            else
+            {
+                ads = _adProvider.SearchByName(name);
+            }
             SearchViewModel model = new SearchViewModel
             {
-                Ads = _adProvider.SearchByName(name)
+                Ads = ads
             };
             return View("Search", model);
+        }
+
+        public ActionResult Search()
+        {
+            var model = new SearchViewModel
+            {
+                Ads = _adProvider.GetAds(),
+                SearchConfiguration = new SearchConfiguration()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult GetAds(SearchViewModel searchModel)
+        {
+            if (searchModel == null && searchModel.SearchConfiguration == null)
+            {
+                return RedirectToAction("Search", "Search");
+            }
+            var ads = _adProvider.Search(searchModel.SearchConfiguration);
+            return PartialView("Partial\\AdContainer", ads);
         }
     }
 }
