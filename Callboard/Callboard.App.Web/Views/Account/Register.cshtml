@@ -1,0 +1,31 @@
+﻿@model RegisterViewModel
+@Scripts.Render("~/bundles/validate")
+
+@using (Html.BeginForm("Register", "Account"))
+{
+    <div>
+        @Html.LabelFor(model => model.Login)
+    </div>
+    <div>
+        @Html.EditorFor(model => model.Login)
+        @Html.ValidationMessageFor(model => model.Login)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Password)
+    </div>
+    <div>
+        @Html.EditorFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.RePassword)
+    </div>
+    <div>
+        @Html.EditorFor(model => model.RePassword)
+        @Html.ValidationMessageFor(model => model.RePassword)
+    </div>
+
+    <div>
+        <input type="submit" value="Register" />
+    </div>
+}
