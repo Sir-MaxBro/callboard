@@ -14,6 +14,10 @@ namespace Callboard.App.Web
                 .Include("~/Scripts/jquery.unobtrusive-ajax.min.js")
                 .Include("~/Scripts/ajax-helper.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/validate")
+                .Include("~/Scripts/jquery.validate.min.js")
+                .Include("~/Scripts/jquery.validate.unobtrusive.min.js"));
+
             bundles.Add(new ScriptBundle("~/search")
                 .IncludeDirectory("~/Scripts/Search", "*.js", false));
         }
