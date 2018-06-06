@@ -22,7 +22,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "CountryId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         public IReadOnlyCollection<Country> GetAll()

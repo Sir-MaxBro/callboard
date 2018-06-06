@@ -23,7 +23,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "UserId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         public IReadOnlyCollection<User> GetAll()

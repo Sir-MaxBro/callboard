@@ -24,7 +24,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "AdId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)

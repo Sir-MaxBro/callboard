@@ -22,7 +22,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "RoleId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         public IReadOnlyCollection<Role> GetAll()
@@ -62,6 +62,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             var procedureName = "sp_save_role";
             var mapper = new Mapper<DataSet, Role> { MapValues = this.MapRoleValues };
             base.Save(obj, procedureName, mapper);
+        }
+
+        public void SetRoleForUser(int userId, int roleId)
+        {
+            var procedureName = "sp_set_role_for_user";
+            var values = new Dictionary<string, object>
+            {
+                { "UserId", userId },
+                { "RoleId", roleId }
+            };
+            base.Execute(procedureName, values);
         }
 
         private IDictionary<string, object> MapRoleValues(Role role)

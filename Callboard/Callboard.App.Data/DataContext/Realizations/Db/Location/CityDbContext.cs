@@ -23,7 +23,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "CityId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         public IReadOnlyCollection<City> GetAll()

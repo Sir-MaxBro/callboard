@@ -62,7 +62,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "CategoryId", id }
             };
-            base.Delete(procedureName, values);
+            base.Execute(procedureName, values);
         }
 
         private IDictionary<string, object> MapCategoryValues(Category category)
