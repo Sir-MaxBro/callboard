@@ -31,7 +31,7 @@ namespace Callboard.App.General.Cache.Realizations
             }
         }
 
-        public T Get<T>(string key)
+        public T Get<T>(string key)  
             where T : class
         {
             object obj = _cache.Get(key);

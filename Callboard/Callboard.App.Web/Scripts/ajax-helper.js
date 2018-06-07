@@ -1,7 +1,7 @@
 ﻿function renderActionAsync(obj, url, updateTargetId) {
     $.ajax({
         url: url,
-        type: 'POST',
+        type: 'GET',
         contentType: 'application/json',
         data: JSON.stringify(obj),
         dataType: "html",
@@ -17,7 +17,7 @@
 function getDataAsync(obj, url, successFunc, errorFunc) {
     $.ajax({
         url: url,
-        type: 'POST',
+        type: 'GET',
         contentType: 'application/json',
         data: JSON.stringify(obj),
         dataType: "json",

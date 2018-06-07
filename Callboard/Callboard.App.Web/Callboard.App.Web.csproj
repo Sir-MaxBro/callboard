@@ -203,6 +203,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Search\kind.js" />
     <Content Include="Scripts\Search\search-common.js" />
+    <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\slider.js" />

@@ -57,7 +57,7 @@ namespace Callboard.App.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult SearchAds(SearchViewModel searchModel)
         {
             if (searchModel == null && searchModel.SearchConfiguration == null)

@@ -20,12 +20,12 @@ namespace Callboard.App.Web.Controllers.Location
             _areaProvider = areaProvider;
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetAreasByCountryId(int countryId)
         {
             var areas = _areaProvider.GetAreasByCountryId(countryId);
             var areasData = JsonConvert.SerializeObject(areas);
-            return Json(new { Areas = areasData });
+            return Json(new { Areas = areasData }, JsonRequestBehavior.AllowGet);
         }
     }
 }

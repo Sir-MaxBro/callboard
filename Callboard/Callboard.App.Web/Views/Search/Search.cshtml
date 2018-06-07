@@ -2,8 +2,9 @@
 @Scripts.Render("~/search")
 
 <div class="width_25per float_left">
-    @using (Ajax.BeginForm("SearchAds", "Search", new AjaxOptions { UpdateTargetId = "search-result" }))
-    {
+    // create with js
+    @*@using (Ajax.BeginForm("SearchAds", "Search", new AjaxOptions { UpdateTargetId = "search-result" }))
+    {*@
         @Html.TextBoxFor(model => model.SearchConfiguration.Name)
 
         @Html.DropDownListFor(model => model.SearchConfiguration.CoutryId,
@@ -30,8 +31,8 @@
 
         @Html.EditorFor(model => model.SearchConfiguration.MaxPrice)
 
-        <input type="submit" name="name" value="Search" class="button" />
-    }
+        <input type="button" onclick="searchByParams()" value="Search" class="button" />
+    @*}*@
 </div>
 <div id="search-result" class="width_75per float_right">
     @{ Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
