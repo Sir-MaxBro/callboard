@@ -4,6 +4,7 @@ using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
 using System;
 using System.Web.Mvc;
+using Callboard.App.Web.Attributes;
 
 namespace Callboard.App.Web.Controllers
 {
@@ -41,6 +42,13 @@ namespace Callboard.App.Web.Controllers
                 Ads = _adProvider.GetAdsByCategoryId(categoryId)
             };
             return View("AdList", model);
+        }
+        
+        [User]
+        public PartialViewResult GetAdsForUser(int userId)
+        {
+            var ads = _adProvider.GetAdsForUser(userId);
+            return PartialView("Partial\\AdContainer", ads);
         }
     }
 }
