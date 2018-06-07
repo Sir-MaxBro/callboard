@@ -206,6 +206,7 @@
     <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\user-delete.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
