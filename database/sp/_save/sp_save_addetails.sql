@@ -11,8 +11,8 @@ CREATE PROCEDURE [dbo].[sp_save_addetails]
     @Description NVARCHAR(MAX),
     @AddressLine NVARCHAR(MAX),
     @LocationId INT,
-	@Images [dbo].ImagesTable READONLY,
-	@Categories [dbo].CategoriesTable READONLY
+	@Images [dbo].ImagesTable NULL READONLY,
+	@Categories [dbo].CategoriesTable NULL READONLY
 AS
 BEGIN
 	DECLARE @KindId INT

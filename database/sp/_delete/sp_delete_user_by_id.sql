@@ -35,7 +35,7 @@ BEGIN TRY
 	OPEN ad_cursor
 	FETCH NEXT FROM ad_cursor INTO @AdId
 	WHILE @@FETCH_STATUS = 0 BEGIN
-		EXEC [dbo].sp_delete_ad @AdId
+		EXEC [dbo].sp_delete_ad_by_id @AdId
 		FETCH NEXT FROM ad_cursor INTO @AdId
 	END
 	CLOSE ad_cursor

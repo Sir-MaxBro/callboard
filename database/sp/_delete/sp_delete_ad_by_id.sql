@@ -1,6 +1,6 @@
 USE [callboardDB]
 GO
-CREATE PROCEDURE [dbo].[sp_delete_ad] 
+CREATE PROCEDURE [dbo].[sp_delete_ad_by_id] 
 	@AdId INT
 AS
 BEGIN
