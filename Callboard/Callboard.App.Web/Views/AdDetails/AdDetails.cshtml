@@ -2,6 +2,24 @@
 
 <a href="@ViewBag.ReturnUrl">Back</a>
 
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+        if (user != null && Model.User.UserId == user.UserId)
+        {
+            <div>
+                @Html.ActionLink("Edit", "EditAdDetails", "AdDetails", new { adId = Model.AdId },
+                                    htmlAttributes: new { @class = "button button_green button_hover_red" })
+            </div>
+            <div>
+                @Html.ActionLink("Delete", "DeleteAd", "Ad", new { adId = Model.AdId, returnUrl = ViewBag.ReturnUrl },
+                                    htmlAttributes: new { @class = "button button_green button_hover_red" })
+            </div>
+        }
+    }
+}
+
 <div class="ad ad_full">
     <div id="ad__image" class="ad__image ad__image_big">
         @{ Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }

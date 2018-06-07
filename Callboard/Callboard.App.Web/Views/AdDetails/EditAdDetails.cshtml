@@ -1,0 +1,36 @@
+﻿@model AdDetailsViewModel
+
+@using (Html.BeginForm("SaveAdDetails", "AdDetails", FormMethod.Post))
+{
+    @*<div id="ad__image" class="ad__image ad__image_big">
+        @{ Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
+    </div>*@
+    <div class="ad__content">
+        <div class="ad__name">
+            @Html.EditorFor(model => model.Name)
+        </div>
+        <div class="">
+            @Html.EditorFor(model => model.Price)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Description)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AddressLine)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.CreationDate)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Kind)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.State)
+        </div>
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.LocationId)
+        @Html.HiddenFor(model => model.AdId)
+
+        <input type="submit" value="Save" />
+    </div>
+}
