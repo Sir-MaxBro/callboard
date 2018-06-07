@@ -61,8 +61,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "Name", user.Name },
                 { "PhotoData", user.PhotoData },
                 { "PhotoExtension", user.PhotoExtension },
-                { "Phones", this.GetPhoneRecords(user.Phones) },
-                { "Mails", this.GetMailRecords(user.Mails) }
+                { "Phones", user.Phones != null ? this.GetPhoneRecords(user.Phones) : null },
+                { "Mails", user.Mails != null ? this.GetMailRecords(user.Mails) : null }
             };
         }
 
