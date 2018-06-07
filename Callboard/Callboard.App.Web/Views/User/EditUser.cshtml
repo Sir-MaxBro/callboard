@@ -1,0 +1,25 @@
+﻿@model UserViewModel
+
+@using (Html.BeginForm("SaveUser", "User", FormMethod.Post))
+{
+    <h1>User</h1>
+    @Html.HiddenFor(model => model.UserId)
+    @Html.EditorFor(model => model.Name)
+
+    <div id="phones">
+        @for (int i = 0; i < Model.Phones.Count; i++)
+        {
+            @Html.HiddenFor(model => Model.Phones[i].PhoneId)
+            <div>@Html.EditorFor(model => Model.Phones[i].Number)</div>
+        }
+    </div>
+
+    <div id="emails">
+        @for (int i = 0; i < Model.Mails.Count; i++)
+        {
+            @Html.HiddenFor(model => Model.Mails[i].MailId)
+            <div>@Html.EditorFor(model => Model.Mails[i].Email)</div>
+        }
+    </div>
+    <input type="submit" value="Save" class="button" />
+}
