@@ -11,20 +11,24 @@
                       htmlAttributes: new { id = "countries", onchange = "fillAreas(this.options[this.selectedIndex].value)" })
 
         @Html.DropDownListFor(model => model.SearchConfiguration.AreaId,
-                     new SelectListItem[] { new SelectListItem { Text = "--- Choose area ---", Selected = true } },
-                     htmlAttributes: new { id = "areas", onchange = "fillCities(this.options[this.selectedIndex].value)" })
+                      new SelectListItem[] { new SelectListItem { Text = "--- Choose area ---", Selected = true } },
+                      htmlAttributes: new { id = "areas", onchange = "fillCities(this.options[this.selectedIndex].value)" })
 
         @Html.DropDownListFor(model => model.SearchConfiguration.CityId,
                       new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true } },
                       htmlAttributes: new { id = "cities" })
 
         @Html.DropDownListFor(model => model.SearchConfiguration.Kind,
-                     new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
-                     htmlAttributes: new { id = "kinds" })
+                      new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
+                      htmlAttributes: new { id = "kinds" })
 
         @Html.DropDownListFor(model => model.SearchConfiguration.State,
-                     new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
-                     htmlAttributes: new { id = "states" })
+                      new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
+                      htmlAttributes: new { id = "states" })
+
+        @Html.EditorFor(model => model.SearchConfiguration.MinPrice)
+
+        @Html.EditorFor(model => model.SearchConfiguration.MaxPrice)
 
         <input type="submit" name="name" value="Search" class="button" />
     }

@@ -41,7 +41,8 @@ namespace Callboard.App.Web.Controllers
             }
             SearchViewModel model = new SearchViewModel
             {
-                Ads = ads
+                Ads = ads,
+                SearchConfiguration = new SearchConfiguration()
             };
             return View("Search", model);
         }
