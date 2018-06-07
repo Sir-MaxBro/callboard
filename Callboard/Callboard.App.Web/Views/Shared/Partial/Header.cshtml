@@ -9,23 +9,24 @@
         <div class="user user_min">
             @if (User.Identity.IsAuthenticated)
             {
-                <div class="user__name">
-                    @{
-                        var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
-                        if (user != null)
-                        {
-                            <span>@user.Name</span>
-                        }
-                    }
-                </div>
-                @*<div class="user__photo">
-                        UserPhoto
-                    </div>*@
-                <div>@Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "button" })</div>
+                var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+                if (user != null)
+                {
+                    <div class="user__name">
+                        <span>@user.Name</span>
+                    </div>
+                    <div>
+                        @Html.ActionLink("Profile", "OpenProfile", "User", new { userId = user.UserId }, htmlAttributes: new { @class = "button" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "button" })
+                    </div>
+                }
             }
             else
             {
                 <div>@Html.ActionLink("Log in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
+                <div>@Html.ActionLink("Sing up", "Register", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
             }
         </div>
     </div>
