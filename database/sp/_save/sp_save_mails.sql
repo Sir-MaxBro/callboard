@@ -7,7 +7,7 @@ CREATE PROCEDURE [dbo].sp_save_mails
 )
 AS BEGIN
 	DECLARE @cur_MailId INT
-	DECLARE @cur_Email VARBINARY(MAX)
+	DECLARE @cur_Email NVARCHAR(MAX)
 
 	DECLARE mail_cursor CURSOR LOCAL for
 		SELECT [MailId], [Email] FROM @Mails

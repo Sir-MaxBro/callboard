@@ -3,7 +3,7 @@ GO
 CREATE PROCEDURE [dbo].sp_save_mail
 (
     @MailId INT,
-    @Email NVARCHAR(50), 
+    @Email NVARCHAR(MAX), 
 	@UserId INT
 )
 AS BEGIN

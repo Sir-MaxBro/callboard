@@ -7,7 +7,7 @@ CREATE PROCEDURE [dbo].sp_save_phones
 )
 AS BEGIN
 	DECLARE @cur_PhoneId INT
-	DECLARE @cur_Number VARBINARY(MAX)
+	DECLARE @cur_Number NVARCHAR(50)
 
 	DECLARE phone_cursor CURSOR LOCAL for
 		SELECT [PhoneId], [Number] FROM @Phones
