@@ -50,8 +50,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CreationDate", adDetails.CreationDate },
                 { "AddressLine", adDetails.AddressLine },
                 { "Description", adDetails.Description },
-                { "Images", this.GetImageRecords(adDetails.Images) },
-                { "Categories", this.GetCategoriesRecords(adDetails.Categories) }
+                { "Images", adDetails.Images != null ? this.GetImageRecords(adDetails.Images) : null },
+                { "Categories", adDetails.Categories!=null ? this.GetCategoriesRecords(adDetails.Categories) : null }
             };
         }
 
