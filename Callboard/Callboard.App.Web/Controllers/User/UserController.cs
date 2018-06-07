@@ -54,7 +54,7 @@ namespace Callboard.App.Web.Controllers
             {
                 var user = this.MapViewModelToUser(userModel);
                 _userProvider.Save(user);
-                return RedirectToAction("OpenProfile", user);
+                return RedirectToAction("OpenProfile", user.UserId);
             }
             return RedirectToAction("Error", "Error");
         }
