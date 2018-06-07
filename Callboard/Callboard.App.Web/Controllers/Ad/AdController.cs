@@ -50,5 +50,19 @@ namespace Callboard.App.Web.Controllers
             var ads = _adProvider.GetAdsForUser(userId);
             return PartialView("Partial\\AdContainer", ads);
         }
+
+        [User]
+        public ActionResult DeleteAd(int adId, string returnUrl)
+        {
+            _adProvider.Delete(adId);
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return Redirect("GetAdList");
+            }
+        }
     }
 }
