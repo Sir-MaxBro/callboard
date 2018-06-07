@@ -1,4 +1,5 @@
-﻿using Callboard.App.General.Entities.Auth;
+﻿using Callboard.App.Business.Auth;
+using Callboard.App.General.Entities.Auth;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,7 +12,7 @@ namespace Callboard.App.Web.Attributes
             var user = HttpContext.Current.User;
             if (user is UserPrinciple)
             {
-                return user.IsInRole("editor");
+                return user.IsInRole(Role.Editor.ToString());
             }
             return false;
         }
