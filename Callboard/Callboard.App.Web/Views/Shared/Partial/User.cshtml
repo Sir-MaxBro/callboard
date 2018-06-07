@@ -9,17 +9,6 @@
     {
         <div>@item.Number</div>
     }
-    @*<script>
-        function getPhones(data) {
-            var phones = JSON.parse(data);
-            var html = "";
-            for (var i = 0; i < phones.length; i++) {
-                html += phones[i].Number + "<br>";
-            }
-            $('#phones').html(html);
-        }
-        getDataAsync({ userId: @Model.UserId }, '@Url.Action("GetPhonesByUserId", "Phone")', getPhones);
-    </script>*@
 </div>
 
 <div id="emails">
@@ -27,15 +16,4 @@
     {
         <div>@item.Email</div>
     }
-    @*<script>
-            function getMails(data) {
-                var mails = JSON.parse(data);
-                var html = "";
-                for (var i = 0; i < mails.length; i++) {
-                    html += mails[i].Email + "<br>";
-                }
-                $('#emails').html(html);
-            }
-            getDataAsync({ userId: @Model.UserId }, '@Url.Action("GetMailsByUserId", "Mail")', getMails);
-        </script>*@
 </div>

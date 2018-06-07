@@ -1,0 +1,20 @@
+﻿@model IReadOnlyCollection<User>
+
+<script src="~/Scripts/user-delete.js"></script>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="@item.Name-@item.UserId">
+            <td>
+                @item.Name
+            </td>
+            <td>
+                <input type="button" value="delete" onclick="deleteUser(@item.UserId, '@item.Name-@item.UserId')"/>
+            </td>
+        </tr>
+    }
+</table>
