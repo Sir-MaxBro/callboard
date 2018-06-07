@@ -240,6 +240,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\HtmlImageExtension.cs" />
+    <Compile Include="Models\AdDetailsViewModel.cs" />
     <Compile Include="Models\AdListViewModel.cs" />
     <Compile Include="Models\CommercialViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -281,6 +282,7 @@
     <Content Include="Views\User\UserList.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\AdDetails\EditAdDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
