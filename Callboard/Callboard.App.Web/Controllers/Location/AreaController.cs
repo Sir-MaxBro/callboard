@@ -20,7 +20,6 @@ namespace Callboard.App.Web.Controllers.Location
             _areaProvider = areaProvider;
         }
 
-        [HttpGet]
         public JsonResult GetAreasByCountryId(int countryId)
         {
             var areas = _areaProvider.GetAreasByCountryId(countryId);

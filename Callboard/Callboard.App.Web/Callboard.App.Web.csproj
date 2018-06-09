@@ -146,6 +146,7 @@
     <Content Include="Content\css\button\_green\button_green.css" />
     <Content Include="Content\css\button\_hover\_green\button_hover_green.css" />
     <Content Include="Content\css\button\_hover\_red\button_hover_red.css" />
+    <Content Include="Content\css\button\_rounded\button_rounded.css" />
     <Content Include="Content\css\category-container\__item\category-container__item.css" />
     <Content Include="Content\css\category-container\__item\_gray\category-container__item_gray.css" />
     <Content Include="Content\css\category-container\__item\_hover\_green\category-container__item_hover_green.css" />
@@ -161,9 +162,12 @@
     <Content Include="Content\css\header\__main-link\header__main-link.css" />
     <Content Include="Content\css\img\_cover\img_cover.css" />
     <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
+    <Content Include="Content\css\link\link.css" />
+    <Content Include="Content\css\link\_green\link_green.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
     <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
+    <Content Include="Content\css\none\none.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
     <Content Include="Content\css\page\__header\page__header.css" />
@@ -190,6 +194,7 @@
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajax-helper.js" />
+    <Content Include="Scripts\Category\category-helper.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

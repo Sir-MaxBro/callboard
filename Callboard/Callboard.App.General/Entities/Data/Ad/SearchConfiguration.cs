@@ -12,7 +12,7 @@
 
         public decimal MaxPrice { get; set; }
 
-        public int CoutryId { get; set; }
+        public int CountryId { get; set; }
 
         public int AreaId { get; set; }
 

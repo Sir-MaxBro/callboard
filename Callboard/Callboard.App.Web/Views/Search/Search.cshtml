@@ -2,38 +2,38 @@
 @Scripts.Render("~/search")
 
 <div class="width_25per float_left">
-    // create with js
-    @*@using (Ajax.BeginForm("SearchAds", "Search", new AjaxOptions { UpdateTargetId = "search-result" }))
-    {*@
-        @Html.TextBoxFor(model => model.SearchConfiguration.Name)
+    @Html.EditorFor(model => model.SearchConfiguration.Name,
+            new { htmlAttributes = new { id = "name" } })
 
-        @Html.DropDownListFor(model => model.SearchConfiguration.CoutryId,
-                      new SelectListItem[] { new SelectListItem { Text = "--- Choose country ---", Selected = true } },
-                      htmlAttributes: new { id = "countries", onchange = "fillAreas(this.options[this.selectedIndex].value)" })
+    @Html.DropDownListFor(model => model.SearchConfiguration.CountryId,
+            new SelectListItem[] { new SelectListItem { Text = "--- Choose country ---", Selected = true, Value = "0" } },
+            htmlAttributes: new { id = "countries", onchange = "fillAreas(this.options[this.selectedIndex].value)" })
 
-        @Html.DropDownListFor(model => model.SearchConfiguration.AreaId,
-                      new SelectListItem[] { new SelectListItem { Text = "--- Choose area ---", Selected = true } },
-                      htmlAttributes: new { id = "areas", onchange = "fillCities(this.options[this.selectedIndex].value)" })
+    @Html.DropDownListFor(model => model.SearchConfiguration.AreaId,
+            new SelectListItem[] { new SelectListItem { Text = "--- Choose area ---", Selected = true, Value = "0" } },
+            htmlAttributes: new { id = "areas", onchange = "fillCities(this.options[this.selectedIndex].value)" })
 
-        @Html.DropDownListFor(model => model.SearchConfiguration.CityId,
-                      new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true } },
-                      htmlAttributes: new { id = "cities" })
+    @Html.DropDownListFor(model => model.SearchConfiguration.CityId,
+            new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true, Value = "0" } },
+            htmlAttributes: new { id = "cities" })
 
-        @Html.DropDownListFor(model => model.SearchConfiguration.Kind,
-                      new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
-                      htmlAttributes: new { id = "kinds" })
+    @Html.DropDownListFor(model => model.SearchConfiguration.Kind,
+            new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
+            htmlAttributes: new { id = "kinds" })
 
-        @Html.DropDownListFor(model => model.SearchConfiguration.State,
-                      new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
-                      htmlAttributes: new { id = "states" })
+    @Html.DropDownListFor(model => model.SearchConfiguration.State,
+            new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
+            htmlAttributes: new { id = "states" })
 
-        @Html.EditorFor(model => model.SearchConfiguration.MinPrice)
+    @Html.EditorFor(model => model.SearchConfiguration.MinPrice,
+            new { htmlAttributes = new { id = "min-price" } })
 
-        @Html.EditorFor(model => model.SearchConfiguration.MaxPrice)
+    @Html.EditorFor(model => model.SearchConfiguration.MaxPrice,
+            new { htmlAttributes = new { id = "max-price" } })
 
-        <input type="button" onclick="searchByParams()" value="Search" class="button" />
-    @*}*@
+    <input type="button" onclick="searchByParams()" value="Search" class="button" />
 </div>
+
 <div id="search-result" class="width_75per float_right">
     @{ Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
 </div>

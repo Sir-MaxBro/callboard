@@ -8,7 +8,7 @@
         <div class="ad__name">
             @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
                                            routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
-                                           htmlAttributes: new { @class = "button button_green button_hover_red" })
+                                           htmlAttributes: new { @class = "link link_green" })
         </div>
         <div class="ad__note">
             <span class="ad__text">CreationDate: </span>@Model.CreationDate.ToShortDateString()

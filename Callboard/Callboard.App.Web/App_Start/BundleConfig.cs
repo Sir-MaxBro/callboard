@@ -20,6 +20,9 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/search")
                 .IncludeDirectory("~/Scripts/Search", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/category")
+                .IncludeDirectory("~/Scripts/Category", "*.js", false));
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿.button {
+﻿.link {
     display: block;
     outline: none;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    text-align: center;
 }

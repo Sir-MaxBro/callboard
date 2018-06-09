@@ -21,7 +21,6 @@ namespace Callboard.App.Web.Controllers
             _countryProvider = countryProvider;
         }
 
-        [HttpGet]
         public JsonResult GetCountries()
         {
             var countries = _countryProvider.GetAll();
