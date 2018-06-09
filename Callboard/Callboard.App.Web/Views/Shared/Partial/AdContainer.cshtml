@@ -2,9 +2,16 @@
 
 <div class="ad-container">
     <div class="ad-container__content">
-        @foreach (var item in Model)
+        @if (Model != null && Model.Count != 0)
         {
-            Html.RenderPartial("Partial\\AdPartial", model: item);
+            foreach (var item in Model)
+            {
+                Html.RenderPartial("Partial\\AdPartial", model: item);
+            }
+        }
+        else
+        {
+            <div>Nothing found:(</div>
         }
     </div>
 </div>
