@@ -37,7 +37,7 @@ namespace Callboard.App.Business.Services
             {
                 return;
             }
-            var user = _membershipProvider.RegisterUser(login, password);
+            var user = _membershipProvider.CreateUser(login, password);
             if (user != null)
             {
                 var membershipUser = this.MapUser(user);

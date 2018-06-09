@@ -43,7 +43,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return user != null ? true : false;
         }
 
-        public User RegisterUser(string login, string password)
+        public User CreateUser(string login, string password)
         {
             var procedureName = "sp_create_membership";
             var values = new Dictionary<string, object>

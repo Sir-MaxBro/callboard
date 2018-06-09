@@ -18,9 +18,9 @@ namespace Callboard.App.Data.Providers.Realizations.Sql
             return _context.GetUserByLogin(login);
         }
 
-        public User RegisterUser(string login, string password)
+        public User CreateUser(string login, string password)
         {
-            return _context.RegisterUser(login, password);
+            return _context.CreateUser(login, password);
         }
 
         public bool ValidateUser(string login, string password)

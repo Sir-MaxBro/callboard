@@ -8,6 +8,6 @@ namespace Callboard.App.Data.DataContext.Main
 
         User GetUserByLogin(string login);
 
-        User RegisterUser(string login, string password);
+        User CreateUser(string login, string password);
     }
 }
