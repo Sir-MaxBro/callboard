@@ -2,14 +2,24 @@
     getDataAsync({ countryId: countryId }, "/Area/GetAreasByCountryId", renderAreas);
 }
 
-var renderAreas = function (data) {
-    var areasContainer = $('#areas');
+function clearAreas() {
+    clearCities();
+    let areasContainer = getAreasContainer();
     areasContainer.empty();
-    var defaultOption = renderDefaultOption('area');
+    let defaultOption = createOption('areaId', 0, "--- Choose area ---");
     areasContainer.append(defaultOption);
-    var areas = JSON.parse(data.Areas);
-    for (var i = 0; i < areas.length; i++) {
-        var option = createOption('areaId', areas[i].AreaId, areas[i].Name);
+}
+
+let renderAreas = function (data) {
+    clearAreas();
+    let areasContainer = getAreasContainer();
+    let areas = JSON.parse(data.Areas);
+    for (let i = 0; i < areas.length; i++) {
+        let option = createOption('areaId', areas[i].AreaId, areas[i].Name);
         areasContainer.append(option);
     }
+}
+
+let getAreasContainer = function () {
+    return $('#areas');
 }
