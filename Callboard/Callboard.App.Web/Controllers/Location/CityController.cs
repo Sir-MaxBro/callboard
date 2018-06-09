@@ -20,7 +20,7 @@ namespace Callboard.App.Web.Controllers.Location
             _checker.CheckForNull(cityProvider);
             _cityProvider = cityProvider;
         }
-        [HttpGet]
+
         public JsonResult GetCitiesByAreaId(int areaId)
         {
             var cities = _cityProvider.GetCitiesByAreaId(areaId);

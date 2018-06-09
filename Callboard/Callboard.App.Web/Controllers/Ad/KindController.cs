@@ -21,12 +21,11 @@ namespace Callboard.App.Web.Controllers
             _kindProvider = kindProvider;
         }
 
-        [HttpPost]
         public JsonResult GetKinds()
         {
             var kinds = _kindProvider.GetAll();
             var kindsData = JsonConvert.SerializeObject(kinds);
-            return Json(new { Kinds = kindsData });
+            return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
         }
     }
 }

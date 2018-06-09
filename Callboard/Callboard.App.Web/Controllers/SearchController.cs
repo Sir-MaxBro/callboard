@@ -4,6 +4,7 @@ using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -57,14 +58,15 @@ namespace Callboard.App.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult SearchAds(SearchViewModel searchModel)
+        public ActionResult SearchAds(string searchConfigurationData)
         {
-            if (searchModel == null && searchModel.SearchConfiguration == null)
+            searchConfigurationData = searchConfigurationData ?? string.Empty;
+            var searchConfiguration = JsonConvert.DeserializeObject<SearchConfiguration>(searchConfigurationData);
+            if (searchConfiguration == null)
             {
                 return RedirectToAction("Search", "Search");
             }
-            var ads = _adProvider.Search(searchModel.SearchConfiguration);
+            var ads = _adProvider.Search(searchConfiguration);
             return PartialView("Partial\\AdContainer", ads);
         }
     }

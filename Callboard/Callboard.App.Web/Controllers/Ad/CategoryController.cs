@@ -30,10 +30,8 @@ namespace Callboard.App.Web.Controllers
             return PartialView("CategoryList", model);
         }
 
-        [HttpPost]
-        public PartialViewResult GetSubcategories(int categoryId, string returnUrl = null)
+        public PartialViewResult GetSubcategories(int categoryId)
         {
-            ViewBag.ReturnUrl = returnUrl;
             CategoryViewModel model = new CategoryViewModel
             {
                 Categories = _categoryProvider.GetSubcategories(categoryId)
