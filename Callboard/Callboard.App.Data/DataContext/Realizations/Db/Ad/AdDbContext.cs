@@ -80,7 +80,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "Name", searchConfiguration.Name },
                 { "State", searchConfiguration.State },
                 { "Kind", searchConfiguration.Kind },
-                { "CountryId", searchConfiguration.CoutryId },
+                { "CountryId", searchConfiguration.CountryId },
                 { "AreaId", searchConfiguration.AreaId },
                 { "CityId", searchConfiguration.CityId },
                 { "MinPrice", searchConfiguration.MinPrice },

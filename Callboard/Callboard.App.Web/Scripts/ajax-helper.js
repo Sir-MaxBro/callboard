@@ -1,15 +1,15 @@
-﻿function renderActionAsync(obj, url, updateTargetId) {
+﻿function callActionAsync(obj, url, updateTargetId) {
     $.ajax({
         url: url,
         type: 'GET',
         contentType: 'application/json',
-        data: JSON.stringify(obj),
+        data: obj,
         dataType: "html",
         success: function (data) {
             $('#' + updateTargetId).html(data);
         },
         error: function () {
-            $('#' + updateTargetId).html("Not found");
+            $('#' + updateTargetId).html("Sorry:( Nothing found");
         }
     });
 }
@@ -19,7 +19,7 @@ function getDataAsync(obj, url, successFunc, errorFunc) {
         url: url,
         type: 'GET',
         contentType: 'application/json',
-        data: JSON.stringify(obj),
+        data: obj,
         dataType: "json",
         success: successFunc,
         error: errorFunc
