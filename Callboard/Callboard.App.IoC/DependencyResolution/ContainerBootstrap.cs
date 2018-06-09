@@ -53,6 +53,7 @@ namespace Callboard.App.IoC.DependencyResolution
 
             scan.AssemblyContainingType<IRoleProvider>();
             scan.AssemblyContainingType<IUserProvider>();
+            scan.AssemblyContainingType<IMembershipProvider>();
 
             scan.AssemblyContainingType<ICommercialProvider>();
         }

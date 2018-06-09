@@ -54,12 +54,14 @@
     <Compile Include="Providers\Main\Location\ICountryProvider.cs" />
     <Compile Include="Providers\Main\Ad\IKindProvider.cs" />
     <Compile Include="Providers\Main\Ad\IStateProvider.cs" />
+    <Compile Include="Providers\Main\User\IMembershipProvider.cs" />
     <Compile Include="Providers\Main\User\IRoleProvider.cs" />
     <Compile Include="Providers\Realization\Location\AreaProvider.cs" />
     <Compile Include="Providers\Realization\Location\CityProvider.cs" />
     <Compile Include="Providers\Realization\Location\CountryProvider.cs" />
     <Compile Include="Providers\Realization\Ad\KindProvider.cs" />
     <Compile Include="Providers\Realization\Ad\StateProvider.cs" />
+    <Compile Include="Providers\Realization\User\MembershipProvider.cs" />
     <Compile Include="Providers\Realization\User\RoleProvider.cs" />
     <Compile Include="Services\Main\ILogginService.cs" />
     <Compile Include="Services\Realizations\LogginService.cs" />
