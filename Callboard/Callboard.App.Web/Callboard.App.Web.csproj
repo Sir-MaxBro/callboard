@@ -232,6 +232,7 @@
     <Compile Include="Controllers\Location\CountryController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Ad\StateController.cs" />
+    <Compile Include="Controllers\User\MembershipController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -297,6 +298,7 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
+    <Folder Include="Views\Membership\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">

@@ -60,7 +60,7 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Admin]
-        public ActionResult GetAllUser()
+        public ActionResult GetAllUsers()
         {
             var users = _userProvider.GetAll();
             return View("UserList", users);
