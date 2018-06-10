@@ -8,5 +8,7 @@ namespace Callboard.App.Business.Providers.Main
         IReadOnlyCollection<Role> GetRolesForUser(int userId);
 
         void SetRoleForUser(int userId, int roleId);
+
+        void DeleteUserRole(int userId, int roleId);
     }
 }

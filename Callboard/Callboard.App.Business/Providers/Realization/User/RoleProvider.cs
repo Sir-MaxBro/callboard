@@ -24,6 +24,13 @@ namespace Callboard.App.Business.Providers.Realization
             _roleRepository.Delete(id);
         }
 
+        public void DeleteUserRole(int userId, int roleId)
+        {
+            _checker.CheckId(userId);
+            _checker.CheckId(roleId);
+            _roleRepository.DeleteUserRole(userId, roleId);
+        }
+
         public IReadOnlyCollection<Role> GetAll()
         {
             return _roleRepository.GetAll();
