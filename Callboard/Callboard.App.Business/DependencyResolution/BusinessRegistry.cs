@@ -11,17 +11,21 @@ namespace Callboard.App.Business.DependencyResolution
         {
             For<ILogginService>().Use<LogginService>();
 
+            For<IAdDetailsProvider>().Use<AdDetailsProvider>();
             For<IAdProvider>().Use<AdProvider>();
             For<ICategoryProvider>().Use<CategoryProvider>();
+            For<IKindProvider>().Use<KindProvider>();
+            For<IStateProvider>().Use<StateProvider>();
+
+            For<IAreaProvider>().Use<AreaProvider>();
+            For<ICityProvider>().Use<CityProvider>();
+            For<ICountryProvider>().Use<CountryProvider>();
+
+            For<IMembershipProvider>().Use<MembershipProvider>();
+            For<IRoleProvider>().Use<RoleProvider>();
             For<IUserProvider>().Use<UserProvider>();
 
             For<ICommercialProvider>().Use<CommercialProvider>();
-            For<IAdDetailsProvider>().Use<AdDetailsProvider>();
-            For<ICountryProvider>().Use<CountryProvider>();
-            For<IAreaProvider>().Use<AreaProvider>();
-            For<ICityProvider>().Use<CityProvider>();
-            For<IKindProvider>().Use<KindProvider>();
-            For<IStateProvider>().Use<StateProvider>();
         }
     }
 }
