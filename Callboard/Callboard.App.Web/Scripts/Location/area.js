@@ -1,5 +1,5 @@
 ﻿function fillAreas(countryId) {
-    if (countryId == 0) {
+    if (countryId === 0) {
         clearAreas();
     }
     else {
