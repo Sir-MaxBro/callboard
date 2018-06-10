@@ -1,6 +1,6 @@
 ﻿function searchByParams() {
     let searchConfiguration = getSearchConfiguration();
-    callActionAsync({ searchConfigurationData: JSON.stringify(searchConfiguration) }, "/Search/SearchAds", "search-result");
+    callActionAsync(JSON.stringify({ searchConfigurationData: searchConfiguration }), "/Search/SearchAds", "search-result");
 }
 
 let getSearchConfiguration = function () {

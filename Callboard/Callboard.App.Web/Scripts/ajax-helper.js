@@ -15,9 +15,17 @@
 }
 
 function getDataAsync(obj, url, successFunc, errorFunc) {
+    execActionAsync(obj, url, 'GET', successFunc, errorFunc);
+}
+
+function postDataAsync(obj, url, successFunc, errorFunc) {
+    execActionAsync(obj, url, 'POST', successFunc, errorFunc);
+}
+
+let execActionAsync = function (obj, url, type, successFunc, errorFunc) {
     $.ajax({
         url: url,
-        type: 'GET',
+        type: type,
         contentType: 'application/json',
         data: obj,
         dataType: "json",
