@@ -33,6 +33,12 @@ namespace Callboard.App.Web.Controllers
         }
 
         [User]
+        public ActionResult AddAdDetails()
+        {
+            return View("EditAdDetails", new AdDetailsViewModel());
+        }
+
+        [User]
         public ActionResult EditAdDetails(int adId)
         {
             var adDetails = _adDetailsProvider.GetById(adId);
@@ -66,7 +72,7 @@ namespace Callboard.App.Web.Controllers
                 Location = new General.Entities.Location { LocationId = adDetailsModel.LocationId },
                 User = new User { UserId = adDetailsModel.UserId },
                 AddressLine = adDetailsModel.AddressLine,
-                CreationDate = adDetailsModel.CreationDate,
+                CreationDate = DateTime.Now,
                 Categories = (IReadOnlyCollection<Category>)adDetailsModel.Categories,
                 Images = (IReadOnlyCollection<Image>)adDetailsModel.Images
             };
@@ -85,7 +91,6 @@ namespace Callboard.App.Web.Controllers
                 LocationId = adDetails.Location.LocationId,
                 UserId = adDetails.User.UserId,
                 AddressLine = adDetails.AddressLine,
-                CreationDate = adDetails.CreationDate,
                 Categories = adDetails.Categories.ToList(),
                 Images = adDetails.Images.ToList()
             };
