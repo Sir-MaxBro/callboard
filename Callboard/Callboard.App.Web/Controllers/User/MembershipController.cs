@@ -41,10 +41,7 @@ namespace Callboard.App.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("GetAllUsers", "User");
-            }
+            return RedirectToAction("GetAllUsers", "User");
         }
     }
 }

@@ -2,6 +2,8 @@
 
 <script src="~/Scripts/user-delete.js"></script>
 
+@Html.ActionLink("CreateUser", "CreateUser", "Membership", new { returnUrl = Request.RawUrl },
+    htmlAttributes: new { @class = "button button_green" })
 <table>
     <tr>
         <th>Name</th>
@@ -13,7 +15,12 @@
                 @item.Name
             </td>
             <td>
-                <input type="button" value="delete" onclick="deleteUser(@item.UserId, '@item.Name-@item.UserId')"/>
+                <input type="button" value="delete" onclick="deleteUser(@item.UserId, '@item.Name-@item.UserId')" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", "User", 
+                        new { userId = item.UserId, returnUrl = Request.RawUrl }, 
+                        htmlAttributes: new { @class = "button button_green button_hover_red" })
             </td>
         </tr>
     }

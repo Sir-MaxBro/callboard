@@ -39,8 +39,9 @@ namespace Callboard.App.Web.Controllers
         }
 
         [User]
-        public ActionResult EditUser(int userId)
+        public ActionResult EditUser(int userId, string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             var user = _userProvider.GetById(userId);
             var userModel = this.MapUserToViewModel(user);
             return View("EditUser", userModel);
@@ -48,15 +49,18 @@ namespace Callboard.App.Web.Controllers
 
         [User]
         [HttpPost]
-        public ActionResult SaveUser(UserViewModel userModel)
+        public ActionResult SaveUser(UserViewModel userModel, string returnUrl)
         {
             if (userModel != null)
             {
                 var user = this.MapViewModelToUser(userModel);
                 _userProvider.Save(user);
-                return RedirectToAction("OpenProfile", user.UserId);
             }
-            return RedirectToAction("Error", "Error");
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("GetAdList", "Ad");
         }
 
         [Admin]

@@ -1,6 +1,6 @@
 ﻿@model UserViewModel
 
-@using (Html.BeginForm("SaveUser", "User", FormMethod.Post))
+@using (Html.BeginForm("SaveUser", "User", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
 {
     <h1>User</h1>
     @Html.HiddenFor(model => model.UserId)
