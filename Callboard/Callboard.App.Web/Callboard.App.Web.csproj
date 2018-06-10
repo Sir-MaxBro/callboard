@@ -195,6 +195,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\Category\category-helper.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -207,12 +208,11 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Search\kind.js" />
-    <Content Include="Scripts\Search\search-common.js" />
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\slider.js" />
-    <Content Include="Scripts\user-delete.js" />
+    <Content Include="Scripts\User\user-edit.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -238,6 +238,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Ad\StateController.cs" />
     <Compile Include="Controllers\User\MembershipController.cs" />
+    <Compile Include="Controllers\User\RoleController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

@@ -1,5 +1,10 @@
 ﻿function fillAreas(countryId) {
-    getDataAsync({ countryId: countryId }, "/Area/GetAreasByCountryId", renderAreas);
+    if (countryId == 0) {
+        clearAreas();
+    }
+    else {
+        getDataAsync({ countryId: countryId }, "/Area/GetAreasByCountryId", renderAreas);
+    }
 }
 
 function clearAreas() {
