@@ -60,13 +60,17 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult SearchAds(string searchConfigurationData)
         {
+            IReadOnlyCollection<Ad> ads = null;
             searchConfigurationData = searchConfigurationData ?? string.Empty;
             var searchConfiguration = JsonConvert.DeserializeObject<SearchConfiguration>(searchConfigurationData);
             if (searchConfiguration == null)
             {
-                return RedirectToAction("Search", "Search");
+                ads = _adProvider.GetAds();
             }
-            var ads = _adProvider.Search(searchConfiguration);
+            else
+            {
+                ads = _adProvider.Search(searchConfiguration);
+            }
             return PartialView("Partial\\AdContainer", ads);
         }
     }
