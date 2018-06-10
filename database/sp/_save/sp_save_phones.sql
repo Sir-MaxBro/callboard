@@ -6,6 +6,10 @@ CREATE PROCEDURE [dbo].sp_save_phones
     @UserId INT
 )
 AS BEGIN
+	DELETE
+	FROM [dbo].[Phone]
+	WHERE [Phone].[UserId] = @UserId
+	
 	DECLARE @cur_PhoneId INT
 	DECLARE @cur_Number NVARCHAR(50)
 

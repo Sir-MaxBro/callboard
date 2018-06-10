@@ -90,6 +90,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_city_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_country_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_role_by_id.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_images_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_ad_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_delete\sp_delete_kind_by_id.sql

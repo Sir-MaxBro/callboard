@@ -53,10 +53,13 @@ BEGIN
 				[Description] = @Description
 			WHERE [AdId] = @AdId
 
-			UPDATE [dbo].AdsInCategories
-			SET [CategoryId] = categories.[CategoryId]
+			DELETE 
+			FROM [dbo].[AdsInCategories]
+			WHERE [AdsInCategories].AdId = @AdId
+
+			INSERT INTO [dbo].AdsInCategories([AdId], [CategoryId])
+			SELECT @AdId, categories.[CategoryId]
 			FROM @Categories AS categories
-			WHERE [AdId] = @AdId
 		END
 
 	EXEC [dbo].sp_save_images @Images, @AdId

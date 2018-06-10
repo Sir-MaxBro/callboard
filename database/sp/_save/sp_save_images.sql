@@ -6,6 +6,8 @@ CREATE PROCEDURE [dbo].sp_save_images
     @AdId INT
 )
 AS BEGIN
+	EXEC [dbo].[sp_delete_images_by_adid] @AdId
+	
 	DECLARE @cur_ImageId INT
 	DECLARE @cur_Data VARBINARY(MAX)
 	DECLARE @cur_Extension NVARCHAR(50)

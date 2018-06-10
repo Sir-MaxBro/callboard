@@ -6,6 +6,10 @@ CREATE PROCEDURE [dbo].sp_save_mails
     @UserId INT
 )
 AS BEGIN
+	DELETE
+	FROM [dbo].[Mail]
+	WHERE [Mail].[UserId] = @UserId
+	
 	DECLARE @cur_MailId INT
 	DECLARE @cur_Email NVARCHAR(MAX)
 
