@@ -19,6 +19,11 @@ namespace Callboard.App.Data.Repositories.Realizations
             _context.Delete(id);
         }
 
+        public void DeleteUserRole(int userId, int roleId)
+        {
+            _context.DeleteUserRole(userId, roleId);
+        }
+
         public IReadOnlyCollection<Role> GetAll()
         {
             return _context.GetAll();

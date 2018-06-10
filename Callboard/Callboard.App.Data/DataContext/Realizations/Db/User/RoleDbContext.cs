@@ -75,6 +75,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             base.Execute(procedureName, values);
         }
 
+        public void DeleteUserRole(int userId, int roleId)
+        {
+            var procedureName = "sp_delete_user_role";
+            var values = new Dictionary<string, object>
+            {
+                { "UserId", userId },
+                { "RoleId", roleId }
+            };
+            base.Execute(procedureName, values);
+        }
+
         private IDictionary<string, object> MapRoleValues(Role role)
         {
             return new Dictionary<string, object>
