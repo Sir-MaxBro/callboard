@@ -193,6 +193,9 @@
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AdDetails\kind.js" />
+    <Content Include="Scripts\AdDetails\startup.js" />
+    <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\Category\category-helper.js" />
     <Content Include="Scripts\common.js" />
@@ -200,9 +203,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Search\area.js" />
-    <Content Include="Scripts\Search\city.js" />
-    <Content Include="Scripts\Search\country.js" />
+    <Content Include="Scripts\Location\area.js" />
+    <Content Include="Scripts\Location\city.js" />
+    <Content Include="Scripts\Location\country.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
