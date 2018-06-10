@@ -39,12 +39,12 @@ namespace Callboard.App.Web.Controllers
         }
 
         [User]
-        public ActionResult EditUser(int userId, string returnUrl)
+        public PartialViewResult EditUser(int userId, string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             var user = _userProvider.GetById(userId);
             var userModel = this.MapUserToViewModel(user);
-            return View("EditUser", userModel);
+            return PartialView("EditUser", userModel);
         }
 
         [User]
@@ -72,10 +72,10 @@ namespace Callboard.App.Web.Controllers
 
         [Admin]
         [HttpPost]
-        public JsonResult DeleteUserById(int userId)
+        public ActionResult DeleteUserById(int userId)
         {
             _userProvider.Delete(userId);
-            return Json(new { IsDeleted = true });
+            return RedirectToAction("GetAllUsers");
         }
 
         private UserViewModel MapUserToViewModel(User user)
