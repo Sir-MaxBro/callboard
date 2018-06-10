@@ -23,6 +23,9 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/category")
                 .IncludeDirectory("~/Scripts/Category", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/user")
+                .IncludeDirectory("~/Scripts/User", "*.js", false));
         }
     }
 }
