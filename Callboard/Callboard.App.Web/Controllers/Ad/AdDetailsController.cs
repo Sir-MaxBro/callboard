@@ -62,19 +62,6 @@ namespace Callboard.App.Web.Controllers
             return RedirectToAction("Error", "Error");
         }
 
-        //[User]
-        //[HttpPost]
-        //public ActionResult SaveAdDetails(AdDetailsViewModel adDetailsModel)
-        //{
-        //    if (adDetailsModel != null)
-        //    {
-        //        var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
-        //        _adDetailsProvider.Save(adDetails);
-        //        return RedirectToAction("GetAdDetails", new { adId = adDetails.AdId });
-        //    }
-        //    return RedirectToAction("Error", "Error");
-        //}
-
         private AdDetails MapViewModelToAdDetails(AdDetailsViewModel adDetailsModel)
         {
             return new AdDetails
@@ -85,7 +72,7 @@ namespace Callboard.App.Web.Controllers
                 Kind = adDetailsModel.Kind,
                 Price = adDetailsModel.Price,
                 Description = adDetailsModel.Description,
-                Location = new General.Entities.Location { LocationId = adDetailsModel.LocationId },
+                Location = new Location { LocationId = adDetailsModel.Location.LocationId },
                 User = new User { UserId = adDetailsModel.UserId },
                 AddressLine = adDetailsModel.AddressLine,
                 CreationDate = DateTime.Now,
@@ -104,7 +91,13 @@ namespace Callboard.App.Web.Controllers
                 Kind = adDetails.Kind,
                 Price = adDetails.Price,
                 Description = adDetails.Description,
-                LocationId = adDetails.Location.LocationId,
+                Location = new Location
+                {
+                    LocationId = adDetails.Location.LocationId,
+                    Country = adDetails.Location.Country,
+                    Area = adDetails.Location.Area,
+                    City = adDetails.Location.City
+                },
                 UserId = adDetails.User.UserId,
                 AddressLine = adDetails.AddressLine,
                 Categories = adDetails.Categories.ToArray(),
