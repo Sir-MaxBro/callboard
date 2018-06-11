@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Web.Mvc;
 
-namespace Callboard.App.Web.Controllers.Location
+namespace Callboard.App.Web.Controllers
 {
     public class CityController : Controller
     {

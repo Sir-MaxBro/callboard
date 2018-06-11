@@ -193,9 +193,10 @@
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AdDetails\addetails-save.js" />
     <Content Include="Scripts\AdDetails\category.js" />
+    <Content Include="Scripts\AdDetails\image.js" />
     <Content Include="Scripts\AdDetails\kind.js" />
-    <Content Include="Scripts\AdDetails\startup.js" />
     <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\Category\category-helper.js" />
@@ -211,6 +212,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Location\location.js" />
     <Content Include="Scripts\Search\kind.js" />
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\startup.js" />

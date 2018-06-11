@@ -19,10 +19,11 @@ function getDataAsync(obj, url, successFunc, errorFunc) {
 }
 
 function postDataAsync(obj, url, successFunc, errorFunc) {
+    console.log(obj);
     execActionAsync(obj, url, 'POST', successFunc, errorFunc);
 }
 
-let execActionAsync = function (obj, url, type, successFunc, errorFunc) {
+function execActionAsync(obj, url, type, successFunc, errorFunc) {
     $.ajax({
         url: url,
         type: type,

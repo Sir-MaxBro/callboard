@@ -3,6 +3,7 @@ using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,8 +49,10 @@ namespace Callboard.App.Web.Controllers
 
         [User]
         [HttpPost]
-        public ActionResult SaveAdDetails(AdDetailsViewModel adDetailsModel)
+        public ActionResult SaveAdDetails(string adDetailsData)
         {
+            adDetailsData = adDetailsData ?? string.Empty;
+            var adDetailsModel = JsonConvert.DeserializeObject<AdDetailsViewModel>(adDetailsData);
             if (adDetailsModel != null)
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
@@ -69,7 +72,7 @@ namespace Callboard.App.Web.Controllers
                 Kind = adDetailsModel.Kind,
                 Price = adDetailsModel.Price,
                 Description = adDetailsModel.Description,
-                Location = new General.Entities.Location { LocationId = adDetailsModel.LocationId },
+                Location = new Location { LocationId = adDetailsModel.Location.LocationId },
                 User = new User { UserId = adDetailsModel.UserId },
                 AddressLine = adDetailsModel.AddressLine,
                 CreationDate = DateTime.Now,
@@ -88,7 +91,13 @@ namespace Callboard.App.Web.Controllers
                 Kind = adDetails.Kind,
                 Price = adDetails.Price,
                 Description = adDetails.Description,
-                LocationId = adDetails.Location.LocationId,
+                Location = new Location
+                {
+                    LocationId = adDetails.Location.LocationId,
+                    Country = adDetails.Location.Country,
+                    Area = adDetails.Location.Area,
+                    City = adDetails.Location.City
+                },
                 UserId = adDetails.User.UserId,
                 AddressLine = adDetails.AddressLine,
                 Categories = adDetails.Categories.ToArray(),
