@@ -27,9 +27,9 @@ namespace Callboard.App.Web.Models
         [Required]
         public string State { get; set; }
 
-        public IList<Image> Images { get; set; }
+        public Image[] Images { get; set; }
 
-        public IList<Category> Categories { get; set; }
+        public Category[] Categories { get; set; }
 
         [Required]
         public int UserId { get; set; }

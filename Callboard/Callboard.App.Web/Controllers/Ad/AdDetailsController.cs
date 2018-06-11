@@ -91,8 +91,8 @@ namespace Callboard.App.Web.Controllers
                 LocationId = adDetails.Location.LocationId,
                 UserId = adDetails.User.UserId,
                 AddressLine = adDetails.AddressLine,
-                Categories = adDetails.Categories.ToList(),
-                Images = adDetails.Images.ToList()
+                Categories = adDetails.Categories.ToArray(),
+                Images = adDetails.Images.ToArray()
             };
         }
     }
