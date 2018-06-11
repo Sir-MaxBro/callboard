@@ -34,6 +34,11 @@ namespace Callboard.App.Data.Repositories.Realizations
             return _context.GetSubcategories(categoryId);
         }
 
+        public IReadOnlyCollection<Category> GetMainCategories()
+        {
+            return _context.GetMainCategories();
+        }
+
         public void Save(Category obj)
         {
             _context.Save(obj);

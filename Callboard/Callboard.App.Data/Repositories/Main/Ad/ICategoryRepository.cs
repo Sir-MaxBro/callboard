@@ -6,5 +6,7 @@ namespace Callboard.App.Data.Repositories.Main
     public interface ICategoryRepository : IRepository<Category>
     {
         IReadOnlyCollection<Category> GetSubcategories(int categoryId);
+
+        IReadOnlyCollection<Category> GetMainCategories();
     }
 }
