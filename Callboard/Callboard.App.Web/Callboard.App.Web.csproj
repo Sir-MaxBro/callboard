@@ -193,6 +193,7 @@
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AdDetails\category.js" />
     <Content Include="Scripts\AdDetails\kind.js" />
     <Content Include="Scripts\AdDetails\startup.js" />
     <Content Include="Scripts\AdDetails\state.js" />

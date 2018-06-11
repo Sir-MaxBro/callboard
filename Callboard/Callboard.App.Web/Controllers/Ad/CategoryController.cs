@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Web.Mvc;
 
@@ -21,11 +22,18 @@ namespace Callboard.App.Web.Controllers
             _categoryProvider = categoryProvider;
         }
 
-        public PartialViewResult GetCategories()
+        public JsonResult GetCategories()
+        {
+            var categories = _categoryProvider.GetAll();
+            var categoriesData = JsonConvert.SerializeObject(categories);
+            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+        }
+
+        public PartialViewResult GetMainCategories()
         {
             CategoryViewModel model = new CategoryViewModel
             {
-                Categories = _categoryProvider.GetAll()
+                Categories = _categoryProvider.GetMainCategories()
             };
             return PartialView("CategoryList", model);
         }
