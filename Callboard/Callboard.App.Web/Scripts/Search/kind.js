@@ -1,4 +1,4 @@
-﻿function kindsLoad() {
+﻿function loadKinds() {
     getDataAsync(null, "/Kind/GetKinds", renderKinds);
 }
 

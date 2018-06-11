@@ -1,5 +1,5 @@
 ﻿window.addEventListener("load", function () {
-    countriesLoad();
-    kindsLoad();
-    statesLoad();
+    loadCountries();
+    loadKinds();
+    loadStates();
 })

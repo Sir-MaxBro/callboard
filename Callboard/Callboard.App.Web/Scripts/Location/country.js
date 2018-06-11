@@ -1,4 +1,4 @@
-﻿function countriesLoad() {
+﻿function loadCountries() {
     getDataAsync(null, "/Country/GetCountries", renderCountries);
 }
 

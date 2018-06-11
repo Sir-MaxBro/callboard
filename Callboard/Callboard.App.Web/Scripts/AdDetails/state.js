@@ -1,4 +1,4 @@
-﻿function statesLoad() {
+﻿function loadStates() {
     getDataAsync(null, "/State/GetStates", renderStates);
 }
 
