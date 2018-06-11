@@ -4,30 +4,33 @@
 
 <script>
     window.onload = function () {
-        if (@Model.LocationId == 0) {
-            loadCountries();
-        }
-        else {
-
+        if (@Model.Location.LocationId == 0) {
+            fillLocation('location');
         }
         loadKinds();
         loadStates();
         loadCategories(@Html.Raw(Json.Encode(Model.Categories)));
+        fillImages(@Html.Raw(Json.Encode(Model.Images)), 'images');
     };
 </script>
 
 <div>
-    @*<div id="ad__image" class="ad__image ad__image_big">
-            @{ Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
-        </div>*@
     <div class="ad__content">
 
         <input type="hidden" id="userId" value="@Model.UserId" />
         <input type="hidden" id="adId" value="@Model.AdId" />
+
+        <div class="ad__image">
+            <div id="images">
+
+            </div>
+            <a href="#" onclick="addImage('images')">Add image</a>
+        </div>
+
         <div class="ad__name">
             <input type="text" id="name" value="@Model.Name" />
         </div>
-        <div class="">
+        <div>
             <input type="text" id="price" value="@Model.Price" />
         </div>
         <div>
@@ -36,28 +39,20 @@
         <div>
             <input type="text" id="addressLine" value="@Model.AddressLine" />
         </div>
-        <div>
-            <select id="countries" onchange="fillAreas(this.options[this.selectedIndex].value)">
-                <option selected="selected" value="0">--- Choose country ---</option>
-            </select>
 
-            <select id="areas" onchange="fillCities(this.options[this.selectedIndex].value)">
-                <option selected="selected" value="0">--- Choose area ---</option>
-            </select>
-
-            <select id="cities">
-                <option selected="selected" value="0">--- Choose city ---</option>
-            </select>
-
-
-            <select id="kinds">
-                <option selected="selected" value="">--- Choose kind ---</option>
-            </select>
-
-            <select id="states">
-                <option selected="selected" value="">--- Choose state ---</option>
-            </select>
+        <div id="location">
+            <input type="hidden" id="locationId" value="@Model.Location.LocationId" />
+            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
+            <a href="#" onclick="fillLocation('location')">Change location</a>
         </div>
+
+        <select id="kinds">
+            <option selected="selected" value="">--- Choose kind ---</option>
+        </select>
+
+        <select id="states">
+            <option selected="selected" value="">--- Choose state ---</option>
+        </select>
 
         <select id="categories" multiple="multiple">
             <option selected="selected">--- Choose category ---</option>
