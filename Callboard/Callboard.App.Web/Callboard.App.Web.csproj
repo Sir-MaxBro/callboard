@@ -197,8 +197,6 @@
     <Content Include="Scripts\AdDetails\category.js" />
     <Content Include="Scripts\AdDetails\image.js" />
     <Content Include="Scripts\AdDetails\kind.js" />
-    <Content Include="Scripts\AdDetails\location.js" />
-    <Content Include="Scripts\AdDetails\startup.js" />
     <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\Category\category-helper.js" />
