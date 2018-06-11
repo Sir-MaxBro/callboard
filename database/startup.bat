@@ -1,6 +1,9 @@
 set user="max_bro"
-set password="1111"
-set server="DESKTOP-4I1O878\SQLEXPRESS"
+set password="1D2F2f3E3asd"
+set server="EPBYMOGW0209\SQLEXPRESS"
+set currentPath=%~dp0
+
+sqlcmd -S %server% -i startup.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i drop_db.sql
 sqlcmd -S %server% -i drop_user.sql
@@ -28,6 +31,8 @@ sqlcmd -S %server% -U %user% -P %password% -i tables\AdDetails.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\AdsInCategories.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\ImagesInAds.sql
 
+
+
 sqlcmd -S %server% -U %user% -P %password% -i inserts\UserInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\PhoneInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\MailInsert.sql
@@ -37,7 +42,39 @@ sqlcmd -S %server% -U %user% -P %password% -i inserts\CountryInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AreaInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\CityInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdInsert.sql
-sqlcmd -S %server% -U %user% -P %password% -i inserts\ImageInsert.sql
+
+sqlcmd -S %server% -U %user% -P %password% -i sp\_insert\sp_image_insert.sql
+set image_1='%currentPath%images\breakfast.png'
+set extension_1='png'
+set image_2='%currentPath%images\nike2.jpg'
+set extension_2='jpg'
+set image_3='%currentPath%images\burger.jpg'
+set extension_3='jpg'
+set image_4='%currentPath%images\amazon.jpg'
+set extension_4='jpg'
+set image_5='%currentPath%images\christmas.jpg'
+set extension_5='jpg'
+set image_6='%currentPath%images\coffee.png'
+set extension_6='png'
+set image_7='%currentPath%images\cola.jpg'
+set extension_7='jpg'
+set image_8='%currentPath%images\gatorade.png'
+set extension_8='png'
+set image_9='%currentPath%images\ketchup.jpg'
+set extension_9='jpg'
+set image_10='%currentPath%images\nike.jpg'
+set extension_10='jpg'
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_1%], @CurrentPath=[N%image_1%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_2%], @CurrentPath=[N%image_2%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_3%], @CurrentPath=[N%image_3%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_4%], @CurrentPath=[N%image_4%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_5%], @CurrentPath=[N%image_5%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_6%], @CurrentPath=[N%image_6%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_7%], @CurrentPath=[N%image_7%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_8%], @CurrentPath=[N%image_8%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_9%], @CurrentPath=[N%image_9%]"
+sqlcmd -S %server% -U %user% -P %password% -Q "USE [callboardDB]; EXEC [dbo].[sp_image_insert] @Extension = [%extension_10%], @CurrentPath=[N%image_10%]"
+
 sqlcmd -S %server% -U %user% -P %password% -i inserts\ImagesInAdsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\AdDetailsInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\CategoryInsert.sql

@@ -1,4 +1,4 @@
-CREATE LOGIN max_bro WITH PASSWORD = '1111'
+CREATE LOGIN max_bro WITH PASSWORD = '1D2F2f3E3asd'
 GO
 
 Use [callboardDB];
