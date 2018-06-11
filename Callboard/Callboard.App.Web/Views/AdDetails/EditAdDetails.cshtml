@@ -33,20 +33,36 @@
             </select>
 
             @Html.DropDownListFor(model => model.LocationId,
-                         new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true, Value = "0" } },
-                         htmlAttributes: new { id = "cities" })
+                                             new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true, Value = "0" } },
+                                             htmlAttributes: new { id = "cities" })
 
             @Html.DropDownListFor(model => model.Kind,
-                           new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
-                           htmlAttributes: new { id = "kinds" })
+                                               new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
+                                               htmlAttributes: new { id = "kinds" })
 
             @Html.DropDownListFor(model => model.State,
-                           new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
-                           htmlAttributes: new { id = "states" })
+                                               new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
+                                               htmlAttributes: new { id = "states" })
         </div>
         @Html.HiddenFor(model => model.UserId)
         @Html.HiddenFor(model => model.AdId)
-        @Html.HiddenFor(model => model.Categories)
+
+        @for (int i = 0; i < Model.Categories.Length; i++)
+        {
+            <div>@Html.EditorFor(model => model.Categories[i].CategoryId)</div>
+        }
+
+        @*@Html.DropDownListFor(model => model.Categories, Model.Categories as SelectList)*@
+
+        @*@Html.DropDownList("Categories.CategoryId", 
+       Model.Categories.Select(category => new SelectListItem { Value = category.CategoryId.ToString(), Text = category.Name }))*@
+
+        @*@Html.ListBoxFor(model => model.Categories,
+       new MultiSelectList(Model.Categories.Select(category => new MultiSelectList())*@
+
+        <select id="categories" name="Categories" multiple="multiple">
+            <option selected="selected">--- Choose category ---</option>
+        </select>
 
         <input type="submit" value="Save" />
     </div>
