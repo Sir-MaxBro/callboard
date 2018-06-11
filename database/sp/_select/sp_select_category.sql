@@ -5,6 +5,5 @@ AS
 (
     SELECT [CategoryId], [Name], [ParentId] 
     FROM [dbo].[Category]
-    WHERE ISNULL([ParentId], -1) = -1
 );
 GO

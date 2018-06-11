@@ -76,6 +76,7 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_city.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_role.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_user.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_userid.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_main_category.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
