@@ -5,3 +5,13 @@
     option.text(text);
     return option;
 }
+
+function renderLink(text, click) {
+    let link = $('<a></a>');
+    link.attr('href', '#');
+    link.text(text);
+    link.on('click', function () {
+        click.call();
+    });
+    return link;
+}

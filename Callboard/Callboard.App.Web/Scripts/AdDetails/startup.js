@@ -1,6 +1,6 @@
-﻿window.onload = function () {
-    loadCountries();
-    loadKinds();
-    loadStates();
-    loadCategories();
-};
+﻿//window.onload = function () {
+//    loadCountries();
+//    loadKinds();
+//    loadStates();
+//    loadCategories();
+//};

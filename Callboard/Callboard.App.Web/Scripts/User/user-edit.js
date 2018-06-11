@@ -72,13 +72,3 @@ let renderRoles = function (data) {
     role.append(saveLink);
     rolesContainer.append(role);
 }
-
-let renderLink = function (text, click) {
-    let link = $('<a></a>');
-    link.attr('href', '#');
-    link.text(text);
-    link.on('click', function () {
-        click.call();
-    });
-    return link;
-}

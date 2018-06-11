@@ -3,6 +3,7 @@ using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,8 +49,10 @@ namespace Callboard.App.Web.Controllers
 
         [User]
         [HttpPost]
-        public ActionResult SaveAdDetails(AdDetailsViewModel adDetailsModel)
+        public ActionResult SaveAdDetails(string adDetailsData)
         {
+            adDetailsData = adDetailsData ?? string.Empty;
+            var adDetailsModel = JsonConvert.DeserializeObject<AdDetailsViewModel>(adDetailsData);
             if (adDetailsModel != null)
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
@@ -58,6 +61,19 @@ namespace Callboard.App.Web.Controllers
             }
             return RedirectToAction("Error", "Error");
         }
+
+        //[User]
+        //[HttpPost]
+        //public ActionResult SaveAdDetails(AdDetailsViewModel adDetailsModel)
+        //{
+        //    if (adDetailsModel != null)
+        //    {
+        //        var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
+        //        _adDetailsProvider.Save(adDetails);
+        //        return RedirectToAction("GetAdDetails", new { adId = adDetails.AdId });
+        //    }
+        //    return RedirectToAction("Error", "Error");
+        //}
 
         private AdDetails MapViewModelToAdDetails(AdDetailsViewModel adDetailsModel)
         {
