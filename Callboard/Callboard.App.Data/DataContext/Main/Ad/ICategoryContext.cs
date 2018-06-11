@@ -6,5 +6,7 @@ namespace Callboard.App.Data.DataContext.Main
     public interface ICategoryContext : IDataContext<Category>
     {
         IReadOnlyCollection<Category> GetSubcategories(int categoryId);
+
+        IReadOnlyCollection<Category> GetMainCategories();
     }
 }

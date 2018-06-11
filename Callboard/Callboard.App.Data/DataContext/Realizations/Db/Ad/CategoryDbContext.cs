@@ -48,6 +48,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return subcategories;
         }
 
+        public IReadOnlyCollection<Category> GetMainCategories()
+        {
+            string procedureName = "sp_select_main_category";
+            var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
+            var categories = base.GetAll(procedureName, mapper);
+            return categories;
+        }
+
         public void Save(Category obj)
         {
             var procedureName = "sp_save_category";
