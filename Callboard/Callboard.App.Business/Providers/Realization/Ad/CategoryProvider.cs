@@ -41,6 +41,11 @@ namespace Callboard.App.Business.Providers.Realization
             return _categoryRepository.GetSubcategories(categoryId);
         }
 
+        public IReadOnlyCollection<Category> GetMainCategories()
+        {
+            return _categoryRepository.GetMainCategories();
+        }
+
         public void Save(Category obj)
         {
             _checker.CheckForNull(obj);
