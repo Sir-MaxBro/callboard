@@ -22,14 +22,19 @@ BEGIN
 		[State] NVARCHAR(50)
 		);
 
+	DECLARE @dataCount int = (SELECT COUNT(1) FROM @Categories)
+
 	INSERT INTO @Ads
 	SELECT ads.* 
 	FROM [dbo].func_select_ad() AS ads
-	WHERE ads.[AdId] IN (
-		SELECT [AdsInCategories].[AdId]
-		FROM @Categories AS categories
-		INNER JOIN [dbo].[AdsInCategories]
-		ON categories.[CategoryId] = [AdsInCategories].[CategoryId]
+	WHERE (
+		(@dataCount = 0) OR (ads.[AdId] IN (
+			SELECT [AdsInCategories].[AdId]
+			FROM @Categories AS categories
+			INNER JOIN [dbo].[AdsInCategories]
+			ON categories.[CategoryId] = [AdsInCategories].[CategoryId]
+			)
+		)
 	)
 	AND ads.Name LIKE '%' + ISNULL(@Name, '') + '%'
 	AND ads.[State] = IIF(@State = '', ads.[State], @State)
