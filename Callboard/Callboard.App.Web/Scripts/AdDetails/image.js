@@ -1,24 +1,18 @@
-﻿function fillImages(images, updateTargerId) {
-    let imagesContainer = $("#" + updateTargerId);
-    imagesContainer.empty();
-
-    for (let i = 0; i < images.length; i++) {
-        let img = getImage();
-
-        let imageBase64 = convertByteToBase64(images[i].Data);
-
-        img.attr('src', `data:image/${images[i].Extension};base64,${imageBase64}`);
-        img.attr('data-image-id', images[i].ImageId);
-        img.attr('data-extension', images[i].Extension);
-
-        imagesContainer.append(img);
-    }
+﻿function getImageSrc(byteArray, extension) {
+    console.log(byteArray);
+    let base64 = convertByteToBase64(byteArray);
+    let src = "data:image/" + extension + ";base64," + base64;
+    return src;
 }
 
 function addImage(updateTargerId) {
     let imagesContainer = $("#" + updateTargerId);
     let fileInput = $("<input />").attr('type', 'file');
     let img = getImage();
+    img.on('click', function () {
+        this.remove();
+    });
+
     fileInput.on('change', function (evt) {
         let tgt = evt.target || window.event.srcElement;
         let files = tgt.files;

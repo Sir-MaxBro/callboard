@@ -19,7 +19,6 @@ function getDataAsync(obj, url, successFunc, errorFunc) {
 }
 
 function postDataAsync(obj, url, successFunc, errorFunc) {
-    console.log(obj);
     execActionAsync(obj, url, 'POST', successFunc, errorFunc);
 }
 

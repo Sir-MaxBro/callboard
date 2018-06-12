@@ -194,13 +194,13 @@
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\AdDetails\addetails-save.js" />
-    <Content Include="Scripts\AdDetails\category.js" />
     <Content Include="Scripts\AdDetails\image.js" />
     <Content Include="Scripts\AdDetails\kind.js" />
     <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
-    <Content Include="Scripts\Category\category-helper.js" />
-    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\Category\category-menu.js" />
+    <Content Include="Scripts\Common\category-load.js" />
+    <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -295,7 +295,7 @@
     <Content Include="Views\Shared\Partial\AdContainer.cshtml" />
     <Content Include="Views\User\UserList.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
-    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\UserEdit.cshtml" />
     <Content Include="Views\AdDetails\EditAdDetails.cshtml" />
     <Content Include="Views\Membership\CreateUser.cshtml" />
     <None Include="Web.Debug.config">

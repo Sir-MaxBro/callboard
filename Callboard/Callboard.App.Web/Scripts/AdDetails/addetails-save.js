@@ -1,7 +1,15 @@
 ﻿function saveAdDetails() {
     let adDetails = getAdDetails();
-    console.log(adDetails);
-    $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) });
+    $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) }, saveResult);
+}
+
+let saveResult = function (data) {
+    let isSaved = JSON.parse(data.IsSaved);
+    if (isSaved == true) {
+        let saveResultContainer = $("#save-result");
+        saveResultContainer.empty();
+        saveResultContainer.append("success");
+    }
 }
 
 let getAdDetails = function () {
