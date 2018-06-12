@@ -1,25 +1,39 @@
-﻿@model UserViewModel
+﻿@model User
+@Scripts.Render("~/user")
 
-@using (Html.BeginForm("SaveUser", "User", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-{
-    <h1>User</h1>
-    @Html.HiddenFor(model => model.UserId)
-    @Html.EditorFor(model => model.Name)
+<h1>User</h1>
+<input type="hidden" id="userId" value="@Model.UserId" />
+<input type="text" id="name" value="@Model.Name" />
 
+<div>
+    @if (Model.PhotoData == null)
+    {
+        <img id="photo" width="200" height="200" />
+    }
+    else
+    {
+        @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, null, htmlAttributes: new { width = 100, height = 100, id = "photo" })
+    }
+    <input type="file" onchange="fillPhoto(event)" />
+</div>
+
+<div>
     <div id="phones">
-        @for (int i = 0; i < Model.Phones.Count; i++)
+        @foreach (var phone in Model.Phones)
         {
-            @Html.HiddenFor(model => Model.Phones[i].PhoneId)
-            <div>@Html.EditorFor(model => Model.Phones[i].Number)</div>
+            <input type="text" value="@phone.Number" data-phone-id="@phone.PhoneId" />
         }
     </div>
+    <a href="#" onclick="addPhone()" class="button button_green" style="width:100px;">add phone</a>
+</div>
 
+<div>
     <div id="emails">
-        @for (int i = 0; i < Model.Mails.Count; i++)
+        @foreach (var mail in Model.Mails)
         {
-            @Html.HiddenFor(model => Model.Mails[i].MailId)
-            <div>@Html.EditorFor(model => Model.Mails[i].Email)</div>
+            <input type="text" value="@mail.Email" data-mail-id="@mail.MailId" />
         }
     </div>
-    <input type="submit" value="Save" class="button" />
-}
+    <a href="#" onclick="addMail()" class="button button_green" style="width:100px;">add mail</a>
+</div>
+<input type="button" onclick="saveUser()" value="Save" class="button" />
