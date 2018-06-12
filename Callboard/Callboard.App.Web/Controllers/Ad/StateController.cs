@@ -1,5 +1,7 @@
 ﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Web.Mvc;
@@ -26,6 +28,29 @@ namespace Callboard.App.Web.Controllers
             var states = _stateProvider.GetAll();
             var statesData = JsonConvert.SerializeObject(states);
             return Json(new { States = statesData }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Editor]
+        [HttpPost]
+        public JsonResult SaveState(string stateData)
+        {
+            bool isSaved = false;
+            stateData = stateData ?? string.Empty;
+            var state = JsonConvert.DeserializeObject<State>(stateData);
+            if (state != null)
+            {
+                _stateProvider.Save(state);
+                isSaved = true;
+            }
+            return Json(new { IsSaved = isSaved });
+        }
+
+        [Editor]
+        [HttpPost]
+        public JsonResult DeleteState(int stateId)
+        {
+            _stateProvider.Delete(stateId);
+            return Json(new { IdDeleted = true });
         }
     }
 }
