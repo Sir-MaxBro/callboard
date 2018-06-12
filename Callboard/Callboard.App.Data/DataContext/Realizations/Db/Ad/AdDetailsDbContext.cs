@@ -61,8 +61,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             var metadata = new SqlMetaData[]
             {
                 new SqlMetaData("ImageId", SqlDbType.Int),
-                new SqlMetaData("Data", SqlDbType.VarBinary, 8000),
-                new SqlMetaData("MimeType", SqlDbType.NVarChar, 50),
+                new SqlMetaData("Data", SqlDbType.VarBinary, -1),
+                new SqlMetaData("Extension", SqlDbType.NVarChar, 50),
             };
             foreach (var item in images)
             {
