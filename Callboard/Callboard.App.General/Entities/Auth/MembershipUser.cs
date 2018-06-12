@@ -20,10 +20,6 @@ namespace Callboard.App.General.Entities.Auth
 
         public string Name { get; set; }
 
-        public byte[] PhotoData { get; set; }
-
-        public string PhotoExtension { get; set; }
-
         public IReadOnlyCollection<Role> Roles { get; set; }
     }
 }
