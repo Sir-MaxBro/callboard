@@ -12,6 +12,7 @@ let getSearchConfiguration = function () {
     let state = $("#states").find(":selected").val();
     let minPrice = $("#min-price").val();
     let maxPrice = $("#max-price").val();
+    let categories = getSearchCategories();
     let searchConfiguration = {
         Name: name,
         CountryId: countryId,
@@ -20,7 +21,19 @@ let getSearchConfiguration = function () {
         Kind: kind,
         State: state,
         MinPrice: minPrice,
-        MaxPrice: maxPrice
+        MaxPrice: maxPrice,
+        Categories: categories
     };
     return searchConfiguration;
+}
+
+let getSearchCategories = function () {
+    let categories = [];
+    $("#categories").find(":selected").each(function () {
+        let category = {
+            CategoryId: $(this).val()
+        };
+        categories.push(category);
+    });
+    return categories;
 }

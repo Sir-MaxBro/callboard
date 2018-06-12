@@ -218,7 +218,8 @@
     <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\slider.js" />
-    <Content Include="Scripts\User\user-edit.js" />
+    <Content Include="Scripts\Admin\user-edit.js" />
+    <Content Include="Scripts\User\user-save.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -298,6 +299,7 @@
     <Content Include="Views\User\UserEdit.cshtml" />
     <Content Include="Views\AdDetails\EditAdDetails.cshtml" />
     <Content Include="Views\Membership\CreateUser.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
