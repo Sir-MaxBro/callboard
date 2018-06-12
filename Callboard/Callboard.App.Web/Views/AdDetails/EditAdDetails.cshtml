@@ -9,8 +9,7 @@
         }
         loadKinds();
         loadStates();
-        loadCategories(@Html.Raw(Json.Encode(Model.Categories)));
-        fillImages(@Html.Raw(Json.Encode(Model.Images)), 'images');
+        loadCategories('categories', @Html.Raw(Json.Encode(Model.Categories)));
     };
 </script>
 
@@ -22,7 +21,20 @@
 
         <div class="ad__image">
             <div id="images">
-
+                @if (Model.Images != null && Model.Images.Length > 0)
+                {
+                    foreach (var item in Model.Images)
+                    {
+                        <div>
+                            @Html.RenderImage(item.Data, item.Extension, null,
+                                 htmlAttributes: new { width = 100, height = 100, data_image_id = item.ImageId, onclick = "this.remove();" })
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div>Images not found</div>
+                }
             </div>
             <a href="#" onclick="addImage('images')">Add image</a>
         </div>
@@ -59,5 +71,9 @@
         </select>
 
         <input type="button" value="Save" onclick="saveAdDetails()" class="button button_green button_rounded" />
+
+        <div id="save-result">
+
+        </div>
     </div>
 </div>
