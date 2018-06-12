@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -34,17 +35,30 @@ namespace Callboard.App.Web.Controllers
         }
 
         [User]
-        public ActionResult AddAdDetails()
+        public ActionResult CreateAdDetails()
         {
-            return View("EditAdDetails", new AdDetailsViewModel());
+            var user = User as UserPrinciple;
+            var adDetailsModel = new AdDetailsViewModel
+            {
+                UserId = user.UserId
+            };
+            return View("EditAdDetails", adDetailsModel);
         }
 
         [User]
         public ActionResult EditAdDetails(int adId)
         {
             var adDetails = _adDetailsProvider.GetById(adId);
-            var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
-            return View("EditAdDetails", adDetailsModel);
+            var user = User as UserPrinciple;
+            if (user.UserId == adDetails.User.UserId)
+            {
+                var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
+                return View("EditAdDetails", adDetailsModel);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Error");
+            }
         }
 
         [User]
@@ -57,7 +71,7 @@ namespace Callboard.App.Web.Controllers
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
                 _adDetailsProvider.Save(adDetails);
-                return RedirectToAction("GetAdDetails", new { adId = adDetails.AdId });
+                return Json(new { IsSaved = true });
             }
             return RedirectToAction("Error", "Error");
         }

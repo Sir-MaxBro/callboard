@@ -6,6 +6,11 @@ namespace Callboard.App.Web.Models
 {
     public class AdDetailsViewModel
     {
+        public AdDetailsViewModel()
+        {
+            this.Location = new Location();
+        }
+
         [Required]
         [HiddenInput(DisplayValue = false)]
         public int AdId { get; set; }
