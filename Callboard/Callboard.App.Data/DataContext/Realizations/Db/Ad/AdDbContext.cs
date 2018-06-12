@@ -5,6 +5,7 @@ using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -84,10 +85,27 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "AreaId", searchConfiguration.AreaId },
                 { "CityId", searchConfiguration.CityId },
                 { "MinPrice", searchConfiguration.MinPrice },
-                { "MaxPrice", searchConfiguration.MaxPrice }
+                { "MaxPrice", searchConfiguration.MaxPrice },
+                { "Categories", searchConfiguration.Categories != null ? this.MapCategoriesToValues(searchConfiguration.Categories) : null  }
             };
             var ads = base.GetAll(procedureName, mapper, values);
             return ads;
+        }
+
+        private IReadOnlyCollection<SqlDataRecord> MapCategoriesToValues(IReadOnlyCollection<Category> categories)
+        {
+            var records = new List<SqlDataRecord>();
+            var metadata = new SqlMetaData[]
+            {
+                new SqlMetaData("CategoryId", SqlDbType.Int)
+            };
+            foreach (var item in categories)
+            {
+                SqlDataRecord record = new SqlDataRecord(metadata);
+                record.SetValue(0, item.CategoryId);
+                records.Add(record);
+            }
+            return records;
         }
 
         private IReadOnlyCollection<Ad> MapAdCollection(DataSet dataSet)
