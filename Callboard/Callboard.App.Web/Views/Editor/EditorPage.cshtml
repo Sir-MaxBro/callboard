@@ -1,0 +1,31 @@
+﻿@Scripts.Render("~/editor")
+<script>
+    window.onload = function () {
+        loadKinds('kinds');
+        loadStates('states');
+    }
+</script>
+
+<div>
+    <div id="kinds">
+
+    </div>
+    <div>
+        <a href="#" onclick="addKind('kinds')" class="button button_green">add kind</a>
+    </div>
+    <div id="kind-save-result">
+
+    </div>
+</div>
+
+<div>
+    <div id="states">
+
+    </div>
+    <div>
+        <a href="#" onclick="addState('states')" class="button button_green">add state</a>
+    </div>
+    <div id="state-save-result">
+
+    </div>
+</div>
