@@ -1,4 +1,6 @@
-﻿namespace Callboard.App.General.Entities.Data
+﻿using System.Collections.Generic;
+
+namespace Callboard.App.General.Entities.Data
 {
     public class SearchConfiguration
     {
@@ -17,5 +19,7 @@
         public int AreaId { get; set; }
 
         public int CityId { get; set; }
+
+        public IReadOnlyCollection<Category> Categories { get; set; }
     }
 }
