@@ -1,5 +1,5 @@
 ﻿@model IReadOnlyCollection<User>
-@Scripts.Render("~/user")
+@Scripts.Render("~/admin")
 
 @Html.ActionLink("CreateUser", "CreateUser", "Membership", new { returnUrl = Request.RawUrl },
     htmlAttributes: new { @class = "button button_green" })

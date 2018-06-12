@@ -19,7 +19,8 @@ namespace Callboard.App.Web
                 .Include("~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new ScriptBundle("~/search")
-                .IncludeDirectory("~/Scripts/Search", "*.js", false));
+                .IncludeDirectory("~/Scripts/Search", "*.js", false)
+                .Include("~/Scripts/Common/category-load.js"));
 
             bundles.Add(new ScriptBundle("~/category")
                 .IncludeDirectory("~/Scripts/Category", "*.js", false));
@@ -36,6 +37,9 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/common")
                 .Include("~/Scripts/Common/common.js"));
+
+            bundles.Add(new ScriptBundle("~/admin")
+             .Include("~/Scripts/Admin/user-edit.js"));
         }
     }
 }
