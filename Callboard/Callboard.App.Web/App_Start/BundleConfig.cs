@@ -31,7 +31,11 @@ namespace Callboard.App.Web
                 .IncludeDirectory("~/Scripts/Location", "*.js", false));
 
             bundles.Add(new ScriptBundle("~/addetails")
-                .IncludeDirectory("~/Scripts/AdDetails", "*.js", false));
+                .IncludeDirectory("~/Scripts/AdDetails", "*.js", false)
+                .Include("~/Scripts/Common/category-load.js"));
+
+            bundles.Add(new ScriptBundle("~/common")
+                .Include("~/Scripts/Common/common.js"));
         }
     }
 }
