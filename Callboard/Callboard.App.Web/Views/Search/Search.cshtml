@@ -2,21 +2,26 @@
 @Scripts.Render("~/location")
 @Scripts.Render("~/search")
 
+<script>
+    window.onload = function () {
+        fillLocation("location");
+        loadCategories('categories');
+        loadKinds();
+        loadStates();
+    }
+</script>
+
 <div class="width_25per float_left">
     @Html.EditorFor(model => model.SearchConfiguration.Name,
                 new { htmlAttributes = new { id = "name" } })
 
-    @Html.DropDownListFor(model => model.SearchConfiguration.CountryId,
-                new SelectListItem[] { new SelectListItem { Text = "--- Choose country ---", Selected = true, Value = "0" } },
-                htmlAttributes: new { id = "countries", onchange = "fillAreas(this.options[this.selectedIndex].value)" })
+    <div id="location">
 
-    @Html.DropDownListFor(model => model.SearchConfiguration.AreaId,
-                new SelectListItem[] { new SelectListItem { Text = "--- Choose area ---", Selected = true, Value = "0" } },
-                htmlAttributes: new { id = "areas", onchange = "fillCities(this.options[this.selectedIndex].value)" })
+    </div>
 
-    @Html.DropDownListFor(model => model.SearchConfiguration.CityId,
-                new SelectListItem[] { new SelectListItem { Text = "--- Choose city ---", Selected = true, Value = "0" } },
-                htmlAttributes: new { id = "cities" })
+    <select id="categories" multiple="multiple">
+
+    </select>
 
     @Html.DropDownListFor(model => model.SearchConfiguration.Kind,
                 new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
