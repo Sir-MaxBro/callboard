@@ -14,7 +14,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class AdDetailsDbContext : EntityDbContext<AdDetails>, IAdDetailsContext
     {
-        public AdDetailsDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public AdDetailsDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public AdDetails GetById(int id)
@@ -50,13 +50,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CreationDate", adDetails.CreationDate },
                 { "AddressLine", adDetails.AddressLine },
                 { "Description", adDetails.Description },
-                { "Images", adDetails.Images != null ? this.GetImageRecords(adDetails.Images) : null },
-                { "Categories", adDetails.Categories!=null ? this.GetCategoriesRecords(adDetails.Categories) : null }
+                { "Images", this.GetImageRecords(adDetails.Images) },
+                { "Categories", this.GetCategoriesRecords(adDetails.Categories) }
             };
         }
 
         private IReadOnlyCollection<SqlDataRecord> GetImageRecords(IReadOnlyCollection<Image> images)
         {
+            if (images == null || images?.Count < 1)
+            {
+                return null;
+            }
             var records = new List<SqlDataRecord>();
             var metadata = new SqlMetaData[]
             {
@@ -77,6 +81,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         private IReadOnlyCollection<SqlDataRecord> GetCategoriesRecords(IReadOnlyCollection<Category> categories)
         {
+            if (categories == null || categories?.Count < 1)
+            {
+                return null;
+            }
             var records = new List<SqlDataRecord>();
             var metadata = new SqlMetaData[]
             {

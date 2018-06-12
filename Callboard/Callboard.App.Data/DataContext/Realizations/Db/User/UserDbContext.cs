@@ -61,13 +61,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "Name", user.Name },
                 { "PhotoData", user.PhotoData },
                 { "PhotoExtension", user.PhotoExtension },
-                { "Phones", user.Phones != null ? this.GetPhoneRecords(user.Phones) : null },
-                { "Mails", user.Mails != null ? this.GetMailRecords(user.Mails) : null }
+                { "Phones", this.GetPhoneRecords(user.Phones) },
+                { "Mails", this.GetMailRecords(user.Mails) }
             };
         }
 
         private IReadOnlyCollection<SqlDataRecord> GetMailRecords(IReadOnlyCollection<Mail> mails)
         {
+            if (mails == null || mails?.Count < 1)
+            {
+                return null;
+            }
             var records = new List<SqlDataRecord>();
             var metadata = new SqlMetaData[]
             {
@@ -86,6 +90,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         private IReadOnlyCollection<SqlDataRecord> GetPhoneRecords(IReadOnlyCollection<Phone> phones)
         {
+            if (phones == null || phones?.Count < 1)
+            {
+                return null;
+            }
             var records = new List<SqlDataRecord>();
             var metadata = new SqlMetaData[]
             {
