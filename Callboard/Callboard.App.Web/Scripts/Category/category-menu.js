@@ -2,7 +2,7 @@
 
 window.onload = function () {
     let categories = JSON.parse(localStorage.getItem(CATEGORY_KEY));
-    if (categories != null) {
+    if (categories !== null) {
         let categoryId = categories.pop();
         renderCategories(categoryId);
     }
@@ -14,7 +14,7 @@ window.onbeforeunload = function () {
 
 function getSubcategories(parentId, categoryId) {
     let categories = JSON.parse(localStorage.getItem(CATEGORY_KEY));
-    if (categories == null) {
+    if (categories === null) {
         categories = new Array();
     }
     categories.push(parentId);
@@ -24,7 +24,7 @@ function getSubcategories(parentId, categoryId) {
 
 function getPreviousCategories() {
     let categories = JSON.parse(localStorage.getItem(CATEGORY_KEY));
-    if (categories != null) {
+    if (categories !== null) {
         let categoryId = categories.pop();
         localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
         renderCategories(categoryId);
@@ -32,7 +32,7 @@ function getPreviousCategories() {
 }
 
 let renderCategories = function (categoryId) {
-    if (categoryId == 0 || typeof categoryId == 'undefined') {
+    if (categoryId === 0 || typeof categoryId === 'undefined') {
         takeCategories();
     }
     else {

@@ -5,7 +5,7 @@
 
 let saveResult = function (data) {
     let isSaved = JSON.parse(data.IsSaved);
-    if (isSaved == true) {
+    if (isSaved === true) {
         let saveResultContainer = $("#save-result");
         saveResultContainer.empty();
         saveResultContainer.append("success");
@@ -45,7 +45,7 @@ let getAdDetails = function () {
 
 let getLocationId = function () {
     let locationId = $("#cities").find(":selected").val();
-    if (typeof locationId != 'undefined') {
+    if (typeof locationId !== 'undefined') {
         return locationId;
     }
     else {
@@ -74,7 +74,7 @@ let getImages = function () {
         let imageBase64 = imageData[1].split(",")[1];
 
         let imageId = $(this).data('imageId');
-        if (typeof imageId == 'undefined') {
+        if (typeof imageId === 'undefined') {
             imageId = 0;
         }
 

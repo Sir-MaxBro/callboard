@@ -23,9 +23,9 @@ let renderCategories = function (data) {
 }
 
 let isSelected = function (categoryId) {
-    if (typeof selectedCategories != 'undefined' && selectedCategories != null) {
+    if (typeof selectedCategories !== 'undefined' && selectedCategories !== null) {
         for (let i = 0; i < selectedCategories.length; i++) {
-            if (selectedCategories[i].CategoryId == categoryId) {
+            if (selectedCategories[i].CategoryId === categoryId) {
                 return true;
             }
         }
