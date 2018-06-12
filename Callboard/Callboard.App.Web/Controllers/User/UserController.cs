@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Providers.Main;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -34,17 +35,34 @@ namespace Callboard.App.Web.Controllers
         [User]
         public ActionResult OpenProfile(int userId)
         {
-            var user = _userProvider.GetById(userId);
-            return View("UserProfile", user);
+            var userPrinciple = User as UserPrinciple;
+            if (userPrinciple.UserId == userId)
+            {
+                var user = _userProvider.GetById(userId);
+                return View("UserProfile", user);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Error");
+            }
         }
 
         [User]
-        public PartialViewResult EditUser(int userId, string returnUrl)
+        public ActionResult EditUser(int userId, string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            var user = _userProvider.GetById(userId);
-            var userModel = this.MapUserToViewModel(user);
-            return PartialView("EditUser", userModel);
+
+            var userPrinciple = User as UserPrinciple;
+            if (userPrinciple.UserId == userId)
+            {
+                var user = _userProvider.GetById(userId);
+                var userModel = this.MapUserToViewModel(user);
+                return PartialView("UserEdit", userModel);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Error");
+            }
         }
 
         [User]

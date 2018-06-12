@@ -6,5 +6,9 @@
     @Html.ActionLink("Edit", "EditUser", "User", new { userId = Model.UserId }, htmlAttributes: new { @class = "button button_green button_hover_red" })
 </div>
 <div class="width_75per float_right">
+    <div>
+        @Html.ActionLink("Create ad", "CreateAdDetails", "AdDetails", null,
+            htmlAttributes: new { @class = "button button_green button_rounded" })
+    </div>
     @{ Html.RenderAction("GetAdsForUser", "Ad", new { userId = Model.UserId }); }
 </div>
