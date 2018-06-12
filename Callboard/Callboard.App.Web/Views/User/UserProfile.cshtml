@@ -3,7 +3,7 @@
 <div class="width_25per float_left">
     @{ Html.RenderPartial("Partial\\User", Model); }
 
-    @Html.ActionLink("Edit", "EditUser", "User", new { userId = Model.UserId }, htmlAttributes: new { @class = "button button_green button_hover_red" })
+    @Html.ActionLink("Edit", "EditProfile", "User", new { userId = Model.UserId }, htmlAttributes: new { @class = "button button_green button_hover_red" })
 </div>
 <div class="width_75per float_right">
     <div>
