@@ -1,7 +1,7 @@
 ﻿function saveUser() {
     let user = getUser();
     console.log(user);
-    $.post('/User/SaveUser', { userData: JSON.stringify(user) }, saveResult);
+    $.post('/User/SaveUser', { userData: JSON.stringify(user) }, showUserSaveResult);
 }
 
 function addPhone() {
@@ -30,8 +30,13 @@ function fillPhoto(evt) {
     }
 }
 
-let saveResult = function (data) {
-    console.log(data);
+let showUserSaveResult = function (data) {
+    let isSaved = JSON.parse(data.IsSaved);
+    if (isSaved === true) {
+        let saveResultContainer = $("#save-result");
+        saveResultContainer.empty();
+        saveResultContainer.append('success');
+    }
 }
 
 let getUser = function () {
