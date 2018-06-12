@@ -39,7 +39,10 @@ namespace Callboard.App.Web
                 .Include("~/Scripts/Common/common.js"));
 
             bundles.Add(new ScriptBundle("~/admin")
-             .Include("~/Scripts/Admin/user-edit.js"));
+                .Include("~/Scripts/Admin/user-edit.js"));
+
+            bundles.Add(new ScriptBundle("~/editor")
+                .IncludeDirectory("~/Scripts/Editor", "*.js", false));
         }
     }
 }

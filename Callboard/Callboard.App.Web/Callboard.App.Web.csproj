@@ -201,6 +201,9 @@
     <Content Include="Scripts\Category\category-menu.js" />
     <Content Include="Scripts\Common\category-load.js" />
     <Content Include="Scripts\Common\common.js" />
+    <Content Include="Scripts\Editor\common.js" />
+    <Content Include="Scripts\Editor\kind.js" />
+    <Content Include="Scripts\Editor\state.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -235,6 +238,7 @@
     <Compile Include="Controllers\Ad\AdController.cs" />
     <Compile Include="Controllers\Ad\AdDetailsController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
+    <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Ad\CategoryController.cs" />
@@ -300,6 +304,7 @@
     <Content Include="Views\AdDetails\EditAdDetails.cshtml" />
     <Content Include="Views\Membership\CreateUser.cshtml" />
     <Content Include="Views\User\EditProfile.cshtml" />
+    <Content Include="Views\Editor\EditorPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
