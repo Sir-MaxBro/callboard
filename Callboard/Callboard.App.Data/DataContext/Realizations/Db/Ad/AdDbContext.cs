@@ -15,7 +15,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class AdDbContext : EntityDbContext<Ad>, IAdContext
     {
-        public AdDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public AdDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public void Delete(int id)
@@ -86,7 +86,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CityId", searchConfiguration.CityId },
                 { "MinPrice", searchConfiguration.MinPrice },
                 { "MaxPrice", searchConfiguration.MaxPrice },
-                { "Categories", searchConfiguration.Categories != null ? this.MapCategoriesToValues(searchConfiguration.Categories) : null  }
+                { "Categories", this.MapCategoriesToValues(searchConfiguration.Categories) }
             };
             var ads = base.GetAll(procedureName, mapper, values);
             return ads;
@@ -94,6 +94,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         private IReadOnlyCollection<SqlDataRecord> MapCategoriesToValues(IReadOnlyCollection<Category> categories)
         {
+            if (categories == null || categories?.Count < 1)
+            {
+                return null;
+            }
+
             var records = new List<SqlDataRecord>();
             var metadata = new SqlMetaData[]
             {

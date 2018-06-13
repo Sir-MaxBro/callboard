@@ -88,9 +88,7 @@ namespace Callboard.App.Business.Services
             return new MembershipUser
             {
                 UserId = user.UserId,
-                Name = user.Name,
-                PhotoData = user.PhotoData,
-                PhotoExtension = user.PhotoExtension
+                Name = user.Name
             };
         }
     }

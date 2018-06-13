@@ -1,9 +1,9 @@
 ﻿function saveAdDetails() {
     let adDetails = getAdDetails();
-    $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) }, saveResult);
+    $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) }, showAdDetailsSaveResult);
 }
 
-let saveResult = function (data) {
+let showAdDetailsSaveResult = function (data) {
     let isSaved = JSON.parse(data.IsSaved);
     if (isSaved === true) {
         let saveResultContainer = $("#save-result");
