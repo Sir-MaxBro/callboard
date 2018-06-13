@@ -5,5 +5,5 @@ INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Radio-controlled cars",
 INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Goods for cottages", 1)
 INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Household accessories", 1)
 INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Computers and accessories", NULL)
-INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Laptops", 7)
+INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Laptops", 6)
 INSERT INTO [dbo].[Category]([Name], [ParentId]) VALUES("Stools", 1)

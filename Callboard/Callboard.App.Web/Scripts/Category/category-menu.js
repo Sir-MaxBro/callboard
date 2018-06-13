@@ -41,9 +41,9 @@ let renderCategories = function (categoryId) {
 }
 
 let takeSubcategories = function (categoryId) {
-    callActionAsync({ categoryId: categoryId }, '/Category/GetSubcategories', 'category-container');
+    callActionAsync({ categoryId: categoryId }, '/Navigation/GetSubcategories', 'category-container');
 }
 
 let takeCategories = function () {
-    callActionAsync(null, '/Category/GetCategories', 'category-container');
+    callActionAsync(null, '/Navigation/GetMainCategories', 'category-container');
 }

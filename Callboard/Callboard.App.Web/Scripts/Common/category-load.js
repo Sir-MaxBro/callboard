@@ -4,7 +4,7 @@ let categotyUpdateTargetId;
 function loadCategories(updateTargetId, selectedCategoriesData) {
     selectedCategories = selectedCategoriesData;
     categotyUpdateTargetId = updateTargetId;
-    getDataAsync(null, '/Category/GetCategories', renderCategories);
+    getDataAsync(null, '/Category/GetAllCategories', renderCategories);
 }
 
 let renderCategories = function (data) {

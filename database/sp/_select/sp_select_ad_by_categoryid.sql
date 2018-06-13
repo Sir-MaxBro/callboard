@@ -14,12 +14,23 @@ BEGIN
 			[State] NVARCHAR(50)
 			);
 
+	DECLARE @Subcategories TABLE ([CategoryId] INT, [ParentId] INT, [Level] VARCHAR(MAX))
+	INSERT INTO @Subcategories
+	EXEC [dbo].[sp_select_all_subcategories_by_categoryid] @CategoryId
+
 	INSERT INTO @Ads
 	SELECT ads.* 
 	FROM [dbo].func_select_ad() AS ads
 	INNER JOIN [AdsInCategories]
     ON [AdsInCategories].[AdId] = ads.[AdId]
-    WHERE [AdsInCategories].[CategoryId] = @CategoryId
+	INNER JOIN @Subcategories AS subcategories
+	ON [AdsInCategories].[CategoryId] = subcategories.CategoryId
+	UNION
+	SELECT ads.* 
+	FROM [dbo].func_select_ad() AS ads
+	INNER JOIN [AdsInCategories]
+    ON [AdsInCategories].[AdId] = ads.[AdId]
+	WHERE [AdsInCategories].CategoryId = @CategoryId
 
 	SELECT  [AdId], ads.[Name], [Price], [CreationDate], [Kind], [State], 
 			ads.[CityId] AS [LocationId], 

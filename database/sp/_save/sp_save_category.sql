@@ -7,6 +7,7 @@ CREATE PROCEDURE [dbo].sp_save_category
     @ParentId INT
 )
 AS BEGIN
+	SET @ParentId = IIF(@ParentId = 0, NULL, @ParentId)
 	IF @CategoryId <= 0
 		BEGIN
 			INSERT INTO [dbo].[Category]([Name], [ParentId])

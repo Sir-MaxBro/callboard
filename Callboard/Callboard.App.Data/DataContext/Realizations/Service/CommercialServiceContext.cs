@@ -1,11 +1,13 @@
 ﻿using Callboard.App.Data.DataContext.Main;
 using Callboard.App.General.Entities.Commercial;
+using Callboard.App.General.Helpers;
 using Callboard.App.General.Loggers.Main;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Configuration;
 using Service = Callboard.App.Data.CommercialService;
 
 namespace Callboard.App.Data.DataContext.Realizations.Service
@@ -23,8 +25,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
             IReadOnlyCollection<Commercial> commercials = null;
             try
             {
-                Service::ICommercialContract contract = new Service::CommercialContractClient();
-                commercials = contract.GetCommercials().Select(MapCommercial).ToList();
+                Service::ICommercialContract commercialContract = this.GetContract();
+                commercials = commercialContract.GetCommercials().Select(MapCommercial).ToList();
             }
             catch (ConfigurationErrorsException ex)
             {
@@ -69,6 +71,13 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
                 Data = image.Data,
                 Extension = image.Extension
             };
+        }
+
+        private Service::ICommercialContract GetContract()
+        {
+            var configuration = ConfigurationHelper.GetExecutingAssemblyConfig(this);
+            var channelFactory = new ConfigurationChannelFactory<Service::ICommercialContract>("CommercialContractEndpoint", configuration, null);
+            return channelFactory.CreateChannel();
         }
     }
 }

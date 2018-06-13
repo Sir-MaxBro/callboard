@@ -3,6 +3,7 @@
     window.onload = function () {
         loadKinds('kinds');
         loadStates('states');
+        renderCategoryEditSections('categories');
     }
 </script>
 
@@ -27,5 +28,14 @@
     </div>
     <div id="state-save-result">
 
+    </div>
+</div>
+
+<div>
+    <div id="categories">
+
+    </div>
+    <div>
+        <a href="#" onclick="addCategory('categories')" class="button button_green">add category</a>
     </div>
 </div>
