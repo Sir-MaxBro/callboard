@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Business.Providers.Main;
+using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
-using Callboard.App.Web.Models;
+using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Web.Mvc;
@@ -22,29 +23,42 @@ namespace Callboard.App.Web.Controllers
             _categoryProvider = categoryProvider;
         }
 
-        public JsonResult GetCategories()
+        public JsonResult GetAllCategories()
         {
             var categories = _categoryProvider.GetAll();
             var categoriesData = JsonConvert.SerializeObject(categories);
             return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult GetMainCategories()
+        [Editor]
+        public JsonResult GetMainCategories()
         {
-            CategoryViewModel model = new CategoryViewModel
-            {
-                Categories = _categoryProvider.GetMainCategories()
-            };
-            return PartialView("CategoryList", model);
+            var categories = _categoryProvider.GetMainCategories();
+            var categoriesData = JsonConvert.SerializeObject(categories);
+            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult GetSubcategories(int categoryId)
+        [Editor]
+        public JsonResult GetSubcategories(int categoryId)
         {
-            CategoryViewModel model = new CategoryViewModel
+            var categories = _categoryProvider.GetSubcategories(categoryId);
+            var categoriesData = JsonConvert.SerializeObject(categories);
+            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Editor]
+        [HttpPost]
+        public JsonResult SaveCategory(string categoryData)
+        {
+            bool isSaved = false;
+            categoryData = categoryData ?? string.Empty;
+            var category = JsonConvert.DeserializeObject<Category>(categoryData);
+            if (category != null)
             {
-                Categories = _categoryProvider.GetSubcategories(categoryId)
-            };
-            return PartialView("CategoryList", model);
+                _categoryProvider.Save(category);
+                isSaved = true;
+            }
+            return Json(new { isSaved = isSaved });
         }
     }
 }
