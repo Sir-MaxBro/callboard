@@ -45,5 +45,5 @@ let takeSubcategories = function (categoryId) {
 }
 
 let takeCategories = function () {
-    callActionAsync(null, '/Category/GetCategories', 'category-container');
+    callActionAsync(null, '/Category/GetMainCategories', 'category-container');
 }
