@@ -1,6 +1,6 @@
 ﻿<div class="header header_dark_theme header_line">
     <div class="header__logo header__logo_green width_25per">
-        <a href="#" class="button header__main-link">Callboard</a>
+        <a href="#" class="link header__main-link">Callboard</a>
     </div>
     <div class="header__search-form width_50per">
         @{ Html.RenderPartial("Partial\\SearchForm"); }
@@ -12,21 +12,14 @@
                 var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
                 if (user != null)
                 {
-                    <div class="user__name">
-                        <span>@user.Name</span>
-                    </div>
-                    <div>
-                        @Html.ActionLink("Profile", "OpenProfile", "User", new { userId = user.UserId }, htmlAttributes: new { @class = "button" })
-                    </div>
-                    <div>
-                        @Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "button" })
-                    </div>
+                        @Html.ActionLink(user.Name, "OpenProfile", "User", new { userId = user.UserId }, htmlAttributes: new { @class = "link" })
+                        @Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "link" })
                 }
             }
             else
             {
-                <div>@Html.ActionLink("Log in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
-                <div>@Html.ActionLink("Sing up", "Register", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "button" })</div>
+                <div>@Html.ActionLink("Sing in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
+                <div>@Html.ActionLink("Sing up", "Register", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
             }
         </div>
     </div>

@@ -1,0 +1,11 @@
+﻿.field {
+    display: block;
+    border: 0;
+    padding: 10px 10px;
+    margin-bottom: 0.5em;
+    background: #fff;
+    color: #000;
+    font: inherit;
+    box-shadow: 3px 6px 10px 1px rgba(0, 0, 0, .2);
+    outline: 0;
+}

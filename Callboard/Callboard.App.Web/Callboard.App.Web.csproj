@@ -144,8 +144,6 @@
     <Content Include="Content\css\banner\__image\banner__image.css" />
     <Content Include="Content\css\button\button.css" />
     <Content Include="Content\css\button\_green\button_green.css" />
-    <Content Include="Content\css\button\_hover\_green\button_hover_green.css" />
-    <Content Include="Content\css\button\_hover\_red\button_hover_red.css" />
     <Content Include="Content\css\button\_rounded\button_rounded.css" />
     <Content Include="Content\css\category-container\__item\category-container__item.css" />
     <Content Include="Content\css\category-container\__item\_gray\category-container__item_gray.css" />
@@ -153,6 +151,7 @@
     <Content Include="Content\css\clearfix\clearfix.css" />
     <Content Include="Content\css\commercial\__image\commercial__image.css" />
     <Content Include="Content\css\commercial\__item\commercial__item.css" />
+    <Content Include="Content\css\field\field.css" />
     <Content Include="Content\css\float\_left\float_left.css" />
     <Content Include="Content\css\float\_right\float_right.css" />
     <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
@@ -164,6 +163,7 @@
     <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
     <Content Include="Content\css\link\link.css" />
     <Content Include="Content\css\link\_green\link_green.css" />
+    <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
     <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
@@ -183,6 +183,10 @@
     <Content Include="Content\css\slider\__prev\slider__prev.css" />
     <Content Include="Content\css\textbox\textbox.css" />
     <Content Include="Content\css\user\_min\user_min.css" />
+    <Content Include="Content\css\user\_profile\user_profile.css" />
+    <Content Include="Content\css\user\__mails-header\user__mails-header.css" />
+    <Content Include="Content\css\user\__name\user__name.css" />
+    <Content Include="Content\css\user\__phones-header\user__phones-header.css" />
     <Content Include="Content\css\width\_100per\width_100per.css" />
     <Content Include="Content\css\width\_25per\width_25per.css" />
     <Content Include="Content\css\width\_50per\width_50per.css" />
@@ -217,6 +221,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Location\location.js" />
+    <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\Search\kind.js" />
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\startup.js" />
@@ -320,7 +325,6 @@
     <Folder Include="Content\css\category-container\__subcategory-link\" />
     <Folder Include="Content\css\page\__search-form\" />
     <Folder Include="Content\css\page\__user\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">

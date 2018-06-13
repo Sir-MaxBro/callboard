@@ -1,43 +1,81 @@
 ﻿@model User
 @Scripts.Render("~/user")
+<div class="row">
+    <div class="col s12 m6 user_profile">
+        <div class="card">
+            <div class="card-content">
+                <h3>Edit user profile</h3>
 
-<h1>User</h1>
-<input type="hidden" id="userId" value="@Model.UserId" />
-<input type="text" id="name" value="@Model.Name" />
+                <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="name" value="@Model.Name" type="text" class="validate">
+                    <label for="icon_prefix">Name</label>
+                </div>
 
-<div>
-    @if (Model.PhotoData == null)
-    {
-        <img id="photo" width="200" height="200" />
-    }
-    else
-    {
-        @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, null, htmlAttributes: new { width = 100, height = 100, id = "photo" })
-    }
-    <input type="file" onchange="fillPhoto(event)" />
-</div>
+                <div class="width_50per">
+                    @if (Model.PhotoData == null)
+                    {
+                        <img id="photo" class="user__image width_100per" />
+                    }
+                    else
+                    {
+                        @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, "user__image width_100per", htmlAttributes: new { id = "photo" })
+                    }
 
-<div>
-    <div id="phones">
-        @foreach (var phone in Model.Phones)
-        {
-            <input type="text" value="@phone.Number" data-phone-id="@phone.PhoneId" />
-        }
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>File</span>
+                            <input type="file" onchange="fillPhoto(event)">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center">
+                    <h6>Phones</h6>
+                    <div id="phones">
+                        @foreach (var phone in Model.Phones)
+                        {
+                            <div class="input-field">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="name" value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
+                                <label for="icon_prefix">Phone Number</label>
+                            </div>
+                        }
+                    </div>
+                    <a class="btn-floating btn-tiny waves-effect waves-light red" onclick="addPhone()"><i class="material-icons">add</i></a>
+                </div>
+
+                <div class="center">
+                    <h6>Mails</h6>
+                    <div id="emails">
+                        @foreach (var mail in Model.Mails)
+                        {
+                            <div class="input-field">
+                                <i class="material-icons prefix">email</i>
+                                <input id="name" value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
+                                <label for="icon_prefix">Email</label>
+                            </div>
+                        }
+                    </div>
+                    <a class="btn-floating btn-tiny waves-effect waves-light red" onclick="addMail()"><i class="material-icons">add</i></a>
+                </div>
+
+                <div class="right-align">
+                    <input type="hidden" id="userId" value="@Model.UserId" />
+
+                    <button class="btn waves-effect waves-light" type="button" onclick="saveUser()">
+                        Save
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                <div id="save-result">
+
+                </div>
+            </div>
+
+        </div>
     </div>
-    <a href="#" onclick="addPhone()" class="button button_green" style="width:100px;">add phone</a>
-</div>
-
-<div>
-    <div id="emails">
-        @foreach (var mail in Model.Mails)
-        {
-            <input type="text" value="@mail.Email" data-mail-id="@mail.MailId" />
-        }
-    </div>
-    <a href="#" onclick="addMail()" class="button button_green" style="width:100px;">add mail</a>
-</div>
-<input type="button" onclick="saveUser()" value="Save" class="button" />
-
-<div id="save-result">
-
 </div>

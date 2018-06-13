@@ -102,7 +102,26 @@ let getMails = function () {
 }
 
 let getPhoneInput = function () {
-    return getInput();
+    let div = $("<div></div>");
+    div.addClass('input-field');
+
+    let i = $("<i></i>");
+    i.addClass('material-icons prefix');
+    i.text('phone');
+
+    let input = $("<input />");
+    input.attr('type', 'text');
+    input.addClass('validate');
+
+    let label = $("<label></label>");
+    label.attr('for', 'icon_prefix');
+    label.text('Phone Number');
+
+    div.append(i);
+    div.append(input);
+    div.append(label);
+
+    return div;
 }
 
 let getMailInput = function () {
@@ -112,5 +131,6 @@ let getMailInput = function () {
 let getInput = function () {
     let input = $("<input />");
     input.attr('type', 'text');
+    input.addClass('field');
     return input;
 }
