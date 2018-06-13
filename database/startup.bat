@@ -1,6 +1,6 @@
 set user="max_bro"
 set password="1D2F2f3E3asd"
-set server="DESKTOP-4I1O878\SQLEXPRESS"
+set server="EPBYMOGW0209\SQLEXPRESS"
 set currentPath=%~dp0
 
 sqlcmd -S %server% -i startup.sql
@@ -30,8 +30,6 @@ sqlcmd -S %server% -U %user% -P %password% -i tables\Ad.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\AdDetails.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\AdsInCategories.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\ImagesInAds.sql
-
-
 
 sqlcmd -S %server% -U %user% -P %password% -i inserts\UserInsert.sql
 sqlcmd -S %server% -U %user% -P %password% -i inserts\PhoneInsert.sql
@@ -95,6 +93,7 @@ sqlcmd -S %server% -U %user% -P %password% -i functions\func_select_ad.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_kindid_by_type.sql
 sqlcmd -S %server% -U %user% -P %password% -i functions\func_get_stateid_by_condition.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_all_subcategories_by_categoryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_category.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_categoryid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad.sql
