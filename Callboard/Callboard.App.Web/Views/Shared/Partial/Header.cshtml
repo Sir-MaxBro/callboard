@@ -12,14 +12,14 @@
                 var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
                 if (user != null)
                 {
-                        @Html.ActionLink(user.Name, "OpenProfile", "User", new { userId = user.UserId }, htmlAttributes: new { @class = "link" })
-                        @Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "link" })
+                    @Html.ActionLink(user.Name, "OpenProfile", "User", new { userId = user.UserId }, htmlAttributes: new { @class = "link" })
+                    @Html.ActionLink("Log out", "Logout", "Account", null, htmlAttributes: new { @class = "link" })
                 }
             }
             else
             {
-                <div>@Html.ActionLink("Sing in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
-                <div>@Html.ActionLink("Sing up", "Register", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
+                <div>@Html.ActionLink("Sign in", "Login", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
+                <div>@Html.ActionLink("Sign up", "Register", "Account", new { returnUrl = Request.RawUrl }, htmlAttributes: new { @class = "link" })</div>
             }
         </div>
     </div>

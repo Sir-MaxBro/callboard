@@ -35,7 +35,10 @@ let showUserSaveResult = function (data) {
     if (isSaved === true) {
         let saveResultContainer = $("#save-result");
         saveResultContainer.empty();
-        saveResultContainer.append('success');
+        saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
+        setTimeout(function () {
+            saveResultContainer.empty();
+        }, 3000);
     }
 }
 
@@ -102,35 +105,40 @@ let getMails = function () {
 }
 
 let getPhoneInput = function () {
-    let div = $("<div></div>");
-    div.addClass('input-field');
+    return getEditorInput('phone');
+}
+
+let getMailInput = function () {
+    return getEditorInput('email');
+}
+
+let getEditorInput = function (type) {
+    let mainDiv = $("<div></div>");
+    mainDiv.addClass('input-field row');
+
+    let colDiv = $("<div></div>");
+    colDiv.addClass('col s8');
 
     let i = $("<i></i>");
     i.addClass('material-icons prefix');
-    i.text('phone');
+    i.text(type);
 
     let input = $("<input />");
     input.attr('type', 'text');
     input.addClass('validate');
 
-    let label = $("<label></label>");
-    label.attr('for', 'icon_prefix');
-    label.text('Phone Number');
+    let deleteLink = $('<a></a>');
+    deleteLink.addClass('waves-effect waves-light btn col s4 red');
+    deleteLink.on('click', function () {
+        mainDiv.remove();
+    });
+    deleteLink.text('delete');
 
-    div.append(i);
-    div.append(input);
-    div.append(label);
+    colDiv.append(i);
+    colDiv.append(input);
 
-    return div;
-}
+    mainDiv.append(colDiv);
+    mainDiv.append(deleteLink);
 
-let getMailInput = function () {
-    return getInput();
-}
-
-let getInput = function () {
-    let input = $("<input />");
-    input.attr('type', 'text');
-    input.addClass('field');
-    return input;
+    return mainDiv;
 }

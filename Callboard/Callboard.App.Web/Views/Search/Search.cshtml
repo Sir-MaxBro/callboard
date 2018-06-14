@@ -11,35 +11,59 @@
     }
 </script>
 
-<div class="width_25per float_left">
-    @Html.EditorFor(model => model.SearchConfiguration.Name,
-                new { htmlAttributes = new { id = "name" } })
+<div class="width_25per float_left card">
+    <div class="row">
+        <div class="input-field">
+            <i class="material-icons prefix">assistant</i>
+            <input id="name" type="text" class="validate" />
+            <label for="name">Product name</label>
+        </div>
 
-    <div id="location">
+        <div class="input-field">
+            <i class="material-icons prefix">attach_money</i>
+            <input id="min-price" type="text" class="validate" />
+            <label for="min-price">Min price</label>
+        </div>
 
+        <div class="input-field">
+            <i class="material-icons prefix">attach_money</i>
+            <input id="max-price" type="text" class="validate" />
+            <label for="max-price">Max price</label>
+        </div>
+
+        <select id="categories" multiple="multiple"></select>
+
+        <select id="kinds" class="input-field block">
+            <option selected="selected" value="">--- Choose kind ---</option>
+        </select>
+        <select id="states" class="input-field block">
+            <option selected="selected" value="">--- Choose state ---</option>
+        </select>
     </div>
 
-    <select id="categories" multiple="multiple">
+    <div id="location"></div>
 
-    </select>
-
-    @Html.DropDownListFor(model => model.SearchConfiguration.Kind,
-                new SelectListItem[] { new SelectListItem { Text = "--- Choose kind ---", Selected = true, Value = "" } },
-                htmlAttributes: new { id = "kinds" })
-
-    @Html.DropDownListFor(model => model.SearchConfiguration.State,
-                new SelectListItem[] { new SelectListItem { Text = "--- Choose state ---", Selected = true, Value = "" } },
-                htmlAttributes: new { id = "states" })
-
-    @Html.EditorFor(model => model.SearchConfiguration.MinPrice,
-                new { htmlAttributes = new { id = "min-price" } })
-
-    @Html.EditorFor(model => model.SearchConfiguration.MaxPrice,
-                new { htmlAttributes = new { id = "max-price" } })
-
-    <input type="button" onclick="searchByParams()" value="Search" class="button" />
+    <div class="center">
+        <button class="btn waves-effect waves-light" type="button" onclick="searchByParams()">
+            Search
+            <i class="material-icons right">search</i>
+        </button>
+    </div>
 </div>
 
-<div id="search-result" class="width_75per float_right">
-    @{ Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
+<div class="width_75per float_right">
+    <div id="preloader" class="preloader-wrapper big none center">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <div id="search-result">
+        @{ Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
+    </div>
 </div>

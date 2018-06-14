@@ -14,7 +14,7 @@
 }
 
 let getCountrySelect = function () {
-    let countrySelect = $("<select></select>");
+    let countrySelect = getSelectForLocation();
     countrySelect.attr('id', 'countries');
     countrySelect.on('change', function () {
         fillAreas(this.options[this.selectedIndex].value);
@@ -26,7 +26,7 @@ let getCountrySelect = function () {
 }
 
 let getAreaSelect = function () {
-    let areaSelect = $("<select></select>");
+    let areaSelect = getSelectForLocation();
     areaSelect.attr('id', 'areas');
     areaSelect.on('change', function () {
         fillCities(this.options[this.selectedIndex].value);
@@ -38,10 +38,16 @@ let getAreaSelect = function () {
 }
 
 let getCitySelect = function () {
-    let citySelect = $("<select></select>");
+    let citySelect = getSelectForLocation();
     citySelect.attr('id', 'cities');
     let defaultOption = createOption('', 0, '--- Choose city ---');
     defaultOption.attr('selected', 'selected');
     citySelect.append(defaultOption);
     return citySelect;
+}
+
+let getSelectForLocation = function () {
+    let select = $("<select></select>");
+    select.addClass('input-field col s4 block');
+    return select;
 }

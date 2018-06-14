@@ -10,70 +10,81 @@
         loadKinds();
         loadStates();
         loadCategories('categories', @Html.Raw(Json.Encode(Model.Categories)));
+        addImage('images');
     };
 </script>
 
-<div>
-    <div class="ad__content">
+<div class="ad__content">
+    <input type="hidden" id="userId" value="@Model.UserId" />
+    <input type="hidden" id="adId" value="@Model.AdId" />
 
-        <input type="hidden" id="userId" value="@Model.UserId" />
-        <input type="hidden" id="adId" value="@Model.AdId" />
+    <div class="row" id="images">
+        @if (Model.Images != null && Model.Images.Length > 0)
+        {
+            foreach (var item in Model.Images)
+            {
+                @Html.RenderImage(item.Data, item.Extension, "col s3 ad__image_big",
+                                                                                                                  htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
+            }
+        }
+    </div>
 
-        <div class="ad__image">
-            <div id="images">
-                @if (Model.Images != null && Model.Images.Length > 0)
-                {
-                    foreach (var item in Model.Images)
-                    {
-                        <div>
-                            @Html.RenderImage(item.Data, item.Extension, null,
-                                 htmlAttributes: new { width = 100, height = 100, data_image_id = item.ImageId, onclick = "this.remove();" })
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div>Images not found</div>
-                }
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">assistant</i>
+                    <input id="name" type="text" class="validate" value="@Model.Name">
+                    <label for="name">Product name</label>
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">attach_money</i>
+                    <input id="price" type="text" class="validate" value="@Model.Price">
+                    <label for="price">Price</label>
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">description</i>
+                    <input id="description" type="text" class="validate" value="@Model.Description">
+                    <label for="description">Description</label>
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">home</i>
+                    <input id="addressLine" type="text" class="validate" value="@Model.AddressLine">
+                    <label for="addressLine">Address</label>
+                </div>
             </div>
-            <a href="#" onclick="addImage('images')">Add image</a>
-        </div>
-
-        <div class="ad__name">
-            <input type="text" id="name" value="@Model.Name" />
-        </div>
-        <div>
-            <input type="text" id="price" value="@Model.Price" />
-        </div>
-        <div>
-            <input type="text" id="description" value="@Model.Description" />
-        </div>
-        <div>
-            <input type="text" id="addressLine" value="@Model.AddressLine" />
-        </div>
-
-        <div id="location">
-            <input type="hidden" id="locationId" value="@Model.Location.LocationId" />
-            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
-            <a href="#" onclick="fillLocation('location')">Change location</a>
-        </div>
-
-        <select id="kinds">
-            <option selected="selected" value="">--- Choose kind ---</option>
-        </select>
-
-        <select id="states">
-            <option selected="selected" value="">--- Choose state ---</option>
-        </select>
-
-        <select id="categories" multiple="multiple">
-            <option selected="selected">--- Choose category ---</option>
-        </select>
-
-        <input type="button" value="Save" onclick="saveAdDetails()" class="button button_green button_rounded" />
-
-        <div id="save-result">
-
         </div>
     </div>
+
+    <div id="location" class="row">
+        <div class="col s12 center">
+            <input type="hidden" id="locationId" value="@Model.Location.LocationId" />
+            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
+            <a class="btn-floating btn-small waves-effect waves-light red" onclick="fillLocation('location')">
+                <i class="material-icons">edit</i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <select id="kinds" class="input-field col s4 block">
+            <option selected="selected" value="">--- Choose kind ---</option>
+        </select>
+        <select id="states" class="input-field col s4 block">
+            <option selected="selected" value="">--- Choose state ---</option>
+        </select>
+        <select id="categories" multiple="multiple" class="input-field col s4 block">
+            <option selected="selected">--- Choose category ---</option>
+        </select>
+    </div>
+
+
+    <div class="center">
+        <button class="btn waves-effect waves-light" type="button" onclick="saveAdDetails()">
+            Save
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+
+    <div id="save-result"></div>
 </div>

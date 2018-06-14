@@ -1,5 +1,6 @@
 ﻿@model User
 @Scripts.Render("~/user")
+
 <div class="row">
     <div class="col s12 m6 user_profile">
         <div class="card">
@@ -12,18 +13,17 @@
                     <label for="icon_prefix">Name</label>
                 </div>
 
-                <div class="width_50per">
+                <div class="width_50per row">
                     @if (Model.PhotoData == null)
                     {
-                        <img id="photo" class="user__image width_100per" />
+                        <img src="~/Content/images/profile.png" id="photo" class="user__image width_100per" />
                     }
                     else
                     {
                         @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, "user__image width_100per", htmlAttributes: new { id = "photo" })
                     }
-
                     <div class="file-field input-field">
-                        <div class="btn">
+                        <div class="btn green">
                             <span>File</span>
                             <input type="file" onchange="fillPhoto(event)">
                         </div>
@@ -33,34 +33,36 @@
                     </div>
                 </div>
 
-                <div class="center">
-                    <h6>Phones</h6>
+                <div class="center row">
                     <div id="phones">
                         @foreach (var phone in Model.Phones)
                         {
-                            <div class="input-field">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="name" value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
-                                <label for="icon_prefix">Phone Number</label>
+                            <div class="input-field row">
+                                <div class="col s8">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
+                                </div>
+                                <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
                             </div>
                         }
                     </div>
-                    <a class="btn-floating btn-tiny waves-effect waves-light red" onclick="addPhone()"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addPhone()"><i class="material-icons">add</i></a>
                 </div>
 
-                <div class="center">
-                    <h6>Mails</h6>
+                <div class="center row">
                     <div id="emails">
                         @foreach (var mail in Model.Mails)
                         {
-                            <div class="input-field">
-                                <i class="material-icons prefix">email</i>
-                                <input id="name" value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
-                                <label for="icon_prefix">Email</label>
+                            <div class="input-field row">
+                                <div class="col s8">
+                                    <i class="material-icons prefix">email</i>
+                                    <input value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
+                                </div>
+                                <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
                             </div>
                         }
                     </div>
-                    <a class="btn-floating btn-tiny waves-effect waves-light red" onclick="addMail()"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addMail()"><i class="material-icons">add</i></a>
                 </div>
 
                 <div class="right-align">

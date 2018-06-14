@@ -8,7 +8,10 @@ let showAdDetailsSaveResult = function (data) {
     if (isSaved === true) {
         let saveResultContainer = $("#save-result");
         saveResultContainer.empty();
-        saveResultContainer.append("success");
+        saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
+        setTimeout(function () {
+            saveResultContainer.empty();
+        }, 3000);
     }
 }
 
