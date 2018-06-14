@@ -17,21 +17,9 @@ let renderStates = function (data) {
     let statesContainer = $("#" + stateUpdateTargetId);
     for (let i = 0; i < states.length; i++) {
         let mainStateContainer = $("<div></div>");
-        setViewSection(states[i].StateId, states[i].Condition, mainStateContainer, saveState);
-
-        let deleteLink = getDeleteStateLink(states[i].StateId, mainStateContainer);
-        mainStateContainer.append(deleteLink);
-
+        setViewSection(states[i].StateId, states[i].Condition, mainStateContainer, saveState, deleteState);
         statesContainer.append(mainStateContainer);
     }
-}
-
-let getDeleteStateLink = function (stateId, mainContainer) {
-    let deleteLink = renderLink('delete state', function () {
-        $.post('/State/DeleteState', { stateId: stateId });
-        mainContainer.remove();
-    });
-    return deleteLink;
 }
 
 let saveState = function (stateId, condition) {
@@ -39,14 +27,10 @@ let saveState = function (stateId, condition) {
         StateId: stateId,
         Condition: condition
     };
-    $.post('/State/SaveState', { stateData: JSON.stringify(state) }, showStateSaveResult);
+    $.post('/State/SaveState', { stateData: JSON.stringify(state) });
 }
 
-let showStateSaveResult = function (data) {
-    let resultContainer = $("#state-save-result");
-    let isSaved = JSON.parse(data.IsSaved);
-    if (isSaved === true) {
-        resultContainer.empty();
-        resultContainer.append('success');
-    }
+let deleteState = function (stateId, mainContainer) {
+    $.post('/State/DeleteState', { stateId: stateId });
+    mainContainer.remove();
 }
