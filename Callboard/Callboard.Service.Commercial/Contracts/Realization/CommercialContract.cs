@@ -27,7 +27,7 @@ namespace Callboard.Service.Commercial
             {
                 CommercialNotFound faultDetails = new CommercialNotFound
                 {
-                    Message = "Commercial not found"
+                    Message = "Commercial not found. Please, check path to image."
                 };
                 throw new FaultException<CommercialNotFound>(faultDetails);
             }

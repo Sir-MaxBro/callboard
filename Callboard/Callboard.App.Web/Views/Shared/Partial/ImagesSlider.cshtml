@@ -1,12 +1,10 @@
 ﻿@model ImageViewModel
 
-<div class="slider slider_relative">
+<div class="carousel carousel-slider">
     @foreach (var item in Model.Images)
     {
-        <div class="slider__item slider_@item.ImageId fade">
-            @Html.RenderImage(item.Data, item.Extension, imgclass: "slider__img")
-        </div>
+        <a class="carousel-item" href="#@item.ImageId">
+            @Html.RenderImage(item.Data, item.Extension, "ad__image_big ad__image-carousel")
+        </a>
     }
-    @*<a class="slider__prev" onclick="plusSlides(-1)">&#10094</a>*@
-    @*<a class="slider__next" onclick="plusSlides(1)">&#10095</a>*@
 </div>

@@ -1,57 +1,80 @@
 ﻿@model AdDetails
 
-<a href="@ViewBag.ReturnUrl">Back</a>
-
-@{
-    if (User.Identity.IsAuthenticated)
-    {
-        var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
-        if (user != null && Model.User.UserId == user.UserId)
-        {
-            <div>
-                @Html.ActionLink("Edit", "EditAdDetails", "AdDetails", new { adId = Model.AdId },
-                                    htmlAttributes: new { @class = "button button_green button_hover_red" })
-            </div>
-            <div>
-                @Html.ActionLink("Delete", "DeleteAd", "Ad", new { adId = Model.AdId, returnUrl = ViewBag.ReturnUrl },
-                                    htmlAttributes: new { @class = "button button_green button_hover_red" })
-            </div>
+<div class="card row">
+    <div class="card-image col s4">
+        <div class="row">
+            @if (Model.Images != null && Model.Images.Count > 0)
+            {
+                Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images });
+            }
+            else
+            {
+                <div class="carousel carousel-slider">
+                    <a class="carousel-item" href="#one!">
+                        <img src="~/Content/images/product.jpg" class="ad__image_big ad__image-carousel" />
+                    </a>
+                </div>
+            }
+        </div>
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+                if (user != null && Model.User.UserId == user.UserId)
+                {
+                    <div class="row">
+                        <div class="col s6">
+                            @Html.ActionLink("Edit", "EditAdDetails", "AdDetails", new { adId = Model.AdId },
+                                    htmlAttributes: new { @class = "waves-effect waves-light btn width_100per green" })
+                        </div>
+                        <div class="col s6">
+                            @Html.ActionLink("Delete", "DeleteAd", "Ad", new { adId = Model.AdId, returnUrl = ViewBag.ReturnUrl },
+                                    htmlAttributes: new { @class = "waves-effect waves-light btn width_100per red" })
+                        </div>
+                    </div>
+                }
+            }
         }
-    }
-}
-
-<div class="ad ad_full">
-    <div id="ad__image" class="ad__image ad__image_big">
-        @{ Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
     </div>
-
-    <div class="ad__content">
-        <div class="ad__name">
-            @Model.Name
-        </div>
-        <div class="">
-            @Model.Price
-        </div>
-        <div>
-            @Model.Description
-        </div>
-        <div>
-            @Model.AddressLine
-        </div>
-        <div>
-            @Model.CreationDate
-        </div>
-        <div>
-            @Model.Kind
-        </div>
-        <div>
-            @Model.State
-        </div>
-        <div id="ad__location">
-            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
-        </div>
-        <div id="ad__user">
-            @{ Html.RenderPartial("Partial\\User", Model.User); }
+    <div class="card-stacked col s8">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s7">
+                    <a href="@ViewBag.ReturnUrl"><i class="material-icons tiny">arrow_back</i>Back</a>
+                    <span class="card-title">@Model.Name</span>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">CreationDate: </span>@Model.CreationDate.ToShortDateString()
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">Type: </span>@Model.Kind
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">State: </span>@Model.State
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">Location: </span>@Model.Location.Country / @Model.Location.Area / @Model.Location.City
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">Description: </span>@Model.Description
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">AddressLine: </span>@Model.AddressLine
+                    </div>
+                    <div class="ad__note">
+                        <span class="grey-text text-darken-2">Categories: </span>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <span>@item.Name;</span>
+                        }
+                    </div>
+                    <h5 class="ad__note red-text">
+                        <i class="material-icons">attach_money</i>@Model.Price
+                    </h5>
+                </div>
+                <div class="col s5">
+                    @{ Html.RenderPartial("Partial\\User", Model.User); }
+                </div>
+            </div>
         </div>
     </div>
 </div>

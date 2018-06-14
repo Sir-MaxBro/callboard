@@ -1,4 +1,4 @@
-﻿function callActionAsync(obj, url, updateTargetId) {
+﻿function callActionAsync(obj, url, updateTargetId, complete) {
     $.ajax({
         url: url,
         type: 'GET',
@@ -10,7 +10,8 @@
         },
         error: function () {
             $('#' + updateTargetId).html("Sorry:( Nothing found");
-        }
+        },
+        complete: complete
     });
 }
 

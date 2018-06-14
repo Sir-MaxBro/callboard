@@ -3,39 +3,49 @@
     window.onload = function () {
         loadKinds('kinds');
         loadStates('states');
-        renderCategoryEditSections('categories');
     }
 </script>
 
-<div>
-    <div id="kinds">
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div id="kinds">
 
-    </div>
-    <div>
-        <a href="#" onclick="addKind('kinds')" class="button button_green">add kind</a>
-    </div>
-    <div id="kind-save-result">
+                    </div>
+                    <div class="center">
+                        <button class="btn waves-effect waves-light green" type="button" onclick="addKind('kinds')">
+                            Add kind
+                            <i class="material-icons left">add</i>
+                        </button>
+                    </div>
+                </div>
 
-    </div>
-</div>
+                <div class="row">
+                    <div id="states">
 
-<div>
-    <div id="states">
+                    </div>
+                    <div class="center">
+                        <button class="btn waves-effect waves-light green" type="button" onclick="addState('states')">
+                            Add state
+                            <i class="material-icons left">add</i>
+                        </button>
+                    </div>
+                </div>
 
-    </div>
-    <div>
-        <a href="#" onclick="addState('states')" class="button button_green">add state</a>
-    </div>
-    <div id="state-save-result">
-
-    </div>
-</div>
-
-<div>
-    <div id="categories">
-
-    </div>
-    <div>
-        <a href="#" onclick="addCategory('categories')" class="button button_green">add category</a>
+                <div class="row">
+                    <div id="categories">
+                        @{ Html.RenderAction("GetEditCategories", "Category"); }
+                    </div>
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light green" type="button" onclick="createSubcategory(0, 'categories')">
+                            Add category
+                            <i class="material-icons left">add</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,15 +1,29 @@
 ﻿@model LoginViewModel
 
-@using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-{
-    <div>
-        @Html.EditorFor(x => x.Login)
-    </div>
+<div class="row">
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, 
+        htmlAttributes: new { @class = "width_25per center center-auto" }))
+    {
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="input-field col s12">
+                        @Html.EditorFor(x => x.Login)
+                        <label for="Login">Login</label>
+                    </div>
 
-    <div>
-        @Html.EditorFor(x => x.Password)
-    </div>
-    <div>
-        <input type="submit" value="Sing in" class="button" />
-    </div>
-}
+                    <div class="input-field col s12">
+                        @Html.EditorFor(x => x.Password)
+                        <label for="Password">Password</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Sign in
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    }
+</div>

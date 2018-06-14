@@ -31,19 +31,35 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
-        public JsonResult GetMainCategories()
+        public PartialViewResult GetEditCategories()
         {
             var categories = _categoryProvider.GetMainCategories();
-            var categoriesData = JsonConvert.SerializeObject(categories);
-            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+            return PartialView("EditCategoryList", categories);
         }
 
         [Editor]
-        public JsonResult GetSubcategories(int categoryId)
+        public PartialViewResult GetEditSubcategories(int categoryId)
         {
             var categories = _categoryProvider.GetSubcategories(categoryId);
-            var categoriesData = JsonConvert.SerializeObject(categories);
-            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+            return PartialView("EditCategoryList", categories);
+        }
+
+        [Editor]
+        public PartialViewResult CreateSubcategory(int parentId)
+        {
+            var category = new Category
+            {
+                ParentId = parentId
+            };
+            return PartialView("EditCategory", category);
+        }
+
+        [Editor]
+        [HttpPost]
+        public JsonResult DeleteCategory(int categoryId)
+        {
+            _categoryProvider.Delete(categoryId);
+            return Json(new { IsDeleted = true });
         }
 
         [Editor]

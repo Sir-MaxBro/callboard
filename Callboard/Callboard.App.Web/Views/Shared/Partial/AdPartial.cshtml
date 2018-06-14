@@ -1,35 +1,48 @@
 ﻿@model Ad
 
-<div class="ad ad_min">
-    <div id="ad__image" class="ad__image width_25per">
-        @{  Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images }); }
+<div class="card ad_min">
+    <div class="card-image">
+        @if (Model.Images != null && Model.Images.Count > 0)
+        {
+            Html.RenderPartial("Partial\\ImagesSlider", new ImageViewModel { Images = Model.Images });
+        }
+        else
+        {
+            <div class="carousel carousel-slider">
+                <a class="carousel-item" href="#one!">
+                    <img src="~/Content/images/product.jpg" class="ad__image_big ad__image-carousel" />
+                </a>
+            </div>
+        }
+        @Html.ActionLink("more", "GetAdDetails", "AdDetails",
+                routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
+                htmlAttributes: new { @class = "btn-floating halfway-fab waves-effect waves-light red center material-icons" })
     </div>
-    <div class="ad__content width_50per">
-        <div class="ad__name">
-            @Html.ActionLink(Model.Name, "GetAdDetails", "AdDetails",
-                                           routeValues: new { adId = Model.AdId, returnUrl = Request.RawUrl },
-                                           htmlAttributes: new { @class = "link link_green" })
+    <div class="card-content">
+        <span class="card-title">@Model.Name</span>
+        <div class="ad__note">
+            <span class="grey-text text-darken-2">CreationDate: </span>@Model.CreationDate.ToShortDateString()
         </div>
         <div class="ad__note">
-            <span class="ad__text">CreationDate: </span>@Model.CreationDate.ToShortDateString()
+            <span class="grey-text text-darken-2">Type: </span>@Model.Kind
         </div>
         <div class="ad__note">
-            <span class="ad__text">Type: </span>@Model.Kind
+            <span class="grey-text text-darken-2">State: </span>@Model.State
         </div>
         <div class="ad__note">
-            <span class="ad__text">State: </span>@Model.State
+            <span class="grey-text text-darken-2">Location: </span>@Model.Location.Country / @Model.Location.Area / @Model.Location.City
         </div>
-        <div id="ad__location" class="ad__note ad__text">
-            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
-        </div>
-        <div>
+        <div class="ad__note">
+            <span class="grey-text text-darken-2">Categories: </span>
             @foreach (var item in Model.Categories)
             {
                 <span>@item.Name;</span>
             }
         </div>
     </div>
-    <div class="ad__price width_25per">
-        $@Model.Price
+    <div class="card-action">
+        <div class="red-text right-align">
+            <i class="material-icons">attach_money</i>@Model.Price
+        </div>
     </div>
 </div>

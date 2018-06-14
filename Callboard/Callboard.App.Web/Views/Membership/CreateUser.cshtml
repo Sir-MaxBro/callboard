@@ -1,30 +1,38 @@
 ﻿@model RegisterViewModel
+@Scripts.Render("~/bundles/validate")
 
-@using (Html.BeginForm("CreateUser", "Membership", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-{
-    <div>
-        @Html.LabelFor(model => model.Login)
-    </div>
-    <div>
-        @Html.EditorFor(model => model.Login)
-        @Html.ValidationMessageFor(model => model.Login)
-    </div>
-    <div>
-        @Html.LabelFor(model => model.Password)
-    </div>
-    <div>
-        @Html.EditorFor(model => model.Password)
-        @Html.ValidationMessageFor(model => model.Password)
-    </div>
-    <div>
-        @Html.LabelFor(model => model.RePassword)
-    </div>
-    <div>
-        @Html.EditorFor(model => model.RePassword)
-        @Html.ValidationMessageFor(model => model.RePassword)
-    </div>
+<div class="row">
+    @using (Html.BeginForm("CreateUser", "Membership", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                        htmlAttributes: new { @class = "width_25per center center-auto" }))
+    {
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="input-field col s12">
+                        @Html.EditorFor(x => x.Login)
+                        <label for="Login">Login</label>
+                        @Html.ValidationMessageFor(model => model.Login)
+                    </div>
 
-    <div>
-        <input type="submit" value="Register" />
-    </div>
-}
+                    <div class="input-field col s12">
+                        @Html.EditorFor(x => x.Password)
+                        <label for="Password">Password</label>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+
+                    <div class="input-field col s12">
+                        @Html.EditorFor(x => x.RePassword)
+                        <label for="RePassword">RePassword</label>
+                        @Html.ValidationMessageFor(model => model.RePassword)
+                    </div>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Register
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    }
+</div>

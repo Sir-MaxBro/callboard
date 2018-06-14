@@ -5,9 +5,31 @@
     return src;
 }
 
+let getFileInput = function () {
+    let mainDiv = $("<div></div>");
+    mainDiv.addClass('ad__image_big valign-wrapper file-field');
+
+    let btnDiv = $("<div></div>");
+    btnDiv.addClass('btn green center-auto');
+
+    let span = $("<span></span>");
+    span.append('<i class="material-icons">add</i>')
+
+    let input = $('<input />');
+    input.attr('type', 'file');
+
+    btnDiv.append(span);
+    btnDiv.append(input);
+
+    mainDiv.append(btnDiv);
+
+    return mainDiv;
+}
+
 function addImage(updateTargerId) {
     let imagesContainer = $("#" + updateTargerId);
-    let fileInput = $("<input />").attr('type', 'file');
+    let fileInput = getFileInput();
+    fileInput.addClass('col s3');
     let img = getImage();
     img.on('click', function () {
         this.remove();
@@ -23,20 +45,17 @@ function addImage(updateTargerId) {
                 img.attr('src', fileReader.result);
             }
             fileReader.readAsDataURL(files[0]);
+            imagesContainer.append(img);
             fileInput.remove();
-        }
-        else {
-            // fallback -- perhaps submit the input to an iframe and temporarily store
-            // them on the server until the user's session ends.
+            addImage(updateTargerId);
         }
     });
     imagesContainer.append(fileInput);
-    imagesContainer.append(img);
 }
 
 let getImage = function () {
     let img = $("<img />");
-    img.attr('width', '100');
-    img.attr('height', '100');
+    img.addClass('col s3');
+    img.addClass('ad__image_big');
     return img;
 }

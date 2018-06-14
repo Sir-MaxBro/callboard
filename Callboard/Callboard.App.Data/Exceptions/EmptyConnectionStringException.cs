@@ -5,23 +5,15 @@ namespace Callboard.App.Data.Exceptions
 {
     public class EmptyConnectionStringException : ApplicationException
     {
-        public EmptyConnectionStringException()
-        {
-        }
+        public EmptyConnectionStringException() { }
 
         public EmptyConnectionStringException(string message) 
-            : base(message)
-        {
-        }
+            : base(message) { }
 
         public EmptyConnectionStringException(string message, Exception innerException) 
-            : base(message, innerException)
-        {
-        }
+            : base(message, innerException) { }
 
         protected EmptyConnectionStringException(SerializationInfo info, StreamingContext context) 
-            : base(info, context)
-        {
-        }
+            : base(info, context) { }
     }
 }

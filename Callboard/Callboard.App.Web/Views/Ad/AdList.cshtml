@@ -6,7 +6,5 @@
     @{ Html.RenderAction("GetCommercial", "Commercial"); }
 </div>
 <div class="width_75per float_right">
-    @{ Html.RenderPartial("Partial\\Banner"); }
-
     @{  Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
 </div>

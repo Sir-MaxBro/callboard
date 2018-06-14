@@ -1,35 +1,52 @@
 ﻿@model IReadOnlyCollection<User>
 @Scripts.Render("~/admin")
 
-@Html.ActionLink("CreateUser", "CreateUser", "Membership", new { returnUrl = Request.RawUrl },
-    htmlAttributes: new { @class = "button button_green" })
-<table class="float_left width_25per">
-    <tr>
-        <th>Name</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr id="user-@item.UserId">
-            <td>
-                @item.Name
-            </td>
-            <td>
-                <input type="button" value="delete" onclick="deleteUser(@item.UserId, 'user-@item.UserId')" />
-            </td>
-            <td>
-                <a href="#" onclick="editUser(@item.UserId)" class="button button_green button_hover_red">Edit</a>
-            </td>
-        </tr>
-    }
-</table>
+<div class="row">
+    <div class="col s5">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                    <th class="right-align">
+                        @Html.ActionLink("Add user", "CreateUser", "Membership", new { returnUrl = Request.RawUrl },
+                            htmlAttributes: new { @class = "btn waves-effect waves-light green" })
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="user-@item.UserId">
+                        <td>
+                            @item.Name
+                        </td>
+                        <td class="right-align">
+                            <button class="btn waves-effect waves-light red" type="button" onclick="deleteUser(@item.UserId, 'user-@item.UserId')">
+                                Delete
+                                <i class="material-icons right">delete</i>
+                            </button>
+                        </td>
+                        <td class="right-align">
+                            <button class="btn waves-effect waves-light green" type="button" onclick="editUser(@item.UserId)">
+                                Edit
+                                <i class="material-icons right">edit</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<div class="float_right width_75per">
-    <div id="edit-container" class="edit-container">
-        <div id="edit-container__user" class="edit-container__user">
+    <div class="col s7">
+        <div id="edit-container" class="edit-container">
+            <div id="edit-container__user" class="edit-container__user">
 
-        </div>
-        <div id="edit-container__roles" class="edit-container__roles">
+            </div>
+            <div id="edit-container__roles" class="card">
 
+            </div>
         </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
 ﻿.user_min {
     display: flex;
+    justify-content: space-evenly;
 }
