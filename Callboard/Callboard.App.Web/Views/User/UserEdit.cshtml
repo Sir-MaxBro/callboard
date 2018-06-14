@@ -1,83 +1,81 @@
 ﻿@model User
 @Scripts.Render("~/user")
 
-<div class="row">
-    <div class="col s12 m6 user_profile">
-        <div class="card">
-            <div class="card-content">
-                <h3>Edit user profile</h3>
+<div class="card">
+    <div class="card-content">
+        <h3>Edit user profile</h3>
 
-                <div class="input-field">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="name" value="@Model.Name" type="text" class="validate">
-                    <label for="icon_prefix">Name</label>
+        <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" value="@Model.Name" type="text" class="validate">
+            <label for="icon_prefix">Name</label>
+        </div>
+
+        <div class="width_50per row">
+            @if (Model.PhotoData == null)
+            {
+                <img src="~/Content/images/profile.png" id="photo" class="user__image width_100per" />
+            }
+            else
+            {
+                @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, "user__image width_100per", htmlAttributes: new { id = "photo" })
+            }
+            <div class="file-field input-field">
+                <div class="btn green">
+                    <span>File</span>
+                    <input type="file" onchange="fillPhoto(event)">
                 </div>
-
-                <div class="width_50per row">
-                    @if (Model.PhotoData == null)
-                    {
-                        <img src="~/Content/images/profile.png" id="photo" class="user__image width_100per" />
-                    }
-                    else
-                    {
-                        @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, "user__image width_100per", htmlAttributes: new { id = "photo" })
-                    }
-                    <div class="file-field input-field">
-                        <div class="btn green">
-                            <span>File</span>
-                            <input type="file" onchange="fillPhoto(event)">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="center row">
-                    <div id="phones">
-                        @foreach (var phone in Model.Phones)
-                        {
-                            <div class="input-field row">
-                                <div class="col s8">
-                                    <i class="material-icons prefix">phone</i>
-                                    <input value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
-                                </div>
-                                <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
-                            </div>
-                        }
-                    </div>
-                    <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addPhone()"><i class="material-icons">add</i></a>
-                </div>
-
-                <div class="center row">
-                    <div id="emails">
-                        @foreach (var mail in Model.Mails)
-                        {
-                            <div class="input-field row">
-                                <div class="col s8">
-                                    <i class="material-icons prefix">email</i>
-                                    <input value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
-                                </div>
-                                <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
-                            </div>
-                        }
-                    </div>
-                    <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addMail()"><i class="material-icons">add</i></a>
-                </div>
-
-                <div class="right-align">
-                    <input type="hidden" id="userId" value="@Model.UserId" />
-
-                    <button class="btn waves-effect waves-light" type="button" onclick="saveUser()">
-                        Save
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-                <div id="save-result">
-
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
                 </div>
             </div>
+        </div>
+
+        <div class="center row">
+            <h5 class="left-center">Phones</h5>
+            <div id="phones">
+                @foreach (var phone in Model.Phones)
+                {
+                    <div class="input-field row">
+                        <div class="col s8">
+                            <i class="material-icons prefix">phone</i>
+                            <input value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
+                        </div>
+                        <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
+                    </div>
+                }
+            </div>
+            <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addPhone()"><i class="material-icons">add</i></a>
+        </div>
+
+        <div class="center row">
+            <h5 class="left-center">Emails</h5>
+            <div id="emails">
+                @foreach (var mail in Model.Mails)
+                {
+                    <div class="input-field row">
+                        <div class="col s8">
+                            <i class="material-icons prefix">email</i>
+                            <input value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
+                        </div>
+                        <a class="waves-effect waves-light btn col s4 red" onclick="$(this).parent().remove();">delete</a>
+                    </div>
+                }
+            </div>
+            <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addMail()"><i class="material-icons">add</i></a>
+        </div>
+
+        <div class="right-align">
+            <input type="hidden" id="userId" value="@Model.UserId" />
+
+            <button class="btn waves-effect waves-light" type="button" onclick="saveUser()">
+                Save
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <div id="save-result">
 
         </div>
     </div>
+
 </div>
