@@ -25,32 +25,32 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
             IReadOnlyCollection<Commercial> commercials = null;
             try
             {
-                Service::ICommercialContract commercialContract = this.GetContract();
+                Service::ICommercialContract commercialContract = this.GetCommercialContract();
                 commercials = commercialContract.GetCommercials().Select(MapCommercial).ToList();
             }
             catch (ConfigurationErrorsException ex)
             {
-                _logger.ErrorFormat($"{ ex.Message }");
+                _logger.WarnFormat($"{ ex.Message }");
             }
             catch (TimeoutException ex)
             {
-                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
+                _logger.WarnFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             catch (FaultException<Service::CommercialNotFound> ex)
             {
-                _logger.ErrorFormat($"{ ex.Message }");
+                _logger.WarnFormat($"{ ex.Message }");
             }
             catch (FaultException ex)
             {
-                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
+                _logger.WarnFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             catch (CommunicationException ex)
             {
-                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
+                _logger.WarnFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             catch (Exception ex)
             {
-                _logger.ErrorFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
+                _logger.WarnFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
             return commercials;
         }
@@ -73,7 +73,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
             };
         }
 
-        private Service::ICommercialContract GetContract()
+        private Service::ICommercialContract GetCommercialContract()
         {
             var configuration = ConfigurationHelper.GetExecutingAssemblyConfig(this);
             var channelFactory = new ConfigurationChannelFactory<Service::ICommercialContract>("CommercialContractEndpoint", configuration, null);
