@@ -12,47 +12,50 @@
 </script>
 
 <div class="width_25per float_left card">
-    <div class="row">
-        <div class="input-field">
-            <i class="material-icons prefix">assistant</i>
-            <input id="name" type="text" class="validate" />
-            <label for="name">Product name</label>
+    <div class="card-content">
+        <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix">assistant</i>
+                <input id="name" type="text" class="validate" />
+                <label for="name">Product name</label>
+            </div>
+
+            <div class="input-field">
+                <i class="material-icons prefix">attach_money</i>
+                <input id="min-price" type="text" class="validate" />
+                <label for="min-price">Min price</label>
+            </div>
+
+            <div class="input-field">
+                <i class="material-icons prefix">attach_money</i>
+                <input id="max-price" type="text" class="validate" />
+                <label for="max-price">Max price</label>
+            </div>
+
+            <select class="input-field block multiple-select" id="categories" multiple="multiple"></select>
+
+            <select id="kinds" class="input-field block">
+                <option selected="selected" value="">--- Choose kind ---</option>
+            </select>
+            <select id="states" class="input-field block">
+                <option selected="selected" value="">--- Choose state ---</option>
+            </select>
         </div>
 
-        <div class="input-field">
-            <i class="material-icons prefix">attach_money</i>
-            <input id="min-price" type="text" class="validate" />
-            <label for="min-price">Min price</label>
-        </div>
-
-        <div class="input-field">
-            <i class="material-icons prefix">attach_money</i>
-            <input id="max-price" type="text" class="validate" />
-            <label for="max-price">Max price</label>
-        </div>
-
-        <select id="categories" multiple="multiple"></select>
-
-        <select id="kinds" class="input-field block">
-            <option selected="selected" value="">--- Choose kind ---</option>
-        </select>
-        <select id="states" class="input-field block">
-            <option selected="selected" value="">--- Choose state ---</option>
-        </select>
+        <div id="location"></div>
     </div>
 
-    <div id="location"></div>
-
-    <div class="center">
+    <div class="center card-action">
         <button class="btn waves-effect waves-light" type="button" onclick="searchByParams()">
             Search
             <i class="material-icons right">search</i>
         </button>
     </div>
+
 </div>
 
 <div class="width_75per float_right">
-    <div id="preloader" class="preloader-wrapper big none center">
+    <div id="preloader" class="preloader-wrapper big none block center-auto">
         <div class="spinner-layer spinner-blue-only">
             <div class="circle-clipper left">
                 <div class="circle"></div>
