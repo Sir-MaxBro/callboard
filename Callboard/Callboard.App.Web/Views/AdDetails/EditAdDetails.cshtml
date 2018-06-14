@@ -24,7 +24,7 @@
             foreach (var item in Model.Images)
             {
                 @Html.RenderImage(item.Data, item.Extension, "col s3 ad__image_big",
-                                                                                                                  htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
+                    htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
             }
         }
     </div>
@@ -73,7 +73,7 @@
         <select id="states" class="input-field col s4 block">
             <option selected="selected" value="">--- Choose state ---</option>
         </select>
-        <select id="categories" multiple="multiple" class="input-field col s4 block">
+        <select id="categories" multiple="multiple" class="input-field col s4 block multiple-select ">
             <option selected="selected">--- Choose category ---</option>
         </select>
     </div>

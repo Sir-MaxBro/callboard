@@ -136,6 +136,7 @@
     <Content Include="Content\css\ad\_full\ad_full.css" />
     <Content Include="Content\css\ad\_min\ad_min.css" />
     <Content Include="Content\css\ad\__content\ad__content.css" />
+    <Content Include="Content\css\ad\__image-carousel\ad__image-carousel.css" />
     <Content Include="Content\css\ad\__image\_big\ad__image_big.css" />
     <Content Include="Content\css\ad\__name\ad__name.css" />
     <Content Include="Content\css\ad\__note\ad__note.css" />
@@ -153,6 +154,7 @@
     <Content Include="Content\css\clearfix\clearfix.css" />
     <Content Include="Content\css\commercial\__image\commercial__image.css" />
     <Content Include="Content\css\commercial\__item\commercial__item.css" />
+    <Content Include="Content\css\edit-container\__role\edit-container__role.css" />
     <Content Include="Content\css\field\field.css" />
     <Content Include="Content\css\float\_left\float_left.css" />
     <Content Include="Content\css\float\_right\float_right.css" />
@@ -169,6 +171,7 @@
     <Content Include="Content\css\menu\_center\menu_center.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
     <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
+    <Content Include="Content\css\multiple-select\multiple-select.css" />
     <Content Include="Content\css\none\none.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
@@ -210,7 +213,7 @@
     <Content Include="Scripts\Category\category-menu.js" />
     <Content Include="Scripts\Common\category-load.js" />
     <Content Include="Scripts\Common\common.js" />
-    <Content Include="Scripts\Editor\category-save.js" />
+    <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\Editor\common.js" />
     <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
@@ -231,9 +234,8 @@
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
-    <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\Admin\user-edit.js" />
-    <Content Include="Scripts\User\user-save.js" />
+    <Content Include="Scripts\User\user-edit.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -317,6 +319,8 @@
     <Content Include="Views\Membership\CreateUser.cshtml" />
     <Content Include="Views\User\EditProfile.cshtml" />
     <Content Include="Views\Editor\EditorPage.cshtml" />
+    <Content Include="Views\Category\EditCategoryList.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -17,7 +17,7 @@ let showAdDetailsSaveResult = function (data) {
 
 let getAdDetails = function () {
     let name = $("#name").val();
-    let price = $("#price").val();
+    let price = getPrice();
     let description = $("#description").val();
     let addressLine = $("#addressLine").val();
     let kind = $("#kinds").find(":selected").val();
@@ -46,14 +46,23 @@ let getAdDetails = function () {
     };
 }
 
+let getPrice = function () {
+    let price = $("#price").val();
+    if (price <= 0) {
+        price = 1;
+    }
+    return price;
+}
+
 let getLocationId = function () {
     let locationId = $("#cities").find(":selected").val();
-    if (typeof locationId !== 'undefined') {
-        return locationId;
+    if (typeof locationId === 'undefined') {
+        locationId = $("#locationId").val();
     }
-    else {
-        return $("#locationId").val();
+    if (locationId <= 0) {
+        locationId = 1;
     }
+    return locationId;
 }
 
 let getCategoriesList = function () {
