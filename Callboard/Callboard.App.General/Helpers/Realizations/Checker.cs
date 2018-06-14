@@ -41,7 +41,7 @@ namespace Callboard.App.General.Helpers.Realizations
             if (id < 1)
             {
                 string infoMessage = $"Id { id } is not valid.\n { errorMessage }";
-                _logger?.InfoFormat(infoMessage);
+                _logger?.ErrorFormat(infoMessage);
                 throw new InvalidIdException(infoMessage);
             }
         }

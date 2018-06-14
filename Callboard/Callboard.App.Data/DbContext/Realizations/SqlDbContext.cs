@@ -32,26 +32,30 @@ namespace Callboard.App.Data.DbContext.Realizations
         {
             DataSet dataSet = null;
             using (var connection = this.CreateConnection())
-            using (var procedure = this.CreateProcedure(procedureName, values))
-            using (var adapter = new SqlDataAdapter(procedure))
             {
-                try
+                using (var procedure = this.CreateProcedure(procedureName, values))
                 {
-                    connection.Open();
-                    procedure.Connection = connection;
-                    dataSet = new DataSet();
-                    adapter.Fill(dataSet);
-                    connection.Close();
-                }
-                catch (InvalidOperationException ex)
-                {
-                    string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
-                    _logger.ErrorFormat(errorMessage);
-                }
-                catch (SqlException ex)
-                {
-                    string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
-                    _logger.ErrorFormat(errorMessage);
+                    using (var adapter = new SqlDataAdapter(procedure))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            procedure.Connection = connection;
+                            dataSet = new DataSet();
+                            adapter.Fill(dataSet);
+                            connection.Close();
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
+                            _logger.ErrorFormat(errorMessage);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
+                            _logger.ErrorFormat(errorMessage);
+                        }
+                    }
                 }
             }
             return dataSet;
@@ -60,24 +64,26 @@ namespace Callboard.App.Data.DbContext.Realizations
         public void ExecuteNonQuery(string procedureName, IDictionary<string, object> values = null)
         {
             using (var connection = this.CreateConnection())
-            using (var procedure = this.CreateProcedure(procedureName, values))
             {
-                try
+                using (var procedure = this.CreateProcedure(procedureName, values))
                 {
-                    connection.Open();
-                    procedure.Connection = connection;
-                    procedure.ExecuteNonQuery();
-                    connection.Close();
-                }
-                catch (InvalidOperationException ex)
-                {
-                    string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
-                    _logger.ErrorFormat(errorMessage);
-                }
-                catch (SqlException ex)
-                {
-                    string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
-                    _logger.ErrorFormat(errorMessage);
+                    try
+                    {
+                        connection.Open();
+                        procedure.Connection = connection;
+                        procedure.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
+                        _logger.ErrorFormat(errorMessage);
+                    }
+                    catch (SqlException ex)
+                    {
+                        string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
+                        _logger.ErrorFormat(errorMessage);
+                    }
                 }
             }
         }
@@ -98,6 +104,7 @@ namespace Callboard.App.Data.DbContext.Realizations
                     command.Parameters.Add(parameter);
                 }
             }
+
             return command;
         }
 
@@ -108,10 +115,12 @@ namespace Callboard.App.Data.DbContext.Realizations
                 ParameterName = $"@{ name }",
                 Value = value
             };
+
             if (value is IEnumerable<SqlDataRecord>)
             {
                 parameter.SqlDbType = SqlDbType.Structured;
             }
+
             return parameter;
         }
 
