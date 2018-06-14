@@ -1,3 +1,13 @@
-﻿<h1>The main information about site</h1>
+﻿<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <h1 class="center">The main information about site</h1>
+            <img class="col s12" src="~/Content/images/banner.jpg" />
+        </div>
+    </div>
 
-@Html.ActionLink("Go", "GetAdList", "Ad", null, htmlAttributes: new { @class = "button button_green button_rounded" })
+    <div class="col s12 center">
+        @Html.ActionLink("Go shopping", "GetAdList", "Ad", null,
+    htmlAttributes: new { @class = "btn waves-effect waves-light" })
+    </div>
+</div>
