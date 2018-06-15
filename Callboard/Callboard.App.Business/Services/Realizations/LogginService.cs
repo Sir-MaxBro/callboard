@@ -1,4 +1,5 @@
-﻿using Callboard.App.Data.Providers.Main;
+﻿using Callboard.App.Data.Exceptions;
+using Callboard.App.Data.Providers.Main;
 using Callboard.App.Data.Repositories.Main;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
@@ -33,17 +34,18 @@ namespace Callboard.App.Business.Services
 
         public void Register(string login, string password)
         {
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            User user = null;
+            try
             {
-                return;
-            }
-            var user = _membershipProvider.CreateUser(login, password);
-            if (user != null)
-            {
+                user = _membershipProvider.CreateUser(login, password);
                 var membershipUser = this.MapUser(user);
                 var roles = _roleRepository.GetRolesForUser(user.UserId);
                 membershipUser.Roles = roles;
                 this.SendCookies(membershipUser);
+            }
+            catch (LoginAlreadyExistsException ex)
+            {
+
             }
         }
 

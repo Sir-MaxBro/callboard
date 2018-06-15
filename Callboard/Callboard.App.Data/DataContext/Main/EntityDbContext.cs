@@ -35,7 +35,7 @@ namespace Callboard.App.Data.DataContext.Main
             IReadOnlyCollection<T> entities = null;
             using (var dataSet = _context.ExecuteProcedure(procedureName, values))
             {
-                if (dataSet != null)
+                if (this.CheckDataSet(dataSet))
                 {
                     entities = mapper?.MapCollection(dataSet);
                 }
@@ -48,7 +48,7 @@ namespace Callboard.App.Data.DataContext.Main
             T obj = default(T);
             using (var dataSet = _context.ExecuteProcedure(procedureName, values))
             {
-                if (dataSet != null && mapper != null)
+                if (this.CheckDataSet(dataSet) && mapper != null)
                 {
                     obj = mapper.MapItem(dataSet);
                 }
@@ -65,6 +65,15 @@ namespace Callboard.App.Data.DataContext.Main
         protected void Execute(string procedureName, IDictionary<string, object> values = null)
         {
             _context.ExecuteNonQuery(procedureName, values);
+        }
+
+        private bool CheckDataSet(DataSet dataSet)
+        {
+            if (dataSet != null && dataSet.Tables.Count != 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
