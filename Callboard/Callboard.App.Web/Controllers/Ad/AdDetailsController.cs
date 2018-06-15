@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -65,15 +66,19 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult SaveAdDetails(string adDetailsData)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             adDetailsData = adDetailsData ?? string.Empty;
             var adDetailsModel = JsonConvert.DeserializeObject<AdDetailsViewModel>(adDetailsData);
             if (adDetailsModel != null)
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
                 _adDetailsProvider.Save(adDetails);
-                return Json(new { IsSaved = true });
             }
-            return RedirectToAction("Error", "Error");
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         private AdDetails MapViewModelToAdDetails(AdDetailsViewModel adDetailsModel)

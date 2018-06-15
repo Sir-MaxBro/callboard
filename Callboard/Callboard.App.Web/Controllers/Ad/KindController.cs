@@ -4,6 +4,7 @@ using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -23,8 +24,13 @@ namespace Callboard.App.Web.Controllers
             _kindProvider = kindProvider;
         }
 
-        public JsonResult GetKinds()
+        public ActionResult GetKinds()
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var kinds = _kindProvider.GetAll();
             var kindsData = JsonConvert.SerializeObject(kinds);
             return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
@@ -32,8 +38,13 @@ namespace Callboard.App.Web.Controllers
 
         [Editor]
         [HttpPost]
-        public JsonResult SaveKind(string kindData)
+        public ActionResult SaveKind(string kindData)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             bool isSaved = false;
             kindData = kindData ?? string.Empty;
             var kind = JsonConvert.DeserializeObject<Kind>(kindData);
@@ -47,8 +58,13 @@ namespace Callboard.App.Web.Controllers
 
         [Editor]
         [HttpPost]
-        public JsonResult DeleteKind(int kindId)
+        public ActionResult DeleteKind(int kindId)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             _kindProvider.Delete(kindId);
             return Json(new { IdDeleted = true });
         }

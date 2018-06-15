@@ -32,6 +32,7 @@ namespace Callboard.App.Web.Controllers
         public ActionResult SearchAdsByName(string name)
         {
             IReadOnlyCollection<Ad> ads = null;
+
             if (string.IsNullOrEmpty(name))
             {
                 ads = _adProvider.GetAds();
@@ -40,11 +41,13 @@ namespace Callboard.App.Web.Controllers
             {
                 ads = _adProvider.SearchByName(name);
             }
+
             SearchViewModel model = new SearchViewModel
             {
                 Ads = ads,
                 SearchConfiguration = new SearchConfiguration()
             };
+
             return View("Search", model);
         }
 
@@ -55,6 +58,7 @@ namespace Callboard.App.Web.Controllers
                 Ads = _adProvider.GetAds(),
                 SearchConfiguration = new SearchConfiguration()
             };
+
             return View(model);
         }
 
@@ -63,6 +67,7 @@ namespace Callboard.App.Web.Controllers
             IReadOnlyCollection<Ad> ads = null;
             searchConfigurationData = searchConfigurationData ?? string.Empty;
             var searchConfiguration = JsonConvert.DeserializeObject<SearchConfiguration>(searchConfigurationData);
+
             if (searchConfiguration == null)
             {
                 ads = _adProvider.GetAds();
@@ -71,6 +76,7 @@ namespace Callboard.App.Web.Controllers
             {
                 ads = _adProvider.Search(searchConfiguration);
             }
+
             return PartialView("Partial\\AdContainer", ads);
         }
     }

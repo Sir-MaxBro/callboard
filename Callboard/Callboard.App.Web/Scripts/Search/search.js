@@ -30,7 +30,7 @@ let getSearchConfiguration = function () {
 
 let getMinPrice = function () {
     let minPrice = $("#min-price").val();
-    if (minPrice == '') {
+    if (minPrice === '') {
         minPrice = 0;
     }
     return minPrice;
@@ -38,7 +38,7 @@ let getMinPrice = function () {
 
 let getMaxPrice = function () {
     let maxPrice = $("#max-price").val();
-    if (maxPrice == '') {
+    if (maxPrice === '') {
         maxPrice = 0;
     }
     return maxPrice;
@@ -57,6 +57,7 @@ let getSearchCategories = function () {
 
 let searchComplete = function () {
     stopPreloader();
+    $('.carousel').carousel();
 }
 
 let runPreloader = function () {

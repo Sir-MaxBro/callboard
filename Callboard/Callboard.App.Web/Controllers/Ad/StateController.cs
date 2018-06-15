@@ -4,6 +4,7 @@ using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -23,8 +24,13 @@ namespace Callboard.App.Web.Controllers
             _stateProvider = stateProvider;
         }
 
-        public JsonResult GetStates()
+        public ActionResult GetStates()
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var states = _stateProvider.GetAll();
             var statesData = JsonConvert.SerializeObject(states);
             return Json(new { States = statesData }, JsonRequestBehavior.AllowGet);
@@ -32,8 +38,13 @@ namespace Callboard.App.Web.Controllers
 
         [Editor]
         [HttpPost]
-        public JsonResult SaveState(string stateData)
+        public ActionResult SaveState(string stateData)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             bool isSaved = false;
             stateData = stateData ?? string.Empty;
             var state = JsonConvert.DeserializeObject<State>(stateData);
@@ -47,8 +58,13 @@ namespace Callboard.App.Web.Controllers
 
         [Editor]
         [HttpPost]
-        public JsonResult DeleteState(int stateId)
+        public ActionResult DeleteState(int stateId)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             _stateProvider.Delete(stateId);
             return Json(new { IdDeleted = true });
         }
