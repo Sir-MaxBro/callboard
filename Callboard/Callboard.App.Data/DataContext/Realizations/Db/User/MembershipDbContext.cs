@@ -12,7 +12,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class MembershipDbContext : EntityDbContext<User>, IMembershipContext
     {
-        public MembershipDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
+        public MembershipDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
         public User GetUserByLogin(string login)

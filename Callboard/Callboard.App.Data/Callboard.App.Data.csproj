@@ -87,6 +87,7 @@
     <Compile Include="DbContext\Main\IDbContext.cs" />
     <Compile Include="DependencyResolution\DataRegistry.cs" />
     <Compile Include="Exceptions\EmptyConnectionStringException.cs" />
+    <Compile Include="Exceptions\LoginAlreadyExistsException.cs" />
     <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -37,10 +37,10 @@ namespace Callboard.App.Data.DbContext.Realizations
                 {
                     using (var adapter = new SqlDataAdapter(procedure))
                     {
+                        procedure.Connection = connection;
                         try
                         {
                             connection.Open();
-                            procedure.Connection = connection;
                             dataSet = new DataSet();
                             adapter.Fill(dataSet);
                             connection.Close();
@@ -49,11 +49,18 @@ namespace Callboard.App.Data.DbContext.Realizations
                         {
                             string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
                             _logger.ErrorFormat(errorMessage);
+                            dataSet = null;
+                        }
+                        catch (SqlException ex) when (ex.State == 1) // user login already exists
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new LoginAlreadyExistsException(ex.Message, ex);
                         }
                         catch (SqlException ex)
                         {
                             string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
                             _logger.ErrorFormat(errorMessage);
+                            dataSet = null;
                         }
                     }
                 }
@@ -67,10 +74,10 @@ namespace Callboard.App.Data.DbContext.Realizations
             {
                 using (var procedure = this.CreateProcedure(procedureName, values))
                 {
+                    procedure.Connection = connection;
                     try
                     {
                         connection.Open();
-                        procedure.Connection = connection;
                         procedure.ExecuteNonQuery();
                         connection.Close();
                     }
