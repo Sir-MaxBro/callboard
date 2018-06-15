@@ -17,16 +17,16 @@ namespace Callboard.App.Web.Controllers
             return View("Error");
         }
 
-        public ActionResult NotFound()
+        public ActionResult PageNotFound()
         {
             Response.StatusCode = 404;
-            return View("NotFound");
+            return View("NotFoundPage");
         }
 
         public ActionResult ServerNotResponding()
         {
             Response.StatusCode = 500; 
-            return View("ServerNotResponding");
+            return View("ServerNotRespondingPage");
         }
     }
 }

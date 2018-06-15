@@ -296,8 +296,8 @@
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Error\ServerNotResponding.cshtml" />
+    <Content Include="Views\Error\NotFoundPage.cshtml" />
+    <Content Include="Views\Error\ServerNotRespondingPage.cshtml" />
     <Content Include="Views\Navigation\CategoryList.cshtml" />
     <Content Include="Views\Ad\AdList.cshtml" />
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
