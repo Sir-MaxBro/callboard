@@ -4,6 +4,7 @@ using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -23,8 +24,13 @@ namespace Callboard.App.Web.Controllers
             _categoryProvider = categoryProvider;
         }
 
-        public JsonResult GetAllCategories()
+        public ActionResult GetAllCategories()
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var categories = _categoryProvider.GetAll();
             var categoriesData = JsonConvert.SerializeObject(categories);
             return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
@@ -56,16 +62,26 @@ namespace Callboard.App.Web.Controllers
 
         [Editor]
         [HttpPost]
-        public JsonResult DeleteCategory(int categoryId)
+        public ActionResult DeleteCategory(int categoryId)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             _categoryProvider.Delete(categoryId);
             return Json(new { IsDeleted = true });
         }
 
         [Editor]
         [HttpPost]
-        public JsonResult SaveCategory(string categoryData)
+        public ActionResult SaveCategory(string categoryData)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             bool isSaved = false;
             categoryData = categoryData ?? string.Empty;
             var category = JsonConvert.DeserializeObject<Category>(categoryData);

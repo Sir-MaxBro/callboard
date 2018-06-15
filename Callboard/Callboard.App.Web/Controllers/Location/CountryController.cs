@@ -2,6 +2,7 @@
 using Callboard.App.General.Helpers.Main;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -21,8 +22,13 @@ namespace Callboard.App.Web.Controllers
             _countryProvider = countryProvider;
         }
 
-        public JsonResult GetCountries()
+        public ActionResult GetCountries()
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var countries = _countryProvider.GetAll();
             var countriesData = JsonConvert.SerializeObject(countries);
             return Json(new { Countries = countriesData }, JsonRequestBehavior.AllowGet);

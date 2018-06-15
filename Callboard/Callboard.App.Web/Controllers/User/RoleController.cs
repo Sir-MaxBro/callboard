@@ -3,6 +3,7 @@ using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -23,16 +24,26 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Admin]
-        public JsonResult GetRoles()
+        public ActionResult GetRoles()
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var roles = _roleProvider.GetAll();
             var rolesData = JsonConvert.SerializeObject(roles);
             return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
         }
 
         [Admin]
-        public JsonResult GetRolesForUser(int userId)
+        public ActionResult GetRolesForUser(int userId)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             var roles = _roleProvider.GetRolesForUser(userId);
             var rolesData = JsonConvert.SerializeObject(roles);
             return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);

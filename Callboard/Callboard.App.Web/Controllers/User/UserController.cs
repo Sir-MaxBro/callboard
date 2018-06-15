@@ -6,6 +6,7 @@ using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -84,8 +85,13 @@ namespace Callboard.App.Web.Controllers
 
         [User]
         [HttpPost]
-        public JsonResult SaveUser(string userData)
+        public ActionResult SaveUser(string userData)
         {
+            if (!HttpContext.Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
             bool isSaved = false;
             var user = JsonConvert.DeserializeObject<User>(userData);
             if (user != null)
