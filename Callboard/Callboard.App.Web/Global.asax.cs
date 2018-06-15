@@ -51,8 +51,10 @@ namespace Callboard.App.Web
             HttpException httpException = exception as HttpException;
             if (httpException != null)
             {
-                Server.ClearError();
-                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message }");
+            //    Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message }");
+            //    Server.ClearError();
+            //    var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            //    Response.Redirect(urlHelper.Action("Index", "Error", new { errorMessage = exception.Message }));
             }
         }
     }
