@@ -1,5 +1,4 @@
-﻿using Callboard.App.Data.DataContext.Main;
-using Callboard.App.Data.DbContext.Main;
+﻿using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
@@ -58,7 +57,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             return area;
         }
 
-        public void Save(Area obj)
+        public void Save(int countryId, Area obj)
         {
             throw new NotImplementedException();
         }

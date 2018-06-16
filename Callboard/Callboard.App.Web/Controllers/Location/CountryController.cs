@@ -1,4 +1,5 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Newtonsoft.Json;
 using System;
@@ -10,8 +11,8 @@ namespace Callboard.App.Web.Controllers
     public class CountryController : Controller
     {
         private IChecker _checker;
-        private ICountryProvider _countryProvider;
-        public CountryController(ICountryProvider countryProvider, IChecker checker)
+        private IEntityService<Country> _countryProvider;
+        public CountryController(IEntityService<Country> countryProvider, IChecker checker)
         {
             if (checker == null)
             {

@@ -1,5 +1,5 @@
-﻿using Callboard.App.Business.Providers.Realization;
-using Callboard.App.Data.Providers.Main;
+﻿using Callboard.App.Business.Services.Realizations;
+using Callboard.App.Data.Services;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Entities.Commercial;
 using Callboard.App.General.Helpers.Main;
@@ -30,11 +30,11 @@ namespace Callboard.App.Business.Test.ProvidersTest
 
             var mockChecker = new Mock<IChecker>();
 
-            var mockCommecrialDataProvider = new Mock<ICommercialProvider>();
+            var mockCommecrialDataProvider = new Mock<ICommercialService>();
             mockCommecrialDataProvider.Setup(prov => prov.GetCommercials())
                 .Returns(commercials);
 
-            var commercialProvider = new CommercialProvider(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
+            var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
 
             var resultCommercials = commercialProvider.GetCommercials();
 
@@ -60,9 +60,9 @@ namespace Callboard.App.Business.Test.ProvidersTest
 
             var mockChecker = new Mock<IChecker>();
 
-            var mockCommecrialDataProvider = new Mock<ICommercialProvider>();
+            var mockCommecrialDataProvider = new Mock<ICommercialService>();
 
-            var commercialProvider = new CommercialProvider(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
+            var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
 
             var resultCommercials = commercialProvider.GetCommercials();
 

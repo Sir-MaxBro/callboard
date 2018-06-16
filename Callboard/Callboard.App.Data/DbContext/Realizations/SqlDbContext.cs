@@ -1,5 +1,4 @@
-﻿using Callboard.App.Data.DbContext.Main;
-using Callboard.App.Data.Exceptions;
+﻿using Callboard.App.Data.Exceptions;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Microsoft.SqlServer.Server;

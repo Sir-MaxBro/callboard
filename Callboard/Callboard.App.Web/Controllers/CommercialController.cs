@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.Web.Models;
@@ -11,8 +11,8 @@ namespace Callboard.App.Web.Controllers
     {
         private IChecker _checker;
         private ILoggerWrapper _logger;
-        private ICommercialProvider _commercialProvider;
-        public CommercialController(ILoggerWrapper logger, ICommercialProvider commercialProvider, IChecker checker)
+        private ICommercialService _commercialProvider;
+        public CommercialController(ILoggerWrapper logger, ICommercialService commercialProvider, IChecker checker)
         {
             if (checker == null)
             {

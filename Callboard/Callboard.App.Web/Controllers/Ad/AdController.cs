@@ -1,19 +1,19 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using System;
 using System.Web.Mvc;
-using Callboard.App.Web.Attributes;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AdController : Controller
     {
-        private IAdProvider _adProvider;
+        private IAdService _adProvider;
         private ILoggerWrapper _logger;
         private IChecker _checker;
-        public AdController(IAdProvider adProvider, ILoggerWrapper logger, IChecker checker)
+        public AdController(IAdService adProvider, ILoggerWrapper logger, IChecker checker)
         {
             if (checker == null)
             {

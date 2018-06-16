@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
@@ -16,8 +16,8 @@ namespace Callboard.App.Web.Controllers
     public class AdDetailsController : Controller
     {
         private IChecker _checker;
-        private IAdDetailsProvider _adDetailsProvider;
-        public AdDetailsController(IAdDetailsProvider adDetailsProvider, IChecker checker)
+        private IAdDetailsService _adDetailsProvider;
+        public AdDetailsController(IAdDetailsService adDetailsProvider, IChecker checker)
         {
             if (checker == null)
             {

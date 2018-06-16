@@ -1,5 +1,5 @@
-﻿using Callboard.App.Business.Providers.Realization;
-using Callboard.App.Data.Repositories.Main;
+﻿using Callboard.App.Business.Services.Realizations;
+using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Exceptions;
 using Callboard.App.General.Helpers.Main;
@@ -17,11 +17,11 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         public void GetAll_KindsCollection()
         {
             var kinds = new List<Kind>();
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.GetAll()).Returns(kinds);
             var mockChecker = new Mock<IChecker>();
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             var resultKinds = kindProvider.GetAll();
 
@@ -39,12 +39,12 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 Type = "Product"
             };
 
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(kind);
 
             var mockChecker = new Mock<IChecker>();
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             var resultKind = kindProvider.GetById(id);
 
@@ -58,7 +58,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         public void GetById_InvalidId_Throws()
         {
             int invalidId = 0;
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>()));
 
             var mockChecker = new Mock<IChecker>();
@@ -70,7 +70,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 }
             });
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             var resultKind = kindProvider.GetById(invalidId);
 
@@ -87,12 +87,12 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 Type = "Product"
             };
 
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.Save(It.IsAny<Kind>())).Callback((Kind value) => kinds.Add(value));
 
             var mockChecker = new Mock<IChecker>();
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             kindProvider.Save(kind);
 
@@ -105,7 +105,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         [ExpectedException(typeof(NullReferenceException))]
         public void Save_Null_Throws()
         {
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.Save(It.IsAny<Kind>()));
 
             var mockChecker = new Mock<IChecker>();
@@ -117,7 +117,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 }
             });
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             kindProvider.Save(null);
             mockKindRepository.Verify(mock => mock.Save(null), Times.Once());
@@ -135,12 +135,12 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 }
             };
 
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.Delete(It.IsAny<int>())).Callback(() => kinds.RemoveAt(0));
 
             var mockChecker = new Mock<IChecker>();
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             kindProvider.Delete(id);
 
@@ -153,7 +153,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         public void Delete_InvalidId_Throws()
         {
             int invalidId = 0;
-            var mockKindRepository = new Mock<IKindRepository>();
+            var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.Delete(It.IsAny<int>()));
 
             var mockChecker = new Mock<IChecker>();
@@ -165,7 +165,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
                 }
             });
 
-            var kindProvider = new KindProvider(mockKindRepository.Object, mockChecker.Object);
+            var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
             kindProvider.Delete(invalidId);
             mockKindRepository.Verify(mock => mock.Delete(invalidId), Times.Once());

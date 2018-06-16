@@ -1,0 +1,10 @@
+﻿using Callboard.App.General.Entities.Commercial;
+using System.Collections.Generic;
+
+namespace Callboard.App.Business.Services
+{
+    public interface ICommercialService
+    {
+        IReadOnlyCollection<Commercial> GetCommercials();
+    }
+}
