@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Models;
 using System;
@@ -8,9 +8,9 @@ namespace Callboard.App.Web.Controllers
 {
     public class NavigationController : Controller
     {
-        private ICategoryProvider _categoryProvider;
+        private ICategoryService _categoryProvider;
         private IChecker _checker;
-        public NavigationController(ICategoryProvider categoryProvider, IChecker checker)
+        public NavigationController(ICategoryService categoryProvider, IChecker checker)
         {
             if (checker == null)
             {

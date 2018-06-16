@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
@@ -12,8 +12,8 @@ namespace Callboard.App.Web.Controllers
     public class CategoryController : Controller
     {
         private IChecker _checker;
-        private ICategoryProvider _categoryProvider;
-        public CategoryController(ICategoryProvider categoryProvider, IChecker checker)
+        private ICategoryService _categoryProvider;
+        public CategoryController(ICategoryService categoryProvider, IChecker checker)
         {
             if (checker == null)
             {

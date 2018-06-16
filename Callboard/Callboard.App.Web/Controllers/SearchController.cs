@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
@@ -13,10 +13,10 @@ namespace Callboard.App.Web.Controllers
 {
     public class SearchController : Controller
     {
-        private IAdProvider _adProvider;
+        private IAdService _adProvider;
         private IChecker _checker;
         private ILoggerWrapper _logger;
-        public SearchController(IAdProvider adProvider, ILoggerWrapper logger, IChecker checker)
+        public SearchController(IAdService adProvider, ILoggerWrapper logger, IChecker checker)
         {
             if (checker == null)
             {

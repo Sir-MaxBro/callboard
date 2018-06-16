@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
@@ -14,8 +14,8 @@ namespace Callboard.App.Web.Controllers
     public class UserController : Controller
     {
         private IChecker _checker;
-        private IUserProvider _userProvider;
-        public UserController(IUserProvider userProvider, IChecker checker)
+        private IEntityService<User> _userProvider;
+        public UserController(IEntityService<User> userProvider, IChecker checker)
         {
             if (checker == null)
             {

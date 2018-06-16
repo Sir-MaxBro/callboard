@@ -1,6 +1,6 @@
-﻿using Callboard.App.Business.Providers.Main;
-using Callboard.App.Business.Providers.Realization;
-using Callboard.App.Business.Services;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.Business.Services.Realizations;
+using Callboard.App.General.Entities;
 using StructureMap;
 
 namespace Callboard.App.Business.DependencyResolution
@@ -11,21 +11,19 @@ namespace Callboard.App.Business.DependencyResolution
         {
             For<ILogginService>().Use<LogginService>();
 
-            For<IAdDetailsProvider>().Use<AdDetailsProvider>();
-            For<IAdProvider>().Use<AdProvider>();
-            For<ICategoryProvider>().Use<CategoryProvider>();
-            For<IKindProvider>().Use<KindProvider>();
-            For<IStateProvider>().Use<StateProvider>();
+            For<IAdDetailsService>().Use<AdDetailsService>();
+            For<IAdService>().Use<AdService>();
+            For<ICategoryService>().Use<CategoryService>();
+            For<IAreaService>().Use<AreaService>();
+            For<ICityService>().Use<CityService>();
+            For<IMembershipService>().Use<MembershipService>();
+            For<IRoleService>().Use<RoleService>();
+            For<ICommercialService>().Use<CommercialService>();
 
-            For<IAreaProvider>().Use<AreaProvider>();
-            For<ICityProvider>().Use<CityProvider>();
-            For<ICountryProvider>().Use<CountryProvider>();
-
-            For<IMembershipProvider>().Use<MembershipProvider>();
-            For<IRoleProvider>().Use<RoleProvider>();
-            For<IUserProvider>().Use<UserProvider>();
-
-            For<ICommercialProvider>().Use<CommercialProvider>();
+            For<IEntityService<User>>().Use<UserService>();
+            For<IEntityService<Country>>().Use<CountryProvider>();
+            For<IEntityService<Kind>>().Use<KindService>();
+            For<IEntityService<State>>().Use<StateService>();
         }
     }
 }

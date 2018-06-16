@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
 using Newtonsoft.Json;
 using System;
@@ -10,8 +10,8 @@ namespace Callboard.App.Web.Controllers
     public class CityController : Controller
     {
         private IChecker _checker;
-        private ICityProvider _cityProvider;
-        public CityController(ICityProvider cityProvider, IChecker checker)
+        private ICityService _cityProvider;
+        public CityController(ICityService cityProvider, IChecker checker)
         {
             if (checker == null)
             {

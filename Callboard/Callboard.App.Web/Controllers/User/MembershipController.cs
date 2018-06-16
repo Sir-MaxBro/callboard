@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -9,9 +9,9 @@ namespace Callboard.App.Web.Controllers
 {
     public class MembershipController : Controller
     {
-        private IMembershipProvider _membershipProvider;
+        private IMembershipService _membershipProvider;
         private IChecker _checker;
-        public MembershipController(IMembershipProvider membershipProvider, IChecker checker)
+        public MembershipController(IMembershipService membershipProvider, IChecker checker)
         {
             if (checker == null)
             {

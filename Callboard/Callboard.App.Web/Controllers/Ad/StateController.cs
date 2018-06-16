@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
@@ -12,8 +12,8 @@ namespace Callboard.App.Web.Controllers
     public class StateController : Controller
     {
         private IChecker _checker;
-        private IStateProvider _stateProvider;
-        public StateController(IStateProvider stateProvider, IChecker checker)
+        private IEntityService<State> _stateProvider;
+        public StateController(IEntityService<State> stateProvider, IChecker checker)
         {
             if (checker == null)
             {

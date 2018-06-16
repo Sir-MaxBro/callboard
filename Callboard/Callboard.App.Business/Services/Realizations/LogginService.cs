@@ -1,21 +1,21 @@
 ﻿using Callboard.App.Data.Exceptions;
-using Callboard.App.Data.Providers.Main;
-using Callboard.App.Data.Repositories.Main;
+using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
 using Newtonsoft.Json;
 using System;
 using System.Web;
 using System.Web.Security;
+using Data = Callboard.App.Data.Services;
 
-namespace Callboard.App.Business.Services
+namespace Callboard.App.Business.Services.Realizations
 {
     internal class LogginService : ILogginService
     {
-        private IMembershipProvider _membershipProvider;
+        private Data::IMembershipService _membershipProvider;
         private IRoleRepository _roleRepository;
         private const int VERSION = 1;
-        public LogginService(IMembershipProvider membershipProvider, IRoleRepository roleRepository)
+        public LogginService(Data::IMembershipService membershipProvider, IRoleRepository roleRepository)
         {
             _membershipProvider = membershipProvider;
             _roleRepository = roleRepository;

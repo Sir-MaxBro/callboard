@@ -1,4 +1,4 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.Web.Attributes;
@@ -11,9 +11,9 @@ namespace Callboard.App.Web.Controllers
 {
     public class KindController : Controller
     {
-        private IKindProvider _kindProvider;
+        private IEntityService<Kind> _kindProvider;
         private IChecker _checker;
-        public KindController(IKindProvider kindProvider, IChecker checker)
+        public KindController(IEntityService<Kind> kindProvider, IChecker checker)
         {
             if (checker == null)
             {

@@ -1,5 +1,4 @@
-﻿using Callboard.App.Data.DataContext.Main;
-using Callboard.App.General.Entities.Commercial;
+﻿using Callboard.App.General.Entities.Commercial;
 using Callboard.App.General.Helpers;
 using Callboard.App.General.Loggers.Main;
 using System;
@@ -76,7 +75,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
         private Service::ICommercialContract GetCommercialContract()
         {
             var configuration = ConfigurationHelper.GetExecutingAssemblyConfig(this);
-            var channelFactory = new ConfigurationChannelFactory<Service::ICommercialContract>("CommercialContractEndpoint", configuration, null);
+            var channelFactory = new ConfigurationChannelFactory<Service::ICommercialContract>("CommercialContractEndpoint", configuration, null); 
             return channelFactory.CreateChannel();
         }
     }
