@@ -70,6 +70,10 @@
     <Compile Include="Entities\Data\Ad\State.cs" />
     <Compile Include="Entities\Data\User\Role.cs" />
     <Compile Include="Entities\Data\User\User.cs" />
+    <Compile Include="ResultExtensions\CastResultExtension.cs" />
+    <Compile Include="ResultExtensions\CheckResultExtension.cs" />
+    <Compile Include="Results\IFailureResult.cs" />
+    <Compile Include="Results\INoneResult.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\Main\IChecker.cs" />
@@ -77,6 +81,11 @@
     <Compile Include="Loggers\Main\ILoggerWrapper.cs" />
     <Compile Include="Loggers\Realizations\LoggerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\IResult.cs" />
+    <Compile Include="Results\ISuccessResult.cs" />
+    <Compile Include="Results\Realizations\FailureResult.cs" />
+    <Compile Include="Results\Realizations\NoneResult.cs" />
+    <Compile Include="Results\Realizations\SuccessResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logger.config">

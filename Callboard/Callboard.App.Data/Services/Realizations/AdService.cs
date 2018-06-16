@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Data.DataContext;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -14,32 +15,32 @@ namespace Callboard.App.Data.Services.Realizations
             _context = context ?? throw new NullReferenceException(nameof(context));
         }
 
-        public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
+        public IResult<IReadOnlyCollection<Ad>> GetAdsByCategoryId(int categoryId)
         {
             return _context.GetAdsByCategoryId(categoryId);
         }
 
-        public IReadOnlyCollection<Ad> GetAll()
+        public IResult<IReadOnlyCollection<Ad>> GetAll()
         {
             return _context.GetAll();
         }
 
-        public void Delete(int id)
+        public IResult<Ad> Delete(int id)
         {
-            _context.Delete(id);
+            return _context.Delete(id);
         }
 
-        public IReadOnlyCollection<Ad> SearchByName(string name)
+        public IResult<IReadOnlyCollection<Ad>> SearchByName(string name)
         {
             return _context.SearchByName(name);
         }
 
-        public IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration)
+        public IResult<IReadOnlyCollection<Ad>> Search(SearchConfiguration searchConfiguration)
         {
             return _context.Search(searchConfiguration);
         }
 
-        public IReadOnlyCollection<Ad> GetAdsForUser(int userId)
+        public IResult<IReadOnlyCollection<Ad>> GetAdsForUser(int userId)
         {
             return _context.GetAdsForUser(userId);
         }

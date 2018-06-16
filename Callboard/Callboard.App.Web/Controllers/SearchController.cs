@@ -3,6 +3,8 @@ using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.General.Results;
 using Callboard.App.Web.Models;
 using Newtonsoft.Json;
 using System;
@@ -31,15 +33,12 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult SearchAdsByName(string name)
         {
-            IReadOnlyCollection<Ad> ads = null;
-
-            if (string.IsNullOrEmpty(name))
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            var adsResult = _adProvider.SearchByName(name);
+            if (adsResult.IsSuccess())
             {
-                ads = _adProvider.GetAds();
-            }
-            else
-            {
-                ads = _adProvider.SearchByName(name);
+                var successResult = adsResult.GetSuccessResult();
+                ads = successResult.Value;
             }
 
             SearchViewModel model = new SearchViewModel
@@ -53,9 +52,17 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult Search()
         {
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            var adsResult = _adProvider.GetAds();
+            if (adsResult.IsSuccess())
+            {
+                var successResult = adsResult.GetSuccessResult();
+                ads = successResult.Value;
+            }
+
             var model = new SearchViewModel
             {
-                Ads = _adProvider.GetAds(),
+                Ads = ads,
                 SearchConfiguration = new SearchConfiguration()
             };
 
@@ -64,17 +71,24 @@ namespace Callboard.App.Web.Controllers
 
         public ActionResult SearchAds(string searchConfigurationData)
         {
-            IReadOnlyCollection<Ad> ads = null;
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            IResult<IReadOnlyCollection<Ad>> adsResult = null;
             searchConfigurationData = searchConfigurationData ?? string.Empty;
             var searchConfiguration = JsonConvert.DeserializeObject<SearchConfiguration>(searchConfigurationData);
 
             if (searchConfiguration == null)
             {
-                ads = _adProvider.GetAds();
+                adsResult = _adProvider.GetAds();
             }
             else
             {
-                ads = _adProvider.Search(searchConfiguration);
+                adsResult = _adProvider.Search(searchConfiguration);
+            }
+
+            if (adsResult.IsSuccess())
+            {
+                var successResult = adsResult.GetSuccessResult();
+                ads = successResult.Value;
             }
 
             return PartialView("Partial\\AdContainer", ads);
