@@ -1,6 +1,6 @@
-set user="max_bro"
+set user="callboard_admin"
 set password="1D2F2f3E3asd"
-set server="EPBYMOGW0209\SQLEXPRESS"
+set server="DESKTOP-4I1O878\SQLEXPRESS"
 set currentPath=%~dp0
 
 sqlcmd -S %server% -i startup.sql
@@ -10,8 +10,6 @@ sqlcmd -S %server% -i create_user.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i drop_db.sql
 sqlcmd -S %server% -i create_db.sql
-
-sqlcmd -S %server% -U %user% -P %password% -i create_db_user.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i tables\Role.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\User.sql
