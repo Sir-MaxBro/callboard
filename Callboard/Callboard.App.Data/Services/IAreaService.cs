@@ -1,18 +1,19 @@
 ﻿using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 
 namespace Callboard.App.Data.Services
 {
     public interface IAreaService
     {
-        IReadOnlyCollection<Area> GetAll();
+        IResult<IReadOnlyCollection<Area>> GetAll();
 
-        Area GetById(int id);
+        IResult<Area> GetById(int id);
 
-        void Save(int countryId, Area obj);
+        IResult<Area> Save(int countryId, Area obj);
 
-        void Delete(int id);
+        IResult<Area> Delete(int id);
 
-        IReadOnlyCollection<Area> GetAreasByCountryId(int countryId);
+        IResult<IReadOnlyCollection<Area>> GetAreasByCountryId(int countryId);
     }
 }

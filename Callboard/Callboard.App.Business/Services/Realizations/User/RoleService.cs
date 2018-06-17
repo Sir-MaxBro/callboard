@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -17,47 +18,47 @@ namespace Callboard.App.Business.Services.Realizations
             _roleRepository = roleRepository;
         }
 
-        public void Delete(int id)
+        public IResult<Role> Delete(int id)
         {
             _checker.CheckId(id);
-            _roleRepository.Delete(id);
+            return _roleRepository.Delete(id);
         }
 
-        public void DeleteUserRole(int userId, int roleId)
+        public IResult<Role> DeleteUserRole(int userId, int roleId)
         {
             _checker.CheckId(userId);
             _checker.CheckId(roleId);
-            _roleRepository.DeleteUserRole(userId, roleId);
+            return _roleRepository.DeleteUserRole(userId, roleId);
         }
 
-        public IReadOnlyCollection<Role> GetAll()
+        public IResult<IReadOnlyCollection<Role>> GetAll()
         {
             return _roleRepository.GetAll();
         }
 
-        public Role GetById(int id)
+        public IResult<Role> GetById(int id)
         {
             _checker.CheckId(id);
             return _roleRepository.GetById(id);
         }
 
-        public IReadOnlyCollection<Role> GetRolesForUser(int userId)
+        public IResult<IReadOnlyCollection<Role>> GetRolesForUser(int userId)
         {
             _checker.CheckId(userId);
             return _roleRepository.GetRolesForUser(userId);
         }
 
-        public void Save(Role obj)
+        public IResult<Role> Save(Role obj)
         {
             _checker.CheckForNull(obj);
-            _roleRepository.Save(obj);
+            return _roleRepository.Save(obj);
         }
 
-        public void SetRoleForUser(int userId, int roleId)
+        public IResult<Role> SetRoleForUser(int userId, int roleId)
         {
             _checker.CheckId(userId);
             _checker.CheckId(roleId);
-            _roleRepository.SetRoleForUser(userId, roleId);
+            return _roleRepository.SetRoleForUser(userId, roleId);
         }
     }
 }

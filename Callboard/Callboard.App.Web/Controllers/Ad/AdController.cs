@@ -7,6 +7,7 @@ using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -35,8 +36,7 @@ namespace Callboard.App.Web.Controllers
             var adsResult = _adProvider.GetAds();
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             AdListViewModel model = new AdListViewModel
@@ -53,8 +53,7 @@ namespace Callboard.App.Web.Controllers
             var adsResult = _adProvider.GetAdsByCategoryId(categoryId);
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             AdListViewModel model = new AdListViewModel
@@ -72,8 +71,7 @@ namespace Callboard.App.Web.Controllers
             var adsResult = _adProvider.GetAdsForUser(userId);
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             return PartialView("Partial\\AdContainer", ads);
@@ -83,19 +81,11 @@ namespace Callboard.App.Web.Controllers
         public ActionResult DeleteAd(int adId, string returnUrl)
         {
             var adsResult = _adProvider.Delete(adId);
-            if (adsResult.IsFailure())
+            if (adsResult.IsNone())
             {
-                // return invalid data to user
+                return RedirectToAction("GetAdList", "Ad");
             }
-
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return Redirect("GetAdList");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

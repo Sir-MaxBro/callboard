@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Data.DataContext;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -13,39 +14,39 @@ namespace Callboard.App.Data.Repositories.Realizations
             _context = context ?? throw new NullReferenceException(nameof(context));
         }
 
-        public void Delete(int id)
+        public IResult<Role> Delete(int id)
         {
-            _context.Delete(id);
+            return _context.Delete(id);
         }
 
-        public void DeleteUserRole(int userId, int roleId)
+        public IResult<Role> DeleteUserRole(int userId, int roleId)
         {
-            _context.DeleteUserRole(userId, roleId);
+            return _context.DeleteUserRole(userId, roleId);
         }
 
-        public IReadOnlyCollection<Role> GetAll()
+        public IResult<IReadOnlyCollection<Role>> GetAll()
         {
             return _context.GetAll();
         }
 
-        public Role GetById(int id)
+        public IResult<Role> GetById(int id)
         {
             return _context.GetById(id);
         }
 
-        public IReadOnlyCollection<Role> GetRolesForUser(int userId)
+        public IResult<IReadOnlyCollection<Role>> GetRolesForUser(int userId)
         {
             return _context.GetRolesForUser(userId);
         }
 
-        public void Save(Role obj)
+        public IResult<Role> Save(Role obj)
         {
-            _context.Save(obj);
+            return _context.Save(obj);
         }
 
-        public void SetRoleForUser(int userId, int roleId)
+        public IResult<Role> SetRoleForUser(int userId, int roleId)
         {
-            _context.SetRoleForUser(userId, roleId);
+            return _context.SetRoleForUser(userId, roleId);
         }
     }
 }

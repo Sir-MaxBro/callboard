@@ -70,7 +70,7 @@
     <Compile Include="Entities\Data\Ad\State.cs" />
     <Compile Include="Entities\Data\User\Role.cs" />
     <Compile Include="Entities\Data\User\User.cs" />
-    <Compile Include="ResultExtensions\CastResultExtension.cs" />
+    <Compile Include="ResultExtensions\ResultExtension.cs" />
     <Compile Include="ResultExtensions\CheckResultExtension.cs" />
     <Compile Include="Results\IFailureResult.cs" />
     <Compile Include="Results\INoneResult.cs" />

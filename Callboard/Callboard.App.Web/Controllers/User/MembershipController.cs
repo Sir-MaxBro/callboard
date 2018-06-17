@@ -1,8 +1,10 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -33,13 +35,16 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult CreateUser(RegisterViewModel registerModel, string returnUrl)
         {
-            if (registerModel != null)
+            if (!ModelState.IsValid)
             {
-                _membershipProvider.CreateUser(registerModel.Login, registerModel.Password);
+                return RedirectToAction("CreateUser", registerModel);
             }
-            if (Url.IsLocalUrl(returnUrl))
+
+            var membershipResult = _membershipProvider.CreateUser(registerModel.Login, registerModel.Password);
+            if (membershipResult.IsFailure())
             {
-                return Redirect(returnUrl);
+                ViewBag.ErrorMessage = membershipResult.GetFailureMessage();
+                return RedirectToAction("CreateUser", registerModel);
             }
             return RedirectToAction("GetAllUsers", "User");
         }

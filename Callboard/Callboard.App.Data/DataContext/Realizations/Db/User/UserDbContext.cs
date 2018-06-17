@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using Microsoft.SqlServer.Server;
 using System.Collections.Generic;
 using System.Data;
@@ -15,25 +16,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public UserDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<User> Delete(int id)
         {
             string procedureName = "sp_delete_user_by_id";
             var values = new Dictionary<string, object>
             {
                 { "UserId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<User> GetAll()
+        public IResult<IReadOnlyCollection<User>> GetAll()
         {
             string procedureName = "sp_select_user";
             var mapper = new Mapper<DataSet, User> { MapCollection = this.MapUserCollection };
-            var users = base.GetAll(procedureName, mapper);
-            return users;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public User GetById(int id)
+        public IResult<User> GetById(int id)
         {
             string procedureName = "sp_get_user_by_userid";
             var values = new Dictionary<string, object>
@@ -41,15 +41,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", id }
             };
             var mapper = new Mapper<DataSet, User> { MapItem = this.MapUser };
-            var user = base.Get(procedureName, mapper, values);
-            return user;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public void Save(User obj)
+        public IResult<User> Save(User obj)
         {
             string procedureName = "sp_save_user";
             var mapper = new Mapper<DataSet, User> { MapValues = this.MapUserValues };
-            base.Save(obj, procedureName, mapper);
+            return base.Save(obj, procedureName, mapper);
         }
 
         private IDictionary<string, object> MapUserValues(User user)

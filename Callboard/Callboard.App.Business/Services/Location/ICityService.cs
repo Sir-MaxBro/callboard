@@ -1,18 +1,19 @@
 ﻿using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 
 namespace Callboard.App.Business.Services
 {
     public interface ICityService
     {
-        IReadOnlyCollection<City> GetAll();
+        IResult<IReadOnlyCollection<City>> GetAll();
 
-        City GetById(int id);
+        IResult<City> GetById(int id);
 
-        void Save(int areaId, City obj);
+        IResult<City> Save(int areaId, City obj);
 
-        void Delete(int id);
+        IResult<City> Delete(int id);
 
-        IReadOnlyCollection<City> GetCitiesByAreaId(int areaId);
+        IResult<IReadOnlyCollection<City>> GetCitiesByAreaId(int areaId);
     }
 }

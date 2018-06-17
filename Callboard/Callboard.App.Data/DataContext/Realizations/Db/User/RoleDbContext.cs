@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,25 +15,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public RoleDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<Role> Delete(int id)
         {
             var procedureName = "sp_delete_role_by_id";
             var values = new Dictionary<string, object>
             {
                 { "RoleId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<Role> GetAll()
+        public IResult<IReadOnlyCollection<Role>> GetAll()
         {
             var procedureName = "sp_select_role";
             var mapper = new Mapper<DataSet, Role> { MapCollection = this.MapRoleCollection };
-            var roles = base.GetAll(procedureName, mapper);
-            return roles;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public Role GetById(int id)
+        public IResult<Role> GetById(int id)
         {
             var procedureName = "sp_get_role_by_id";
             var values = new Dictionary<string, object>
@@ -40,11 +40,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "RoleId", id }
             };
             var mapper = new Mapper<DataSet, Role> { MapItem = this.MapRole };
-            var role = base.Get(procedureName, mapper, values);
-            return role;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Role> GetRolesForUser(int userId)
+        public IResult<IReadOnlyCollection<Role>> GetRolesForUser(int userId)
         {
             var procedureName = "sp_select_role_by_userid";
             var values = new Dictionary<string, object>
@@ -52,18 +51,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", userId }
             };
             var mapper = new Mapper<DataSet, Role> { MapCollection = this.MapRoleCollection };
-            var roles = base.GetAll(procedureName, mapper, values);
-            return roles;
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public void Save(Role obj)
+        public IResult<Role> Save(Role obj)
         {
             var procedureName = "sp_save_role";
             var mapper = new Mapper<DataSet, Role> { MapValues = this.MapRoleValues };
-            base.Save(obj, procedureName, mapper);
+            return base.Save(obj, procedureName, mapper);
         }
 
-        public void SetRoleForUser(int userId, int roleId)
+        public IResult<Role> SetRoleForUser(int userId, int roleId)
         {
             var procedureName = "sp_set_role_for_user";
             var values = new Dictionary<string, object>
@@ -71,10 +69,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", userId },
                 { "RoleId", roleId }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public void DeleteUserRole(int userId, int roleId)
+        public IResult<Role> DeleteUserRole(int userId, int roleId)
         {
             var procedureName = "sp_delete_user_role";
             var values = new Dictionary<string, object>
@@ -82,7 +80,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", userId },
                 { "RoleId", roleId }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
         private IDictionary<string, object> MapRoleValues(Role role)

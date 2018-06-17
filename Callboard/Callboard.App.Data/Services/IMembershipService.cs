@@ -1,13 +1,14 @@
-﻿using Callboard.App.General.Entities;
+﻿using Callboard.App.General.Entities.Auth;
+using Callboard.App.General.Results;
 
 namespace Callboard.App.Data.Services
 {
     public interface IMembershipService
     {
-        bool ValidateUser(string login, string password);
+        IResult<MembershipUser> ValidateUser(string login, string password);
 
-        User GetUserByLogin(string login);
+        IResult<MembershipUser> GetUserByLogin(string login);
 
-        User CreateUser(string login, string password);
+        IResult<MembershipUser> CreateUser(string login, string password);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 
 namespace Callboard.App.Business.Services
 {
     public interface IAdDetailsService
     {
-        AdDetails GetById(int id);
+        IResult<AdDetails> GetById(int id);
 
-        void Save(AdDetails obj);
+        IResult<AdDetails> Save(AdDetails obj);
     }
 }

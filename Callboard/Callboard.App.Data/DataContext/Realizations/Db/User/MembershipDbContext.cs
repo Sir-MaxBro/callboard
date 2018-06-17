@@ -1,48 +1,45 @@
 ﻿using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
 namespace Callboard.App.Data.DataContext.Realizations.Db
 {
-    internal class MembershipDbContext : EntityDbContext<User>, IMembershipContext
+    internal class MembershipDbContext : EntityDbContext<MembershipUser>, IMembershipContext
     {
         public MembershipDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public User GetUserByLogin(string login)
+        public IResult<MembershipUser> GetUserByLogin(string login)
         {
-            var procedureName = "sp_get_user_by_login";
+            var procedureName = "sp_get_membership_user_by_login";
             var values = new Dictionary<string, object>
             {
                 { "Login", login }
             };
-            var mapper = new Mapper<DataSet, User>
-            {
-                MapItem = MapUser
-            };
-            var user = base.Get(procedureName, mapper, values);
-            return user;
+            var mapper = new Mapper<DataSet, MembershipUser> { MapItem = MapMembershipUser };
+            return base.Get(procedureName, mapper, values);
         }
 
-        public bool ValidateUser(string login, string password)
+        public IResult<MembershipUser> ValidateUser(string login, string password)
         {
-            var procedureName = "sp_get_user_by_login_password";
+            var procedureName = "sp_get_membership_user_by_login_password";
             var values = new Dictionary<string, object>
             {
                 { "Login", login },
                 { "Password", password }
             };
-            var mapper = new Mapper<DataSet, User> { MapItem = MapUserMin };
-            var user = base.Get(procedureName, mapper, values);
-            return user != null ? true : false;
+            var mapper = new Mapper<DataSet, MembershipUser> { MapItem = MapMembershipUser };
+            return base.Get(procedureName, mapper, values);
         }
 
-        public User CreateUser(string login, string password)
+        public IResult<MembershipUser> CreateUser(string login, string password)
         {
             var procedureName = "sp_create_membership";
             var values = new Dictionary<string, object>
@@ -50,67 +47,40 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "Login", login },
                 { "Password", password }
             };
-            var mapper = new Mapper<DataSet, User> { MapItem = MapUser };
-            var user = base.Get(procedureName, mapper, values);
-            return user;
+            var mapper = new Mapper<DataSet, MembershipUser> { MapItem = MapMembershipUser };
+            return base.Get(procedureName, mapper, values);
         }
 
-        private User MapUserMin(DataSet dataSet)
+        private MembershipUser MapMembershipUser(DataSet dataSet)
         {
             return dataSet.Tables[0].AsEnumerable().Select(user =>
             {
-                return MapUser(user, null, null);
+                return this.MapMembershipUser(user, dataSet.Tables[1]);
             }).FirstOrDefault();
         }
 
-        private User MapUser(DataSet dataSet)
+        private MembershipUser MapMembershipUser(DataRow row, DataTable roles)
         {
-            return dataSet.Tables[0].AsEnumerable().Select(user =>
+            return new MembershipUser
             {
-                return MapUser(user, dataSet.Tables[1], dataSet.Tables[2]);
-            }).FirstOrDefault();
-        }
-
-        private User MapUser(DataRow row, DataTable mails, DataTable phones)
-        {
-            int userId = row.Field<int>("UserId");
-            return new User
-            {
-                UserId = userId,
+                UserId = row.Field<int>("UserId"),
                 Name = row.Field<string>("Name"),
-                PhotoData = row.Field<byte[]>("PhotoData"),
-                PhotoExtension = row.Field<string>("PhotoExtension"),
-                Mails = this.MapMailCollection(mails, userId),
-                Phones = this.MapPhoneCollection(phones, userId)
+                Roles = this.MapRoleCollection(roles)
             };
         }
 
-        private IReadOnlyCollection<Phone> MapPhoneCollection(DataTable phones, int userId)
+        private IReadOnlyCollection<Role> MapRoleCollection(DataTable dataTable)
         {
-            return phones?.AsEnumerable()
-                        .Where(phone => phone.Field<int>("UserId") == userId)
-                        .Select(phone =>
-                        {
-                            return new Phone
-                            {
-                                PhoneId = phone.Field<int>("PhoneId"),
-                                Number = phone.Field<string>("Number")
-                            };
-                        }).ToList();
+            return dataTable.AsEnumerable().Select(this.MapRole).ToList();
         }
 
-        private IReadOnlyCollection<Mail> MapMailCollection(DataTable mails, int userId)
+        private Role MapRole(DataRow row)
         {
-            return mails?.AsEnumerable()
-                        .Where(mail => mail.Field<int>("UserId") == userId)
-                        .Select(mail =>
-                        {
-                            return new Mail
-                            {
-                                MailId = mail.Field<int>("MailId"),
-                                Email = mail.Field<string>("Email")
-                            };
-                        }).ToList();
+            return new Role
+            {
+                RoleId = row.Field<int>("RoleId"),
+                Name = row.Field<string>("Name")
+            };
         }
     }
 }

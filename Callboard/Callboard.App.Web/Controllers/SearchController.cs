@@ -37,8 +37,7 @@ namespace Callboard.App.Web.Controllers
             var adsResult = _adProvider.SearchByName(name);
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             SearchViewModel model = new SearchViewModel
@@ -56,8 +55,7 @@ namespace Callboard.App.Web.Controllers
             var adsResult = _adProvider.GetAds();
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             var model = new SearchViewModel
@@ -87,8 +85,7 @@ namespace Callboard.App.Web.Controllers
 
             if (adsResult.IsSuccess())
             {
-                var successResult = adsResult.GetSuccessResult();
-                ads = successResult.Value;
+                ads = adsResult.GetSuccessResult();
             }
 
             return PartialView("Partial\\AdContainer", ads);

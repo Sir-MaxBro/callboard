@@ -1,5 +1,7 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -21,16 +23,17 @@ namespace Callboard.App.Web.Controllers
             _areaProvider = areaProvider;
         }
 
+        [AjaxOnly]
         public ActionResult GetAreasByCountryId(int countryId)
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var areasResult = _areaProvider.GetAreasByCountryId(countryId);
+            if (areasResult.IsSuccess())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                var areas = areasResult.GetSuccessResult();
+                var areasData = JsonConvert.SerializeObject(areas);
+                return Json(new { Areas = areasData }, JsonRequestBehavior.AllowGet);
             }
-
-            var areas = _areaProvider.GetAreasByCountryId(countryId);
-            var areasData = JsonConvert.SerializeObject(areas);
-            return Json(new { Areas = areasData }, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }

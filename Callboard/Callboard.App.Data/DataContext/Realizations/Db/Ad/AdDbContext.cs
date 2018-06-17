@@ -5,7 +5,6 @@ using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.Results;
-using Callboard.App.General.Results.Realizations;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -26,8 +25,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "AdId", id }
             };
-            base.Execute(procedureName, values);
-            return new NoneResult<Ad>();
+            return base.Execute(procedureName, values);
         }
 
         public IResult<IReadOnlyCollection<Ad>> GetAdsByCategoryId(int categoryId)
@@ -38,8 +36,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CategoryId", categoryId }
             };
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return new SuccessResult<IReadOnlyCollection<Ad>>(ads);
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
         public IResult<IReadOnlyCollection<Ad>> GetAdsForUser(int userId)
@@ -50,16 +48,16 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", userId }
             };
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return new SuccessResult<IReadOnlyCollection<Ad>>(ads);
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
         public IResult<IReadOnlyCollection<Ad>> GetAll()
         {
             var procedureName = "sp_select_ad";
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper);
-            return new SuccessResult<IReadOnlyCollection<Ad>>(ads);
+
+            return base.GetAll(procedureName, mapper);
         }
 
         public IResult<IReadOnlyCollection<Ad>> SearchByName(string name)
@@ -70,8 +68,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "SearchName", name }
             };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return new SuccessResult<IReadOnlyCollection<Ad>>(ads);
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
         public IResult<IReadOnlyCollection<Ad>> Search(SearchConfiguration searchConfiguration)
@@ -90,8 +88,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "MaxPrice", searchConfiguration.MaxPrice },
                 { "Categories", this.MapCategoriesToValues(searchConfiguration.Categories) }
             };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return new SuccessResult<IReadOnlyCollection<Ad>>(ads);
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
         private IReadOnlyCollection<SqlDataRecord> MapCategoriesToValues(IReadOnlyCollection<Category> categories)

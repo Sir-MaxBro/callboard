@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,25 +16,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public AreaDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<Area> Delete(int id)
         {
             string procedureName = "sp_delete_area_by_id";
             var values = new Dictionary<string, object>
             {
                 { "AreaId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<Area> GetAll()
+        public IResult<IReadOnlyCollection<Area>> GetAll()
         {
             var procedureName = "sp_select_area";
             var mapper = new Mapper<DataSet, Area> { MapCollection = this.MapAreaCollection };
-            var areas = base.GetAll(procedureName, mapper);
-            return areas;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public IReadOnlyCollection<Area> GetAreasByCountryId(int countryId)
+        public IResult<IReadOnlyCollection<Area>> GetAreasByCountryId(int countryId)
         {
             var procedureName = "sp_select_area_by_countryid";
             var values = new Dictionary<string, object>
@@ -41,11 +41,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CountryId", countryId }
             };
             var mapper = new Mapper<DataSet, Area> { MapCollection = this.MapAreaCollection };
-            var areas = base.GetAll(procedureName, mapper, values);
-            return areas;
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public Area GetById(int id)
+        public IResult<Area> GetById(int id)
         {
             string procedureName = "sp_get_area_by_id";
             var values = new Dictionary<string, object>
@@ -53,11 +52,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "AreaId", id }
             };
             var mapper = new Mapper<DataSet, Area> { MapItem = this.MapArea };
-            var area = base.Get(procedureName, mapper, values);
-            return area;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public void Save(int countryId, Area obj)
+        public IResult<Area> Save(int countryId, Area obj)
         {
             throw new NotImplementedException();
         }

@@ -25,6 +25,10 @@
                         <label for="RePassword">RePassword</label>
                         @Html.ValidationMessageFor(model => model.RePassword)
                     </div>
+
+                    <div class="input-field col s12">
+                        @ViewBag.ErrorMessage
+                    </div>
                 </div>
             </div>
             <div class="card-action">

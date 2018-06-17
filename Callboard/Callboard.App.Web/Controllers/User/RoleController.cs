@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
@@ -24,45 +25,55 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Admin]
+        [AjaxOnly]
         public ActionResult GetRoles()
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var rolesResult = _roleProvider.GetAll();
+            if (rolesResult.IsSuccess())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                var roles = rolesResult.GetSuccessResult();
+                var rolesData = JsonConvert.SerializeObject(roles);
+                return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
             }
-
-            var roles = _roleProvider.GetAll();
-            var rolesData = JsonConvert.SerializeObject(roles);
-            return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Admin]
+        [AjaxOnly]
         public ActionResult GetRolesForUser(int userId)
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var rolesResult = _roleProvider.GetRolesForUser(userId);
+            if (rolesResult.IsSuccess())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                var roles = rolesResult.GetSuccessResult();
+                var rolesData = JsonConvert.SerializeObject(roles);
+                return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
             }
-
-            var roles = _roleProvider.GetRolesForUser(userId);
-            var rolesData = JsonConvert.SerializeObject(roles);
-            return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Admin]
         [HttpPost]
         public ActionResult SetRoleForUser(int userId, int roleId)
         {
-            _roleProvider.SetRoleForUser(userId, roleId);
-            return RedirectToAction("GetRolesForUser", new { userId });
+            var rolesResult = _roleProvider.SetRoleForUser(userId, roleId);
+            if (rolesResult.IsNone())
+            {
+                return RedirectToAction("GetRolesForUser", new { userId });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Admin]
         [HttpPost]
         public ActionResult DeleteUserRole(int userId, int roleId)
         {
-            _roleProvider.DeleteUserRole(userId, roleId);
-            return RedirectToAction("GetRolesForUser", new { userId });
+            var rolesResult = _roleProvider.DeleteUserRole(userId, roleId);
+            if (rolesResult.IsNone())
+            {
+                return RedirectToAction("GetRolesForUser", new { userId });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

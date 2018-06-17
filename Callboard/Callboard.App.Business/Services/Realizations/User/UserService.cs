@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -17,27 +18,27 @@ namespace Callboard.App.Business.Services.Realizations
             _userRepository = userRepository;
         }
 
-        public void Delete(int id)
+        public IResult<User> Delete(int id)
         {
             _checker.CheckId(id);
-            _userRepository.Delete(id);
+            return _userRepository.Delete(id);
         }
 
-        public IReadOnlyCollection<User> GetAll()
+        public IResult<IReadOnlyCollection<User>> GetAll()
         {
             return _userRepository.GetAll();
         }
 
-        public User GetById(int id)
+        public IResult<User> GetById(int id)
         {
             _checker.CheckId(id);
             return _userRepository.GetById(id);
         }
 
-        public void Save(User obj)
+        public IResult<User> Save(User obj)
         {
             _checker.CheckForNull(obj);
-            _userRepository.Save(obj);
+            return _userRepository.Save(obj);
         }
     }
 }

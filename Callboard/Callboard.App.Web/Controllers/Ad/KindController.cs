@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
@@ -24,49 +25,48 @@ namespace Callboard.App.Web.Controllers
             _kindProvider = kindProvider;
         }
 
+        [AjaxOnly]
         public ActionResult GetKinds()
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var kindsResult = _kindProvider.GetAll();
+            if (kindsResult.IsSuccess())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                var kinds = kindsResult.GetSuccessResult();
+                var kindsData = JsonConvert.SerializeObject(kinds);
+                return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
             }
-
-            var kinds = _kindProvider.GetAll();
-            var kindsData = JsonConvert.SerializeObject(kinds);
-            return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
         public ActionResult SaveKind(string kindData)
         {
-            if (!HttpContext.Request.IsAjaxRequest())
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-
-            bool isSaved = false;
             kindData = kindData ?? string.Empty;
             var kind = JsonConvert.DeserializeObject<Kind>(kindData);
             if (kind != null)
             {
-                _kindProvider.Save(kind);
-                isSaved = true;
+                var kindSaveResult = _kindProvider.Save(kind);
+                if (kindSaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return Json(new { IsSaved = isSaved });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
         public ActionResult DeleteKind(int kindId)
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var kindDeleteResult = _kindProvider.Delete(kindId);
+            if (kindDeleteResult.IsNone())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
-
-            _kindProvider.Delete(kindId);
-            return Json(new { IdDeleted = true });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }
