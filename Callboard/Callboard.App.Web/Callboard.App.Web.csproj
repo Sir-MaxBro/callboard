@@ -165,6 +165,7 @@
     <Content Include="Content\css\header\__logo\_green\header__logo_green.css" />
     <Content Include="Content\css\header\__main-link\header__main-link.css" />
     <Content Include="Content\css\img\_cover\img_cover.css" />
+    <Content Include="Content\css\invalid\__field\invalid__field.css" />
     <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
     <Content Include="Content\css\link\link.css" />
     <Content Include="Content\css\link\_green\link_green.css" />
@@ -214,7 +215,6 @@
     <Content Include="Scripts\ajax-helper.js" />
     <Content Include="Scripts\CategoryListBox\categories-load.js" />
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
-    <Content Include="Scripts\Common\category-load.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\Editor\common.js" />
