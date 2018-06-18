@@ -29,9 +29,8 @@ namespace Callboard.App.Web.Controllers
             _adDetailsProvider = adDetailsProvider;
         }
 
-        public ActionResult GetAdDetails(int adId, string returnUrl)
+        public ActionResult GetAdDetails(int adId)
         {
-            ViewBag.ReturnUrl = returnUrl;
             var adDetailsResult = _adDetailsProvider.GetById(adId);
             if (adDetailsResult.IsSuccess())
             {
