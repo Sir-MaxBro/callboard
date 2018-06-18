@@ -7,14 +7,14 @@
 let showAdDetailsSaveResult = function (data) {
     let saveResultContainer = $("#save-result");
     saveResultContainer.empty();
-    saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
+    saveResultContainer.append('<div class="green-text center"><i class="large material-icons center">check</i></div>');
     setTimeout(function () {
         saveResultContainer.empty();
     }, 3000);
 }
 
 let getAdDetails = function () {
-    let name = $("#name").val();
+    let name = getName();
     let price = getPrice();
     let description = $("#description").val();
     let addressLine = $("#addressLine").val();
@@ -42,6 +42,14 @@ let getAdDetails = function () {
         Categories: categories,
         Images: images
     };
+}
+
+let getName = function () {
+    let name = $("#name").val();
+    if (name === '') {
+        name = 'Product';
+    }
+    return name;
 }
 
 let getPrice = function () {
