@@ -3,6 +3,8 @@ using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Exceptions;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.General.Results.Realizations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -18,12 +20,12 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         {
             var kinds = new List<Kind>();
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.GetAll()).Returns(kinds);
+            mockKindRepository.Setup(repo => repo.GetAll()).Returns(new SuccessResult<IReadOnlyCollection<Kind>>(kinds));
             var mockChecker = new Mock<IChecker>();
 
             var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
-            var resultKinds = kindProvider.GetAll();
+            var resultKinds = kindProvider.GetAll().GetSuccessResult();
 
             Assert.AreEqual(kinds.Count, resultKinds.Count);
             mockKindRepository.Verify(mock => mock.GetAll(), Times.Once());
@@ -40,13 +42,13 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
             };
 
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(kind);
+            mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(new SuccessResult<Kind>(kind));
 
             var mockChecker = new Mock<IChecker>();
 
             var kindProvider = new KindService(mockKindRepository.Object, mockChecker.Object);
 
-            var resultKind = kindProvider.GetById(id);
+            var resultKind = kindProvider.GetById(id).GetSuccessResult();
 
             Assert.AreEqual(resultKind.KindId, kind.KindId);
             Assert.AreEqual(resultKind.Type, kind.Type);

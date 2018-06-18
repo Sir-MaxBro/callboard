@@ -2,6 +2,7 @@
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using Newtonsoft.Json;
@@ -31,8 +32,13 @@ namespace Callboard.App.Web.Controllers
         public ActionResult GetAdDetails(int adId, string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            AdDetails model = _adDetailsProvider.GetById(adId);
-            return View("AdDetails", model);
+            var adDetailsResult = _adDetailsProvider.GetById(adId);
+            if (adDetailsResult.IsSuccess())
+            {
+                AdDetails model = adDetailsResult.GetSuccessResult();
+                return View("AdDetails", model);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
@@ -49,36 +55,37 @@ namespace Callboard.App.Web.Controllers
         [User]
         public ActionResult EditAdDetails(int adId)
         {
-            var adDetails = _adDetailsProvider.GetById(adId);
-            var user = User as UserPrinciple;
-            if (user.UserId == adDetails.User.UserId)
+            var adDetailsResult = _adDetailsProvider.GetById(adId);
+            if (adDetailsResult.IsSuccess())
             {
-                var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
-                return View("EditAdDetails", adDetailsModel);
+                var user = User as UserPrinciple;
+                var adDetails = adDetailsResult.GetSuccessResult();
+                if (user.UserId == adDetails.User.UserId)
+                {
+                    var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
+                    return View("EditAdDetails", adDetailsModel);
+                }
             }
-            else
-            {
-                return RedirectToAction("Error", "Error");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
+        [AjaxOnly]
         [HttpPost]
         public ActionResult SaveAdDetails(string adDetailsData)
         {
-            if (!HttpContext.Request.IsAjaxRequest())
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-
             adDetailsData = adDetailsData ?? string.Empty;
             var adDetailsModel = JsonConvert.DeserializeObject<AdDetailsViewModel>(adDetailsData);
             if (adDetailsModel != null)
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
-                _adDetailsProvider.Save(adDetails);
+                var adDetailsResult = _adDetailsProvider.Save(adDetails);
+                if (adDetailsResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         private AdDetails MapViewModelToAdDetails(AdDetailsViewModel adDetailsModel)

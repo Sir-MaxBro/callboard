@@ -1,11 +1,14 @@
-﻿namespace Callboard.App.Business.Services
+﻿using Callboard.App.General.Entities.Auth;
+using Callboard.App.General.Results;
+
+namespace Callboard.App.Business.Services
 {
     public interface ILogginService
     {
-        bool Login(string login, string password);
+        IResult<MembershipUser> Login(string login, string password);
 
-        void Logout();
+        IResult<MembershipUser> Logout();
 
-        void Register(string login, string password);
+        IResult<MembershipUser> Register(string login, string password);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -17,27 +18,27 @@ namespace Callboard.App.Business.Services.Realizations
             _countryRepository = countryRepository;
         }
 
-        public void Delete(int id)
+        public IResult<Country> Delete(int id)
         {
             _checker.CheckId(id);
-            _countryRepository.Delete(id);
+            return _countryRepository.Delete(id);
         }
 
-        public IReadOnlyCollection<Country> GetAll()
+        public IResult<IReadOnlyCollection<Country>> GetAll()
         {
             return _countryRepository.GetAll();
         }
 
-        public Country GetById(int id)
+        public IResult<Country> GetById(int id)
         {
             _checker.CheckId(id);
             return _countryRepository.GetById(id);
         }
 
-        public void Save(Country obj)
+        public IResult<Country> Save(Country obj)
         {
             _checker.CheckForNull(obj);
-            _countryRepository.Save(obj);
+            return _countryRepository.Save(obj);
         }
     }
 }

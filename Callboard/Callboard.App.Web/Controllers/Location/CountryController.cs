@@ -1,6 +1,8 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -23,16 +25,17 @@ namespace Callboard.App.Web.Controllers
             _countryProvider = countryProvider;
         }
 
+        [AjaxOnly]
         public ActionResult GetCountries()
         {
-            if (!HttpContext.Request.IsAjaxRequest())
+            var countriesResult = _countryProvider.GetAll();
+            if (countriesResult.IsSuccess())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                var countries = countriesResult.GetSuccessResult();
+                var countriesData = JsonConvert.SerializeObject(countries);
+                return Json(new { Countries = countriesData }, JsonRequestBehavior.AllowGet);
             }
-
-            var countries = _countryProvider.GetAll();
-            var countriesData = JsonConvert.SerializeObject(countries);
-            return Json(new { Countries = countriesData }, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Callboard.App.General.Results;
+using System.Collections.Generic;
 
 namespace Callboard.App.Data.DataContext
 {
     public interface IDataContext<T>
     {
-        IReadOnlyCollection<T> GetAll();
+        IResult<IReadOnlyCollection<T>> GetAll();
 
-        T GetById(int id);
+        IResult<T> GetById(int id);
 
-        void Save(T obj);
+        IResult<T> Save(T obj);
 
-        void Delete(int id);
+        IResult<T> Delete(int id);
     }
 }

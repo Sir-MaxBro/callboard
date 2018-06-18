@@ -1,9 +1,10 @@
-﻿using Callboard.App.General.Entities;
+﻿using Callboard.App.General.Entities.Auth;
+using Callboard.App.General.Results;
 
 namespace Callboard.App.Business.Services
 {
     public interface IMembershipService
     {
-        User CreateUser(string login, string password);
+        IResult<MembershipUser> CreateUser(string login, string password);
     }
 }

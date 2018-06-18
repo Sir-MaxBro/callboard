@@ -1,7 +1,9 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -21,22 +23,28 @@ namespace Callboard.App.Web.Controllers
             _categoryProvider = categoryProvider;
         }
 
-        public PartialViewResult GetMainCategories()
+        public ActionResult GetMainCategories()
         {
-            CategoryViewModel model = new CategoryViewModel
+            var categoriesResult = _categoryProvider.GetMainCategories();
+            if (categoriesResult.IsSuccess())
             {
-                Categories = _categoryProvider.GetMainCategories()
-            };
-            return PartialView("CategoryList", model);
+                var categories = categoriesResult.GetSuccessResult();
+                CategoryViewModel model = new CategoryViewModel { Categories = categories };
+                return PartialView("CategoryList", model);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
-        public PartialViewResult GetSubcategories(int categoryId)
+        public ActionResult GetSubcategories(int categoryId)
         {
-            CategoryViewModel model = new CategoryViewModel
+            var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
+            if (categoriesResult.IsSuccess())
             {
-                Categories = _categoryProvider.GetSubcategories(categoryId)
-            };
-            return PartialView("CategoryList", model);
+                var categories = categoriesResult.GetSuccessResult();
+                CategoryViewModel model = new CategoryViewModel { Categories = categories };
+                return PartialView("CategoryList", model);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Data.DataContext;
 using Callboard.App.General.Entities.Commercial;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +14,7 @@ namespace Callboard.App.Data.Services.Realizations
             _context = context ?? throw new NullReferenceException(nameof(context));
         }
 
-        public IReadOnlyCollection<Commercial> GetCommercials()
+        public IResult<IReadOnlyCollection<Commercial>> GetCommercials()
         {
             return _context.GetCommercials();
         }

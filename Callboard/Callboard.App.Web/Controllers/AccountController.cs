@@ -1,7 +1,9 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -30,15 +32,16 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            _logginService.Login(model.Login, model.Password);
-            if (Url.IsLocalUrl(returnUrl))
+            var logginResult = _logginService.Login(model.Login, model.Password);      
+            
+            if (logginResult.IsFailure())
             {
-                return Redirect(returnUrl);
+                ViewBag.ErrorMessage = logginResult.GetFailureMessage();
+                return View(model);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+
+            returnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : "/Home/Index";
+            return Redirect(returnUrl);
         }
 
         public ActionResult Register(string returnUrl)
@@ -50,25 +53,31 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _logginService.Register(model.Login, model.Password);
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                return View(model);
             }
-            return View(model);
+
+            var logginResult = _logginService.Register(model.Login, model.Password);
+
+            if (logginResult.IsFailure())
+            {
+                ViewBag.ErrorMessage = logginResult.GetFailureMessage();
+                return View(model);
+            }
+
+            returnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : "/Home/Index";
+            return Redirect(returnUrl);
         }
 
-        public RedirectToRouteResult Logout()
+        public ActionResult Logout()
         {
-            _logginService.Logout();
-            return RedirectToAction("Login");
+            var logginResult = _logginService.Logout();
+            if (logginResult.IsNone())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

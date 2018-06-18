@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,25 +15,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public CountryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<Country> Delete(int id)
         {
             string procedureName = "sp_delete_country_by_id";
             var values = new Dictionary<string, object>
             {
                 { "CountryId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<Country> GetAll()
+        public IResult<IReadOnlyCollection<Country>> GetAll()
         {
             string procedureName = "sp_select_country";
             var mapper = new Mapper<DataSet, Country> { MapCollection = MapCountryCollection };
-            var countries = base.GetAll(procedureName, mapper);
-            return countries;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public Country GetById(int id)
+        public IResult<Country> GetById(int id)
         {
             string procedureName = "sp_get_country_by_id";
             var values = new Dictionary<string, object>
@@ -40,15 +40,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CountryId", id }
             };
             var mapper = new Mapper<DataSet, Country> { MapItem = MapCountry };
-            var country = base.Get(procedureName, mapper, values);
-            return country;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public void Save(Country obj)
+        public IResult<Country> Save(Country obj)
         {
             string procedureName = "sp_save_country";
             var mapper = new Mapper<DataSet, Country> { MapValues = MapCountryValues };
-            base.Save(obj, procedureName, mapper);
+            return base.Save(obj, procedureName, mapper);
         }
 
         private IDictionary<string, object> MapCountryValues(Country country)

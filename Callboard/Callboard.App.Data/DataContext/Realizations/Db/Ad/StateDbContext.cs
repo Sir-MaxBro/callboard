@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,25 +15,24 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public StateDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<State> Delete(int id)
         {
             string procedureName = "sp_delete_state_by_id";
             var values = new Dictionary<string, object>
             {
                 { "StateId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<State> GetAll()
+        public IResult<IReadOnlyCollection<State>> GetAll()
         {
             string procedureName = "sp_select_state";
             var mapper = new Mapper<DataSet, State> { MapCollection = this.MapStateCollection };
-            var states = base.GetAll(procedureName, mapper);
-            return states;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public State GetById(int id)
+        public IResult<State> GetById(int id)
         {
             string procedureName = "sp_get_state_by_id";
             var mapper = new Mapper<DataSet, State> { MapItem = this.MapState };
@@ -40,15 +40,14 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "StateId", id }
             };
-            var state = base.Get(procedureName, mapper, values);
-            return state;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public void Save(State obj)
+        public IResult<State> Save(State obj)
         {
             string procedureName = "sp_save_state";
             var mapper = new Mapper<DataSet, State> { MapValues = this.MapStateValues };
-            base.Save(obj, procedureName, mapper);
+            return base.Save(obj, procedureName, mapper);
         }
 
         private IDictionary<string, object> MapStateValues(State state)

@@ -3,6 +3,8 @@ using Callboard.App.Data.Services;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Entities.Commercial;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.General.Results.Realizations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
@@ -32,11 +34,11 @@ namespace Callboard.App.Business.Test.ProvidersTest
 
             var mockCommecrialDataProvider = new Mock<ICommercialService>();
             mockCommecrialDataProvider.Setup(prov => prov.GetCommercials())
-                .Returns(commercials);
+                .Returns(new SuccessResult<IReadOnlyCollection<Commercial>>(commercials));
 
             var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
 
-            var resultCommercials = commercialProvider.GetCommercials();
+            var resultCommercials = commercialProvider.GetCommercials().GetSuccessResult();
 
             Assert.AreEqual(resultCommercials.Count, commercials.Count);
             mockCommecrialDataProvider.Verify(mock => mock.GetCommercials(), Times.Once());
@@ -64,7 +66,7 @@ namespace Callboard.App.Business.Test.ProvidersTest
 
             var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
 
-            var resultCommercials = commercialProvider.GetCommercials();
+            var resultCommercials = commercialProvider.GetCommercials().GetSuccessResult();
 
             Assert.AreEqual(resultCommercials.Count, commercials.Count);
             mockStorage.Verify(mock => mock.Get<IReadOnlyCollection<Commercial>>(It.IsAny<string>()), Times.Once());

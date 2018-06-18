@@ -1,6 +1,8 @@
 ﻿using Callboard.App.General.Entities.Commercial;
 using Callboard.App.General.Helpers;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
+using Callboard.App.General.Results.Realizations;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,13 +21,15 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
             _logger = logger ?? throw new NullReferenceException(nameof(logger));
         }
 
-        public IReadOnlyCollection<Commercial> GetCommercials()
+        public IResult<IReadOnlyCollection<Commercial>> GetCommercials()
         {
             IReadOnlyCollection<Commercial> commercials = null;
+            IResult<IReadOnlyCollection<Commercial>> result = new NoneResult<IReadOnlyCollection<Commercial>>();
             try
             {
                 Service::ICommercialContract commercialContract = this.GetCommercialContract();
                 commercials = commercialContract.GetCommercials().Select(MapCommercial).ToList();
+                result = new SuccessResult<IReadOnlyCollection<Commercial>>(commercials);
             }
             catch (ConfigurationErrorsException ex)
             {
@@ -51,7 +55,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Service
             {
                 _logger.WarnFormat($"Cannot connect to CommercialContractClient.\n { ex.Message }");
             }
-            return commercials;
+
+            return result;
         }
 
         private Commercial MapCommercial(Service::Commercial commercial)

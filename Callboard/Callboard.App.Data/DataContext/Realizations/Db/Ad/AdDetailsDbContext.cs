@@ -3,6 +3,7 @@ using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public AdDetailsDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public AdDetails GetById(int id)
+        public IResult<AdDetails> GetById(int id)
         {
             var procedureName = "sp_get_addetails_by_adid";
             var values = new Dictionary<string, object>
@@ -24,15 +25,16 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "AdId", id }
             };
             var mapper = new Mapper<DataSet, AdDetails> { MapItem = MapAdDetails };
-            var adDetails = base.Get(procedureName, mapper, values);
-            return adDetails;
+
+            return base.Get(procedureName, mapper, values);
         }
 
-        public void Save(AdDetails adDetails)
+        public IResult<AdDetails> Save(AdDetails adDetails)
         {
             var procedureName = "sp_save_addetails";
             var mapper = new Mapper<DataSet, AdDetails> { MapValues = this.MapAdDetailsToValues };
-            base.Save(adDetails, procedureName, mapper);
+
+            return base.Save(adDetails, procedureName, mapper);
         }
 
         private IDictionary<string, object> MapAdDetailsToValues(AdDetails adDetails)

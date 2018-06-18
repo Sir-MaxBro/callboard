@@ -1,14 +1,15 @@
 ﻿using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System.Collections.Generic;
 
 namespace Callboard.App.Data.DataContext
 {
     public interface IRoleContext : IDataContext<Role>
     {
-        IReadOnlyCollection<Role> GetRolesForUser(int userId);
+        IResult<IReadOnlyCollection<Role>> GetRolesForUser(int userId);
 
-        void SetRoleForUser(int userId, int roleId);
+        IResult<Role> SetRoleForUser(int userId, int roleId);
 
-        void DeleteUserRole(int userId, int roleId);
+        IResult<Role> DeleteUserRole(int userId, int roleId);
     }
 }

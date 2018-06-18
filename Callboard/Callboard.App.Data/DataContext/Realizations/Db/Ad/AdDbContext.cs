@@ -4,6 +4,7 @@ using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -17,17 +18,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
         public AdDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
             : base(context, logger, checker) { }
 
-        public void Delete(int id)
+        public IResult<Ad> Delete(int id)
         {
             string procedureName = "sp_delete_ad_by_id";
             var values = new Dictionary<string, object>
             {
                 { "AdId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
-        public IReadOnlyCollection<Ad> GetAdsByCategoryId(int categoryId)
+        public IResult<IReadOnlyCollection<Ad>> GetAdsByCategoryId(int categoryId)
         {
             string procedureName = "sp_select_ad_by_categoryid";
             var values = new Dictionary<string, object>
@@ -35,11 +36,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "CategoryId", categoryId }
             };
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return ads;
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Ad> GetAdsForUser(int userId)
+        public IResult<IReadOnlyCollection<Ad>> GetAdsForUser(int userId)
         {
             string procedureName = "sp_select_ad_by_userid";
             var values = new Dictionary<string, object>
@@ -47,19 +48,19 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "UserId", userId }
             };
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return ads;
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Ad> GetAll()
+        public IResult<IReadOnlyCollection<Ad>> GetAll()
         {
             var procedureName = "sp_select_ad";
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
-            var ads = base.GetAll(procedureName, mapper);
-            return ads;
+
+            return base.GetAll(procedureName, mapper);
         }
 
-        public IReadOnlyCollection<Ad> SearchByName(string name)
+        public IResult<IReadOnlyCollection<Ad>> SearchByName(string name)
         {
             var procedureName = "sp_search_ad_by_name";
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
@@ -67,11 +68,11 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "SearchName", name }
             };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return ads;
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Ad> Search(SearchConfiguration searchConfiguration)
+        public IResult<IReadOnlyCollection<Ad>> Search(SearchConfiguration searchConfiguration)
         {
             string procedureName = "sp_search_ad";
             var mapper = new Mapper<DataSet, Ad> { MapCollection = MapAdCollection };
@@ -87,8 +88,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "MaxPrice", searchConfiguration.MaxPrice },
                 { "Categories", this.MapCategoriesToValues(searchConfiguration.Categories) }
             };
-            var ads = base.GetAll(procedureName, mapper, values);
-            return ads;
+
+            return base.GetAll(procedureName, mapper, values);
         }
 
         private IReadOnlyCollection<SqlDataRecord> MapCategoriesToValues(IReadOnlyCollection<Category> categories)

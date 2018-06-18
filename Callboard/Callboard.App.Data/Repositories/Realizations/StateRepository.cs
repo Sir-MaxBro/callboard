@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Data.DataContext;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 
@@ -13,24 +14,24 @@ namespace Callboard.App.Data.Repositories.Realizations
             _context = context ?? throw new NullReferenceException(nameof(context));
         }
 
-        public void Delete(int id)
+        public IResult<State> Delete(int id)
         {
-            _context.Delete(id);
+            return _context.Delete(id);
         }
 
-        public IReadOnlyCollection<State> GetAll()
+        public IResult<IReadOnlyCollection<State>> GetAll()
         {
             return _context.GetAll();
         }
 
-        public State GetById(int id)
+        public IResult<State> GetById(int id)
         {
             return _context.GetById(id);
         }
 
-        public void Save(State obj)
+        public IResult<State> Save(State obj)
         {
-            _context.Save(obj);
+            return _context.Save(obj);
         }
     }
 }

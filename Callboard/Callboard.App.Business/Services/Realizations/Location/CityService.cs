@@ -1,5 +1,6 @@
 ﻿using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 using Data = Callboard.App.Data.Services;
@@ -17,33 +18,33 @@ namespace Callboard.App.Business.Services.Realizations
             _cityRepository = cityRepository;
         }
 
-        public void Delete(int id)
+        public IResult<City> Delete(int id)
         {
             _checker.CheckId(id);
-            _cityRepository.Delete(id);
+            return _cityRepository.Delete(id);
         }
 
-        public IReadOnlyCollection<City> GetAll()
+        public IResult<IReadOnlyCollection<City>> GetAll()
         {
             return _cityRepository.GetAll();
         }
 
-        public City GetById(int id)
+        public IResult<City> GetById(int id)
         {
             _checker.CheckId(id);
             return _cityRepository.GetById(id);
         }
 
-        public IReadOnlyCollection<City> GetCitiesByAreaId(int areaId)
+        public IResult<IReadOnlyCollection<City>> GetCitiesByAreaId(int areaId)
         {
             _checker.CheckId(areaId);
             return _cityRepository.GetCitiesByAreaId(areaId);
         }
 
-        public void Save(int areaId, City obj)
+        public IResult<City> Save(int areaId, City obj)
         {
             _checker.CheckForNull(obj);
-            _cityRepository.Save(areaId, obj);
+            return _cityRepository.Save(areaId, obj);
         }
     }
 }

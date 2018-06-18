@@ -1,7 +1,8 @@
-﻿using Callboard.App.Data.Exceptions;
-using Callboard.App.Data.Repositories;
-using Callboard.App.General.Entities;
+﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities.Auth;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.General.Results;
+using Callboard.App.General.Results.Realizations;
 using Newtonsoft.Json;
 using System;
 using System.Web;
@@ -17,41 +18,44 @@ namespace Callboard.App.Business.Services.Realizations
         private const int VERSION = 1;
         public LogginService(Data::IMembershipService membershipProvider, IRoleRepository roleRepository)
         {
-            _membershipProvider = membershipProvider;
-            _roleRepository = roleRepository;
+            _membershipProvider = membershipProvider ?? throw new NullReferenceException(nameof(membershipProvider));
+            _roleRepository = roleRepository ?? throw new NullReferenceException(nameof(roleRepository));
         }
 
-        public bool Login(string login, string password)
+        public IResult<MembershipUser> Login(string login, string password)
         {
-            if (IsValidUser(login, password))
+            var validResult = this.IsValidUser(login, password);
+            if (validResult.IsSuccess())
             {
                 var user = GetUser(login);
                 this.SendCookies(user);
-                return true;
+                return new NoneResult<MembershipUser>();
             }
-            return false;
+            return validResult;
         }
 
-        public void Register(string login, string password)
+        public IResult<MembershipUser> Register(string login, string password)
         {
-            User user = null;
-            try
-            {
-                user = _membershipProvider.CreateUser(login, password);
-                var membershipUser = this.MapUser(user);
-                var roles = _roleRepository.GetRolesForUser(user.UserId);
-                membershipUser.Roles = roles;
-                this.SendCookies(membershipUser);
-            }
-            catch (LoginAlreadyExistsException ex)
-            {
+            var registerResult = new NoneResult<MembershipUser>();
 
+            var userResult = _membershipProvider.CreateUser(login, password);
+            if (userResult.IsSuccess())
+            {
+                var user = userResult.GetSuccessResult();
+                this.SendCookies(user);
             }
+            else if (userResult.IsFailure())
+            {
+                return userResult;
+            }
+
+            return registerResult;
         }
 
-        public void Logout()
+        public IResult<MembershipUser> Logout()
         {
             FormsAuthentication.SignOut();
+            return new NoneResult<MembershipUser>();
         }
 
         private void SendCookies(MembershipUser user)
@@ -63,35 +67,20 @@ namespace Callboard.App.Business.Services.Realizations
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
 
-        private bool IsValidUser(string login, string password)
+        private IResult<MembershipUser> IsValidUser(string login, string password)
         {
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
-            {
-                return false;
-            }
             return _membershipProvider.ValidateUser(login, password);
         }
 
         private MembershipUser GetUser(string login)
         {
             MembershipUser membershipUser = null;
-            var user = _membershipProvider.GetUserByLogin(login);
-            if (user != null)
+            var userResult = _membershipProvider.GetUserByLogin(login);
+            if (userResult.IsSuccess())
             {
-                membershipUser = this.MapUser(user);
-                var roles = _roleRepository.GetRolesForUser(user.UserId);
-                membershipUser.Roles = roles;
+                membershipUser = userResult.GetSuccessResult();
             }
             return membershipUser;
-        }
-
-        private MembershipUser MapUser(User user)
-        {
-            return new MembershipUser
-            {
-                UserId = user.UserId,
-                Name = user.Name
-            };
         }
     }
 }

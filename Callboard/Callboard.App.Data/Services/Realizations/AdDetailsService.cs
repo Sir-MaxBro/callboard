@@ -1,5 +1,6 @@
 ﻿using Callboard.App.Data.DataContext;
 using Callboard.App.General.Entities;
+using Callboard.App.General.Results;
 using System;
 
 namespace Callboard.App.Data.Services.Realizations
@@ -12,14 +13,14 @@ namespace Callboard.App.Data.Services.Realizations
             _context = context ?? throw new NullReferenceException(nameof(context));
         }
 
-        public AdDetails GetById(int id)
+        public IResult<AdDetails> GetById(int id)
         {
             return _context.GetById(id);
         }
 
-        public void Save(AdDetails adDetails)
+        public IResult<AdDetails> Save(AdDetails adDetails)
         {
-            _context.Save(adDetails);
+            return _context.Save(adDetails);
         }
     }
 }
