@@ -2,7 +2,6 @@
 using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -15,16 +14,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class UserController : Controller
     {
-        private IChecker _checker;
         private IEntityService<User> _userProvider;
-        public UserController(IEntityService<User> userProvider, IChecker checker)
+        public UserController(IEntityService<User> userProvider)
         {
-            if (checker == null)
+            if (userProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(userProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(userProvider);
             _userProvider = userProvider;
         }
 

@@ -1,8 +1,6 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
-using Callboard.App.General.Helpers.Main;
-using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.General.Results;
 using Callboard.App.Web.Models;
@@ -16,18 +14,12 @@ namespace Callboard.App.Web.Controllers
     public class SearchController : Controller
     {
         private IAdService _adProvider;
-        private IChecker _checker;
-        private ILoggerWrapper _logger;
-        public SearchController(IAdService adProvider, ILoggerWrapper logger, IChecker checker)
+        public SearchController(IAdService adProvider)
         {
-            if (checker == null)
+            if (adProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(adProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(logger);
-            _checker.CheckForNull(adProvider);
-            _logger = logger;
             _adProvider = adProvider;
         }
 

@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Business.Services;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
@@ -11,15 +10,12 @@ namespace Callboard.App.Web.Controllers
     public class AccountController : Controller
     {
         private ILogginService _logginService;
-        private IChecker _checker;
-        public AccountController(ILogginService logginService, IChecker checker)
+        public AccountController(ILogginService logginService)
         {
-            if (checker == null)
+            if (logginService == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(logginService));
             }
-            _checker = checker;
-            _checker.CheckForNull(logginService);
             _logginService = logginService;
         }
 

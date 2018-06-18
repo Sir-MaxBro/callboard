@@ -1,7 +1,6 @@
 ﻿using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.Results;
 using System.Collections.Generic;
@@ -12,8 +11,8 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class CountryDbContext : EntityDbContext<Country>, IDataContext<Country>
     {
-        public CountryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
-            : base(context, logger, checker) { }
+        public CountryDbContext(IDbContext context, ILoggerWrapper logger)
+            : base(context, logger) { }
 
         public IResult<Country> Delete(int id)
         {

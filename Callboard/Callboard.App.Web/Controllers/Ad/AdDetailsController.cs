@@ -1,7 +1,6 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -16,16 +15,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class AdDetailsController : Controller
     {
-        private IChecker _checker;
         private IAdDetailsService _adDetailsProvider;
-        public AdDetailsController(IAdDetailsService adDetailsProvider, IChecker checker)
+        public AdDetailsController(IAdDetailsService adDetailsProvider)
         {
-            if (checker == null)
+            if (adDetailsProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(adDetailsProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(adDetailsProvider);
             _adDetailsProvider = adDetailsProvider;
         }
 

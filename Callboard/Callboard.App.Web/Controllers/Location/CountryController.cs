@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -12,16 +11,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class CountryController : Controller
     {
-        private IChecker _checker;
         private IEntityService<Country> _countryProvider;
-        public CountryController(IEntityService<Country> countryProvider, IChecker checker)
+        public CountryController(IEntityService<Country> countryProvider)
         {
-            if (checker == null)
+            if (countryProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(countryProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(countryProvider);
             _countryProvider = countryProvider;
         }
 

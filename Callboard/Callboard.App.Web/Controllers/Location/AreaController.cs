@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Business.Services;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -11,15 +10,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class AreaController : Controller
     {
-        private IChecker _checker;
         private IAreaService _areaProvider;
-        public AreaController(IAreaService areaProvider, IChecker checker)
+        public AreaController(IAreaService areaProvider)
         {
-            if (checker == null)
+            if (areaProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(areaProvider));
             }
-            _checker = checker;
             _areaProvider = areaProvider;
         }
 

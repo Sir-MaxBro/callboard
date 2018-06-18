@@ -1,6 +1,6 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,15 @@ namespace Callboard.App.Business.Services.Realizations
 {
     internal class CountryProvider : IEntityService<Country>
     {
-        private IChecker _checker;
         private IRepository<Country> _countryRepository;
-        public CountryProvider(IRepository<Country> countryRepository, IChecker checker)
+        public CountryProvider(IRepository<Country> countryRepository)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(countryRepository);
-            _countryRepository = countryRepository;
+            _countryRepository = countryRepository ?? throw new NullReferenceException(nameof(countryRepository));
         }
 
         public IResult<Country> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _countryRepository.Delete(id);
         }
 
@@ -31,14 +28,22 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<Country> GetById(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _countryRepository.GetById(id);
         }
 
         public IResult<Country> Save(Country obj)
         {
-            _checker.CheckForNull(obj);
+            obj = obj ?? throw new NullReferenceException(nameof(obj));
             return _countryRepository.Save(obj);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

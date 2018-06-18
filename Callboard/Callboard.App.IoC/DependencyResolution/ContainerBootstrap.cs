@@ -5,7 +5,6 @@ using Callboard.App.Data.Repositories;
 using Callboard.App.Data.ServiceContext;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using StructureMap;
 using StructureMap.Graph;
@@ -35,7 +34,6 @@ namespace Callboard.App.IoC.DependencyResolution
         private static void AddGeneralDependency(IAssemblyScanner scan)
         {
             scan.AssemblyContainingType<ILoggerWrapper>();
-            scan.AssemblyContainingType<IChecker>();
             scan.AssemblyContainingType<ICacheStorage>();
         }
 

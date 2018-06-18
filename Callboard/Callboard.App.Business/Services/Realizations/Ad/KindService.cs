@@ -1,6 +1,6 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,15 @@ namespace Callboard.App.Business.Services.Realizations
 {
     internal class KindService : IEntityService<Kind>
     {
-        private IChecker _checker;
         private IRepository<Kind> _kindRepository;
-        public KindService(IRepository<Kind> kindRepository, IChecker checker)
+        public KindService(IRepository<Kind> kindRepository)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(kindRepository);
-            _kindRepository = kindRepository;
+            _kindRepository = kindRepository ?? throw new NullReferenceException(nameof(kindRepository));
         }
 
         public IResult<Kind> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _kindRepository.Delete(id);
         }
 
@@ -31,14 +28,22 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<Kind> GetById(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _kindRepository.GetById(id);
         }
 
         public IResult<Kind> Save(Kind obj)
         {
-            _checker.CheckForNull(obj);
+            obj = obj ?? throw new NullReferenceException(nameof(obj));
             return _kindRepository.Save(obj);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

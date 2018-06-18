@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Business.Services;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
@@ -11,15 +10,12 @@ namespace Callboard.App.Web.Controllers
     public class NavigationController : Controller
     {
         private ICategoryService _categoryProvider;
-        private IChecker _checker;
-        public NavigationController(ICategoryService categoryProvider, IChecker checker)
+        public NavigationController(ICategoryService categoryProvider)
         {
-            if (checker == null)
+            if (categoryProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(categoryProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(categoryProvider);
             _categoryProvider = categoryProvider;
         }
 
