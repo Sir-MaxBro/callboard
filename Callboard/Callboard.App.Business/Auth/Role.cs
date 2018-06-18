@@ -1,6 +1,6 @@
 ﻿namespace Callboard.App.Business.Auth
 {
-    public enum Role
+    public enum RoleType
     {
         Admin,
         Editor,

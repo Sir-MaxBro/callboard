@@ -19,7 +19,7 @@
         @{
             if (User.Identity.IsAuthenticated)
             {
-                var user = User as Callboard.App.General.Entities.Auth.UserPrinciple;
+                var user = User as UserPrinciple;
                 if (user != null && Model.User.UserId == user.UserId)
                 {
                     <div class="row">
