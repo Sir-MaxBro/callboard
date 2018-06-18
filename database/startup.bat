@@ -1,6 +1,6 @@
 set user="callboard_admin"
 set password="1D2F2f3E3asd"
-set server="DESKTOP-4I1O878\SQLEXPRESS"
+set server="EPBYMOGW0209\SQLEXPRESS"
 set currentPath=%~dp0
 
 sqlcmd -S %server% -i startup.sql
@@ -112,11 +112,11 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_user.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_main_category.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login_password.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_membership_user_by_login.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_membership_user_by_login_password.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_kind_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_state_by_id.sql

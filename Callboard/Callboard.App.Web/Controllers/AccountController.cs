@@ -32,8 +32,13 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            var logginResult = _logginService.Login(model.Login, model.Password);      
-            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var logginResult = _logginService.Login(model.Login, model.Password);
+
             if (logginResult.IsFailure())
             {
                 ViewBag.ErrorMessage = logginResult.GetFailureMessage();
