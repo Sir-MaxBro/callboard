@@ -2,12 +2,14 @@
 using Callboard.App.Data.DataContext;
 using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Repositories;
+using Callboard.App.Data.ServiceContext;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using StructureMap;
 using StructureMap.Graph;
+using Service = Callboard.App.Data.CommercialService;
 
 namespace Callboard.App.IoC.DependencyResolution
 {
@@ -20,7 +22,7 @@ namespace Callboard.App.IoC.DependencyResolution
                 x => x.Scan
                        (
                            scan =>
-                           {                              
+                           {
                                AddDataDependency(scan);
                                AddBusinessDependency(scan);
                                AddGeneralDependency(scan);
@@ -59,6 +61,7 @@ namespace Callboard.App.IoC.DependencyResolution
         private static void AddDataDependency(IAssemblyScanner scan)
         {
             scan.AssemblyContainingType<IDbContext>();
+            scan.AssemblyContainingType<IServiceContext<Service::ICommercialContract>>();
 
             scan.AssemblyContainingType<IRepository<Kind>>();
             scan.AssemblyContainingType<IRepository<State>>();

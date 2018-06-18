@@ -5,10 +5,13 @@ using Callboard.App.Data.DbContext;
 using Callboard.App.Data.DbContext.Realizations;
 using Callboard.App.Data.Repositories;
 using Callboard.App.Data.Repositories.Realizations;
+using Callboard.App.Data.ServiceContext;
+using Callboard.App.Data.ServiceContext.Realizations;
 using Callboard.App.Data.Services;
 using Callboard.App.Data.Services.Realizations;
 using Callboard.App.General.Entities;
 using StructureMap;
+using Service = Callboard.App.Data.CommercialService;
 
 namespace Callboard.App.Data.DependencyResolution
 {
@@ -17,6 +20,7 @@ namespace Callboard.App.Data.DependencyResolution
         public DataRegistry()
         {
             For<IDbContext>().Use<SqlDbContext>();
+            For<IServiceContext<Service::ICommercialContract>>().Use<ServiceContext<Service::ICommercialContract>>();
 
             For<ICategoryRepository>().Use<CategoryRepository>();
             For<IRoleRepository>().Use<RoleRepository>();
