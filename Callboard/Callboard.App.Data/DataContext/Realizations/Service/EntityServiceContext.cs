@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Data.ServiceContext;
 using Callboard.App.General.Helpers;
-using Callboard.App.General.Loggers.Main;
 using System;
 using System.ServiceModel;
 

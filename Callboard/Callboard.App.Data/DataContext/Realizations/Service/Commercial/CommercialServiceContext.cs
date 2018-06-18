@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Data.ServiceContext;
 using Callboard.App.General.Entities.Commercial;
-using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.Results;
 using Callboard.App.General.Results.Realizations;
 using System.Collections.Generic;
