@@ -40,26 +40,36 @@
         <div class="card-content">
             <div class="row">
                 <div class="col s7">
-                    <a href="@ViewBag.ReturnUrl"><i class="material-icons tiny">arrow_back</i>Back</a>
+                    <a onclick="window.history.back();" class="waves-effect waves-light">
+                        <i class="material-icons tiny">arrow_back</i>Back
+                    </a>
+
                     <span class="card-title">@Model.Name</span>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">CreationDate: </span>@Model.CreationDate.ToShortDateString()
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">Type: </span>@Model.Kind
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">State: </span>@Model.State
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">Location: </span>@Model.Location.Country / @Model.Location.Area / @Model.Location.City
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">Description: </span>@Model.Description
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">AddressLine: </span>@Model.AddressLine
                     </div>
+
                     <div class="ad__note">
                         <span class="grey-text text-darken-2">Categories: </span>
                         @foreach (var item in Model.Categories)
@@ -67,6 +77,7 @@
                             <span>@item.Name;</span>
                         }
                     </div>
+
                     <h5 class="ad__note red-text">
                         <i class="material-icons">attach_money</i>@Model.Price
                     </h5>
