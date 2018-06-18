@@ -12,7 +12,7 @@ namespace Callboard.App.Web.Attributes
             var user = HttpContext.Current.User;
             if (user is UserPrinciple)
             {
-                return user.IsInRole(Role.Admin.ToString());
+                return user.IsInRole(RoleType.Admin.ToString());
             }
             return false;
         }

@@ -1,4 +1,5 @@
-﻿using Callboard.App.Business.Services;
+﻿using Callboard.App.Business.Auth;
+using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
 using Callboard.App.General.Helpers.Main;
@@ -42,7 +43,7 @@ namespace Callboard.App.Web.Controllers
         public ActionResult OpenProfile(int userId)
         {
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
                 var userResult = _userProvider.GetById(userId);
                 if (userResult.IsSuccess())
@@ -60,7 +61,7 @@ namespace Callboard.App.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
 
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
                 var userResult = _userProvider.GetById(userId);
                 if (userResult.IsSuccess())
@@ -77,7 +78,7 @@ namespace Callboard.App.Web.Controllers
         public ActionResult EditUser(int userId)
         {
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
                 var userResult = _userProvider.GetById(userId);
                 if (userResult.IsSuccess())
