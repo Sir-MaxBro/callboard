@@ -1,6 +1,6 @@
 ﻿using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Data;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -11,12 +11,9 @@ namespace Callboard.App.Business.Services.Realizations
     internal class AdService : IAdService
     {
         private Data::IAdService _adProvider;
-        private IChecker _checker;
-        public AdService(Data::IAdService adProvider, IChecker checker)
+        public AdService(Data::IAdService adProvider)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(adProvider);
-            _adProvider = adProvider;
+            _adProvider = adProvider ?? throw new NullReferenceException(nameof(adProvider));
         }
 
         public IResult<IReadOnlyCollection<Ad>> GetAds()
@@ -26,7 +23,7 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<IReadOnlyCollection<Ad>> GetAdsByCategoryId(int categoryId)
         {
-            _checker.CheckId(categoryId);
+            this.CheckId(categoryId);
             return _adProvider.GetAdsByCategoryId(categoryId);
         }
 
@@ -41,20 +38,28 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<IReadOnlyCollection<Ad>> Search(SearchConfiguration searchConfiguration)
         {
-            _checker.CheckForNull(searchConfiguration);
+            searchConfiguration = searchConfiguration ?? throw new NullReferenceException(nameof(searchConfiguration));
             return _adProvider.Search(searchConfiguration);
         }
 
         public IResult<Ad> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _adProvider.Delete(id);
         }
 
         public IResult<IReadOnlyCollection<Ad>> GetAdsForUser(int userId)
         {
-            _checker.CheckId(userId);
+            this.CheckId(userId);
             return _adProvider.GetAdsForUser(userId);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

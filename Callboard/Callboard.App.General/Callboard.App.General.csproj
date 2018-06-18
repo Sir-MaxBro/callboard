@@ -76,8 +76,6 @@
     <Compile Include="Results\INoneResult.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
-    <Compile Include="Helpers\Main\IChecker.cs" />
-    <Compile Include="Helpers\Realizations\Checker.cs" />
     <Compile Include="Loggers\Main\ILoggerWrapper.cs" />
     <Compile Include="Loggers\Realizations\LoggerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,6 @@
 ﻿using Callboard.App.Data.Repositories;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,15 @@ namespace Callboard.App.Business.Services.Realizations
 {
     internal class UserService : IEntityService<User>
     {
-        private IChecker _checker;
         private IRepository<User> _userRepository;
-        public UserService(IRepository<User> userRepository, IChecker checker)
+        public UserService(IRepository<User> userRepository)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(userRepository);
-            _userRepository = userRepository;
+            _userRepository = userRepository ?? throw new NullReferenceException(nameof(userRepository));
         }
 
         public IResult<User> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _userRepository.Delete(id);
         }
 
@@ -31,14 +28,22 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<User> GetById(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _userRepository.GetById(id);
         }
 
         public IResult<User> Save(User obj)
         {
-            _checker.CheckForNull(obj);
+            obj = obj ?? throw new NullReferenceException(nameof(obj));
             return _userRepository.Save(obj);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

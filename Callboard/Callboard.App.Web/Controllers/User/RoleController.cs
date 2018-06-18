@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Business.Services;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -12,15 +11,12 @@ namespace Callboard.App.Web.Controllers
     public class RoleController : Controller
     {
         private IRoleService _roleProvider;
-        private IChecker _checker;
-        public RoleController(IRoleService roleProvider, IChecker checker)
+        public RoleController(IRoleService roleProvider)
         {
-            if (checker == null)
+            if (roleProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(roleProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(roleProvider);
             _roleProvider = roleProvider;
         }
 

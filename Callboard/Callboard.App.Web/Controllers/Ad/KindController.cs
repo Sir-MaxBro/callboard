@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -13,15 +12,12 @@ namespace Callboard.App.Web.Controllers
     public class KindController : Controller
     {
         private IEntityService<Kind> _kindProvider;
-        private IChecker _checker;
-        public KindController(IEntityService<Kind> kindProvider, IChecker checker)
+        public KindController(IEntityService<Kind> kindProvider)
         {
-            if (checker == null)
+            if (kindProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(kindProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(kindProvider);
             _kindProvider = kindProvider;
         }
 

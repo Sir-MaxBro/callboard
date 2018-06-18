@@ -1,5 +1,5 @@
 ﻿using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,15 @@ namespace Callboard.App.Business.Services.Realizations
 {
     internal class CityService : ICityService
     {
-        private IChecker _checker;
         private Data::ICityService _cityRepository;
-        public CityService(Data::ICityService cityRepository, IChecker checker)
+        public CityService(Data::ICityService cityRepository)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(cityRepository);
-            _cityRepository = cityRepository;
+            _cityRepository = cityRepository ?? throw new NullReferenceException(nameof(cityRepository));
         }
 
         public IResult<City> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _cityRepository.Delete(id);
         }
 
@@ -31,20 +28,28 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<City> GetById(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _cityRepository.GetById(id);
         }
 
         public IResult<IReadOnlyCollection<City>> GetCitiesByAreaId(int areaId)
         {
-            _checker.CheckId(areaId);
+            this.CheckId(areaId);
             return _cityRepository.GetCitiesByAreaId(areaId);
         }
 
         public IResult<City> Save(int areaId, City obj)
         {
-            _checker.CheckForNull(obj);
+            obj = obj ?? throw new NullReferenceException(nameof(obj));
             return _cityRepository.Save(areaId, obj);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

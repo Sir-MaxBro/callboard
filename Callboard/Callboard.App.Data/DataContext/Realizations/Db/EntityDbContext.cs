@@ -1,7 +1,6 @@
 ﻿using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Helpers;
 using Callboard.App.Data.Mappers;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.Results;
 using Callboard.App.General.Results.Realizations;
@@ -14,22 +13,18 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
     internal abstract class EntityDbContext<T>
         where T : class
     {
-        private IChecker _checker;
         protected IDbContext _context;
         protected ILoggerWrapper _logger;
-        public EntityDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker)
+        public EntityDbContext(IDbContext context, ILoggerWrapper logger)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(context);
-            _checker.CheckForNull(logger);
-            _context = context;
-            _logger = logger;
+            _context = context ?? throw new NullReferenceException(nameof(context));
+            _logger = logger ?? throw new NullReferenceException(nameof(logger));
             this.InitializeConnection();
         }
 
         private void InitializeConnection()
         {
-            var config = new ConfigHelper(_logger, _checker);
+            var config = new ConfigHelper(_logger);
             _context.ConnectionString = config.ConnectionString;
         }
 

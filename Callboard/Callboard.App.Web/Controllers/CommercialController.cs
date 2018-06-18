@@ -1,31 +1,22 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities.Commercial;
-using Callboard.App.General.Helpers.Main;
-using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class CommercialController : Controller
     {
-        private IChecker _checker;
-        private ILoggerWrapper _logger;
         private ICommercialService _commercialProvider;
-        public CommercialController(ILoggerWrapper logger, ICommercialService commercialProvider, IChecker checker)
+        public CommercialController(ICommercialService commercialProvider)
         {
-            if (checker == null)
+            if (commercialProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(commercialProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(logger);
-            _checker.CheckForNull(commercialProvider);
-            _logger = logger;
             _commercialProvider = commercialProvider;
         }
 

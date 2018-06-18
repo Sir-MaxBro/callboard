@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -12,16 +11,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class StateController : Controller
     {
-        private IChecker _checker;
         private IEntityService<State> _stateProvider;
-        public StateController(IEntityService<State> stateProvider, IChecker checker)
+        public StateController(IEntityService<State> stateProvider)
         {
-            if (checker == null)
+            if (stateProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(stateProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(stateProvider);
             _stateProvider = stateProvider;
         }
 

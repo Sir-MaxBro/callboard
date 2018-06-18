@@ -1,7 +1,5 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
-using Callboard.App.General.Loggers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
@@ -15,18 +13,12 @@ namespace Callboard.App.Web.Controllers
     public class AdController : Controller
     {
         private IAdService _adProvider;
-        private ILoggerWrapper _logger;
-        private IChecker _checker;
-        public AdController(IAdService adProvider, ILoggerWrapper logger, IChecker checker)
+        public AdController(IAdService adProvider)
         {
-            if (checker == null)
+            if (adProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(adProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(adProvider);
-            _checker.CheckForNull(logger);
-            _logger = logger;
             _adProvider = adProvider;
         }
 

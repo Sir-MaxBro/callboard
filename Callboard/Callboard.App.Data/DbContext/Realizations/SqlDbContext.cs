@@ -1,5 +1,4 @@
 ﻿using Callboard.App.Data.Exceptions;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using Microsoft.SqlServer.Server;
 using System;
@@ -12,13 +11,10 @@ namespace Callboard.App.Data.DbContext.Realizations
     internal class SqlDbContext : IDbContext
     {
         private ILoggerWrapper _logger;
-        private IChecker _checker;
         private string _connectionString;
-        public SqlDbContext(ILoggerWrapper logger, IChecker checker)
+        public SqlDbContext(ILoggerWrapper logger)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(logger);
-            _logger = logger;
+            _logger = logger ?? throw new NullReferenceException(nameof(logger));
         }
 
         public string ConnectionString

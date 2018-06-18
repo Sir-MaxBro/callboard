@@ -1,5 +1,5 @@
 ﻿using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.Exceptions;
 using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
@@ -10,17 +10,14 @@ namespace Callboard.App.Business.Services.Realizations
     internal class AreaService : IAreaService
     {
         private Data::IAreaService _areaRepository;
-        private IChecker _checker;
-        public AreaService(Data::IAreaService areaRepository, IChecker checker)
+        public AreaService(Data::IAreaService areaRepository)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(areaRepository);
-            _areaRepository = areaRepository;
+            _areaRepository = areaRepository ?? throw new NullReferenceException(nameof(areaRepository));
         }
 
         public IResult<Area> Delete(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _areaRepository.Delete(id);
         }
 
@@ -31,20 +28,29 @@ namespace Callboard.App.Business.Services.Realizations
 
         public IResult<IReadOnlyCollection<Area>> GetAreasByCountryId(int countryId)
         {
-            _checker.CheckId(countryId);
+            this.CheckId(countryId);
             return _areaRepository.GetAreasByCountryId(countryId);
         }
 
         public IResult<Area> GetById(int id)
         {
-            _checker.CheckId(id);
+            this.CheckId(id);
             return _areaRepository.GetById(id);
         }
 
         public IResult<Area> Save(int countryId, Area obj)
         {
-            _checker.CheckForNull(obj);
+            this.CheckId(countryId);
+            obj = obj ?? throw new NullReferenceException(nameof(obj));
             return _areaRepository.Save(countryId, obj);
+        }
+
+        private void CheckId(int id)
+        {
+            if (id < 1)
+            {
+                throw new InvalidIdException(nameof(id));
+            }
         }
     }
 }

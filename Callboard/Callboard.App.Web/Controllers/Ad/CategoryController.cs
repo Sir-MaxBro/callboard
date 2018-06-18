@@ -1,6 +1,5 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
@@ -12,16 +11,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private IChecker _checker;
         private ICategoryService _categoryProvider;
-        public CategoryController(ICategoryService categoryProvider, IChecker checker)
+        public CategoryController(ICategoryService categoryProvider)
         {
-            if (checker == null)
+            if (categoryProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(categoryProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(categoryProvider);
             _categoryProvider = categoryProvider;
         }
 
