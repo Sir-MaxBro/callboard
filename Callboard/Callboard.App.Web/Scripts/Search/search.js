@@ -46,9 +46,9 @@ let getMaxPrice = function () {
 
 let getSearchCategories = function () {
     let categories = [];
-    $("#categories").find(":selected").each(function () {
+    $("#categories").find(":checked").each(function () {
         let category = {
-            CategoryId: $(this).val()
+            CategoryId: $(this).data('categoryId')
         };
         categories.push(category);
     });

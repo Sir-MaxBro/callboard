@@ -1,18 +1,16 @@
 ﻿function saveAdDetails() {
     let adDetails = getAdDetails();
+    console.log(adDetails);
     $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) }, showAdDetailsSaveResult);
 }
 
 let showAdDetailsSaveResult = function (data) {
-    let isSaved = JSON.parse(data.IsSaved);
-    if (isSaved === true) {
-        let saveResultContainer = $("#save-result");
+    let saveResultContainer = $("#save-result");
+    saveResultContainer.empty();
+    saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
+    setTimeout(function () {
         saveResultContainer.empty();
-        saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
-        setTimeout(function () {
-            saveResultContainer.empty();
-        }, 3000);
-    }
+    }, 3000);
 }
 
 let getAdDetails = function () {
@@ -67,9 +65,9 @@ let getLocationId = function () {
 
 let getCategoriesList = function () {
     let categories = [];
-    $("#categories").find(":selected").each(function () {
+    $("#categories").find(":checked").each(function () {
         let category = {
-            CategoryId: $(this).val()
+            CategoryId: $(this).data('categoryId')
         };
         categories.push(category);
     });
