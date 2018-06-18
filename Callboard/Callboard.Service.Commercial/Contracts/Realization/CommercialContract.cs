@@ -35,10 +35,13 @@ namespace Callboard.Service.Commercial
             foreach (ImagePathElement item in pathwaysSection)
             {
                 DirectoryInfo directory = new DirectoryInfo(item.Path);
-                FileInfo[] files = directory.GetFiles();
-                foreach (var fileInfo in files)
+                if (directory.Exists)
                 {
-                    _pathways.Add(fileInfo.FullName, fileInfo.Extension);
+                    FileInfo[] files = directory.GetFiles();
+                    foreach (var fileInfo in files)
+                    {
+                        _pathways.Add(fileInfo.FullName, fileInfo.Extension);
+                    }
                 }
             }
         }
