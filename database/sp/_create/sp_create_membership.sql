@@ -29,7 +29,7 @@ BEGIN
 
 			EXEC [dbo].[sp_set_role_for_user] @UserId, @RoleId
 
-			EXEC [dbo].[sp_get_user_by_userid] @UserId
+			EXEC [dbo].[sp_get_membership_user_by_login] @Login
 		END
 	ELSE
 		BEGIN

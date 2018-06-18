@@ -55,6 +55,16 @@ namespace Callboard.App.Data.DbContext.Realizations
                             _logger.InfoFormat(ex.Message);
                             throw new LoginAlreadyExistsException(ex.Message, ex);
                         }
+                        catch (SqlException ex) when (ex.State == 2) // login is invalid
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new InvalidLoginException(ex.Message, ex);
+                        }
+                        catch (SqlException ex) when (ex.State == 3) // password is invalid
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new InvalidPasswordException(ex.Message, ex);
+                        }
                         catch (SqlException ex)
                         {
                             string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
