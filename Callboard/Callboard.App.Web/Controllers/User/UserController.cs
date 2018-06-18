@@ -34,7 +34,7 @@ namespace Callboard.App.Web.Controllers
             if (userResult.IsSuccess())
             {
                 var user = userResult.GetSuccessResult();
-                return PartialView("User", user);
+                return PartialView("Partial\\User", user);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
