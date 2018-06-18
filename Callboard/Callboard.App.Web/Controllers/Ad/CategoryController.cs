@@ -34,6 +34,28 @@ namespace Callboard.App.Web.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
+        public ActionResult GetMainCategories()
+        {
+            var categoriesResult = _categoryProvider.GetMainCategories();
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("CategoryListBox", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        public ActionResult GetSubcategories(int categoryId)
+        {
+            var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("CategoryListBox", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
         [Editor]
         public ActionResult GetEditCategories()
         {

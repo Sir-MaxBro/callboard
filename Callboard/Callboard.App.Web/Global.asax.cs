@@ -44,7 +44,7 @@ namespace Callboard.App.Web
             if (exception != null)
             {
                 Server.ClearError();
-                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message }");
+                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message.Replace('\n', ' ') }");
             }
         }
     }

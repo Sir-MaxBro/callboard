@@ -1,11 +1,12 @@
 ﻿@model SearchViewModel
 @Scripts.Render("~/location")
 @Scripts.Render("~/search")
+@Scripts.Render("~/categoryListBox")
 
 <script>
     window.onload = function () {
         fillLocation("location");
-        loadCategories('categories');
+        callActionAsync(null, '/Category/GetMainCategories', 'categories');
         loadKinds();
         loadStates();
     }
@@ -32,7 +33,7 @@
                 <label for="max-price">Max price</label>
             </div>
 
-            <select class="input-field block multiple-select" id="categories" multiple="multiple"></select>
+            <div class="row collection" id="categories"></div>
 
             <select id="kinds" class="input-field block">
                 <option selected="selected" value="">--- Choose kind ---</option>

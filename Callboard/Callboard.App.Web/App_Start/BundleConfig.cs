@@ -22,8 +22,11 @@ namespace Callboard.App.Web
                 .IncludeDirectory("~/Scripts/Search", "*.js", false)
                 .Include("~/Scripts/Common/category-load.js"));
 
-            bundles.Add(new ScriptBundle("~/category")
-                .IncludeDirectory("~/Scripts/Category", "*.js", false));
+            bundles.Add(new ScriptBundle("~/categoryMenu")
+                .IncludeDirectory("~/Scripts/CategoryMenu", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/categoryListBox")
+                .IncludeDirectory("~/Scripts/CategoryListBox", "*.js", false));
 
             bundles.Add(new ScriptBundle("~/user")
                 .IncludeDirectory("~/Scripts/User", "*.js", false));
