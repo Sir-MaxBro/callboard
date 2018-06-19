@@ -171,8 +171,8 @@
     <Content Include="Content\css\link\_green\link_green.css" />
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
+    <Content Include="Content\css\menu\__icon\menu__icon.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
-    <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
     <Content Include="Content\css\multiple-select\multiple-select.css" />
     <Content Include="Content\css\none\none.css" />
     <Content Include="Content\css\overrides maretialize\collection-item.css" />
