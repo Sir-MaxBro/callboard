@@ -5,7 +5,7 @@
         <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
             <input id="state-condition-@Model.StateId" type="text" class="validate" value="@Model.Condition">
-            <label for="@Model.StateId">Condition</label>
+            <label for="state-condition-@Model.StateId">State</label>
         </div>
     </div>
     <div class="row col s2">
@@ -17,7 +17,7 @@
         </div>
 
         <div class="col s6">
-            <a class="btn-floating waves-effect waves-light btn-middle red" onclick="deleteState(@Model.StateId, 'state-container-@Model.StateId')">
+            <a onclick="deleteState(@Model.StateId, 'state-container-@Model.StateId')" class="btn-floating waves-effect waves-light btn-middle red" >
                 <i class="material-icons center">delete</i>
             </a>
         </div>
