@@ -35,6 +35,24 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
+        public ActionResult GetStatesEditList()
+        {
+            var statesResult = _stateProvider.GetAll();
+            if (statesResult.IsSuccess())
+            {
+                var states = statesResult.GetSuccessResult();
+                return PartialView("EditStateList", states);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        [Editor]
+        public ActionResult CreateState()
+        {
+            return PartialView("EditStateListItem", new State());
+        }
+
+        [Editor]
         [AjaxOnly]
         [HttpPost]
         public ActionResult SaveState(string stateData)

@@ -2,7 +2,6 @@
 <script>
     window.onload = function () {
         loadKinds('kinds');
-        loadStates('states');
     }
 </script>
 
@@ -22,11 +21,14 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div id="states">
-
+                <div class="row card">
+                    <div class="card-content">
+                        <span class="card-title">States</span>
+                        <div id="states">
+                            @{  Html.RenderAction("GetStatesEditList", "State"); }
+                        </div>
                     </div>
-                    <div class="center">
+                    <div class="card-action">
                         <button class="btn waves-effect waves-light green" type="button" onclick="addState('states')">
                             Add state
                             <i class="material-icons left">add</i>
