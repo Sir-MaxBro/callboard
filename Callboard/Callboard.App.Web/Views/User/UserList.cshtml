@@ -1,51 +1,51 @@
 ﻿@model IReadOnlyCollection<User>
 @Scripts.Render("~/admin")
 
-<div class="row">
-    <div class="col s5">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th></th>
-                    <th class="right-align">
-                        @Html.ActionLink("Add user", "CreateUser", "Membership", new { returnUrl = Request.RawUrl },
-                            htmlAttributes: new { @class = "btn waves-effect waves-light green" })
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr id="user-@item.UserId">
-                        <td>
-                            @item.Name
-                        </td>
-                        <td class="right-align">
-                            <button class="btn waves-effect waves-light red" type="button" onclick="deleteUser(@item.UserId, 'user-@item.UserId')">
-                                Delete
-                                <i class="material-icons right">delete</i>
-                            </button>
-                        </td>
-                        <td class="right-align">
-                            <button class="btn waves-effect waves-light green" type="button" onclick="editUser(@item.UserId)">
-                                Edit
-                                <i class="material-icons right">edit</i>
-                            </button>
-                        </td>
+<div class="card">
+    <div class="row card-content">
+        <div class="col s6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                        <th class="right-align">
+                            <a href="@Url.Action("CreateUser", "Membership")" class="waves-effect waves-light btn green">
+                                <i class="material-icons left">person_add</i>
+                                Add user
+                            </a>
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="user-@item.UserId">
+                            <td>
+                                @item.Name
+                            </td>
+                            <td class="right-align">
+                                <button class="btn waves-effect waves-light red" type="button" onclick="deleteUser(@item.UserId, 'user-@item.UserId')">
+                                    Delete
+                                    <i class="material-icons left">delete</i>
+                                </button>
+                            </td>
+                            <td class="right-align">
+                                <button class="btn waves-effect waves-light green" type="button" onclick="editUser(@item.UserId)">
+                                    Edit
+                                    <i class="material-icons left">edit</i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-    <div class="col s7">
-        <div id="edit-container" class="edit-container">
-            <div id="edit-container__user" class="edit-container__user">
-
-            </div>
-            <div id="edit-container__roles" class="card">
-
+        <div class="col s6">
+            <div id="edit-container" class="edit-container">
+                <div id="edit-container__user" class="edit-container__user"></div>
+                <div id="edit-container__roles"></div>
             </div>
         </div>
     </div>
