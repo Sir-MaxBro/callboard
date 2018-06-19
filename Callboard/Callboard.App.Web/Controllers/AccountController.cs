@@ -1,7 +1,8 @@
 ﻿using Callboard.App.Business.Services;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Models;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -9,15 +10,12 @@ namespace Callboard.App.Web.Controllers
     public class AccountController : Controller
     {
         private ILogginService _logginService;
-        private IChecker _checker;
-        public AccountController(ILogginService logginService, IChecker checker)
+        public AccountController(ILogginService logginService)
         {
-            if (checker == null)
+            if (logginService == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(logginService));
             }
-            _checker = checker;
-            _checker.CheckForNull(logginService);
             _logginService = logginService;
         }
 
@@ -30,15 +28,21 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            _logginService.Login(model.Login, model.Password);
-            if (Url.IsLocalUrl(returnUrl))
+            if (!ModelState.IsValid)
             {
-                return Redirect(returnUrl);
+                return View(model);
             }
-            else
+
+            var logginResult = _logginService.Login(model.Login, model.Password);
+
+            if (logginResult.IsFailure())
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.ErrorMessage = logginResult.GetFailureMessage();
+                return View(model);
             }
+
+            returnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : "/Home/Index";
+            return Redirect(returnUrl);
         }
 
         public ActionResult Register(string returnUrl)
@@ -50,25 +54,31 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _logginService.Register(model.Login, model.Password);
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                return View(model);
             }
-            return View(model);
+
+            var logginResult = _logginService.Register(model.Login, model.Password);
+
+            if (logginResult.IsFailure())
+            {
+                ViewBag.ErrorMessage = logginResult.GetFailureMessage();
+                return View(model);
+            }
+
+            returnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : "/Home/Index";
+            return Redirect(returnUrl);
         }
 
-        public RedirectToRouteResult Logout()
+        public ActionResult Logout()
         {
-            _logginService.Logout();
-            return RedirectToAction("Login");
+            var logginResult = _logginService.Logout();
+            if (logginResult.IsNone())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

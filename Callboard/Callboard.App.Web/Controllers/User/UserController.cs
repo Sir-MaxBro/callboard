@@ -1,49 +1,54 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Auth;
+using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class UserController : Controller
     {
-        private IChecker _checker;
-        private IUserProvider _userProvider;
-        public UserController(IUserProvider userProvider, IChecker checker)
+        private IEntityService<User> _userProvider;
+        public UserController(IEntityService<User> userProvider)
         {
-            if (checker == null)
+            if (userProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(userProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(userProvider);
             _userProvider = userProvider;
         }
 
-        public PartialViewResult GetUser(int userId)
+        public ActionResult GetUser(int userId)
         {
-            var user = _userProvider.GetById(userId);
-            return PartialView("User", user);
+            var userResult = _userProvider.GetById(userId);
+            if (userResult.IsSuccess())
+            {
+                var user = userResult.GetSuccessResult();
+                return PartialView("Partial\\User", user);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
         public ActionResult OpenProfile(int userId)
         {
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
-                var user = _userProvider.GetById(userId);
-                return View("UserProfile", user);
+                var userResult = _userProvider.GetById(userId);
+                if (userResult.IsSuccess())
+                {
+                    var user = userResult.GetSuccessResult();
+                    return View("UserProfile", user);
+                }
             }
-            else
-            {
-                return RedirectToAction("Error", "Error");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
@@ -52,63 +57,74 @@ namespace Callboard.App.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
 
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
-                var user = _userProvider.GetById(userId);
-                var userModel = new UserViewModel
+                var userResult = _userProvider.GetById(userId);
+                if (userResult.IsSuccess())
                 {
-                    User = user
-                };
-                return View("EditProfile", userModel);
+                    var user = userResult.GetSuccessResult();
+                    var userModel = new UserViewModel { User = user };
+                    return View("EditProfile", userModel);
+                }
             }
-            else
-            {
-                return RedirectToAction("Error", "Error");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
         public ActionResult EditUser(int userId)
         {
             var userPrinciple = User as UserPrinciple;
-            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(Business.Auth.Role.Admin.ToString()))
+            if (userPrinciple.UserId == userId || userPrinciple.IsInRole(RoleType.Admin.ToString()))
             {
-                var user = _userProvider.GetById(userId);
-                return PartialView("UserEdit", user);
+                var userResult = _userProvider.GetById(userId);
+                if (userResult.IsSuccess())
+                {
+                    var user = userResult.GetSuccessResult();
+                    return PartialView("UserEdit", user);
+                }
             }
-            else
-            {
-                return RedirectToAction("Error", "Error");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult SaveUser(string userData)
+        public ActionResult SaveUser(string userData)
         {
-            bool isSaved = false;
             var user = JsonConvert.DeserializeObject<User>(userData);
             if (user != null)
             {
-                _userProvider.Save(user);
-                isSaved = true;
+                var userSaveResult = _userProvider.Save(user);
+                if (userSaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return Json(new { IsSaved = isSaved });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Admin]
         public ActionResult GetAllUsers()
         {
-            var users = _userProvider.GetAll();
-            return View("UserList", users);
+            var usersResult = _userProvider.GetAll();
+            if (usersResult.IsSuccess())
+            {
+                var users = usersResult.GetSuccessResult();
+                return View("UserList", users);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Admin]
         [HttpPost]
         public ActionResult DeleteUserById(int userId)
         {
-            _userProvider.Delete(userId);
-            return RedirectToAction("GetAllUsers");
+            var userDeleteResult = _userProvider.Delete(userId);
+            if (userDeleteResult.IsNone())
+            {
+                return RedirectToAction("GetAllUsers");
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

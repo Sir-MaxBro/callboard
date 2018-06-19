@@ -152,6 +152,7 @@
     <Content Include="Content\css\category-container\__item\_hover\_green\category-container__item_hover_green.css" />
     <Content Include="Content\css\center\_auto\center_auto.css" />
     <Content Include="Content\css\clearfix\clearfix.css" />
+    <Content Include="Content\css\collapsed\collapsed.css" />
     <Content Include="Content\css\commercial\__image\commercial__image.css" />
     <Content Include="Content\css\commercial\__item\commercial__item.css" />
     <Content Include="Content\css\edit-container\__role\edit-container__role.css" />
@@ -164,15 +165,17 @@
     <Content Include="Content\css\header\__logo\_green\header__logo_green.css" />
     <Content Include="Content\css\header\__main-link\header__main-link.css" />
     <Content Include="Content\css\img\_cover\img_cover.css" />
+    <Content Include="Content\css\invalid\__field\invalid__field.css" />
     <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
     <Content Include="Content\css\link\link.css" />
     <Content Include="Content\css\link\_green\link_green.css" />
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
+    <Content Include="Content\css\menu\__icon\menu__icon.css" />
     <Content Include="Content\css\menu\__link\menu__link.css" />
-    <Content Include="Content\css\menu\__splitter\menu__splitter.css" />
     <Content Include="Content\css\multiple-select\multiple-select.css" />
     <Content Include="Content\css\none\none.css" />
+    <Content Include="Content\css\overrides maretialize\collection-item.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
     <Content Include="Content\css\page\__header\page__header.css" />
@@ -210,8 +213,8 @@
     <Content Include="Scripts\AdDetails\kind.js" />
     <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
-    <Content Include="Scripts\Category\category-menu.js" />
-    <Content Include="Scripts\Common\category-load.js" />
+    <Content Include="Scripts\CategoryListBox\categories-load.js" />
+    <Content Include="Scripts\CategoryMenu\category-menu.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\Editor\common.js" />
@@ -232,7 +235,6 @@
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\Search\kind.js" />
     <Content Include="Scripts\Search\search.js" />
-    <Content Include="Scripts\Search\startup.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\Admin\user-edit.js" />
     <Content Include="Scripts\User\user-edit.js" />
@@ -245,6 +247,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Attributes\AdminAttribute.cs" />
+    <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Attributes\EditorAttribute.cs" />
     <Compile Include="Attributes\UserAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -296,8 +299,8 @@
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Error\ServerNotResponding.cshtml" />
+    <Content Include="Views\Error\NotFoundPage.cshtml" />
+    <Content Include="Views\Error\ServerNotRespondingPage.cshtml" />
     <Content Include="Views\Navigation\CategoryList.cshtml" />
     <Content Include="Views\Ad\AdList.cshtml" />
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
@@ -321,6 +324,7 @@
     <Content Include="Views\Editor\EditorPage.cshtml" />
     <Content Include="Views\Category\EditCategoryList.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Category\CategoryListBox.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

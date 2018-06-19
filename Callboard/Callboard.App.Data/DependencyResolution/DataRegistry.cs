@@ -1,14 +1,17 @@
-﻿using Callboard.App.Data.DataContext.Main;
+﻿using Callboard.App.Data.DataContext;
 using Callboard.App.Data.DataContext.Realizations.Db;
 using Callboard.App.Data.DataContext.Realizations.Service;
-using Callboard.App.Data.DbContext.Main;
+using Callboard.App.Data.DbContext;
 using Callboard.App.Data.DbContext.Realizations;
-using Callboard.App.Data.Providers.Main;
-using Callboard.App.Data.Providers.Realizations.Service;
-using Callboard.App.Data.Providers.Realizations.Sql;
-using Callboard.App.Data.Repositories.Main;
+using Callboard.App.Data.Repositories;
 using Callboard.App.Data.Repositories.Realizations;
+using Callboard.App.Data.ServiceContext;
+using Callboard.App.Data.ServiceContext.Realizations;
+using Callboard.App.Data.Services;
+using Callboard.App.Data.Services.Realizations;
+using Callboard.App.General.Entities;
 using StructureMap;
+using Service = Callboard.App.Data.CommercialService;
 
 namespace Callboard.App.Data.DependencyResolution
 {
@@ -17,29 +20,34 @@ namespace Callboard.App.Data.DependencyResolution
         public DataRegistry()
         {
             For<IDbContext>().Use<SqlDbContext>();
+            For<IServiceContext<Service::ICommercialContract>>().Use<ServiceContext<Service::ICommercialContract>>();
 
             For<ICategoryRepository>().Use<CategoryRepository>();
-            For<IUserRepository>().Use<UserRepository>();
             For<IRoleRepository>().Use<RoleRepository>();
-            For<ICityRepository>().Use<CityRepository>();
-            For<IAreaRepository>().Use<AreaRepository>();
-            For<ICountryRepository>().Use<CountryRepository>();
-            For<IKindRepository>().Use<KindRepository>();
-            For<IStateRepository>().Use<StateRepository>();
+            
+            For<IRepository<User>>().Use<UserRepository>();
+            For<IRepository<Country>>().Use<CountryRepository>();
+            For<IRepository<Kind>>().Use<KindRepository>();
+            For<IRepository<State>>().Use<StateRepository>();
 
-            For<IMembershipProvider>().Use<MembershipProvider>();
-            For<IAdProvider>().Use<AdProvider>();
-            For<IAdDetailsProvider>().Use<AdDetailsProvider>();
-            For<ICommercialProvider>().Use<CommercialProvider>();
+            For<ICityService>().Use<CityService>();
+            For<IAreaService>().Use<AreaService>();
+
+            For<IMembershipService>().Use<MembershipService>();
+            For<IAdService>().Use<AdService>();
+            For<IAdDetailsService>().Use<AdDetailsService>();
+            For<ICommercialService>().Use<Services.Realizations.CommercialService>();
 
             For<ICategoryContext>().Use<CategoryDbContext>();
             For<IAreaContext>().Use<AreaDbContext>();
             For<ICityContext>().Use<CityDbContext>();
-            For<ICountryContext>().Use<CountryDbContext>();
-            For<IKindContext>().Use<KindDbContext>();
+
+            For<IDataContext<Country>>().Use<CountryDbContext>();
+            For<IDataContext<Kind>>().Use<KindDbContext>();
+            For<IDataContext<State>>().Use<StateDbContext>();
+            For<IDataContext<User>>().Use<UserDbContext>();
+
             For<IRoleContext>().Use<RoleDbContext>();
-            For<IStateContext>().Use<StateDbContext>();
-            For<IUserContext>().Use<UserDbContext>();
             For<IAdContext>().Use<AdDbContext>();
             For<IAdDetailsContext>().Use<AdDetailsDbContext>();
             For<ICommercialContext>().Use<CommercialServiceContext>();

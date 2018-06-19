@@ -1,5 +1,4 @@
 ﻿using Callboard.App.General.Helpers;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
 using System;
 using System.Configuration;
@@ -10,12 +9,9 @@ namespace Callboard.App.Data.Helpers
     {
         private const string DB_NAME = "callboardDB";
         private ILoggerWrapper _logger;
-        private IChecker _checker;
-        public ConfigHelper(ILoggerWrapper logger, IChecker checker)
+        public ConfigHelper(ILoggerWrapper logger)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(logger);
-            _logger = logger;
+            _logger = logger ?? throw new NullReferenceException(nameof(logger));
         }
 
         public string ConnectionString
@@ -31,7 +27,10 @@ namespace Callboard.App.Data.Helpers
             try
             {
                 connectionString = connStringsSection?.ConnectionStrings[DB_NAME]?.ConnectionString;
-                _checker.CheckForNull(connectionString, $"Cannot find connection string with name { DB_NAME } in App.Data.dll.config");
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    throw new NullReferenceException($"Cannot find connection string with name { DB_NAME } in App.Data.dll.config");
+                }
             }
             catch (ConfigurationErrorsException ex)
             {

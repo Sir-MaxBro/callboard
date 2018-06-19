@@ -1,56 +1,68 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class StateController : Controller
     {
-        private IChecker _checker;
-        private IStateProvider _stateProvider;
-        public StateController(IStateProvider stateProvider, IChecker checker)
+        private IEntityService<State> _stateProvider;
+        public StateController(IEntityService<State> stateProvider)
         {
-            if (checker == null)
+            if (stateProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(stateProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(stateProvider);
             _stateProvider = stateProvider;
         }
 
-        public JsonResult GetStates()
+        [AjaxOnly]
+        public ActionResult GetStates()
         {
-            var states = _stateProvider.GetAll();
-            var statesData = JsonConvert.SerializeObject(states);
-            return Json(new { States = statesData }, JsonRequestBehavior.AllowGet);
+            var statesResult = _stateProvider.GetAll();
+            if (statesResult.IsSuccess())
+            {
+                var states = statesResult.GetSuccessResult();
+                var statesData = JsonConvert.SerializeObject(states);
+                return Json(new { States = statesData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult SaveState(string stateData)
+        public ActionResult SaveState(string stateData)
         {
-            bool isSaved = false;
             stateData = stateData ?? string.Empty;
             var state = JsonConvert.DeserializeObject<State>(stateData);
             if (state != null)
             {
-                _stateProvider.Save(state);
-                isSaved = true;
+                var stateSaveResult = _stateProvider.Save(state);
+                if (stateSaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return Json(new { IsSaved = isSaved });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult DeleteState(int stateId)
+        public ActionResult DeleteState(int stateId)
         {
-            _stateProvider.Delete(stateId);
-            return Json(new { IdDeleted = true });
+            var stateDeleteResult = _stateProvider.Delete(stateId);
+            if (stateDeleteResult.IsNone())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

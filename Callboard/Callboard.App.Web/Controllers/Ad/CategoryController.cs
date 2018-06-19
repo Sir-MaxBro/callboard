@@ -1,47 +1,83 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private IChecker _checker;
-        private ICategoryProvider _categoryProvider;
-        public CategoryController(ICategoryProvider categoryProvider, IChecker checker)
+        private ICategoryService _categoryProvider;
+        public CategoryController(ICategoryService categoryProvider)
         {
-            if (checker == null)
+            if (categoryProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(categoryProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(categoryProvider);
             _categoryProvider = categoryProvider;
         }
 
-        public JsonResult GetAllCategories()
+        [AjaxOnly]
+        public ActionResult GetAllCategories()
         {
-            var categories = _categoryProvider.GetAll();
-            var categoriesData = JsonConvert.SerializeObject(categories);
-            return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+            var categoriesResult = _categoryProvider.GetAll();
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                var categoriesData = JsonConvert.SerializeObject(categories);
+                return Json(new { Categories = categoriesData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        public ActionResult GetMainCategories()
+        {
+            var categoriesResult = _categoryProvider.GetMainCategories();
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("CategoryListBox", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        public ActionResult GetSubcategories(int categoryId)
+        {
+            var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("CategoryListBox", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
-        public PartialViewResult GetEditCategories()
+        public ActionResult GetEditCategories()
         {
-            var categories = _categoryProvider.GetMainCategories();
-            return PartialView("EditCategoryList", categories);
+            var categoriesResult = _categoryProvider.GetMainCategories();
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("EditCategoryList", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
-        public PartialViewResult GetEditSubcategories(int categoryId)
+        public ActionResult GetEditSubcategories(int categoryId)
         {
-            var categories = _categoryProvider.GetSubcategories(categoryId);
-            return PartialView("EditCategoryList", categories);
+            var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
+            if (categoriesResult.IsSuccess())
+            {
+                var categories = categoriesResult.GetSuccessResult();
+                return PartialView("EditCategoryList", categories);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
@@ -55,26 +91,34 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult DeleteCategory(int categoryId)
+        public ActionResult DeleteCategory(int categoryId)
         {
-            _categoryProvider.Delete(categoryId);
-            return Json(new { IsDeleted = true });
+            var categoriesResult = _categoryProvider.Delete(categoryId);
+            if (categoriesResult.IsNone())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult SaveCategory(string categoryData)
+        public ActionResult SaveCategory(string categoryData)
         {
-            bool isSaved = false;
             categoryData = categoryData ?? string.Empty;
             var category = JsonConvert.DeserializeObject<Category>(categoryData);
             if (category != null)
             {
-                _categoryProvider.Save(category);
-                isSaved = true;
+                var categorySaveResult = _categoryProvider.Save(category);
+                if (categorySaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return Json(new { isSaved = isSaved });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

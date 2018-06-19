@@ -1,56 +1,68 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class KindController : Controller
     {
-        private IKindProvider _kindProvider;
-        private IChecker _checker;
-        public KindController(IKindProvider kindProvider, IChecker checker)
+        private IEntityService<Kind> _kindProvider;
+        public KindController(IEntityService<Kind> kindProvider)
         {
-            if (checker == null)
+            if (kindProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(kindProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(kindProvider);
             _kindProvider = kindProvider;
         }
 
-        public JsonResult GetKinds()
+        [AjaxOnly]
+        public ActionResult GetKinds()
         {
-            var kinds = _kindProvider.GetAll();
-            var kindsData = JsonConvert.SerializeObject(kinds);
-            return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
+            var kindsResult = _kindProvider.GetAll();
+            if (kindsResult.IsSuccess())
+            {
+                var kinds = kindsResult.GetSuccessResult();
+                var kindsData = JsonConvert.SerializeObject(kinds);
+                return Json(new { Kinds = kindsData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult SaveKind(string kindData)
+        public ActionResult SaveKind(string kindData)
         {
-            bool isSaved = false;
             kindData = kindData ?? string.Empty;
             var kind = JsonConvert.DeserializeObject<Kind>(kindData);
             if (kind != null)
             {
-                _kindProvider.Save(kind);
-                isSaved = true;
+                var kindSaveResult = _kindProvider.Save(kind);
+                if (kindSaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return Json(new { IsSaved = isSaved });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Editor]
+        [AjaxOnly]
         [HttpPost]
-        public JsonResult DeleteKind(int kindId)
+        public ActionResult DeleteKind(int kindId)
         {
-            _kindProvider.Delete(kindId);
-            return Json(new { IdDeleted = true });
+            var kindDeleteResult = _kindProvider.Delete(kindId);
+            if (kindDeleteResult.IsNone())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

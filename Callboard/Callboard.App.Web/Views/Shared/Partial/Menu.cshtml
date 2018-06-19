@@ -1,7 +1,43 @@
-﻿<div class="menu menu_center">
-    <a href="@Url.Action("Index", "Home")" class="link menu__link">Home</a>
-    <div class="menu__splitter">/</div>
-    <a href="@Url.Action("GetAdList", "Ad")" class="link menu__link">Ads</a>
-    <div class="menu__splitter">/</div>
-    <a href="@Url.Action("Search", "Search")" class="link menu__link">Search</a>
+﻿@helper getEditorLinks()
+{
+    <a href="@Url.Action("OpenEditorPage", "Editor")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">poll</i>Editor page
+    </a>
+}
+
+@helper getAdminLinks()
+{
+    <a href="@Url.Action("GetAllUsers", "User")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">people</i>User managment
+    </a>
+}
+
+<div class="menu menu_center">
+    <a href="@Url.Action("Index", "Home")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">home</i>Home
+    </a>
+
+    <a href="@Url.Action("GetAdList", "Ad")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">shopping_basket</i>goods
+    </a>
+
+    <a href="@Url.Action("Search", "Search")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">search</i>Search
+    </a>
+    @{
+
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = User as UserPrinciple;
+            if (user.IsInRole(RoleType.Editor.ToString()))
+            {
+                @getEditorLinks()
+            }
+            else if (user.IsInRole(RoleType.Admin.ToString()))
+            {
+                @getEditorLinks()
+                @getAdminLinks()
+            }
+        }
+    }
 </div>

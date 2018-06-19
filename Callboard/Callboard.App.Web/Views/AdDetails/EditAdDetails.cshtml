@@ -1,6 +1,7 @@
 ﻿@model AdDetailsViewModel
 @Scripts.Render("~/location")
 @Scripts.Render("~/addetails")
+@Scripts.Render("~/categoryListBox")
 
 <script>
     window.onload = function () {
@@ -9,7 +10,7 @@
         }
         loadKinds();
         loadStates();
-        loadCategories('categories', @Html.Raw(Json.Encode(Model.Categories)));
+        callActionAsync(null, '/Category/GetMainCategories', 'categories');
         addImage('images');
     };
 </script>
@@ -24,7 +25,7 @@
             foreach (var item in Model.Images)
             {
                 @Html.RenderImage(item.Data, item.Extension, "col s3 ad__image_big",
-                    htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
+                 htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
             }
         }
     </div>
@@ -73,11 +74,9 @@
         <select id="states" class="input-field col s4 block">
             <option selected="selected" value="">--- Choose state ---</option>
         </select>
-        <select id="categories" multiple="multiple" class="input-field col s4 block multiple-select ">
-            <option selected="selected">--- Choose category ---</option>
-        </select>
     </div>
 
+    <div class="row collection" id="categories"></div>
 
     <div class="center">
         <button class="btn waves-effect waves-light" type="button" onclick="saveAdDetails()">
@@ -86,5 +85,9 @@
         </button>
     </div>
 
-    <div id="save-result"></div>
+    <div id="save-result" class="none">
+        <div class="green-text center">
+            <i class="large material-icons center">check</i>
+        </div>
+    </div>
 </div>

@@ -1,30 +1,36 @@
-﻿using Callboard.App.Business.Providers.Main;
-using Callboard.App.General.Helpers.Main;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AreaController : Controller
     {
-        private IChecker _checker;
-        private IAreaProvider _areaProvider;
-        public AreaController(IAreaProvider areaProvider, IChecker checker)
+        private IAreaService _areaProvider;
+        public AreaController(IAreaService areaProvider)
         {
-            if (checker == null)
+            if (areaProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(areaProvider));
             }
-            _checker = checker;
             _areaProvider = areaProvider;
         }
 
-        public JsonResult GetAreasByCountryId(int countryId)
+        [AjaxOnly]
+        public ActionResult GetAreasByCountryId(int countryId)
         {
-            var areas = _areaProvider.GetAreasByCountryId(countryId);
-            var areasData = JsonConvert.SerializeObject(areas);
-            return Json(new { Areas = areasData }, JsonRequestBehavior.AllowGet);
+            var areasResult = _areaProvider.GetAreasByCountryId(countryId);
+            if (areasResult.IsSuccess())
+            {
+                var areas = areasResult.GetSuccessResult();
+                var areasData = JsonConvert.SerializeObject(areas);
+                return Json(new { Areas = areasData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }

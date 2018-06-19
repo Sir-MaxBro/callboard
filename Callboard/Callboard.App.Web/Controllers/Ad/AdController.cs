@@ -1,68 +1,83 @@
-﻿using Callboard.App.Business.Providers.Main;
-using Callboard.App.General.Helpers.Main;
-using Callboard.App.General.Loggers.Main;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.General.Entities;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
-using Callboard.App.Web.Attributes;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AdController : Controller
     {
-        private IAdProvider _adProvider;
-        private ILoggerWrapper _logger;
-        private IChecker _checker;
-        public AdController(IAdProvider adProvider, ILoggerWrapper logger, IChecker checker)
+        private IAdService _adProvider;
+        public AdController(IAdService adProvider)
         {
-            if (checker == null)
+            if (adProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(adProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(adProvider);
-            _checker.CheckForNull(logger);
-            _logger = logger;
             _adProvider = adProvider;
         }
 
         public ActionResult GetAdList()
         {
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            var adsResult = _adProvider.GetAds();
+            if (adsResult.IsSuccess())
+            {
+                ads = adsResult.GetSuccessResult();
+            }
+
             AdListViewModel model = new AdListViewModel
             {
-                Ads = _adProvider.GetAds()
+                Ads = ads
             };
+
             return View("AdList", model);
         }
 
         public ActionResult GetAdsByCategoryId(int categoryId)
         {
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            var adsResult = _adProvider.GetAdsByCategoryId(categoryId);
+            if (adsResult.IsSuccess())
+            {
+                ads = adsResult.GetSuccessResult();
+            }
+
             AdListViewModel model = new AdListViewModel
             {
-                Ads = _adProvider.GetAdsByCategoryId(categoryId)
+                Ads = ads
             };
+
             return View("AdList", model);
         }
-        
+
         [User]
         public PartialViewResult GetAdsForUser(int userId)
         {
-            var ads = _adProvider.GetAdsForUser(userId);
+            IReadOnlyCollection<Ad> ads = new List<Ad>();
+            var adsResult = _adProvider.GetAdsForUser(userId);
+            if (adsResult.IsSuccess())
+            {
+                ads = adsResult.GetSuccessResult();
+            }
+
             return PartialView("Partial\\AdContainer", ads);
         }
 
         [User]
         public ActionResult DeleteAd(int adId, string returnUrl)
         {
-            _adProvider.Delete(adId);
-            if (Url.IsLocalUrl(returnUrl))
+            var adsResult = _adProvider.Delete(adId);
+            if (adsResult.IsNone())
             {
-                return Redirect(returnUrl);
+                return RedirectToAction("GetAdList", "Ad");
             }
-            else
-            {
-                return Redirect("GetAdList");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

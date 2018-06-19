@@ -1,8 +1,9 @@
-﻿using Callboard.App.Business.Providers.Realization;
-using Callboard.App.Data.Providers.Main;
+﻿using Callboard.App.Business.Services.Realizations;
+using Callboard.App.Data.Services;
 using Callboard.App.General.Cache.Main;
 using Callboard.App.General.Entities.Commercial;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
+using Callboard.App.General.Results.Realizations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
@@ -28,15 +29,13 @@ namespace Callboard.App.Business.Test.ProvidersTest
             mockStorage.Setup(storage => storage.Get<IReadOnlyCollection<Commercial>>(It.IsAny<string>()))
                 .Returns((string value) => null);
 
-            var mockChecker = new Mock<IChecker>();
-
-            var mockCommecrialDataProvider = new Mock<ICommercialProvider>();
+            var mockCommecrialDataProvider = new Mock<ICommercialService>();
             mockCommecrialDataProvider.Setup(prov => prov.GetCommercials())
-                .Returns(commercials);
+                .Returns(new SuccessResult<IReadOnlyCollection<Commercial>>(commercials));
 
-            var commercialProvider = new CommercialProvider(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
+            var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object);
 
-            var resultCommercials = commercialProvider.GetCommercials();
+            var resultCommercials = commercialProvider.GetCommercials().GetSuccessResult();
 
             Assert.AreEqual(resultCommercials.Count, commercials.Count);
             mockCommecrialDataProvider.Verify(mock => mock.GetCommercials(), Times.Once());
@@ -58,13 +57,11 @@ namespace Callboard.App.Business.Test.ProvidersTest
             mockStorage.Setup(storage => storage.Get<IReadOnlyCollection<Commercial>>(It.IsAny<string>()))
                 .Returns(commercials);
 
-            var mockChecker = new Mock<IChecker>();
+            var mockCommecrialDataProvider = new Mock<ICommercialService>();
 
-            var mockCommecrialDataProvider = new Mock<ICommercialProvider>();
+            var commercialProvider = new CommercialService(mockStorage.Object, mockCommecrialDataProvider.Object);
 
-            var commercialProvider = new CommercialProvider(mockStorage.Object, mockCommecrialDataProvider.Object, mockChecker.Object);
-
-            var resultCommercials = commercialProvider.GetCommercials();
+            var resultCommercials = commercialProvider.GetCommercials().GetSuccessResult();
 
             Assert.AreEqual(resultCommercials.Count, commercials.Count);
             mockStorage.Verify(mock => mock.Get<IReadOnlyCollection<Commercial>>(It.IsAny<string>()), Times.Once());

@@ -1,57 +1,75 @@
-﻿using Callboard.App.Business.Providers.Main;
-using Callboard.App.General.Helpers.Main;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class RoleController : Controller
     {
-        private IRoleProvider _roleProvider;
-        private IChecker _checker;
-        public RoleController(IRoleProvider roleProvider, IChecker checker)
+        private IRoleService _roleProvider;
+        public RoleController(IRoleService roleProvider)
         {
-            if (checker == null)
+            if (roleProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(roleProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(roleProvider);
             _roleProvider = roleProvider;
         }
 
         [Admin]
-        public JsonResult GetRoles()
+        [AjaxOnly]
+        public ActionResult GetRoles()
         {
-            var roles = _roleProvider.GetAll();
-            var rolesData = JsonConvert.SerializeObject(roles);
-            return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            var rolesResult = _roleProvider.GetAll();
+            if (rolesResult.IsSuccess())
+            {
+                var roles = rolesResult.GetSuccessResult();
+                var rolesData = JsonConvert.SerializeObject(roles);
+                return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Admin]
-        public JsonResult GetRolesForUser(int userId)
+        [AjaxOnly]
+        public ActionResult GetRolesForUser(int userId)
         {
-            var roles = _roleProvider.GetRolesForUser(userId);
-            var rolesData = JsonConvert.SerializeObject(roles);
-            return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            var rolesResult = _roleProvider.GetRolesForUser(userId);
+            if (rolesResult.IsSuccess())
+            {
+                var roles = rolesResult.GetSuccessResult();
+                var rolesData = JsonConvert.SerializeObject(roles);
+                return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Admin]
         [HttpPost]
         public ActionResult SetRoleForUser(int userId, int roleId)
         {
-            _roleProvider.SetRoleForUser(userId, roleId);
-            return RedirectToAction("GetRolesForUser", new { userId });
+            var rolesResult = _roleProvider.SetRoleForUser(userId, roleId);
+            if (rolesResult.IsNone())
+            {
+                return RedirectToAction("GetRolesForUser", new { userId });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Admin]
         [HttpPost]
         public ActionResult DeleteUserRole(int userId, int roleId)
         {
-            _roleProvider.DeleteUserRole(userId, roleId);
-            return RedirectToAction("GetRolesForUser", new { userId });
+            var rolesResult = _roleProvider.DeleteUserRole(userId, roleId);
+            if (rolesResult.IsNone())
+            {
+                return RedirectToAction("GetRolesForUser", new { userId });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

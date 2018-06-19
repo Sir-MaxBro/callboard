@@ -1,5 +1,5 @@
-﻿using Callboard.App.Business.Providers.Main;
-using Callboard.App.General.Helpers.Main;
+﻿using Callboard.App.Business.Services;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using System;
@@ -9,16 +9,13 @@ namespace Callboard.App.Web.Controllers
 {
     public class MembershipController : Controller
     {
-        private IMembershipProvider _membershipProvider;
-        private IChecker _checker;
-        public MembershipController(IMembershipProvider membershipProvider, IChecker checker)
+        private IMembershipService _membershipProvider;
+        public MembershipController(IMembershipService membershipProvider)
         {
-            if (checker == null)
+            if (membershipProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(membershipProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(membershipProvider);
             _membershipProvider = membershipProvider;
         }
 
@@ -33,13 +30,16 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult CreateUser(RegisterViewModel registerModel, string returnUrl)
         {
-            if (registerModel != null)
+            if (!ModelState.IsValid)
             {
-                _membershipProvider.CreateUser(registerModel.Login, registerModel.Password);
+                return RedirectToAction("CreateUser", registerModel);
             }
-            if (Url.IsLocalUrl(returnUrl))
+
+            var membershipResult = _membershipProvider.CreateUser(registerModel.Login, registerModel.Password);
+            if (membershipResult.IsFailure())
             {
-                return Redirect(returnUrl);
+                ViewBag.ErrorMessage = membershipResult.GetFailureMessage();
+                return RedirectToAction("CreateUser", registerModel);
             }
             return RedirectToAction("GetAllUsers", "User");
         }

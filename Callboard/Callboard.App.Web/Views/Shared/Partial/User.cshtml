@@ -12,10 +12,20 @@
                 {
                     @Html.RenderImage(Model.PhotoData, Model.PhotoExtension, "width_100per")
                 }
+
+                @{
+                    var user = User as UserPrinciple;
+                    if (user != null && (user.UserId == Model.UserId || user.IsInRole(RoleType.Admin.ToString())))
+                    {
+                        <a href="@Url.Action("EditProfile", "User", new { userId = Model.UserId })" class="btn-floating halfway-fab waves-effect waves-light red" >
+                            <i class="material-icons">edit</i>
+                        </a>
+                    }
+                }
                 <span class="card-title">@Model.Name</span>
             </div>
             <div class="card-content">
-                <div class="user__phones">
+                <div class="row user__phones">
                     <div class="user__phones-header">Phones:</div>
                     @foreach (var item in Model.Phones)
                     {
@@ -23,7 +33,7 @@
                     }
                 </div>
 
-                <div class="user__mails">
+                <div class="row user__mails">
                     <div class="user__mails-header">Mails:</div>
                     @foreach (var item in Model.Mails)
                     {

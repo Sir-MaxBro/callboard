@@ -16,6 +16,10 @@ function renderLink(text, click) {
     return link;
 }
 
+function backPage() {
+    window.history.back();
+}
+
 function convertByteToBase64(byteArray) {
     var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(byteArray)));
     return base64String;

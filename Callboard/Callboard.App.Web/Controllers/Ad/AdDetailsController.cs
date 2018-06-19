@@ -1,37 +1,39 @@
-﻿using Callboard.App.Business.Providers.Main;
+﻿using Callboard.App.Business.Services;
 using Callboard.App.General.Entities;
 using Callboard.App.General.Entities.Auth;
-using Callboard.App.General.Helpers.Main;
+using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
 using Callboard.App.Web.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
 {
     public class AdDetailsController : Controller
     {
-        private IChecker _checker;
-        private IAdDetailsProvider _adDetailsProvider;
-        public AdDetailsController(IAdDetailsProvider adDetailsProvider, IChecker checker)
+        private IAdDetailsService _adDetailsProvider;
+        public AdDetailsController(IAdDetailsService adDetailsProvider)
         {
-            if (checker == null)
+            if (adDetailsProvider == null)
             {
-                throw new NullReferenceException(nameof(checker));
+                throw new NullReferenceException(nameof(adDetailsProvider));
             }
-            _checker = checker;
-            _checker.CheckForNull(adDetailsProvider);
             _adDetailsProvider = adDetailsProvider;
         }
 
-        public ActionResult GetAdDetails(int adId, string returnUrl)
+        public ActionResult GetAdDetails(int adId)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            AdDetails model = _adDetailsProvider.GetById(adId);
-            return View("AdDetails", model);
+            var adDetailsResult = _adDetailsProvider.GetById(adId);
+            if (adDetailsResult.IsSuccess())
+            {
+                AdDetails model = adDetailsResult.GetSuccessResult();
+                return View("AdDetails", model);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
@@ -48,20 +50,22 @@ namespace Callboard.App.Web.Controllers
         [User]
         public ActionResult EditAdDetails(int adId)
         {
-            var adDetails = _adDetailsProvider.GetById(adId);
-            var user = User as UserPrinciple;
-            if (user.UserId == adDetails.User.UserId)
+            var adDetailsResult = _adDetailsProvider.GetById(adId);
+            if (adDetailsResult.IsSuccess())
             {
-                var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
-                return View("EditAdDetails", adDetailsModel);
+                var user = User as UserPrinciple;
+                var adDetails = adDetailsResult.GetSuccessResult();
+                if (user.UserId == adDetails.User.UserId)
+                {
+                    var adDetailsModel = this.MapAdDetailsToViewModel(adDetails);
+                    return View("EditAdDetails", adDetailsModel);
+                }
             }
-            else
-            {
-                return RedirectToAction("Error", "Error");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [User]
+        [AjaxOnly]
         [HttpPost]
         public ActionResult SaveAdDetails(string adDetailsData)
         {
@@ -70,10 +74,13 @@ namespace Callboard.App.Web.Controllers
             if (adDetailsModel != null)
             {
                 var adDetails = this.MapViewModelToAdDetails(adDetailsModel);
-                _adDetailsProvider.Save(adDetails);
-                return Json(new { IsSaved = true });
+                var adDetailsResult = _adDetailsProvider.Save(adDetails);
+                if (adDetailsResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
             }
-            return RedirectToAction("Error", "Error");
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         private AdDetails MapViewModelToAdDetails(AdDetailsViewModel adDetailsModel)
