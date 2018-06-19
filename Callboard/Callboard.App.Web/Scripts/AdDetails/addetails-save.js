@@ -22,7 +22,6 @@ let getAdDetailsModel = function () {
     let state = $("#states").find(":selected").val();
     let userId = $("#userId").val();
     let adId = $("#adId").val();
-
     let locationId = getLocationId();
     let categories = getCategoriesList();
     let images = getImages();
@@ -56,7 +55,7 @@ let getName = function () {
 }
 
 let getPrice = function () {
-    let price = $("#price").val();
+    let price = +$("#price").val().replace(',', '.');
     if (price <= 0) {
         price = 1;
     }
