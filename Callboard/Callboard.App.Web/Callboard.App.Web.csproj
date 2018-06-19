@@ -209,7 +209,6 @@
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
-    <Content Include="Scripts\Editor\common.js" />
     <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -320,6 +319,8 @@
     <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\State\EditStateList.cshtml" />
     <Content Include="Views\State\EditStateListItem.cshtml" />
+    <Content Include="Views\Kind\EditKindList.cshtml" />
+    <Content Include="Views\Kind\EditKindListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,19 +1,18 @@
 ﻿@Scripts.Render("~/editor")
-<script>
-    window.onload = function () {
-        loadKinds('kinds');
-    }
-</script>
 
 <div class="row">
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <div class="row">
-                    <div id="kinds">
 
+                <div class="row card">
+                    <div class="card-content">
+                        <span class="card-title">Kinds</span>
+                        <div id="kinds">
+                            @{  Html.RenderAction("GetKindsEditList", "Kind"); }
+                        </div>
                     </div>
-                    <div class="center">
+                    <div class="card-action">
                         <button class="btn waves-effect waves-light green" type="button" onclick="addKind('kinds')">
                             Add kind
                             <i class="material-icons left">add</i>
@@ -53,5 +52,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>
