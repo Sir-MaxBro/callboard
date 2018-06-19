@@ -10,6 +10,7 @@ let showUserSaveResult = function (data) {
     saveResultContainer.removeClass('none');
     setTimeout(function () {
         saveResultContainer.addClass('none');
+        refreshPage();
     }, 4000);
 }
 
