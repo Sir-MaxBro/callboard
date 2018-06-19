@@ -25,7 +25,7 @@
                 <span class="card-title">@Model.Name</span>
             </div>
             <div class="card-content">
-                <div class="user__phones">
+                <div class="row user__phones">
                     <div class="user__phones-header">Phones:</div>
                     @foreach (var item in Model.Phones)
                     {
@@ -33,7 +33,7 @@
                     }
                 </div>
 
-                <div class="user__mails">
+                <div class="row user__mails">
                     <div class="user__mails-header">Mails:</div>
                     @foreach (var item in Model.Mails)
                     {
