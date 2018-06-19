@@ -1,0 +1,25 @@
+﻿@model State
+
+<div class="row" id="state-container-@Model.StateId">
+    <div class="col s10">
+        <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="state-condition-@Model.StateId" type="text" class="validate" value="@Model.Condition">
+            <label for="state-condition-@Model.StateId">State</label>
+        </div>
+    </div>
+    <div class="row col s2">
+
+        <div class="col s6">
+            <a onclick="saveState(@Model.StateId, 'state-condition-@Model.StateId')" class="btn-floating waves-effect waves-light btn-middle green">
+                <i class="material-icons center">save</i>
+            </a>
+        </div>
+
+        <div class="col s6">
+            <a onclick="deleteState(@Model.StateId, 'state-container-@Model.StateId')" class="btn-floating waves-effect waves-light btn-middle red" >
+                <i class="material-icons center">delete</i>
+            </a>
+        </div>
+    </div>
+</div>

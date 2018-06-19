@@ -1,0 +1,6 @@
+﻿@model IReadOnlyCollection<State>
+
+@foreach (var state in Model)
+{
+    Html.RenderPartial("EditStateListItem", state);
+}
