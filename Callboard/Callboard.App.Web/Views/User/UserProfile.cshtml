@@ -4,13 +4,10 @@
     @{ Html.RenderPartial("Partial\\User", Model); }
 
     <div class="center">
-        @Html.ActionLink("edit", "EditProfile", "User",
-        new { userId = Model.UserId },
-        htmlAttributes: new { @class = "btn-floating btn-large waves-effect waves-light red" })
-
-        @Html.ActionLink("add", "CreateAdDetails", "AdDetails",
-        null,
-        htmlAttributes: new { @class = "btn-floating btn-large waves-effect waves-light red" })
+        <a href="@Url.Action("CreateAdDetails", "AdDetails")" class="waves-effect waves-light btn">
+            <i class="material-icons left">add</i>
+            Create ad
+        </a>
     </div>
 </div>
 <div class="width_75per float_right">
