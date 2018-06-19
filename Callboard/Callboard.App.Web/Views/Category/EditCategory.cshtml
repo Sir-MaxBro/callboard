@@ -1,34 +1,35 @@
 ﻿@model Category
 
-<div id="category-@Model.CategoryId" class="col s12">
-    <div class="row">
-        <div class="col s9">
-            <input id="category-name-@Model.CategoryId" type="text" class="validate" value="@Model.Name">
-        </div>
-        <div class="col s1">
-            <a class="waves-effect waves-light btn-large green"
+<div id="category-@Model.CategoryId" class="row">
+    <div class="col s9">
+        <input id="category-name-@Model.CategoryId" type="text" class="validate" value="@Model.Name">
+    </div>
+
+    <div class="row col s3">
+        <div class="col s3">
+            <a class="btn-floating waves-effect waves-light btn-middle green"
                onclick="saveCategory(@Model.CategoryId, 'category-name-@Model.CategoryId', @Model.ParentId)">
                 <i class="material-icons center">save</i>
             </a>
         </div>
-        <div class="col s1">
-            <a class="waves-effect waves-light btn-large red" onclick="deleteCategory(@Model.CategoryId, 'category-@Model.CategoryId')">
+
+        <div class="col s3">
+            <a class="btn-floating waves-effect waves-light btn-middle red" onclick="deleteModel(@Model.CategoryId, 'category-@Model.CategoryId')">
                 <i class="material-icons center">delete</i>
             </a>
         </div>
-        <div class="col s1">
-            <a class="waves-effect waves-light btn-large" onclick="loadSubcategories(@Model.CategoryId, 'subcategories-@Model.CategoryId')">
-                <i class="material-icons center">file_download</i>
+
+        <div class="col s3">
+            <a class="btn-floating waves-effect waves-light btn-middle green" onclick="createSubcategory(@Model.CategoryId, 'subcategories-@Model.CategoryId')">
+                <i class="material-icons center">add</i>
+            </a>
+        </div>
+
+        <div class="col s3">
+            <a class="btn-floating waves-effect waves-light btn-middle" onclick="loadSubcategories(this, @Model.CategoryId, 'subcategories-@Model.CategoryId')">
+                <i class="material-icons center">arrow_downward</i>
             </a>
         </div>
     </div>
-    <div class="row">
-        <div id="subcategories-@Model.CategoryId" class="col s12">
-        </div>
-        <div class="col s12 left-align">
-            <a class="waves-effect waves-light btn-large green" onclick="createSubcategory(@Model.CategoryId, 'subcategories-@Model.CategoryId')">
-                <i class="material-icons left">add</i>Add subcategory
-            </a>
-        </div>
-    </div>
+    <div id="subcategories-@Model.CategoryId" class="col s12 collapsed"></div>
 </div>

@@ -34,11 +34,14 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div id="categories">
-                        @{ Html.RenderAction("GetEditCategories", "Category"); }
+                <div class="row card">
+                    <div class="card-content">
+                        <span class="card-title">Categories</span>
+                        <div id="categories">
+                            @{ Html.RenderAction("GetEditCategories", "Category"); }
+                        </div>
                     </div>
-                    <div class="col s12">
+                    <div class="card-action">
                         <button class="btn waves-effect waves-light green" type="button" onclick="createSubcategory(0, 'categories')">
                             Add category
                             <i class="material-icons left">add</i>
@@ -48,4 +51,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
