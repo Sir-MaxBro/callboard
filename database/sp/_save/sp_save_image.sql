@@ -8,24 +8,14 @@ CREATE PROCEDURE [dbo].sp_save_image
     @AdId INT
 )
 AS BEGIN
-	-- IF @ImageId <= 0
-	-- 	BEGIN
-			DECLARE @NewImageId TABLE ([ImageId] INT NOT NULL);
+	DECLARE @NewImageId TABLE ([ImageId] INT NOT NULL);
 
-			INSERT INTO [dbo].[Image]([Data], [Extension])
-			OUTPUT inserted.ImageId INTO @NewImageId
-			VALUES (@Data, @Extension);
+	INSERT INTO [dbo].[Image]([Data], [Extension])
+	OUTPUT inserted.ImageId INTO @NewImageId
+	VALUES (@Data, @Extension);
 
-			SET @ImageId = (SELECT * FROM @NewImageId);
+	SET @ImageId = (SELECT * FROM @NewImageId);
 
-			INSERT INTO [dbo].ImagesInAds([AdId], [ImageId])
-			VALUES (@AdId, @ImageId)
-	-- 	END
-	-- ELSE
-	-- 	BEGIN
-	-- 		UPDATE [Image]
-	-- 		SET [Data] = @Data,
-	-- 			[Extension] = @Extension
-	-- 		WHERE [Image].ImageId = @ImageId
-	-- 	END
+	INSERT INTO [dbo].ImagesInAds([AdId], [ImageId])
+	VALUES (@AdId, @ImageId)
 END

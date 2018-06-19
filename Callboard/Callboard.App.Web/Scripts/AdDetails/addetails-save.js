@@ -1,20 +1,20 @@
 ﻿function saveAdDetails() {
-    let adDetails = getAdDetails();
-    console.log(adDetails);
-    $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetails) }, showAdDetailsSaveResult);
+    let adDetailsModel = getAdDetailsModel();
+    if (adDetailsModel.isValid) {
+        $.post('/AdDetails/SaveAdDetails', { adDetailsData: JSON.stringify(adDetailsModel.adDetails) }, showAdDetailsSaveResult);
+    }
 }
 
 let showAdDetailsSaveResult = function (data) {
     let saveResultContainer = $("#save-result");
-    saveResultContainer.empty();
-    saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
+    saveResultContainer.removeClass('none');
     setTimeout(function () {
-        saveResultContainer.empty();
-    }, 3000);
+        saveResultContainer.addClass('none');
+    }, 4000);
 }
 
-let getAdDetails = function () {
-    let name = $("#name").val();
+let getAdDetailsModel = function () {
+    let name = getName();
     let price = getPrice();
     let description = $("#description").val();
     let addressLine = $("#addressLine").val();
@@ -28,20 +28,31 @@ let getAdDetails = function () {
     let images = getImages();
 
     return {
-        Name: name,
-        Price: price,
-        Description: description,
-        AddressLine: addressLine,
-        Kind: kind,
-        State: state,
-        UserId: userId,
-        AdId: adId,
-        Location: {
-            LocationId: locationId
+        adDetails: {
+            Name: name,
+            Price: price,
+            Description: description,
+            AddressLine: addressLine,
+            Kind: kind,
+            State: state,
+            UserId: userId,
+            AdId: adId,
+            Location: {
+                LocationId: locationId
+            },
+            Categories: categories,
+            Images: images
         },
-        Categories: categories,
-        Images: images
+        isValid: name && price && userId && adId && locationId && categories.length
     };
+}
+
+let getName = function () {
+    let name = $("#name").val();
+    if (name === '') {
+        name = 'Product';
+    }
+    return name;
 }
 
 let getPrice = function () {
