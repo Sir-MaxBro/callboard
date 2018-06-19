@@ -1,8 +1,16 @@
 ﻿function saveUser() {
     let userModel = getUserModel();
     if (userModel.isValid) {
-        $.post('/User/SaveUser', { userData: JSON.stringify(userModel.user) }, backPage());
+        $.post('/User/SaveUser', { userData: JSON.stringify(userModel.user) }, showUserSaveResult);
     }
+}
+
+let showUserSaveResult = function (data) {
+    let saveResultContainer = $("#save-result");
+    saveResultContainer.removeClass('none');
+    setTimeout(function () {
+        saveResultContainer.addClass('none');
+    }, 4000);
 }
 
 function addPhone() {
