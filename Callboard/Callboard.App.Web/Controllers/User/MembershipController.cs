@@ -39,7 +39,7 @@ namespace Callboard.App.Web.Controllers
             if (membershipResult.IsFailure())
             {
                 ViewBag.ErrorMessage = membershipResult.GetFailureMessage();
-                return RedirectToAction("CreateUser", registerModel);
+                return View(registerModel);
             }
             return RedirectToAction("GetAllUsers", "User");
         }
