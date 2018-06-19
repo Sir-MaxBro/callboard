@@ -1,23 +1,29 @@
 ﻿@helper getEditorLinks()
 {
-    <div class="menu__splitter">/</div>
-    <a href="@Url.Action("OpenEditorPage", "Editor")" class="menu__link teal-text text-lighten-1 waves-effect waves-light">Editor page</a>
+    <a href="@Url.Action("OpenEditorPage", "Editor")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">poll</i>Editor page
+    </a>
 }
 
 @helper getAdminLinks()
 {
-    <div class="menu__splitter">/</div>
-    <a href="@Url.Action("GetAllUsers", "User")" class="menu__link teal-text text-lighten-1 waves-effect waves-light">User managment</a>
+    <a href="@Url.Action("GetAllUsers", "User")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">people</i>User managment
+    </a>
 }
 
 <div class="menu menu_center">
-    <a href="@Url.Action("Index", "Home")" class="menu__link teal-text text-lighten-1 waves-effect waves-light">Home</a>
-    <div class="menu__splitter">/</div>
+    <a href="@Url.Action("Index", "Home")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">home</i>Home
+    </a>
 
-    <a href="@Url.Action("GetAdList", "Ad")" class="menu__link teal-text text-lighten-1 waves-effect waves-light">Ads</a>
-    <div class="menu__splitter">/</div>
+    <a href="@Url.Action("GetAdList", "Ad")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">shopping_basket</i>goods
+    </a>
 
-    <a href="@Url.Action("Search", "Search")" class="menu__link teal-text text-lighten-1 waves-effect waves-light">Search</a>
+    <a href="@Url.Action("Search", "Search")" class="menu__link waves-effect waves-light">
+        <i class="material-icons menu__icon">search</i>Search
+    </a>
     @{
 
         if (User.Identity.IsAuthenticated)
@@ -27,8 +33,7 @@
             {
                 @getEditorLinks()
             }
-
-            if (user.IsInRole(RoleType.Admin.ToString()))
+            else if (user.IsInRole(RoleType.Admin.ToString()))
             {
                 @getEditorLinks()
                 @getAdminLinks()
