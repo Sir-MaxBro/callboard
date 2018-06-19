@@ -3,16 +3,14 @@
 
 <div class="card">
     <div class="row card-content">
-        <div class="col s6">
-            <table>
+        <div class="col s4">
+            <table class="highlight">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th></th>
                         <th class="right-align">
-                            <a href="@Url.Action("CreateUser", "Membership")" class="waves-effect waves-light btn green">
-                                <i class="material-icons left">person_add</i>
-                                Add user
+                            <a href="@Url.Action("CreateUser", "Membership")" class="btn-floating waves-effect waves-light btn-middle green">
+                                <i class="material-icons">person_add</i>
                             </a>
                         </th>
                     </tr>
@@ -25,15 +23,11 @@
                                 @item.Name
                             </td>
                             <td class="right-align">
-                                <button class="btn waves-effect waves-light red" type="button" onclick="deleteUser(@item.UserId, 'user-@item.UserId')">
-                                    Delete
-                                    <i class="material-icons left">delete</i>
+                                <button onclick="deleteUser(@item.UserId, 'user-@item.UserId')" type="button" class="btn-floating waves-effect waves-light btn-middle red">
+                                    <i class="material-icons">delete</i>
                                 </button>
-                            </td>
-                            <td class="right-align">
-                                <button class="btn waves-effect waves-light green" type="button" onclick="editUser(@item.UserId)">
-                                    Edit
-                                    <i class="material-icons left">edit</i>
+                                <button onclick="editUser(@item.UserId)" type="button" class="btn-floating waves-effect waves-light btn-middle">
+                                    <i class="material-icons">edit</i>
                                 </button>
                             </td>
                         </tr>

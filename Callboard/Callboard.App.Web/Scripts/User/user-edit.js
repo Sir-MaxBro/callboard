@@ -10,7 +10,6 @@ let showUserSaveResult = function (data) {
     saveResultContainer.removeClass('none');
     setTimeout(function () {
         saveResultContainer.addClass('none');
-        refreshPage();
     }, 4000);
 }
 
@@ -20,11 +19,11 @@ function addPhone() {
     phoneContainer.append(input);
 }
 
-function addMail() {
-    let mailContainer = $("#emails");
-    let input = getMailInput();
-    mailContainer.append(input);
-}
+//function addMail() {
+//    let mailContainer = $("#emails");
+//    let input = getMailInput();
+//    mailContainer.append(input);
+//}
 
 function fillPhoto(evt) {
     let tgt = evt.target || window.event.srcElement;
@@ -137,13 +136,13 @@ let getMailsModel = function () {
     };
 }
 
-let getPhoneInput = function () {
-    return getEditorInput('phone');
-}
+//let getPhoneInput = function () {
+//    return getEditorInput('phone');
+//}
 
-let getMailInput = function () {
-    return getEditorInput('email');
-}
+//let getMailInput = function () {
+//    return getEditorInput('email');
+//}
 
 let isNumberValid = function (number) {
     let phoneRegex = /([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
@@ -155,33 +154,33 @@ let isEmailValid = function (email) {
     return emailRegex.test(email);
 }
 
-let getEditorInput = function (type) {
-    let mainDiv = $("<div></div>");
-    mainDiv.addClass('input-field row');
+//let getEditorInput = function (type) {
+//    let mainDiv = $("<div></div>");
+//    mainDiv.addClass('input-field row');
 
-    let colDiv = $("<div></div>");
-    colDiv.addClass('col s8');
+//    let colDiv = $("<div></div>");
+//    colDiv.addClass('col s8');
 
-    let i = $("<i></i>");
-    i.addClass('material-icons prefix');
-    i.text(type);
+//    let i = $("<i></i>");
+//    i.addClass('material-icons prefix');
+//    i.text(type);
 
-    let input = $("<input />");
-    input.attr('type', 'text');
-    input.addClass('validate');
+//    let input = $("<input />");
+//    input.attr('type', 'text');
+//    input.addClass('validate');
 
-    let deleteLink = $('<a></a>');
-    deleteLink.addClass('waves-effect waves-light btn col s4 red');
-    deleteLink.on('click', function () {
-        mainDiv.remove();
-    });
-    deleteLink.text('delete');
+//    let deleteLink = $('<a></a>');
+//    deleteLink.addClass('waves-effect waves-light btn col s4 red');
+//    deleteLink.on('click', function () {
+//        mainDiv.remove();
+//    });
+//    deleteLink.text('delete');
 
-    colDiv.append(i);
-    colDiv.append(input);
+//    colDiv.append(i);
+//    colDiv.append(input);
 
-    mainDiv.append(colDiv);
-    mainDiv.append(deleteLink);
+//    mainDiv.append(colDiv);
+//    mainDiv.append(deleteLink);
 
-    return mainDiv;
-}
+//    return mainDiv;
+//}
