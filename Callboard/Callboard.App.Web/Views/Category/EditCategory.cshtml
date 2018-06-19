@@ -27,14 +27,14 @@
             </div>
 
             <div class="col s3">
-                <a class="btn-floating waves-effect waves-light btn-middle" onclick="loadSubcategories(@Model.CategoryId, 'subcategories-@Model.CategoryId')">
+                <a class="btn-floating waves-effect waves-light btn-middle" onclick="loadSubcategories(this, @Model.CategoryId, 'subcategories-@Model.CategoryId')">
                     <i class="material-icons center">arrow_downward</i>
                 </a>
             </div>
         </div>
     </div>
     <div class="row">
-        <div id="subcategories-@Model.CategoryId" class="col s12">
+        <div id="subcategories-@Model.CategoryId" class="col s12 collapsed">
         </div>
     </div>
 </div>
