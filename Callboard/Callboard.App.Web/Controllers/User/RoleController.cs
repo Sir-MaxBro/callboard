@@ -1,6 +1,7 @@
 ﻿using Callboard.App.Business.Services;
 using Callboard.App.General.ResultExtensions;
 using Callboard.App.Web.Attributes;
+using Callboard.App.Web.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -35,15 +36,18 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Admin]
-        [AjaxOnly]
-        public ActionResult GetRolesForUser(int userId)
+        public ActionResult GetRolesEditList(int userId)
         {
             var rolesResult = _roleProvider.GetRolesForUser(userId);
             if (rolesResult.IsSuccess())
             {
                 var roles = rolesResult.GetSuccessResult();
-                var rolesData = JsonConvert.SerializeObject(roles);
-                return Json(new { Roles = rolesData }, JsonRequestBehavior.AllowGet);
+                var rolesModel = new UserRoleEditViewModel
+                {
+                    Roles = roles,
+                    UserId = userId
+                };
+                return PartialView("UserRoleEditList", rolesModel);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
@@ -55,7 +59,7 @@ namespace Callboard.App.Web.Controllers
             var rolesResult = _roleProvider.SetRoleForUser(userId, roleId);
             if (rolesResult.IsNone())
             {
-                return RedirectToAction("GetRolesForUser", new { userId });
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
@@ -67,7 +71,7 @@ namespace Callboard.App.Web.Controllers
             var rolesResult = _roleProvider.DeleteUserRole(userId, roleId);
             if (rolesResult.IsNone())
             {
-                return RedirectToAction("GetRolesForUser", new { userId });
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }

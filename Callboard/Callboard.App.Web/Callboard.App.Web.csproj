@@ -228,6 +228,9 @@
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\Admin\user-edit.js" />
+    <Content Include="Scripts\UserRoleEditList\role-delete.js" />
+    <Content Include="Scripts\UserRoleEditList\role-load.js" />
+    <Content Include="Scripts\UserRoleEditList\role-save.js" />
     <Content Include="Scripts\User\user-edit.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -275,6 +278,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\UserRoleEditViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -321,6 +325,7 @@
     <Content Include="Views\State\EditStateListItem.cshtml" />
     <Content Include="Views\Kind\EditKindList.cshtml" />
     <Content Include="Views\Kind\EditKindListItem.cshtml" />
+    <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
