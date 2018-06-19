@@ -22,7 +22,7 @@ function saveCategory(categoryId, nameTargetId, parentId) {
         Name: newName,
         ParentId: parentId
     };
-    $.post('/Category/SaveCategory', { categoryData: JSON.stringify(category) }, function () { location.reload(); });
+    $.post('/Category/SaveCategory', { categoryData: JSON.stringify(category) }, function () { refreshPage(); });
 }
 
 function createCategory(updateTargetId) {

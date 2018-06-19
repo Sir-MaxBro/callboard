@@ -318,6 +318,8 @@
     <Content Include="Views\Category\CategoryListBox.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\State\EditStateList.cshtml" />
+    <Content Include="Views\State\EditStateListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

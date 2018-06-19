@@ -20,6 +20,10 @@ function backPage() {
     window.history.back();
 }
 
+function refreshPage() {
+    location.reload();
+}
+
 function convertByteToBase64(byteArray) {
     var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(byteArray)));
     return base64String;
