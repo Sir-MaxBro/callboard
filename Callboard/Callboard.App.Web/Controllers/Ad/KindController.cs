@@ -35,6 +35,24 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
+        public ActionResult GetKindsEditList()
+        {
+            var kindsResult = _kindProvider.GetAll();
+            if (kindsResult.IsSuccess())
+            {
+                var kinds = kindsResult.GetSuccessResult();
+                return PartialView("EditKindList", kinds);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        [Editor]
+        public ActionResult CreateKind()
+        {
+            return PartialView("EditKindListItem", new Kind());
+        }
+
+        [Editor]
         [AjaxOnly]
         [HttpPost]
         public ActionResult SaveKind(string kindData)

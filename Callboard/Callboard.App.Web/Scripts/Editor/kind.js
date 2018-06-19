@@ -1,37 +1,27 @@
-﻿let kindUpdateTargetId;
-
-function loadKinds(updateTargetId) {
-    kindUpdateTargetId = updateTargetId;
-    getDataAsync(null, "/Kind/GetKinds", renderKinds);
+﻿function addKind(updateTargetId) {
+    $.ajax({
+        url: '/Kind/CreateKind',
+        dataType: 'html',
+        success: function (data) {
+            $("#" + updateTargetId).append(data);
+        }
+    });
 }
 
-function addKind(updateTargetId) {
-    let kindsContainer = $("#" + updateTargetId);
-    let mainKindContainer = $("<div></div>");
-    setViewSection(0, 'New kind', mainKindContainer, saveKind);
-    kindsContainer.append(mainKindContainer);
-}
-
-let renderKinds = function (data) {
-    let kinds = JSON.parse(data.Kinds);
-    let kindsContainer = $("#" + kindUpdateTargetId);
-    for (let i = 0; i < kinds.length; i++) {
-        let mainKindContainer = $("<div></div>");
-        setViewSection(kinds[i].KindId, kinds[i].Type, mainKindContainer, saveKind, deleteKind);
-
-        kindsContainer.append(mainKindContainer);
+function saveKind(kindId, typeInputId) {
+    let type = $("#" + typeInputId).val();
+    if (type) {
+        let kind = {
+            KindId: kindId,
+            Type: type
+        };
+        $.post('/Kind/SaveKind', { kindData: JSON.stringify(kind) }, function () { refreshPage(); });
     }
 }
 
-let saveKind = function (kindId, kindName) {
-    let kind = {
-        KindId: kindId,
-        Type: kindName
-    };
-    $.post('/Kind/SaveKind', { kindData: JSON.stringify(kind) });
-}
-
-let deleteKind = function (kindId, mainContainer) {
-    $.post('/Kind/DeleteKind', { kindId: kindId });
-    mainContainer.remove();
+function deleteKind(kindId, kindContainerId) {
+    if (kindId) {
+        $.post('/Kind/DeleteKind', { kindId: kindId });
+    }
+    $("#" + kindContainerId).remove();
 }
