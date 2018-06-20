@@ -13,18 +13,6 @@ let showUserSaveResult = function (data) {
     }, 4000);
 }
 
-function addPhone() {
-    let phoneContainer = $("#phones");
-    let input = getPhoneInput();
-    phoneContainer.append(input);
-}
-
-//function addMail() {
-//    let mailContainer = $("#emails");
-//    let input = getMailInput();
-//    mailContainer.append(input);
-//}
-
 function fillPhoto(evt) {
     let tgt = evt.target || window.event.srcElement;
     let files = tgt.files;
@@ -136,14 +124,6 @@ let getMailsModel = function () {
     };
 }
 
-//let getPhoneInput = function () {
-//    return getEditorInput('phone');
-//}
-
-//let getMailInput = function () {
-//    return getEditorInput('email');
-//}
-
 let isNumberValid = function (number) {
     let phoneRegex = /([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
     return phoneRegex.test(number);
@@ -153,34 +133,3 @@ let isEmailValid = function (email) {
     let emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return emailRegex.test(email);
 }
-
-//let getEditorInput = function (type) {
-//    let mainDiv = $("<div></div>");
-//    mainDiv.addClass('input-field row');
-
-//    let colDiv = $("<div></div>");
-//    colDiv.addClass('col s8');
-
-//    let i = $("<i></i>");
-//    i.addClass('material-icons prefix');
-//    i.text(type);
-
-//    let input = $("<input />");
-//    input.attr('type', 'text');
-//    input.addClass('validate');
-
-//    let deleteLink = $('<a></a>');
-//    deleteLink.addClass('waves-effect waves-light btn col s4 red');
-//    deleteLink.on('click', function () {
-//        mainDiv.remove();
-//    });
-//    deleteLink.text('delete');
-
-//    colDiv.append(i);
-//    colDiv.append(input);
-
-//    mainDiv.append(colDiv);
-//    mainDiv.append(deleteLink);
-
-//    return mainDiv;
-//}
