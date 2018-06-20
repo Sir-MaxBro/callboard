@@ -22,6 +22,12 @@ namespace Callboard.App.Web.Controllers
             return View("Error");
         }
 
+        public ActionResult BadRequest()
+        {
+            Response.StatusCode = 400;
+            return View("BadRequest");
+        }
+
         public ActionResult PageNotFound()
         {
             Response.StatusCode = 404;

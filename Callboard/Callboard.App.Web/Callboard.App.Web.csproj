@@ -178,18 +178,11 @@
     <Content Include="Content\css\overrides maretialize\collection-item.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
-    <Content Include="Content\css\page\__header\page__header.css" />
     <Content Include="Content\css\page\__menu\page__menu.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\search-form\_center\search-form_center.css" />
-    <Content Include="Content\css\search-form\__box\search-form__box.css" />
     <Content Include="Content\css\search-form\__button\search-form__button.css" />
     <Content Include="Content\css\search-form\__textbox\search-form__textbox.css" />
-    <Content Include="Content\css\slider\slider_relative.css" />
-    <Content Include="Content\css\slider\__img\slider__img.css" />
-    <Content Include="Content\css\slider\__item\slider__item.css" />
-    <Content Include="Content\css\slider\__next\slider__next.css" />
-    <Content Include="Content\css\slider\__prev\slider__prev.css" />
     <Content Include="Content\css\textbox\textbox.css" />
     <Content Include="Content\css\user\_min\user_min.css" />
     <Content Include="Content\css\user\_profile\user_profile.css" />
@@ -202,7 +195,6 @@
     <Content Include="Content\css\width\_75per\width_75per.css" />
     <Content Include="Content\css\wrapper\wrapper.css" />
     <Content Include="Content\images\banner.jpg" />
-    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\ads.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\product.jpg" />
@@ -217,7 +209,6 @@
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
-    <Content Include="Scripts\Editor\common.js" />
     <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -237,6 +228,9 @@
     <Content Include="Scripts\Search\search.js" />
     <Content Include="Scripts\Search\state.js" />
     <Content Include="Scripts\Admin\user-edit.js" />
+    <Content Include="Scripts\UserRoleEditList\role-delete.js" />
+    <Content Include="Scripts\UserRoleEditList\role-load.js" />
+    <Content Include="Scripts\UserRoleEditList\role-save.js" />
     <Content Include="Scripts\User\user-edit.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -284,6 +278,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\UserRoleEditViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -323,8 +318,14 @@
     <Content Include="Views\User\EditProfile.cshtml" />
     <Content Include="Views\Editor\EditorPage.cshtml" />
     <Content Include="Views\Category\EditCategoryList.cshtml" />
-    <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\Category\CategoryListBox.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\State\EditStateList.cshtml" />
+    <Content Include="Views\State\EditStateListItem.cshtml" />
+    <Content Include="Views\Kind\EditKindList.cshtml" />
+    <Content Include="Views\Kind\EditKindListItem.cshtml" />
+    <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -334,10 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\category-container\__category-name\" />
-    <Folder Include="Content\css\category-container\__subcategory-link\" />
-    <Folder Include="Content\css\page\__search-form\" />
-    <Folder Include="Content\css\page\__user\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Callboard.App.Business\Callboard.App.Business.csproj">
