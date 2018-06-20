@@ -49,6 +49,15 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/roles-list")
                 .IncludeDirectory("~/Scripts/UserRoleEditList", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/countries-edit")
+                .IncludeDirectory("~/Scripts/CountriesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/areas-edit")
+                .IncludeDirectory("~/Scripts/AreasEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/cities-edit")
+                .IncludeDirectory("~/Scripts/CitiesEdit", "*.js", false));
         }
     }
 }

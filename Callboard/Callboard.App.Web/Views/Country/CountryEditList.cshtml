@@ -1,0 +1,25 @@
+﻿@model IReadOnlyCollection<Country>
+
+@foreach (var country in Model)
+{
+    <div id="country-container-@country.CountryId" class="row valign-wrapper">
+        <div class="input-field col s6">
+            <input id="country-name-@country.CountryId" type="text" class="validate" value="@country.Name">
+            <label for="country-name-@country.CountryId" class="active">Country</label>
+        </div>
+
+        <div class="row col s6 right-align">
+            <a onclick="updateCountry(@country.CountryId, 'country-name-@country.CountryId')" class="btn-floating waves-effect waves-light btn-middle green">
+                <i class="material-icons">save</i>
+            </a>
+
+            <a onclick="deleteCountry(@country.CountryId, 'country-container-@country.CountryId')" class="btn-floating waves-effect waves-light btn-middle red">
+                <i class="material-icons">delete</i>
+            </a>
+
+            <a onclick="loadAreas(@country.CountryId, 'area-edit-list')" class="btn-floating waves-effect waves-light btn-middle">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+}

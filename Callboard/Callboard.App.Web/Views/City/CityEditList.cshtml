@@ -1,0 +1,21 @@
+﻿@model CityListViewModel
+
+@foreach (var city in Model.Cities)
+{
+    <div id="city-container-@city.CityId" class="row valign-wrapper">
+        <div class="input-field col s7">
+            <input id="city-name-@city.CityId" type="text" class="validate" value="@city.Name">
+            <label for="city-name-@city.CityId" class="active">City</label>
+        </div>
+
+        <div class="row col s5 right-align">
+            <a onclick="updateCity(@city.CityId, @Model.AreaId, 'city-name-@city.CityId')" class="btn-floating waves-effect waves-light btn-middle green">
+                <i class="material-icons">save</i>
+            </a>
+
+            <a onclick="deleteCity(@city.CityId, 'city-container-@city.CityId')" class="btn-floating waves-effect waves-light btn-middle red">
+                <i class="material-icons">delete</i>
+            </a>
+        </div>
+    </div>
+}

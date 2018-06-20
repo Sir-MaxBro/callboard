@@ -12,7 +12,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class AreaDbContext : EntityDbContext<Area>, IAreaContext
     {
-        public AreaDbContext(IDbContext context, ILoggerWrapper logger) 
+        public AreaDbContext(IDbContext context, ILoggerWrapper logger)
             : base(context, logger) { }
 
         public IResult<Area> Delete(int id)
@@ -56,7 +56,19 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IResult<Area> Save(int countryId, Area obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_area";
+            var values = this.MapAreaValues(countryId, obj);
+            return base.Execute(procedureName, values);
+        }
+
+        private IDictionary<string, object> MapAreaValues(int countryId, Area area)
+        {
+            return new Dictionary<string, object>
+            {
+                { "CountryId", countryId },
+                { "AreaId", area.AreaId },
+                { "Name", area.Name }
+            };
         }
 
         private Area MapArea(DataSet dataSet)
