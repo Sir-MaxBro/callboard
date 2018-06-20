@@ -22,7 +22,6 @@ BEGIN
 	IF (SELECT COUNT(*) FROM @User) = 0
 		BEGIN	
 			THROW 50002, 'Login is invalid.', 1;
-			--RAISERROR('Login is invalid', 16, 2)
 		END
 	ELSE
 		BEGIN
@@ -32,7 +31,6 @@ BEGIN
 			IF @IsPasswordValid = 0
 				BEGIN
 					THROW 50003, 'Password is invalid.', 1;
-					--RAISERROR('Password is invalid', 16, 3)
 				END
 			ELSE
 				BEGIN
