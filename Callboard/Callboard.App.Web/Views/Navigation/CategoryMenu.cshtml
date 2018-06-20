@@ -1,0 +1,36 @@
+﻿@model CategoryViewModel
+@Scripts.Render("~/categoryMenu")
+
+<div id="category-container">
+    <ul class="collection">
+        <li id="back-button" class="collection-item">
+            <div class="width_100per">
+                <a onclick="getPreviousCategoryMenu()" class="link waves-effect waves-light">
+                    Back
+                </a>
+            </div>
+        </li>
+
+        <li class="collection-item">
+            <div class="width_100per">
+                @Html.ActionLink("All", "GetAdList", "Ad", null, htmlAttributes: new { @class = "link" })
+            </div>
+        </li>
+
+        @foreach (var item in Model.Categories)
+        {
+            <li class="collection-item valign-wrapper">
+                <div class="width_75per">
+                    @Html.ActionLink(item.Name, "GetAdsByCategoryId", "Ad",
+                                 routeValues: new { categoryId = item.CategoryId },
+                                 htmlAttributes: new { @class = "link" })
+                </div>
+                <div class="width_25per">
+                    <a onclick="getSubcategoryMenu(@item.ParentId, @item.CategoryId)" class="waves-effect waves-light secondary-content">
+                        <i class="material-icons">more</i>
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

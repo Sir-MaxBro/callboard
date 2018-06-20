@@ -12,7 +12,7 @@ window.onbeforeunload = function () {
     localStorage.removeItem(CATEGORY_KEY);
 }
 
-function getSubcategories(parentId, categoryId) {
+function getSubcategoryMenu(parentId, categoryId) {
     let categories = JSON.parse(localStorage.getItem(CATEGORY_KEY));
     if (categories === null) {
         categories = new Array();
@@ -22,7 +22,7 @@ function getSubcategories(parentId, categoryId) {
     renderCategories(categoryId);
 }
 
-function getPreviousCategories() {
+function getPreviousCategoryMenu() {
     let categories = JSON.parse(localStorage.getItem(CATEGORY_KEY));
     if (categories !== null) {
         let categoryId = categories.pop();
@@ -41,9 +41,9 @@ let renderCategories = function (categoryId) {
 }
 
 let takeSubcategories = function (categoryId) {
-    callActionAsync({ categoryId: categoryId }, '/Navigation/GetSubcategories', 'category-container');
+    callActionAsync({ categoryId: categoryId }, '/Navigation/GetSubcategoryMenu', 'category-container');
 }
 
 let takeCategories = function () {
-    callActionAsync(null, '/Navigation/GetMainCategories', 'category-container');
+    callActionAsync(null, '/Navigation/GetCategoryMenu', 'category-container');
 }
