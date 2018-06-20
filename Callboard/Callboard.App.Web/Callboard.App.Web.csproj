@@ -175,6 +175,7 @@
     <Content Include="Content\css\menu\__link\menu__link.css" />
     <Content Include="Content\css\multiple-select\multiple-select.css" />
     <Content Include="Content\css\none\none.css" />
+    <Content Include="Content\css\overrides maretialize\card-action.css" />
     <Content Include="Content\css\overrides maretialize\collection-item.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
@@ -189,6 +190,7 @@
     <Content Include="Content\css\user\__mails-header\user__mails-header.css" />
     <Content Include="Content\css\user\__name\user__name.css" />
     <Content Include="Content\css\user\__phones-header\user__phones-header.css" />
+    <Content Include="Content\css\vertical-overflow\vertical-overflow.css" />
     <Content Include="Content\css\width\_100per\width_100per.css" />
     <Content Include="Content\css\width\_25per\width_25per.css" />
     <Content Include="Content\css\width\_50per\width_50per.css" />
@@ -205,11 +207,23 @@
     <Content Include="Scripts\AdDetails\kind.js" />
     <Content Include="Scripts\AdDetails\state.js" />
     <Content Include="Scripts\ajax-helper.js" />
+    <Content Include="Scripts\AreasEdit\area-delete.js" />
+    <Content Include="Scripts\AreasEdit\area-get-list.js" />
+    <Content Include="Scripts\AreasEdit\area-save.js" />
+    <Content Include="Scripts\AreasEdit\area-update.js" />
+    <Content Include="Scripts\AreasEdit\cities-load.js" />
     <Content Include="Scripts\CategoryListBox\categories-load.js" />
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
+    <Content Include="Scripts\CitiesEdit\city-delete.js" />
+    <Content Include="Scripts\CitiesEdit\city-get-list.js" />
+    <Content Include="Scripts\CitiesEdit\city-save.js" />
+    <Content Include="Scripts\CitiesEdit\city-update.js" />
     <Content Include="Scripts\Common\common.js" />
-    <Content Include="Scripts\CountriesEditList\country-delete.js" />
-    <Content Include="Scripts\CountriesEditList\country-save.js" />
+    <Content Include="Scripts\CountriesEdit\areas-load.js" />
+    <Content Include="Scripts\CountriesEdit\country-delete.js" />
+    <Content Include="Scripts\CountriesEdit\country-save.js" />
+    <Content Include="Scripts\CountriesEdit\country-update.js" />
+    <Content Include="Scripts\CountriesEdit\country-get-list.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
@@ -273,8 +287,12 @@
     </Compile>
     <Compile Include="HtmlHelpers\HtmlImageExtension.cs" />
     <Compile Include="HtmlHelpers\HtmlPartialExtension.cs" />
-    <Compile Include="Models\AdDetailsViewModel.cs" />
-    <Compile Include="Models\AdListViewModel.cs" />
+    <Compile Include="Models\AdViewModels\AdDetailsViewModel.cs" />
+    <Compile Include="Models\AdViewModels\AdListViewModel.cs" />
+    <Compile Include="Models\AreaViewModels\AreaListViewModel.cs" />
+    <Compile Include="Models\AreaViewModels\AreaViewModel.cs" />
+    <Compile Include="Models\CityViewModels\CityListViewModel.cs" />
+    <Compile Include="Models\CityViewModels\CityViewModel.cs" />
     <Compile Include="Models\CommercialViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
@@ -331,8 +349,12 @@
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
     <Content Include="Views\User\Partials\EmailEdit.cshtml" />
-    <Content Include="Views\Country\CountriesEditList.cshtml" />
-    <Content Include="Views\Country\CountriesEditListItem.cshtml" />
+    <Content Include="Views\Country\CountryEditList.cshtml" />
+    <Content Include="Views\Country\CountriesEdit.cshtml" />
+    <Content Include="Views\Area\AreaEditList.cshtml" />
+    <Content Include="Views\Area\AreasEdit.cshtml" />
+    <Content Include="Views\City\CityEditList.cshtml" />
+    <Content Include="Views\City\CitiesEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

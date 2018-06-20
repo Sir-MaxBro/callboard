@@ -6,14 +6,8 @@
     return option;
 }
 
-function renderLink(text, click) {
-    let link = $('<a></a>');
-    link.attr('href', '#');
-    link.text(text);
-    link.on('click', function () {
-        click.call();
-    });
-    return link;
+function clearContainer(containerId) {
+    $("#" + containerId).empty();
 }
 
 function backPage() {
