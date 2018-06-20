@@ -3,28 +3,13 @@
 
 <script>
     function addMail() {
-        $('#emails').append('@Html.Raw(addInput("email").ToString().Replace("\n", "").Replace("\r", ""))');
+        $('#emails').append('@Html.GetHtmlPartial("Partials\\EmailEdit", new Mail())');
     }
 
     function addPhone() {
-        $('#phones').append('@Html.Raw(addInput("phone").ToString().Replace("\n", "").Replace("\r", ""))');
+        $('#phones').append('@Html.GetHtmlPartial("Partials\\PhoneEdit", new Phone())');
     }
 </script>
-
-@helper addInput(string inputIcon)
-{
-    <div class="input-field row">
-        <div class="col s10">
-            <i class="material-icons prefix">@inputIcon</i>
-            <input type="text" class="validate">
-        </div>
-        <div class="col s2" onclick="$(this).parent().remove();">
-            <a class="btn-floating waves-effect waves-light btn-middle red">
-                <i class="material-icons">delete</i>
-            </a>
-        </div>
-    </div>
-}
 
 <div class="card">
     <div class="card-content">
@@ -60,38 +45,20 @@
             <div id="phones">
                 @foreach (var phone in Model.Phones)
                 {
-                    <div class="input-field row">
-                        <div class="col s10">
-                            <i class="material-icons prefix">phone</i>
-                            <input value="@phone.Number" data-phone-id="@phone.PhoneId" type="text" class="validate">
-                        </div>
-                        <div class="col s2" onclick="$(this).parent().remove();">
-                            <a class="btn-floating waves-effect waves-light btn-middle red">
-                                <i class="material-icons">delete</i>
-                            </a>
-                        </div>
-                    </div>
+                    Html.RenderPartial("Partials\\PhoneEdit", phone);
                 }
             </div>
-            <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addPhone()"><i class="material-icons">add</i></a>
+            <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addPhone()">
+                <i class="material-icons">add</i>
+            </a>
         </div>
 
         <div class="center row">
             <h5 class="left-center">Emails</h5>
             <div id="emails">
-                @foreach (var mail in Model.Mails)
+                @foreach (var email in Model.Mails)
                 {
-                    <div class="input-field row">
-                        <div class="col s10">
-                            <i class="material-icons prefix">email</i>
-                            <input value="@mail.Email" data-mail-id="@mail.MailId" type="text" class="validate">
-                        </div>
-                        <div class="col s2" onclick="$(this).parent().remove();">
-                            <a class="btn-floating waves-effect waves-light btn-middle red">
-                                <i class="material-icons">delete</i>
-                            </a>
-                        </div>
-                    </div>
+                    Html.RenderPartial("Partials\\EmailEdit", email);
                 }
             </div>
             <a class="btn-floating btn-tiny waves-effect waves-light green" onclick="addMail()">

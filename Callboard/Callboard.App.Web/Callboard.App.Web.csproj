@@ -208,6 +208,8 @@
     <Content Include="Scripts\CategoryListBox\categories-load.js" />
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
     <Content Include="Scripts\Common\common.js" />
+    <Content Include="Scripts\CountriesEditList\country-delete.js" />
+    <Content Include="Scripts\CountriesEditList\country-save.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
@@ -270,6 +272,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\HtmlImageExtension.cs" />
+    <Compile Include="HtmlHelpers\HtmlPartialExtension.cs" />
     <Compile Include="Models\AdDetailsViewModel.cs" />
     <Compile Include="Models\AdListViewModel.cs" />
     <Compile Include="Models\CommercialViewModel.cs" />
@@ -326,6 +329,10 @@
     <Content Include="Views\Kind\EditKindList.cshtml" />
     <Content Include="Views\Kind\EditKindListItem.cshtml" />
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
+    <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
+    <Content Include="Views\User\Partials\EmailEdit.cshtml" />
+    <Content Include="Views\Country\CountriesEditList.cshtml" />
+    <Content Include="Views\Country\CountriesEditListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
