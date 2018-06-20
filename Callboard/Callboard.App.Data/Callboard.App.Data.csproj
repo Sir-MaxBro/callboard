@@ -83,10 +83,11 @@
     <Compile Include="DbContext\Realizations\SqlDbContext.cs" />
     <Compile Include="DbContext\IDbContext.cs" />
     <Compile Include="DependencyResolution\DataRegistry.cs" />
+    <Compile Include="Exceptions\UserExceptions\UserException.cs" />
     <Compile Include="Exceptions\EmptyConnectionStringException.cs" />
-    <Compile Include="Exceptions\InvalidLoginException.cs" />
-    <Compile Include="Exceptions\InvalidPasswordException.cs" />
-    <Compile Include="Exceptions\LoginAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\UserExceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\UserExceptions\InvalidPasswordException.cs" />
+    <Compile Include="Exceptions\UserExceptions\LoginAlreadyExistsException.cs" />
     <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

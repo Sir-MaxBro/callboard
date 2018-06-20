@@ -46,17 +46,17 @@ namespace Callboard.App.Data.DbContext.Realizations
                             _logger.ErrorFormat(errorMessage);
                             dataSet = null;
                         }
-                        catch (SqlException ex) when (ex.State == 1) // user login already exists
+                        catch (SqlException ex) when (ex.Number == 50001) // user login already exists
                         {
                             _logger.InfoFormat(ex.Message);
                             throw new LoginAlreadyExistsException(ex.Message, ex);
                         }
-                        catch (SqlException ex) when (ex.State == 2) // login is invalid
+                        catch (SqlException ex) when (ex.Number == 50002) // login is invalid
                         {
                             _logger.InfoFormat(ex.Message);
                             throw new InvalidLoginException(ex.Message, ex);
                         }
-                        catch (SqlException ex) when (ex.State == 3) // password is invalid
+                        catch (SqlException ex) when (ex.Number == 50003) // password is invalid
                         {
                             _logger.InfoFormat(ex.Message);
                             throw new InvalidPasswordException(ex.Message, ex);
@@ -136,7 +136,7 @@ namespace Callboard.App.Data.DbContext.Realizations
             return parameter;
         }
 
-        private SqlConnection CreateConnection()
+        private SqlConnection CreateConnection() 
         {
             if (!string.IsNullOrEmpty(_connectionString))
             {
@@ -146,6 +146,6 @@ namespace Callboard.App.Data.DbContext.Realizations
             {
                 throw new EmptyConnectionStringException();
             }
-        }
+        }    
     }
 }
