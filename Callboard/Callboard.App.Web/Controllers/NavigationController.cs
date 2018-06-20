@@ -19,26 +19,26 @@ namespace Callboard.App.Web.Controllers
             _categoryProvider = categoryProvider;
         }
 
-        public ActionResult GetMainCategories()
+        public ActionResult GetCategoryMenu()
         {
             var categoriesResult = _categoryProvider.GetMainCategories();
             if (categoriesResult.IsSuccess())
             {
                 var categories = categoriesResult.GetSuccessResult();
                 CategoryViewModel model = new CategoryViewModel { Categories = categories };
-                return PartialView("CategoryList", model);
+                return PartialView("CategoryMenu", model);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
-        public ActionResult GetSubcategories(int categoryId)
+        public ActionResult GetSubcategoryMenu(int categoryId)
         {
             var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
             if (categoriesResult.IsSuccess())
             {
                 var categories = categoriesResult.GetSuccessResult();
                 CategoryViewModel model = new CategoryViewModel { Categories = categories };
-                return PartialView("CategoryList", model);
+                return PartialView("CategoryMenu", model);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
