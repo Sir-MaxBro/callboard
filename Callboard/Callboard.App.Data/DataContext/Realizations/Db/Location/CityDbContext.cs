@@ -45,7 +45,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IResult<IReadOnlyCollection<City>> GetCitiesByAreaId(int areaId)
         {
-            var procedureName = "sp_select_city_by_areaid";
+            string procedureName = "sp_select_city_by_areaid";
             var values = new Dictionary<string, object>
             {
                 { "AreaId", areaId }
@@ -56,7 +56,19 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 
         public IResult<City> Save(int areaId, City obj)
         {
-            throw new NotImplementedException();
+            string procedureName = "sp_save_city";
+            var values = this.MapCityValues(areaId, obj);
+            return base.Execute(procedureName, values);
+        }
+
+        private IDictionary<string, object> MapCityValues(int areaId, City city)
+        {
+            return new Dictionary<string, object>
+            {
+                { "CityId", city.CityId },
+                { "AreaId", areaId },
+                { "Name", city.Name }
+            };
         }
 
         private City MapCity(DataSet dataSet)
