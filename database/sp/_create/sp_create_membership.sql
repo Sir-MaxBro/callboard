@@ -33,6 +33,6 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			RAISERROR('User login already exists in database.', 16, 1)
+			THROW 50001, 'Login already exists.', 1;  
 		END 
 END
