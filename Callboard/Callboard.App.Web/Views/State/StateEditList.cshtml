@@ -1,0 +1,31 @@
+﻿@model IReadOnlyCollection<State>
+
+@foreach (var state in Model)
+{
+    <div class="row" id="state-container-@state.StateId">
+        <div class="col s9">
+
+            <div class="input-field">
+                <i class="material-icons prefix">star_border</i>
+                <input id="state-condition-@state.StateId" type="text" class="validate" value="@state.Condition">
+                <label for="state-condition-@state.StateId" class="active">State</label>
+            </div>
+
+        </div>
+        <div class="row col s3">
+
+            <div class="col s6">
+                <a onclick="updateState(@state.StateId, 'state-condition-@state.StateId')" class="btn-floating waves-effect waves-light btn-middle green">
+                    <i class="material-icons center">save</i>
+                </a>
+            </div>
+
+            <div class="col s6">
+                <a onclick="deleteState(@state.StateId, 'state-container-@state.StateId')" class="btn-floating waves-effect waves-light btn-middle red">
+                    <i class="material-icons center">delete</i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+}
