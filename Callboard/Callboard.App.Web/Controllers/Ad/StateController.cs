@@ -11,20 +11,20 @@ namespace Callboard.App.Web.Controllers
 {
     public class StateController : Controller
     {
-        private IEntityService<State> _stateProvider;
-        public StateController(IEntityService<State> stateProvider)
+        private IEntityService<State> _stateService;
+        public StateController(IEntityService<State> stateService)
         {
-            if (stateProvider == null)
+            if (stateService == null)
             {
-                throw new NullReferenceException(nameof(stateProvider));
+                throw new NullReferenceException(nameof(stateService));
             }
-            _stateProvider = stateProvider;
+            _stateService = stateService;
         }
 
         [AjaxOnly]
         public ActionResult GetStates()
         {
-            var statesResult = _stateProvider.GetAll();
+            var statesResult = _stateService.GetAll();
             if (statesResult.IsSuccess())
             {
                 var states = statesResult.GetSuccessResult();
@@ -35,21 +35,15 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
-        public ActionResult GetStatesEditList()
+        public ActionResult GetStateEditList()
         {
-            var statesResult = _stateProvider.GetAll();
+            var statesResult = _stateService.GetAll();
             if (statesResult.IsSuccess())
             {
                 var states = statesResult.GetSuccessResult();
-                return PartialView("EditStateList", states);
+                return PartialView("StateEditList", states);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-        }
-
-        [Editor]
-        public ActionResult CreateState()
-        {
-            return PartialView("EditStateListItem", new State());
         }
 
         [Editor]
@@ -61,7 +55,7 @@ namespace Callboard.App.Web.Controllers
             var state = JsonConvert.DeserializeObject<State>(stateData);
             if (state != null)
             {
-                var stateSaveResult = _stateProvider.Save(state);
+                var stateSaveResult = _stateService.Save(state);
                 if (stateSaveResult.IsNone())
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -75,7 +69,7 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult DeleteState(int stateId)
         {
-            var stateDeleteResult = _stateProvider.Delete(stateId);
+            var stateDeleteResult = _stateService.Delete(stateId);
             if (stateDeleteResult.IsNone())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
