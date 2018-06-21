@@ -2,36 +2,25 @@
 
 <div class="row">
     <div class="col s6">
-        @{ Html.RenderPartial("../Kind/KindsEdit"); }
+        @{ Html.RenderPartial("~/Views/Kind/KindsEdit.cshtml"); }
     </div>
     <div class="col s6">
-        @{ Html.RenderPartial("../State/StatesEdit"); }
+        @{ Html.RenderPartial("~/Views/State/StatesEdit.cshtml"); }
     </div>
 </div>
 
 <div class="row">
     <div class="col s4">
-        @{  Html.RenderPartial("../Country/CountriesEdit"); }
+        @{  Html.RenderPartial("~/Views/Country/CountriesEdit.cshtml"); }
     </div>
     <div class="col s4">
-        @{  Html.RenderPartial("../Area/AreasEdit"); }
+        @{  Html.RenderPartial("~/Views/Area/AreasEdit.cshtml"); }
     </div>
     <div class="col s4">
-        @{  Html.RenderPartial("../City/CitiesEdit"); }
+        @{  Html.RenderPartial("~/Views/City/CitiesEdit.cshtml"); }
     </div>
 </div>
 
-<div class="row card">
-    <div class="card-content">
-        <span class="card-title">Categories</span>
-        <div id="categories">
-            @{ Html.RenderAction("GetEditCategories", "Category"); }
-        </div>
-    </div>
-    <div class="card-action">
-        <button class="btn waves-effect waves-light green" type="button" onclick="createCategory('categories')">
-            Add category
-            <i class="material-icons left">add</i>
-        </button>
-    </div>
+<div class="row">
+    @{ Html.RenderPartial("~/Views/Category/CategoriesEdit.cshtml"); }
 </div>

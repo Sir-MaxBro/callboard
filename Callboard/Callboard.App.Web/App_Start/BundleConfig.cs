@@ -44,9 +44,6 @@ namespace Callboard.App.Web
             bundles.Add(new ScriptBundle("~/admin")
                 .Include("~/Scripts/Admin/user-edit.js"));
 
-            bundles.Add(new ScriptBundle("~/editor")
-                .IncludeDirectory("~/Scripts/Editor", "*.js", false));
-
             bundles.Add(new ScriptBundle("~/roles-list")
                 .IncludeDirectory("~/Scripts/UserRoleEditList", "*.js", false));
 
@@ -64,6 +61,9 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/states-edit")
                 .IncludeDirectory("~/Scripts/StatesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/categories-edit")
+                .IncludeDirectory("~/Scripts/CategoriesEdit", "*.js", false));
         }
     }
 }
