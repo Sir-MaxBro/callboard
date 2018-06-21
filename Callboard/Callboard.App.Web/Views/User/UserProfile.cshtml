@@ -1,6 +1,6 @@
 ﻿@model User
 
-<div class="width_25per float_left">
+<div class="width_25per left">
     @{ Html.RenderPartial("Partial\\User", Model); }
 
     <div class="center">
@@ -10,6 +10,6 @@
         </a>
     </div>
 </div>
-<div class="width_75per float_right">
+<div class="width_75per right">
     @{ Html.RenderAction("GetAdsForUser", "Ad", new { userId = Model.UserId }); }
 </div>

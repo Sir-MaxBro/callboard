@@ -132,33 +132,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\ad-container\__content\ad-container__content.css" />
-    <Content Include="Content\css\ad\_full\ad_full.css" />
     <Content Include="Content\css\ad\_min\ad_min.css" />
-    <Content Include="Content\css\ad\__content\ad__content.css" />
     <Content Include="Content\css\ad\__image-carousel\ad__image-carousel.css" />
     <Content Include="Content\css\ad\__image\_big\ad__image_big.css" />
-    <Content Include="Content\css\ad\__name\ad__name.css" />
     <Content Include="Content\css\ad\__note\ad__note.css" />
-    <Content Include="Content\css\ad\__price\ad__price.css" />
-    <Content Include="Content\css\ad\__text\ad__text.css" />
     <Content Include="Content\css\banner\__image\banner__image.css" />
     <Content Include="Content\css\block\block.css" />
-    <Content Include="Content\css\button\button.css" />
-    <Content Include="Content\css\button\_green\button_green.css" />
-    <Content Include="Content\css\button\_rounded\button_rounded.css" />
-    <Content Include="Content\css\category-container\__item\category-container__item.css" />
-    <Content Include="Content\css\category-container\__item\_gray\category-container__item_gray.css" />
-    <Content Include="Content\css\category-container\__item\_hover\_green\category-container__item_hover_green.css" />
     <Content Include="Content\css\center\_auto\center_auto.css" />
     <Content Include="Content\css\clearfix\clearfix.css" />
     <Content Include="Content\css\collapsed\collapsed.css" />
     <Content Include="Content\css\commercial\__image\commercial__image.css" />
-    <Content Include="Content\css\commercial\__item\commercial__item.css" />
-    <Content Include="Content\css\edit-container\__role\edit-container__role.css" />
     <Content Include="Content\css\field\field.css" />
-    <Content Include="Content\css\float\_left\float_left.css" />
-    <Content Include="Content\css\float\_right\float_right.css" />
     <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
     <Content Include="Content\css\header\_line\header_line.css" />
     <Content Include="Content\css\header\__logo\header__logo.css" />
@@ -166,9 +150,7 @@
     <Content Include="Content\css\header\__main-link\header__main-link.css" />
     <Content Include="Content\css\img\_cover\img_cover.css" />
     <Content Include="Content\css\invalid\__field\invalid__field.css" />
-    <Content Include="Content\css\keyframes\_fade\keyframes_fade.css" />
     <Content Include="Content\css\link\link.css" />
-    <Content Include="Content\css\link\_green\link_green.css" />
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\menu\_center\menu_center.css" />
     <Content Include="Content\css\menu\__icon\menu__icon.css" />
@@ -181,15 +163,11 @@
     <Content Include="Content\css\page\__content\page__content.css" />
     <Content Include="Content\css\page\__menu\page__menu.css" />
     <Content Include="Content\css\reset.css" />
-    <Content Include="Content\css\search-form\_center\search-form_center.css" />
-    <Content Include="Content\css\search-form\__button\search-form__button.css" />
     <Content Include="Content\css\search-form\__textbox\search-form__textbox.css" />
-    <Content Include="Content\css\textbox\textbox.css" />
     <Content Include="Content\css\user\_min\user_min.css" />
-    <Content Include="Content\css\user\_profile\user_profile.css" />
     <Content Include="Content\css\user\__mails-header\user__mails-header.css" />
-    <Content Include="Content\css\user\__name\user__name.css" />
     <Content Include="Content\css\user\__phones-header\user__phones-header.css" />
+    <Content Include="Content\css\user\__profile\user__profile.css" />
     <Content Include="Content\css\vertical-overflow\vertical-overflow.css" />
     <Content Include="Content\css\width\_100per\width_100per.css" />
     <Content Include="Content\css\width\_25per\width_25per.css" />

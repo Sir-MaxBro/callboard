@@ -2,10 +2,10 @@
     <div class="header__logo header__logo_green width_25per">
         <a href="@Url.Action("Index","Home")" class="link header__main-link">Callboard</a>
     </div>
-    <div class="header__search-form width_50per">
+    <div class="width_50per">
         @{ Html.RenderPartial("Partial\\SearchForm"); }
     </div>
-    <div class="header__user width_25per">
+    <div class="width_25per">
         <div class="user user_min">
             @if (User.Identity.IsAuthenticated)
             {

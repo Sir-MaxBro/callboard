@@ -1,8 +1,0 @@
-﻿.link_green {
-    color: #84c639;
-    transition: all .3s linear;
-}
-
-.link_green:hover {
-    color: #fa1818;
-}
