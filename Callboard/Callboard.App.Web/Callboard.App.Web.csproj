@@ -347,11 +347,7 @@
     <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\State\EditStateList.cshtml" />
     <Content Include="Views\State\EditStateListItem.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Kind\KindEditList.cshtml" />
-=======
-    <Content Include="Views\Kind\EditKindList.cshtml" />
->>>>>>> release_2
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
     <Content Include="Views\User\Partials\EmailEdit.cshtml" />
