@@ -1,9 +1,7 @@
-﻿@using (Html.BeginForm("SearchAdsByName", "Search", FormMethod.Post, new { @class = "search-form search-form_center" }))
+﻿@using (Html.BeginForm("SearchAdsByName", "Search", FormMethod.Post, new { @class = "search-form center" }))
 {
-    <div class="search-form__box">
-        <input type="text" name="name" class="browser-default search-form__textbox" placeholder="Search product..." />
-        <button type="submit" class="btn waves-effect waves-light red">
-            <i class="small material-icons center">search</i>
-        </button>
-    </div>
+    <input type="text" name="name" class="browser-default search-form__textbox" placeholder="Search product..." />
+    <button type="submit" class="btn waves-effect waves-light red">
+        <i class="small material-icons center">search</i>
+    </button>
 }

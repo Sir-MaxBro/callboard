@@ -1,10 +1,10 @@
 ﻿@model AdListViewModel
 
-<div class="width_25per float_left">
+<div class="width_25per left">
     @{ Html.RenderAction("GetCategoryMenu", "Navigation"); }
 
     @{ Html.RenderAction("GetCommercial", "Commercial"); }
 </div>
-<div class="width_75per float_right">
+<div class="width_75per right">
     @{  Html.RenderPartial("Partial\\AdContainer", model: Model.Ads); }
 </div>
