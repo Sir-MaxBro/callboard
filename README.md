@@ -1,6 +1,16 @@
 # **Callboard**
 *Site for posting and viewing ads*
 
+This site is a platform for the sale of goods or services. The site has three modes of operation: user mode, editor mode and admin mode. 
+By default, the following users are created when the database is deployed:
+
+| Login         | Password      |       Role    |
+|     :---:     |     :---:     |      :---:    |
+| user1         | password1     | user          |
+| editor1       | editor1       | editor        |
+| admin         | admin1        | admin         |
+| editor2       | editor2       | editor        |
+
 # Deployment of the application
 
 #### Step 1: Deployment of the Database
