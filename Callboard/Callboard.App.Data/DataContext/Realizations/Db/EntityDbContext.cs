@@ -1,4 +1,5 @@
 ﻿using Callboard.App.Data.DbContext;
+using Callboard.App.Data.Exceptions;
 using Callboard.App.Data.Helpers;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Loggers.Main;
@@ -43,7 +44,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                     }
                 }
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
                 result = new FailureResult<IReadOnlyCollection<T>>(ex, ex.Message);
             }
@@ -70,7 +71,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                     }
                 }
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
                 result = new FailureResult<T>(ex, ex.Message);
             }
@@ -90,7 +91,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 _context.ExecuteNonQuery(procedureName, values);
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
                 return new FailureResult<T>(ex, ex.Message);
             }
@@ -104,7 +105,7 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 _context.ExecuteNonQuery(procedureName, values);
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
                 return new FailureResult<T>(ex, ex.Message);
             }

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Callboard.App.Data.Exceptions
 {
-    public class InvalidPasswordException : ApplicationException
+    public class InvalidPasswordException : UserException
     {
         public InvalidPasswordException() { }
 
