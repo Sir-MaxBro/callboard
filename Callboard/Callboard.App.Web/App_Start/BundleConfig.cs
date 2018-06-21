@@ -58,6 +58,9 @@ namespace Callboard.App.Web
 
             bundles.Add(new ScriptBundle("~/cities-edit")
                 .IncludeDirectory("~/Scripts/CitiesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/kinds-edit")
+                .IncludeDirectory("~/Scripts/KindsEdit", "*.js", false));
         }
     }
 }
