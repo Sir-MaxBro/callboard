@@ -47,12 +47,6 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
-        public ActionResult CreateKind()
-        {
-            return PartialView("EditKindListItem", new Kind());
-        }
-
-        [Editor]
         [AjaxOnly]
         [HttpPost]
         public ActionResult SaveKind(string kindData)
