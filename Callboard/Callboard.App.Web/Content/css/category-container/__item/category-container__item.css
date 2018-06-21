@@ -1,9 +1,0 @@
-﻿.category-container__item {
-    display: flex;
-    border-bottom: 1px dotted #cdcdcd;
-    padding: 0 15px;
-    min-height: 50px;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
