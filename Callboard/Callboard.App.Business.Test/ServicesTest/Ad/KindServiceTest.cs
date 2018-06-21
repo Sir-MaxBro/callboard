@@ -12,19 +12,34 @@ using System.Collections.Generic;
 namespace Callboard.App.Business.Test.ProvidersTest.Ad
 {
     [TestClass]
-    public class KindProviderTest
+    public class KindServiceTest
     {
         [TestMethod]
         public void GetAll_KindsCollection()
         {
-            var kinds = new List<Kind>();
+            var kinds = new List<Kind>
+            {
+                new Kind
+                {
+                    KindId = 1,
+                    Type = "MyType-1"
+                },
+                new Kind
+                {
+                    KindId = 2,
+                    Type = "MyType-2"
+                }
+            };
+
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.GetAll()).Returns(new SuccessResult<IReadOnlyCollection<Kind>>(kinds));
+            mockKindRepository.Setup(repo => repo.GetAll())
+                .Returns(new SuccessResult<IReadOnlyCollection<Kind>>(kinds));
 
             var kindProvider = new KindService(mockKindRepository.Object);
 
             var resultKinds = kindProvider.GetAll().GetSuccessResult();
 
+            Assert.AreNotEqual(resultKinds, null);
             Assert.AreEqual(kinds.Count, resultKinds.Count);
             mockKindRepository.Verify(mock => mock.GetAll(), Times.Once());
         }
@@ -32,7 +47,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         [TestMethod]
         public void GetById_ValidId_KindElement()
         {
-            int id = 1;
+            int validId = 1;
             var kind = new Kind
             {
                 KindId = 1,
@@ -40,15 +55,24 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
             };
 
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(new SuccessResult<Kind>(kind));
+            mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>()))
+                .Returns((int id) =>
+                {
+                    if (id == validId)
+                    {
+                        return new SuccessResult<Kind>(kind);
+                    }
+                    return new NoneResult<Kind>();
+                });
 
-            var kindProvider = new KindService(mockKindRepository.Object);
+            var kindService = new KindService(mockKindRepository.Object);
 
-            var resultKind = kindProvider.GetById(id).GetSuccessResult();
+            var resultKind = kindService.GetById(validId).GetSuccessResult();
 
-            Assert.AreEqual(resultKind.KindId, kind.KindId);
+            Assert.AreNotEqual(resultKind, null);
+            Assert.AreEqual(resultKind.KindId, validId);
             Assert.AreEqual(resultKind.Type, kind.Type);
-            mockKindRepository.Verify(mock => mock.GetById(id), Times.Once());
+            mockKindRepository.Verify(mock => mock.GetById(validId), Times.Once());
         }
 
         [TestMethod]
@@ -56,12 +80,13 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         public void GetById_InvalidId_Throws()
         {
             int invalidId = 0;
+
             var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.GetById(It.IsAny<int>()));
 
-            var kindProvider = new KindService(mockKindRepository.Object);
+            var kindService = new KindService(mockKindRepository.Object);
 
-            var resultKind = kindProvider.GetById(invalidId);
+            var resultKind = kindService.GetById(invalidId);
 
             mockKindRepository.Verify(mock => mock.GetById(invalidId), Times.Once());
         }
@@ -77,11 +102,12 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
             };
 
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.Save(It.IsAny<Kind>())).Callback((Kind value) => kinds.Add(value));
+            mockKindRepository.Setup(repo => repo.Save(It.IsAny<Kind>()))
+                .Callback((Kind value) => kinds.Add(value));
 
-            var kindProvider = new KindService(mockKindRepository.Object);
+            var kindService = new KindService(mockKindRepository.Object);
 
-            kindProvider.Save(kind);
+            kindService.Save(kind);
 
             Assert.AreEqual(kinds.Count, 1);
             Assert.IsTrue(kinds.Contains(kind));
@@ -92,36 +118,53 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
         [ExpectedException(typeof(NullReferenceException))]
         public void Save_Null_Throws()
         {
+            Kind invalidObj = null;
             var mockKindRepository = new Mock<IRepository<Kind>>();
             mockKindRepository.Setup(repo => repo.Save(It.IsAny<Kind>()));
 
             var kindProvider = new KindService(mockKindRepository.Object);
 
-            kindProvider.Save(null);
-            mockKindRepository.Verify(mock => mock.Save(null), Times.Once());
+            kindProvider.Save(invalidObj);
+
+            mockKindRepository.Verify(mock => mock.Save(invalidObj), Times.Once());
         }
 
         [TestMethod]
         public void Delete_ValidId_ObjDeleted()
         {
-            int id = 1;
-            var kinds = new List<Kind> {
+            int validId = 1;
+            var kinds = new List<Kind>
+            {
                 new Kind
                 {
                     KindId = 1,
                     Type = "Product"
+                },
+                new Kind
+                {
+                    KindId = 2,
+                    Type = "MyType-2"
                 }
             };
+            int countBeforeDelete = kinds.Count;
 
             var mockKindRepository = new Mock<IRepository<Kind>>();
-            mockKindRepository.Setup(repo => repo.Delete(It.IsAny<int>())).Callback(() => kinds.RemoveAt(0));
+            mockKindRepository.Setup(repo => repo.Delete(It.IsAny<int>()))
+                .Callback((int id) =>
+                {
+                    if (id == validId)
+                    {
+                        kinds.RemoveAll(kind => kind.KindId == id);
+                    }
+                });
 
             var kindProvider = new KindService(mockKindRepository.Object);
 
-            kindProvider.Delete(id);
+            kindProvider.Delete(validId);
 
-            Assert.AreEqual(kinds.Count, 0);
-            mockKindRepository.Verify(mock => mock.Delete(id), Times.Once());
+            Assert.AreEqual(kinds.Count, countBeforeDelete - 1);
+            Assert.IsFalse(kinds.Exists(kind => kind.KindId == validId));
+            mockKindRepository.Verify(mock => mock.Delete(validId), Times.Once());
         }
 
         [TestMethod]
@@ -135,6 +178,7 @@ namespace Callboard.App.Business.Test.ProvidersTest.Ad
             var kindProvider = new KindService(mockKindRepository.Object);
 
             kindProvider.Delete(invalidId);
+
             mockKindRepository.Verify(mock => mock.Delete(invalidId), Times.Once());
         }
     }

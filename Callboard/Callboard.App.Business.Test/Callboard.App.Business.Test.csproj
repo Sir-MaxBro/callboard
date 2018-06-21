@@ -62,8 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProvidersTest\Ad\KindProviderTest.cs" />
-    <Compile Include="ProvidersTest\CommercialProviderTest.cs" />
+    <Compile Include="ServicesTest\Ad\KindServiceTest.cs" />
+    <Compile Include="ServicesTest\CommercialServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
