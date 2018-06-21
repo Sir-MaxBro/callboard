@@ -225,12 +225,15 @@
     <Content Include="Scripts\CountriesEdit\country-update.js" />
     <Content Include="Scripts\CountriesEdit\country-get-list.js" />
     <Content Include="Scripts\Editor\category-edit.js" />
-    <Content Include="Scripts\Editor\kind.js" />
     <Content Include="Scripts\Editor\state.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\KindsEdit\kind-delete.js" />
+    <Content Include="Scripts\KindsEdit\kind-get-list.js" />
+    <Content Include="Scripts\KindsEdit\kind-save.js" />
+    <Content Include="Scripts\KindsEdit\kind-update.js" />
     <Content Include="Scripts\Location\area.js" />
     <Content Include="Scripts\Location\city.js" />
     <Content Include="Scripts\Location\country.js" />
@@ -317,7 +320,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFoundPage.cshtml" />
     <Content Include="Views\Error\ServerNotRespondingPage.cshtml" />
-    <Content Include="Views\Navigation\CategoryList.cshtml" />
+    <Content Include="Views\Navigation\CategoryMenu.cshtml" />
     <Content Include="Views\Ad\AdList.cshtml" />
     <Content Include="Views\AdDetails\AdDetails.cshtml" />
     <Content Include="Views\Shared\Partial\User.cshtml" />
@@ -345,7 +348,6 @@
     <Content Include="Views\State\EditStateList.cshtml" />
     <Content Include="Views\State\EditStateListItem.cshtml" />
     <Content Include="Views\Kind\EditKindList.cshtml" />
-    <Content Include="Views\Kind\EditKindListItem.cshtml" />
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
     <Content Include="Views\User\Partials\EmailEdit.cshtml" />
@@ -355,6 +357,7 @@
     <Content Include="Views\Area\AreasEdit.cshtml" />
     <Content Include="Views\City\CityEditList.cshtml" />
     <Content Include="Views\City\CitiesEdit.cshtml" />
+    <Content Include="Views\Kind\KindsEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
