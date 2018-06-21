@@ -1,3 +1,3 @@
 ﻿function getKindList(kindsContainerId) {
-    callActionAsync(null, '/Kind/GetKindsEditList', kindsContainerId);
+    callActionAsync(null, '/Kind/GetKindEditList', kindsContainerId);
 }

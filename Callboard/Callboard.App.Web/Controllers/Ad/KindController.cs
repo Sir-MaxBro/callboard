@@ -11,20 +11,20 @@ namespace Callboard.App.Web.Controllers
 {
     public class KindController : Controller
     {
-        private IEntityService<Kind> _kindProvider;
-        public KindController(IEntityService<Kind> kindProvider)
+        private IEntityService<Kind> _kindService;
+        public KindController(IEntityService<Kind> kindService)
         {
-            if (kindProvider == null)
+            if (kindService == null)
             {
-                throw new NullReferenceException(nameof(kindProvider));
+                throw new NullReferenceException(nameof(kindService));
             }
-            _kindProvider = kindProvider;
+            _kindService = kindService;
         }
 
         [AjaxOnly]
         public ActionResult GetKinds()
         {
-            var kindsResult = _kindProvider.GetAll();
+            var kindsResult = _kindService.GetAll();
             if (kindsResult.IsSuccess())
             {
                 var kinds = kindsResult.GetSuccessResult();
@@ -35,13 +35,13 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
-        public ActionResult GetKindsEditList()
+        public ActionResult GetKindEditList()
         {
-            var kindsResult = _kindProvider.GetAll();
+            var kindsResult = _kindService.GetAll();
             if (kindsResult.IsSuccess())
             {
                 var kinds = kindsResult.GetSuccessResult();
-                return PartialView("EditKindList", kinds);
+                return PartialView("KindEditList", kinds);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
@@ -55,7 +55,7 @@ namespace Callboard.App.Web.Controllers
             var kind = JsonConvert.DeserializeObject<Kind>(kindData);
             if (kind != null)
             {
-                var kindSaveResult = _kindProvider.Save(kind);
+                var kindSaveResult = _kindService.Save(kind);
                 if (kindSaveResult.IsNone())
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -69,7 +69,7 @@ namespace Callboard.App.Web.Controllers
         [HttpPost]
         public ActionResult DeleteKind(int kindId)
         {
-            var kindDeleteResult = _kindProvider.Delete(kindId);
+            var kindDeleteResult = _kindService.Delete(kindId);
             if (kindDeleteResult.IsNone())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.OK);

@@ -348,7 +348,6 @@
     <Content Include="Views\Category\CategoryListBox.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
-    <Content Include="Views\Kind\EditKindList.cshtml" />
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
     <Content Include="Views\User\Partials\EmailEdit.cshtml" />
@@ -361,6 +360,7 @@
     <Content Include="Views\Kind\KindsEdit.cshtml" />
     <Content Include="Views\State\StatesEdit.cshtml" />
     <Content Include="Views\State\StateEditList.cshtml" />
+    <Content Include="Views\Kind\KindEditList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
