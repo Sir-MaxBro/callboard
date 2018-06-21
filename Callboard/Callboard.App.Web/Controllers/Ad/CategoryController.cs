@@ -57,37 +57,27 @@ namespace Callboard.App.Web.Controllers
         }
 
         [Editor]
-        public ActionResult GetEditCategories()
+        public ActionResult GetCategoryEditList()
         {
             var categoriesResult = _categoryProvider.GetMainCategories();
             if (categoriesResult.IsSuccess())
             {
                 var categories = categoriesResult.GetSuccessResult();
-                return PartialView("EditCategoryList", categories);
+                return PartialView("CategoryEditList", categories);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
         [Editor]
-        public ActionResult GetEditSubcategories(int categoryId)
+        public ActionResult GetSubcategoryEditList(int categoryId)
         {
             var categoriesResult = _categoryProvider.GetSubcategories(categoryId);
             if (categoriesResult.IsSuccess())
             {
                 var categories = categoriesResult.GetSuccessResult();
-                return PartialView("EditCategoryList", categories);
+                return PartialView("CategoryEditList", categories);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-        }
-
-        [Editor]
-        public PartialViewResult CreateSubcategory(int parentId)
-        {
-            var category = new Category
-            {
-                ParentId = parentId
-            };
-            return PartialView("EditCategory", category);
         }
 
         [Editor]

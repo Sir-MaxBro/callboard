@@ -190,6 +190,12 @@
     <Content Include="Scripts\AreasEdit\area-save.js" />
     <Content Include="Scripts\AreasEdit\area-update.js" />
     <Content Include="Scripts\AreasEdit\cities-load.js" />
+    <Content Include="Scripts\CategoriesEdit\category-delete.js" />
+    <Content Include="Scripts\CategoriesEdit\category-get-list.js" />
+    <Content Include="Scripts\CategoriesEdit\category-save.js" />
+    <Content Include="Scripts\CategoriesEdit\category-update.js" />
+    <Content Include="Scripts\CategoriesEdit\subcategory-get-list.js" />
+    <Content Include="Scripts\CategoriesEdit\subcategory-save.js" />
     <Content Include="Scripts\CategoryListBox\categories-load.js" />
     <Content Include="Scripts\CategoryMenu\category-menu.js" />
     <Content Include="Scripts\CitiesEdit\city-delete.js" />
@@ -202,7 +208,6 @@
     <Content Include="Scripts\CountriesEdit\country-save.js" />
     <Content Include="Scripts\CountriesEdit\country-update.js" />
     <Content Include="Scripts\CountriesEdit\country-get-list.js" />
-    <Content Include="Scripts\Editor\category-edit.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -322,10 +327,8 @@
     <Content Include="Views\Membership\CreateUser.cshtml" />
     <Content Include="Views\User\EditProfile.cshtml" />
     <Content Include="Views\Editor\EditorPage.cshtml" />
-    <Content Include="Views\Category\EditCategoryList.cshtml" />
     <Content Include="Views\Category\CategoryListBox.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />
-    <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\Role\UserRoleEditList.cshtml" />
     <Content Include="Views\User\Partials\PhoneEdit.cshtml" />
     <Content Include="Views\User\Partials\EmailEdit.cshtml" />
@@ -339,6 +342,8 @@
     <Content Include="Views\State\StatesEdit.cshtml" />
     <Content Include="Views\State\StateEditList.cshtml" />
     <Content Include="Views\Kind\KindEditList.cshtml" />
+    <Content Include="Views\Category\CategoriesEdit.cshtml" />
+    <Content Include="Views\Category\CategoryEditList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

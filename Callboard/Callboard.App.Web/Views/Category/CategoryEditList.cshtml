@@ -1,0 +1,60 @@
+﻿@model IReadOnlyCollection<Category>
+
+@foreach (var category in Model)
+{
+    <div id="category-@category.CategoryId" class="row">
+        <div class="col s10">
+            <input id="category-name-@category.CategoryId" type="text" class="validate" value="@category.Name">
+        </div>
+
+        <div class="row col s2 right-aling">
+
+            <div class="col s6">
+                <a class="btn-floating waves-effect waves-light btn-middle green"
+                   onclick="updateCategory('category-name-@category.CategoryId', @category.ParentId, @category.CategoryId)">
+                    <i class="material-icons center">save</i>
+                </a>
+            </div>
+
+            <div class="col s6">
+                <a onclick="deleteCategory(@category.CategoryId, 'category-@category.CategoryId')"
+                   class="btn-floating waves-effect waves-light btn-middle red">
+                    <i class="material-icons center">delete</i>
+                </a>
+            </div>
+
+        </div>
+        <div class="col s12 card">
+            <div class="card-content">
+                <h5><span class="grey-text text-darken-2">Subcategories of</span> @category.Name</h5>
+                <div class="row valign-wrapper">
+
+                    <div class="input-field col s10">
+                        <input id="new-subcategory-@category.CategoryId-name" type="text" class="validate" placeholder="New subcategory name...">
+                        <label for="new-subcategory-@category.CategoryId-name" class="active">Subcategory</label>
+                    </div>
+
+                    <div class="row col s2 right-align">
+
+                        <div class="col s6">
+                            <a onclick="saveSubcategory('new-subcategory-@category.CategoryId-name', @category.CategoryId, 'subcategories-@category.CategoryId')"
+                               class="btn-floating waves-effect waves-light btn-middle green">
+                                <i class="material-icons">add</i>
+                            </a>
+                        </div>
+
+                        <div class="col s6">
+                            <a onclick="getSubcategoryList(this, @category.CategoryId, 'subcategories-@category.CategoryId')"
+                               class="btn-floating waves-effect waves-light btn-middle">
+                                <i class="material-icons center">arrow_downward</i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="subcategories-@category.CategoryId" class="col s12 collapsed"></div>
+            </div>
+        </div>
+
+    </div>
+}
