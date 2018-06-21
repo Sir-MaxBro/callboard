@@ -11,20 +11,20 @@ namespace Callboard.App.Web.Controllers
 {
     public class CountryController : Controller
     {
-        private IEntityService<Country> _countryProvider;
-        public CountryController(IEntityService<Country> countryProvider)
+        private IEntityService<Country> _countryService;
+        public CountryController(IEntityService<Country> countryService)
         {
-            if (countryProvider == null)
+            if (countryService == null)
             {
-                throw new NullReferenceException(nameof(countryProvider));
+                throw new NullReferenceException(nameof(countryService));
             }
-            _countryProvider = countryProvider;
+            _countryService = countryService;
         }
 
         [AjaxOnly]
         public ActionResult GetCountries()
         {
-            var countriesResult = _countryProvider.GetAll();
+            var countriesResult = _countryService.GetAll();
             if (countriesResult.IsSuccess())
             {
                 var countries = countriesResult.GetSuccessResult();
@@ -32,6 +32,49 @@ namespace Callboard.App.Web.Controllers
                 return Json(new { Countries = countriesData }, JsonRequestBehavior.AllowGet);
             }
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        [Editor]
+        public ActionResult GetCountryEditList()
+        {
+            var countriesResult = _countryService.GetAll();
+            if (countriesResult.IsSuccess())
+            {
+                var countries = countriesResult.GetSuccessResult();
+                return PartialView("CountryEditList", countries);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+        }
+
+        [Editor]
+        [AjaxOnly]
+        [HttpPost]
+        public ActionResult SaveCountry(string countryData)
+        {
+            countryData = countryData ?? string.Empty;
+            var country = JsonConvert.DeserializeObject<Country>(countryData);
+            if (country != null)
+            {
+                var countrySaveResult = _countryService.Save(country);
+                if (countrySaveResult.IsNone())
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [Editor]
+        [AjaxOnly]
+        [HttpPost]
+        public ActionResult DeleteCountry(int countryId)
+        {
+            var countryDeleteResult = _countryService.Delete(countryId);
+            if (countryDeleteResult.IsNone())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }
