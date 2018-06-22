@@ -8,6 +8,10 @@
 
     @foreach (var item in Model.Commercials)
     {
-        Html.RenderImage(item.Image.Data, item.Image.Extension, imgclass: "commercial__image");
+        <div class="card">
+            <div class="card-content">
+                @Html.RenderImage(item.Image.Data, item.Image.Extension, imgclass: "commercial__image")
+            </div>
+        </div>
     }
 </div>
