@@ -1,12 +1,10 @@
 ﻿function saveArea(countryInputId, areaNameInputId, areasContainerId) {
+
     let areaNameInput = $("#" + areaNameInputId);
     let areaName = areaNameInput.val();
-
     let countryId = $("#" + countryInputId).val();
 
-    if (countryId && areaName) {
-
-        areaNameInput.removeClass('invalid__field');
+    if (countryId && areaName && !isTextValueExist(areaName, areasContainerId)) {
 
         let areaModel = {
             Area: {
@@ -15,7 +13,10 @@
             },
             CountryId: countryId
         };
+
         $.post('/Area/SaveArea', { areaViewModelData: JSON.stringify(areaModel) }, function () { getAreaList(countryId, areasContainerId); });
+
+        areaNameInput.removeClass('invalid__field');
     }
     else {
         areaNameInput.addClass('invalid__field');
