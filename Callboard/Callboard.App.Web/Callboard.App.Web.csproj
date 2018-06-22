@@ -308,7 +308,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Commercial\CommercialPartial.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFoundPage.cshtml" />
     <Content Include="Views\Error\ServerNotRespondingPage.cshtml" />
     <Content Include="Views\Navigation\CategoryMenu.cshtml" />
@@ -350,6 +349,7 @@
     <Content Include="Views\Category\CategoriesEdit.cshtml" />
     <Content Include="Views\Category\CategoryEditList.cshtml" />
     <Content Include="Views\Shared\Partial\Footer.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
