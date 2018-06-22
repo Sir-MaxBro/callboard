@@ -3,4 +3,5 @@
         $.post('/Area/DeleteArea', { areaId: areaId });
     }
     $("#" + areaContainerId).remove();
+    $("#city-edit-list").empty();
 }

@@ -42,7 +42,7 @@ namespace Callboard.App.Web
                 .Include("~/Scripts/Common/common.js"));
 
             bundles.Add(new ScriptBundle("~/admin")
-                .Include("~/Scripts/Admin/user-edit.js"));
+                .IncludeDirectory("~/Scripts/Admin/", "*.js", false));
 
             bundles.Add(new ScriptBundle("~/roles-list")
                 .IncludeDirectory("~/Scripts/UserRoleEditList", "*.js", false));

@@ -1,8 +1,9 @@
 ﻿function saveKind(typeInputId, kindsContainerId) {
 
-    let type = $("#" + typeInputId).val();
+    let typeInput = $("#" + typeInputId);
+    let type = typeInput.val();
 
-    if (type) {
+    if (type && !isTextValueExist(type, kindsContainerId)) {
 
         let kind = {
             KindId: 0,
@@ -10,5 +11,10 @@
         };
 
         $.post('/Kind/SaveKind', { kindData: JSON.stringify(kind) }, function () { getKindList(kindsContainerId); });
+
+        typeInput.removeClass('invalid__field');
+    }
+    else {
+        typeInput.addClass('invalid__field');
     }
 }

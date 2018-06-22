@@ -1,8 +1,9 @@
 ﻿function saveState(conditionInputId, statesContanerId) {
 
-    let condition = $("#" + conditionInputId).val();
+    let conditionInput = $("#" + conditionInputId);
+    let condition = conditionInput.val();
 
-    if (condition) {
+    if (condition && !isTextValueExist(condition, statesContanerId)) {
 
         let state = {
             StateId: 0,
@@ -10,5 +11,10 @@
         };
 
         $.post('/State/SaveState', { stateData: JSON.stringify(state) }, function () { getStateList(statesContanerId); });
+
+        conditionInput.remove('invalid__field');
+    }
+    else {
+        conditionInput.addClass('invalid__field');
     }
 }
