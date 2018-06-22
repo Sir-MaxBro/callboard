@@ -21,8 +21,34 @@ namespace Callboard.Service.Commercial
         private void FillPathways()
         {
             _pathways = new Dictionary<string, string>();
+            var pathwaysSection = this.GetPathwaysSection();
+
+            foreach (ImagePathElement item in pathwaysSection)
+            {
+                DirectoryInfo directory = new DirectoryInfo(item.Path);
+
+                if (!directory.Exists)
+                {
+                    CommercialNotFound faultDetails = new CommercialNotFound
+                    {
+                        Message = "Commercials folder not found. Please, check path to image."
+                    };
+                    throw new FaultException<CommercialNotFound>(faultDetails);
+                }
+
+                FileInfo[] files = directory.GetFiles();
+                foreach (var fileInfo in files)
+                {
+                    _pathways.Add(fileInfo.FullName, fileInfo.Extension);
+                }
+            }
+        }
+
+        private ImagePathCollection GetPathwaysSection()
+        {
             var configSection = ConfigurationManager.GetSection(SECTION_NAME) as CommercialConfigSection;
             var pathwaysSection = configSection?.Pathways;
+
             if (pathwaysSection == null)
             {
                 CommercialNotFound faultDetails = new CommercialNotFound
@@ -32,18 +58,7 @@ namespace Callboard.Service.Commercial
                 throw new FaultException<CommercialNotFound>(faultDetails);
             }
 
-            foreach (ImagePathElement item in pathwaysSection)
-            {
-                DirectoryInfo directory = new DirectoryInfo(item.Path);
-                if (directory.Exists)
-                {
-                    FileInfo[] files = directory.GetFiles();
-                    foreach (var fileInfo in files)
-                    {
-                        _pathways.Add(fileInfo.FullName, fileInfo.Extension);
-                    }
-                }
-            }
+            return pathwaysSection;
         }
 
         public Commercial[] GetCommercials()
