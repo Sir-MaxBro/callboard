@@ -350,6 +350,7 @@
     <Content Include="Views\Category\CategoriesEdit.cshtml" />
     <Content Include="Views\Category\CategoryEditList.cshtml" />
     <Content Include="Views\Shared\Partial\Footer.cshtml" />
+    <Content Include="Views\Shared\Partial\NothingFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
