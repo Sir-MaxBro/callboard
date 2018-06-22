@@ -33,3 +33,19 @@ function convertBase64ToByte(base64) {
     let byteArray = [].slice.call(bytes);
     return byteArray;
 }
+
+function isTextValueExist(text, textInputContainerId) {
+
+    let isTextValueExist = false;
+
+    $(`#${textInputContainerId}`).find('input:text').each(function () {
+
+        if (text === $(this).val()) {
+            isTextValueExist = true;
+            return false;
+        }
+
+    });
+
+    return isTextValueExist;
+}

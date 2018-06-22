@@ -3,4 +3,5 @@
         $.post('/Country/DeleteCountry', { countryId: countryId });
     }
     $("#" + countryContainerId).remove();
+    clearAreaContainer();
 }
