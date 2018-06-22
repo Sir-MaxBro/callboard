@@ -1,19 +1,13 @@
 ﻿@model CommercialViewModel
 
-<div class="commercial">
-    @if (Model.Commercials != null)
+<div class="row">
+    @if (Model.Commercials.Count < 1)
     {
-        foreach (var item in Model.Commercials)
-        {
-            <div class="commercial__item">
-                @Html.RenderImage(item.Image.Data, item.Image.Extension, imgclass: "commercial__image")
-            </div>
-        }
+        <img class="commercial__image" src="~/Content/images/ads.jpg" />
     }
-    else
+
+    @foreach (var item in Model.Commercials)
     {
-        <div class="commercial__item">
-            <img class="commercial__image" src="~/Content/images/ads.jpg"/>
-        </div>
+        Html.RenderImage(item.Image.Data, item.Image.Extension, imgclass: "commercial__image");
     }
 </div>

@@ -7,22 +7,32 @@ CREATE PROCEDURE [dbo].sp_create_membership
 )
 AS 
 BEGIN
-	DECLARE @UserIdTable TABLE ([UserId] INT)
-	DECLARE @UserId INT
-	DECLARE @UserCount INT
-	DECLARE @RoleId INT = 1
-	SET @UserCount = (SELECT COUNT(*) FROM [dbo].[User])
+	DECLARE @LoginCount INT
+	SET @LoginCount = (SELECT COUNT(*) FROM [dbo].Membership WHERE [Membership].[Login] = @Login)
 
-	INSERT INTO [dbo].[User]([Name])
-	OUTPUT inserted.UserId INTO @UserIdTable
-	VALUES (CONCAT('user-', @UserCount))
+	IF @LoginCount = 0
+		BEGIN
+			DECLARE @UserIdTable TABLE ([UserId] INT)
+			DECLARE @UserId INT
+			DECLARE @UserCount INT
+			DECLARE @RoleId INT = 1
+			SET @UserCount = (SELECT COUNT(*) FROM [dbo].[User])
 
-	SET @UserId = (SELECT [UserId] FROM @UserIdTable)
+			INSERT INTO [dbo].[User]([Name])
+			OUTPUT inserted.UserId INTO @UserIdTable
+			VALUES (CONCAT('user-', @UserCount))
 
-	INSERT INTO [dbo].Membership([UserId], [Login], [Password])
-	VALUES (@UserId, @Login, @Password)
+			SET @UserId = (SELECT [UserId] FROM @UserIdTable)
 
-	EXEC [dbo].[sp_set_role_for_user] @UserId, @RoleId
+			INSERT INTO [dbo].Membership([UserId], [Login], [Password])
+			VALUES (@UserId, @Login, @Password)
 
-	EXEC [dbo].[sp_get_user_by_userid] @UserId
+			EXEC [dbo].[sp_set_role_for_user] @UserId, @RoleId
+
+			EXEC [dbo].[sp_get_membership_user_by_login] @Login
+		END
+	ELSE
+		BEGIN
+			THROW 50001, 'Login already exists.', 1;  
+		END 
 END

@@ -1,4 +1,4 @@
-ALTER SERVER ROLE  sysadmin  DROP MEMBER max_bro;
+ALTER SERVER ROLE  sysadmin  DROP MEMBER callboard_admin;
 GO
-DROP LOGIN max_bro
+DROP LOGIN callboard_admin
 GO

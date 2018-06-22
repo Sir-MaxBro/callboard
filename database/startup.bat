@@ -1,4 +1,4 @@
-set user="max_bro"
+set user="callboard_admin"
 set password="1D2F2f3E3asd"
 set server="EPBYMOGW0209\SQLEXPRESS"
 set currentPath=%~dp0
@@ -10,8 +10,6 @@ sqlcmd -S %server% -i create_user.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i drop_db.sql
 sqlcmd -S %server% -i create_db.sql
-
-sqlcmd -S %server% -U %user% -P %password% -i create_db_user.sql
 
 sqlcmd -S %server% -U %user% -P %password% -i tables\Role.sql
 sqlcmd -S %server% -U %user% -P %password% -i tables\User.sql
@@ -114,11 +112,11 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_user.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_ad_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_select\sp_select_main_category.sql
 
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_addetails_by_adid.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_location_by_cityid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_userid.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login.sql
-sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_user_by_login_password.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_membership_user_by_login.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_membership_user_by_login_password.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_category_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_kind_by_id.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_get\sp_get_state_by_id.sql
@@ -146,6 +144,8 @@ sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_category.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_kind.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_state.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_country.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_area.sql
+sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_city.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_role.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_mail.sql
 sqlcmd -S %server% -U %user% -P %password% -i sp\_save\sp_save_phone.sql

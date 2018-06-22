@@ -1,0 +1,27 @@
+﻿@Scripts.Render("~/states-edit")
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">States</span>
+        <div class="row valign-wrapper">
+
+            <div class="input-field col s7">
+                <input id="new-state-name" type="text" class="validate" placeholder="New state name...">
+                <label for="new-state-name" class="active">State</label>
+            </div>
+
+            <div class="row col s5 right-align">
+                <a onclick="saveState('new-state-name', 'state-edit-list')" class="btn-floating waves-effect waves-light btn-middle green">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card-action medium vertical-overflow">
+        <div id="state-edit-list">
+            @{  Html.RenderAction("GetStateEditList", "State"); }
+        </div>
+    </div>
+</div>

@@ -1,51 +1,26 @@
 ﻿@Scripts.Render("~/editor")
-<script>
-    window.onload = function () {
-        loadKinds('kinds');
-        loadStates('states');
-    }
-</script>
 
 <div class="row">
-    <div class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <div class="row">
-                    <div id="kinds">
-
-                    </div>
-                    <div class="center">
-                        <button class="btn waves-effect waves-light green" type="button" onclick="addKind('kinds')">
-                            Add kind
-                            <i class="material-icons left">add</i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div id="states">
-
-                    </div>
-                    <div class="center">
-                        <button class="btn waves-effect waves-light green" type="button" onclick="addState('states')">
-                            Add state
-                            <i class="material-icons left">add</i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div id="categories">
-                        @{ Html.RenderAction("GetEditCategories", "Category"); }
-                    </div>
-                    <div class="col s12">
-                        <button class="btn waves-effect waves-light green" type="button" onclick="createSubcategory(0, 'categories')">
-                            Add category
-                            <i class="material-icons left">add</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col s6">
+        @{ Html.RenderPartial("~/Views/Kind/KindsEdit.cshtml"); }
     </div>
+    <div class="col s6">
+        @{ Html.RenderPartial("~/Views/State/StatesEdit.cshtml"); }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s4">
+        @{  Html.RenderPartial("~/Views/Country/CountriesEdit.cshtml"); }
+    </div>
+    <div class="col s4">
+        @{  Html.RenderPartial("~/Views/Area/AreasEdit.cshtml"); }
+    </div>
+    <div class="col s4">
+        @{  Html.RenderPartial("~/Views/City/CitiesEdit.cshtml"); }
+    </div>
+</div>
+
+<div class="row">
+    @{ Html.RenderPartial("~/Views/Category/CategoriesEdit.cshtml"); }
 </div>

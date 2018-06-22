@@ -1,19 +1,17 @@
 ﻿@model IReadOnlyCollection<Ad>
 
-<div class="ad-container">
-    <div class="ad-container__content row">
-        @if (Model != null && Model.Count != 0)
+<div class="row">
+    @if (Model != null && Model.Count != 0)
+    {
+        foreach (var item in Model)
         {
-            foreach (var item in Model)
-            {
-                <div class="col s4">
-                    @{ Html.RenderPartial("Partial\\AdPartial", model: item); }
-                </div>
-            }
+            <div class="col m6 l4">
+                @{ Html.RenderPartial("Partial\\AdPartial", model: item); }
+            </div>
         }
-        else
-        {
-            <div>Nothing found:(</div>
-        }
-    </div>
+    }
+    else
+    {
+        <div>Nothing found:(</div>
+    }
 </div>

@@ -1,9 +1,8 @@
-﻿using Callboard.App.Data.DataContext.Main;
-using Callboard.App.Data.DbContext.Main;
+﻿using Callboard.App.Data.DbContext;
 using Callboard.App.Data.Mappers;
 using Callboard.App.General.Entities;
-using Callboard.App.General.Helpers.Main;
 using Callboard.App.General.Loggers.Main;
+using Callboard.App.General.Results;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,10 +12,10 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
 {
     internal class CategoryDbContext : EntityDbContext<Category>, ICategoryContext
     {
-        public CategoryDbContext(IDbContext context, ILoggerWrapper logger, IChecker checker) 
-            : base(context, logger, checker) { }
+        public CategoryDbContext(IDbContext context, ILoggerWrapper logger) 
+            : base(context, logger) { }
 
-        public Category GetById(int id)
+        public IResult<Category> GetById(int id)
         {
             string procedureName = "sp_get_category_by_id";
             var mapper = new Mapper<DataSet, Category> { MapItem = this.MapCategory };
@@ -24,19 +23,17 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
             {
                 { "CategoryId", id }
             };
-            var category = base.Get(procedureName, mapper, values);
-            return category;
+            return base.Get(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Category> GetAll()
+        public IResult<IReadOnlyCollection<Category>> GetAll()
         {
             string procedureName = "sp_select_category";
             var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
-            var categories = base.GetAll(procedureName, mapper);
-            return categories;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public IReadOnlyCollection<Category> GetSubcategories(int categoryId)
+        public IResult<IReadOnlyCollection<Category>> GetSubcategories(int categoryId)
         {
             var procedureName = "sp_select_subcategory_by_parentid";
             var values = new Dictionary<string, object>
@@ -44,33 +41,31 @@ namespace Callboard.App.Data.DataContext.Realizations.Db
                 { "ParentId", categoryId }
             };
             var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
-            var subcategories = base.GetAll(procedureName, mapper, values);
-            return subcategories;
+            return base.GetAll(procedureName, mapper, values);
         }
 
-        public IReadOnlyCollection<Category> GetMainCategories()
+        public IResult<IReadOnlyCollection<Category>> GetMainCategories()
         {
             string procedureName = "sp_select_main_category";
             var mapper = new Mapper<DataSet, Category> { MapCollection = this.MapCategoryCollection };
-            var categories = base.GetAll(procedureName, mapper);
-            return categories;
+            return base.GetAll(procedureName, mapper);
         }
 
-        public void Save(Category obj)
+        public IResult<Category> Save(Category obj)
         {
             var procedureName = "sp_save_category";
             var mapper = new Mapper<DataSet, Category> { MapValues = this.MapCategoryValues };
-            base.Save(obj, procedureName, mapper);
+            return base.Save(obj, procedureName, mapper);
         }
 
-        public void Delete(int id)
+        public IResult<Category> Delete(int id)
         {
             string procedureName = "sp_delete_category_by_id";
             var values = new Dictionary<string, object>
             {
                 { "CategoryId", id }
             };
-            base.Execute(procedureName, values);
+            return base.Execute(procedureName, values);
         }
 
         private IDictionary<string, object> MapCategoryValues(Category category)

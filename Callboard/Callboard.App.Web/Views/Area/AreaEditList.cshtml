@@ -1,0 +1,25 @@
+﻿@model AreaListViewModel
+
+@foreach (var area in Model.Areas)
+{
+    <div id="area-container-@area.AreaId" class="row valign-wrapper">
+        <div class="input-field col s6">
+            <input id="area-name-@area.AreaId" type="text" class="validate" value="@area.Name" placeholder="Enter city name...">
+            <label for="area-name-@area.AreaId" class="active">Area</label>
+        </div>
+
+        <div class="row col s6 right-align">
+            <a onclick="updateArea(@area.AreaId, @Model.CountryId, 'area-name-@area.AreaId')" class="btn-floating waves-effect waves-light btn-middle green">
+                <i class="material-icons">save</i>
+            </a>
+
+            <a onclick="deleteArea(@area.AreaId, 'area-container-@area.AreaId')" class="btn-floating waves-effect waves-light btn-middle red">
+                <i class="material-icons">delete</i>
+            </a>
+
+            <a onclick="loadCities(@area.AreaId, 'city-edit-list')" class="btn-floating waves-effect waves-light btn-middle">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+}

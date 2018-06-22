@@ -25,22 +25,15 @@ namespace Callboard.App.Web
             var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie != null)
             {
-                try
+                var ticket = FormsAuthentication.Decrypt(cookie.Value);
+                var user = JsonConvert.DeserializeObject<Auth::MembershipUser>(ticket.UserData);
+                var userPrinciple = new UserPrinciple(user.Name)
                 {
-                    var ticket = FormsAuthentication.Decrypt(cookie.Value);
-                    var user = JsonConvert.DeserializeObject<Auth::MembershipUser>(ticket.UserData);
-                    var userPrinciple = new UserPrinciple(user.Name)
-                    {
-                        UserId = user.UserId,
-                        Name = user.Name,
-                        Roles = user.Roles.Select(x => x.Name).ToArray()
-                    };
-                    HttpContext.Current.User = userPrinciple;
-                }
-                catch (System.Security.Cryptography.CryptographicException ex)
-                {
-
-                }
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Roles = user.Roles.Select(x => x.Name).ToArray()
+                };
+                HttpContext.Current.User = userPrinciple;
             }
         }
 
@@ -48,11 +41,10 @@ namespace Callboard.App.Web
         {
             Exception exception = Server.GetLastError();
             Response.Clear();
-            HttpException httpException = exception as HttpException;
-            if (httpException != null)
+            if (exception != null)
             {
                 Server.ClearError();
-                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message }");
+                Response.Redirect($"~/Error/Index/?errorMessage={ exception.Message.Replace('\n', ' ') }");
             }
         }
     }

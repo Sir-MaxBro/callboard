@@ -6,7 +6,7 @@ namespace Callboard.App.Web.Models
     {
         [Required]
         [Display(Name = "Login")]
-        [MinLength(6)]
+        [MinLength(4)]
         public string Login { get; set; }
 
         [Required]
@@ -16,7 +16,7 @@ namespace Callboard.App.Web.Models
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "RePassword")]
         [Compare("Password")]
         [DataType(DataType.Password)]
         public string RePassword { get; set; }

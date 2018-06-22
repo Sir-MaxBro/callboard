@@ -1,17 +1,18 @@
 ﻿@model SearchViewModel
 @Scripts.Render("~/location")
 @Scripts.Render("~/search")
+@Scripts.Render("~/categoryListBox")
 
 <script>
     window.onload = function () {
         fillLocation("location");
-        loadCategories('categories');
+        callActionAsync(null, '/Category/GetMainCategories', 'categories');
         loadKinds();
         loadStates();
     }
 </script>
 
-<div class="width_25per float_left card">
+<div class="width_25per left card">
     <div class="card-content">
         <div class="row">
             <div class="input-field">
@@ -32,7 +33,7 @@
                 <label for="max-price">Max price</label>
             </div>
 
-            <select class="input-field block multiple-select" id="categories" multiple="multiple"></select>
+            <div class="row collection" id="categories"></div>
 
             <select id="kinds" class="input-field block">
                 <option selected="selected" value="">--- Choose kind ---</option>
@@ -54,7 +55,7 @@
 
 </div>
 
-<div class="width_75per float_right">
+<div class="width_75per right">
     <div id="preloader" class="preloader-wrapper big none block center-auto">
         <div class="spinner-layer spinner-blue-only">
             <div class="circle-clipper left">

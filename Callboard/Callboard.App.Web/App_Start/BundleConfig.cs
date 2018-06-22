@@ -22,8 +22,11 @@ namespace Callboard.App.Web
                 .IncludeDirectory("~/Scripts/Search", "*.js", false)
                 .Include("~/Scripts/Common/category-load.js"));
 
-            bundles.Add(new ScriptBundle("~/category")
-                .IncludeDirectory("~/Scripts/Category", "*.js", false));
+            bundles.Add(new ScriptBundle("~/categoryMenu")
+                .IncludeDirectory("~/Scripts/CategoryMenu", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/categoryListBox")
+                .IncludeDirectory("~/Scripts/CategoryListBox", "*.js", false));
 
             bundles.Add(new ScriptBundle("~/user")
                 .IncludeDirectory("~/Scripts/User", "*.js", false));
@@ -41,8 +44,26 @@ namespace Callboard.App.Web
             bundles.Add(new ScriptBundle("~/admin")
                 .Include("~/Scripts/Admin/user-edit.js"));
 
-            bundles.Add(new ScriptBundle("~/editor")
-                .IncludeDirectory("~/Scripts/Editor", "*.js", false));
+            bundles.Add(new ScriptBundle("~/roles-list")
+                .IncludeDirectory("~/Scripts/UserRoleEditList", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/countries-edit")
+                .IncludeDirectory("~/Scripts/CountriesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/areas-edit")
+                .IncludeDirectory("~/Scripts/AreasEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/cities-edit")
+                .IncludeDirectory("~/Scripts/CitiesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/kinds-edit")
+                .IncludeDirectory("~/Scripts/KindsEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/states-edit")
+                .IncludeDirectory("~/Scripts/StatesEdit", "*.js", false));
+
+            bundles.Add(new ScriptBundle("~/categories-edit")
+                .IncludeDirectory("~/Scripts/CategoriesEdit", "*.js", false));
         }
     }
 }

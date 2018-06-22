@@ -1,19 +1,16 @@
 ﻿function saveUser() {
-    let user = getUser();
-    console.log(user);
-    $.post('/User/SaveUser', { userData: JSON.stringify(user) }, showUserSaveResult);
+    let userModel = getUserModel();
+    if (userModel.isValid) {
+        $.post('/User/SaveUser', { userData: JSON.stringify(userModel.user) }, showUserSaveResult);
+    }
 }
 
-function addPhone() {
-    let phoneContainer = $("#phones");
-    let input = getPhoneInput();
-    phoneContainer.append(input);
-}
-
-function addMail() {
-    let mailContainer = $("#emails");
-    let input = getMailInput();
-    mailContainer.append(input);
+let showUserSaveResult = function (data) {
+    let saveResultContainer = $("#save-result");
+    saveResultContainer.removeClass('none');
+    setTimeout(function () {
+        saveResultContainer.addClass('none');
+    }, 4000);
 }
 
 function fillPhoto(evt) {
@@ -30,32 +27,23 @@ function fillPhoto(evt) {
     }
 }
 
-let showUserSaveResult = function (data) {
-    let isSaved = JSON.parse(data.IsSaved);
-    if (isSaved === true) {
-        let saveResultContainer = $("#save-result");
-        saveResultContainer.empty();
-        saveResultContainer.append('<div class="center"><i class="large material-icons center">check</i></div>');
-        setTimeout(function () {
-            saveResultContainer.empty();
-        }, 3000);
-    }
-}
-
-let getUser = function () {
+let getUserModel = function () {
     let userId = $("#userId").val();
     let name = $("#name").val();
-    let phones = getPhones();
-    let mails = getMails();
+    let phonesModel = getPhonesModel();
+    let mailsModel = getMailsModel();
     let photo = getPhoto();
 
     return {
-        UserId: userId,
-        Name: name,
-        PhotoData: photo.photoData,
-        PhotoExtension: photo.extension,
-        Phones: phones,
-        Mails: mails
+        user: {
+            UserId: userId,
+            Name: name,
+            PhotoData: photo.photoData,
+            PhotoExtension: photo.extension,
+            Phones: phonesModel.phones,
+            Mails: mailsModel.mails
+        },
+        isValid: userId && name && phonesModel.isPhoneValid && mailsModel.isMailsValid
     };
 }
 
@@ -75,81 +63,73 @@ let getPhoto = function () {
     };
 }
 
-let getPhones = function () {
+let getPhonesModel = function () {
     let phones = [];
+    let isPhoneValid = true;
     $("#phones").find("input:text").each(function () {
         let phoneId = $(this).data('phoneId');
         let number = $(this).val();
+
         if (typeof phoneId === 'undefined') {
             phoneId = 0;
         }
 
-        if (number !== "" && typeof number !== 'undefined') {
+        if (isNumberValid(number)) {
             let phone = {
                 PhoneId: phoneId,
                 Number: number
             };
             phones.push(phone);
+            $(this).removeClass('invalid__field');
+        }
+        else {
+            $(this).addClass('invalid__field');
+            isPhoneValid = false;
         }
     });
-    return phones;
+
+    return {
+        phones: phones,
+        isPhoneValid: isPhoneValid
+    };
 }
 
-let getMails = function () {
+let getMailsModel = function () {
     let mails = [];
+    let isMailsValid = true;
     $("#emails").find("input:text").each(function () {
         let mailId = $(this).data('mailId');
         let email = $(this).val();
+
         if (typeof mailId === 'undefined') {
             mailId = 0;
         }
 
-        if (email !== "" && typeof email !== 'undefined') {
+        if (isEmailValid(email)) {
             let mail = {
                 MailId: mailId,
                 Email: email
             };
             mails.push(mail);
+            $(this).removeClass('invalid__field');
+        }
+        else {
+            $(this).addClass('invalid__field');
+            isMailsValid = false;
         }
     });
-    return mails;
+    return {
+        mails: mails,
+        isMailsValid: isMailsValid
+    };
 }
 
-let getPhoneInput = function () {
-    return getEditorInput('phone');
+let isNumberValid = function (number) {
+    let phoneRegex = /([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+    return phoneRegex.test(number);
 }
 
-let getMailInput = function () {
-    return getEditorInput('email');
-}
-
-let getEditorInput = function (type) {
-    let mainDiv = $("<div></div>");
-    mainDiv.addClass('input-field row');
-
-    let colDiv = $("<div></div>");
-    colDiv.addClass('col s8');
-
-    let i = $("<i></i>");
-    i.addClass('material-icons prefix');
-    i.text(type);
-
-    let input = $("<input />");
-    input.attr('type', 'text');
-    input.addClass('validate');
-
-    let deleteLink = $('<a></a>');
-    deleteLink.addClass('waves-effect waves-light btn col s4 red');
-    deleteLink.on('click', function () {
-        mainDiv.remove();
-    });
-    deleteLink.text('delete');
-
-    colDiv.append(i);
-    colDiv.append(input);
-
-    mainDiv.append(colDiv);
-    mainDiv.append(deleteLink);
-
-    return mainDiv;
+let isEmailValid = function (email) {
+    let emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return emailRegex.test(email);
 }

@@ -1,6 +1,4 @@
-﻿using Callboard.App.Data.DbContext.Main;
-using Callboard.App.Data.Exceptions;
-using Callboard.App.General.Helpers.Main;
+﻿using Callboard.App.Data.Exceptions;
 using Callboard.App.General.Loggers.Main;
 using Microsoft.SqlServer.Server;
 using System;
@@ -13,13 +11,10 @@ namespace Callboard.App.Data.DbContext.Realizations
     internal class SqlDbContext : IDbContext
     {
         private ILoggerWrapper _logger;
-        private IChecker _checker;
         private string _connectionString;
-        public SqlDbContext(ILoggerWrapper logger, IChecker checker)
+        public SqlDbContext(ILoggerWrapper logger)
         {
-            _checker = checker ?? throw new NullReferenceException(nameof(checker));
-            _checker.CheckForNull(logger);
-            _logger = logger;
+            _logger = logger ?? throw new NullReferenceException(nameof(logger));
         }
 
         public string ConnectionString
@@ -37,10 +32,10 @@ namespace Callboard.App.Data.DbContext.Realizations
                 {
                     using (var adapter = new SqlDataAdapter(procedure))
                     {
+                        procedure.Connection = connection;
                         try
                         {
                             connection.Open();
-                            procedure.Connection = connection;
                             dataSet = new DataSet();
                             adapter.Fill(dataSet);
                             connection.Close();
@@ -49,11 +44,28 @@ namespace Callboard.App.Data.DbContext.Realizations
                         {
                             string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
                             _logger.ErrorFormat(errorMessage);
+                            dataSet = null;
+                        }
+                        catch (SqlException ex) when (ex.Number == 50001) // user login already exists
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new LoginAlreadyExistsException(ex.Message, ex);
+                        }
+                        catch (SqlException ex) when (ex.Number == 50002) // login is invalid
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new InvalidLoginException(ex.Message, ex);
+                        }
+                        catch (SqlException ex) when (ex.Number == 50003) // password is invalid
+                        {
+                            _logger.InfoFormat(ex.Message);
+                            throw new InvalidPasswordException(ex.Message, ex);
                         }
                         catch (SqlException ex)
                         {
                             string errorMessage = $"{ ex.Message }\nConnection string: { connection.ConnectionString }";
                             _logger.ErrorFormat(errorMessage);
+                            dataSet = null;
                         }
                     }
                 }
@@ -67,10 +79,10 @@ namespace Callboard.App.Data.DbContext.Realizations
             {
                 using (var procedure = this.CreateProcedure(procedureName, values))
                 {
+                    procedure.Connection = connection;
                     try
                     {
                         connection.Open();
-                        procedure.Connection = connection;
                         procedure.ExecuteNonQuery();
                         connection.Close();
                     }
@@ -124,7 +136,7 @@ namespace Callboard.App.Data.DbContext.Realizations
             return parameter;
         }
 
-        private SqlConnection CreateConnection()
+        private SqlConnection CreateConnection() 
         {
             if (!string.IsNullOrEmpty(_connectionString))
             {
@@ -134,6 +146,6 @@ namespace Callboard.App.Data.DbContext.Realizations
             {
                 throw new EmptyConnectionStringException();
             }
-        }
+        }    
     }
 }

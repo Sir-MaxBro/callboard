@@ -1,0 +1,13 @@
+﻿@model Mail
+
+<div class="input-field row">
+    <div class="col s10">
+        <i class="material-icons prefix">email</i>
+        <input value="@Model.Email" data-mail-id="@Model.MailId" type="text" class="validate">
+    </div>
+    <div class="col s2" onclick="$(this).parent().remove();">
+        <a class="btn-floating waves-effect waves-light btn-middle red">
+            <i class="material-icons">delete</i>
+        </a>
+    </div>
+</div>

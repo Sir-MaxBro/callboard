@@ -1,4 +1,5 @@
 ﻿using Callboard.App.General.Loggers.Main;
+using System;
 using System.Web.Mvc;
 
 namespace Callboard.App.Web.Controllers
@@ -8,6 +9,10 @@ namespace Callboard.App.Web.Controllers
         private ILoggerWrapper _logger;
         public ErrorController(ILoggerWrapper logger)
         {
+            if (logger == null)
+            {
+                throw new NullReferenceException(nameof(logger));
+            }
             _logger = logger;
         }
 
@@ -17,16 +22,22 @@ namespace Callboard.App.Web.Controllers
             return View("Error");
         }
 
-        public ActionResult NotFound()
+        public ActionResult BadRequest()
+        {
+            Response.StatusCode = 400;
+            return View("BadRequest");
+        }
+
+        public ActionResult PageNotFound()
         {
             Response.StatusCode = 404;
-            return View("NotFound");
+            return View("NotFoundPage");
         }
 
         public ActionResult ServerNotResponding()
         {
-            Response.StatusCode = 500; 
-            return View("ServerNotResponding");
+            Response.StatusCode = 500;
+            return View("ServerNotRespondingPage");
         }
     }
 }

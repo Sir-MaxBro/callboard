@@ -3,27 +3,39 @@
 
 <div class="row">
     @using (Html.BeginForm("Register", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
-                htmlAttributes: new { @class = "width_25per center center-auto" }))
+                        htmlAttributes: new { @class = "width_25per center center-auto" }))
     {
         <div class="card">
             <div class="card-content">
                 <div class="row">
                     <div class="input-field col s12">
-                        @Html.EditorFor(x => x.Login)
-                        <label for="Login">Login</label>
-                        @Html.ValidationMessageFor(model => model.Login)
+                        @Html.EditorFor(model => model.Login)
+                        <div class="red-text">
+                            @Html.ValidationMessageFor(model => model.Login)
+                        </div>
+                        <label for="Login">@Html.DisplayNameFor(model => model.Login)</label>
                     </div>
 
                     <div class="input-field col s12">
                         @Html.EditorFor(x => x.Password)
-                        <label for="Password">Password</label>
-                        @Html.ValidationMessageFor(model => model.Password)
+                        <div class="red-text">
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <label for="Password">@Html.DisplayNameFor(model => model.Password)</label>
                     </div>
 
                     <div class="input-field col s12">
                         @Html.EditorFor(x => x.RePassword)
-                        <label for="RePassword">RePassword</label>
-                        @Html.ValidationMessageFor(model => model.RePassword)
+                        <div class="red-text">
+                            @Html.ValidationMessageFor(model => model.RePassword)
+                        </div>
+                        <label for="RePassword">@Html.DisplayNameFor(model => model.RePassword)</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <div class="red-text">
+                            @ViewBag.ErrorMessage
+                        </div>
                     </div>
                 </div>
             </div>
