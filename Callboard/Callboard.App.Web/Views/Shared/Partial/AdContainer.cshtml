@@ -1,4 +1,9 @@
 ﻿@model IReadOnlyCollection<Ad>
+<script>
+        $(document).ready(function () {
+            $('.carousel').carousel();
+        });
+</script>
 
 <div class="row">
     @if (Model != null && Model.Count != 0)
