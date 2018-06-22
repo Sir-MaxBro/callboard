@@ -11,83 +11,108 @@
         loadKinds();
         loadStates();
         callActionAsync(null, '/Category/GetMainCategories', 'categories');
+
         addImage('images');
     };
 </script>
 
-<div class="ad__content">
-    <input type="hidden" id="userId" value="@Model.UserId" />
-    <input type="hidden" id="adId" value="@Model.AdId" />
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <input type="hidden" id="userId" value="@Model.UserId" />
+                <input type="hidden" id="adId" value="@Model.AdId" />
 
-    <div class="row" id="images">
-        @if (Model.Images != null && Model.Images.Length > 0)
-        {
-            foreach (var item in Model.Images)
-            {
-                @Html.RenderImage(item.Data, item.Extension, "col s3 ad__image_big",
-                 htmlAttributes: new { data_image_id = item.ImageId, onclick = "this.remove();" })
-            }
-        }
-    </div>
+                <div class="row" id="images">
+                    @if (Model.Images != null && Model.Images.Length > 0)
+                    {
+                        foreach (var item in Model.Images)
+                        {
+                            @Html.RenderImage(item.Data, item.Extension, "col s3 ad__image_big",
+                                htmlAttributes: new { data_image_id = item.ImageId, ondblclick = "this.remove();" })
+                        }
+                    }
+                </div>
 
-    <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">assistant</i>
-                    <input id="name" type="text" class="validate" value="@Model.Name">
-                    <label for="name">Product name</label>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">assistant</i>
+                                <input id="name" type="text" class="validate" value="@Model.Name">
+                                <label for="name">Product name</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input id="price" type="text" class="validate" value="@Model.Price">
+                                <label for="price">Price</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">description</i>
+                                <input id="description" type="text" class="validate" value="@Model.Description">
+                                <label for="description">Description</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">home</i>
+                                <input id="addressLine" type="text" class="validate" value="@Model.AddressLine">
+                                <label for="addressLine">Address</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">attach_money</i>
-                    <input id="price" type="text" class="validate" value="@Model.Price">
-                    <label for="price">Price</label>
+
+                <div id="location" class="row">
+                    <div class="col s12 center">
+                        <input type="hidden" id="locationId" value="@Model.Location.LocationId" />
+                        @Model.Location.Country / @Model.Location.Area / @Model.Location.City
+                        <a class="btn-floating btn-small waves-effect waves-light red" onclick="fillLocation('location')">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">description</i>
-                    <input id="description" type="text" class="validate" value="@Model.Description">
-                    <label for="description">Description</label>
+
+                <div class="row">
+                    <select id="kinds" class="input-field col s4 block">
+                        <option selected="selected" value="">--- Choose kind ---</option>
+                    </select>
+                    <select id="states" class="input-field col s4 block">
+                        <option selected="selected" value="">--- Choose state ---</option>
+                    </select>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">home</i>
-                    <input id="addressLine" type="text" class="validate" value="@Model.AddressLine">
-                    <label for="addressLine">Address</label>
+
+                <div class="row">
+                    <span class="card-title">Selected categories</span>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <div id="choosed-category-container-@item.CategoryId" class="row">
+                            <div class="col s10">
+                                @item.Name
+                            </div>
+                            <div class="col s2">
+                                <a onclick="deleteCategoryContainer('choosed-category-container-@item.CategoryId')" 
+                                   class="btn-floating btn-small waves-effect waves-light red" >
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="row collection" id="categories"></div>
+
+                <div class="center">
+                    <button class="btn waves-effect waves-light" type="button" onclick="saveAdDetails()">
+                        Save
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+                <div id="save-result" class="none">
+                    <div class="green-text center">
+                        <i class="large material-icons center">check</i>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="location" class="row">
-        <div class="col s12 center">
-            <input type="hidden" id="locationId" value="@Model.Location.LocationId" />
-            @Model.Location.Country / @Model.Location.Area / @Model.Location.City
-            <a class="btn-floating btn-small waves-effect waves-light red" onclick="fillLocation('location')">
-                <i class="material-icons">edit</i>
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <select id="kinds" class="input-field col s4 block">
-            <option selected="selected" value="">--- Choose kind ---</option>
-        </select>
-        <select id="states" class="input-field col s4 block">
-            <option selected="selected" value="">--- Choose state ---</option>
-        </select>
-    </div>
-
-    <div class="row collection" id="categories"></div>
-
-    <div class="center">
-        <button class="btn waves-effect waves-light" type="button" onclick="saveAdDetails()">
-            Save
-            <i class="material-icons right">send</i>
-        </button>
-    </div>
-
-    <div id="save-result" class="none">
-        <div class="green-text center">
-            <i class="large material-icons center">check</i>
         </div>
     </div>
 </div>
