@@ -7,7 +7,9 @@
             <input type="checkbox" id="checkbox-@item.CategoryId" data-category-id="@item.CategoryId">
             <label for="checkbox-@item.CategoryId">@item.Name</label>
         </div>
-        <a onclick="getSubcategories(this, @item.CategoryId, 'subcategories-@item.CategoryId')" class="secondary-content waves-effect waves-teal">
+        <a onclick="getSubcategories(this, @item.CategoryId, 'subcategories-@item.CategoryId')" 
+           id="load-subcategories-@item.CategoryId"
+           class="secondary-content waves-effect waves-teal">
             <i class="material-icons">keyboard_arrow_down</i>
         </a>
     </div>

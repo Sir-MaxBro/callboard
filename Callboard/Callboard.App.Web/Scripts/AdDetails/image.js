@@ -31,7 +31,7 @@ function addImage(updateTargerId) {
     let fileInput = getFileInput();
     fileInput.addClass('col s3');
     let img = getImage();
-    img.on('click', function () {
+    img.on('dblclick', function () {
         this.remove();
     });
 

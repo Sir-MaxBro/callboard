@@ -142,7 +142,6 @@
     <Content Include="Content\css\clearfix\clearfix.css" />
     <Content Include="Content\css\collapsed\collapsed.css" />
     <Content Include="Content\css\commercial\__image\commercial__image.css" />
-    <Content Include="Content\css\content\content.css" />
     <Content Include="Content\css\field\field.css" />
     <Content Include="Content\css\header\_dark\_theme\header_dark_theme.css" />
     <Content Include="Content\css\header\_line\header_line.css" />
@@ -159,9 +158,7 @@
     <Content Include="Content\css\multiple-select\multiple-select.css" />
     <Content Include="Content\css\none\none.css" />
     <Content Include="Content\css\overrides maretialize\card-action.css" />
-    <Content Include="Content\css\overrides maretialize\card.css" />
     <Content Include="Content\css\overrides maretialize\collection-item.css" />
-    <Content Include="Content\css\overrides maretialize\page-footer.css" />
     <Content Include="Content\css\page\page.css" />
     <Content Include="Content\css\page\__content\page__content.css" />
     <Content Include="Content\css\page\__menu\page__menu.css" />
@@ -184,12 +181,11 @@
     <Content Include="Content\images\profile.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\AdDetails\addetails-save.js" />
+    <Content Include="Scripts\AdDetails\category-get-selected.js" />
     <Content Include="Scripts\AdDetails\image.js" />
     <Content Include="Scripts\AdDetails\kind.js" />
     <Content Include="Scripts\AdDetails\state.js" />
-    <Content Include="Scripts\Admin\user-delete.js" />
     <Content Include="Scripts\ajax-helper.js" />
-    <Content Include="Scripts\AreasEdit\area-clear-container.js" />
     <Content Include="Scripts\AreasEdit\area-delete.js" />
     <Content Include="Scripts\AreasEdit\area-get-list.js" />
     <Content Include="Scripts\AreasEdit\area-save.js" />
@@ -348,8 +344,6 @@
     <Content Include="Views\Kind\KindEditList.cshtml" />
     <Content Include="Views\Category\CategoriesEdit.cshtml" />
     <Content Include="Views\Category\CategoryEditList.cshtml" />
-    <Content Include="Views\Shared\Partial\Footer.cshtml" />
-    <Content Include="Views\Shared\Partial\NothingFound.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
