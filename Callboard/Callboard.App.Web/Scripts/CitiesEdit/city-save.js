@@ -4,9 +4,7 @@
 
     let areaId = $("#" + areaInputId).val();
 
-    if (areaId && cityName) {
-
-        cityNameInput.removeClass('invalid__field');
+    if (areaId && cityName && !isTextValueExist(cityName, citiesContainerId)) {
 
         let cityModel = {
             City: {
@@ -15,7 +13,10 @@
             },
             AreaId: areaId
         };
+
         $.post('/City/SaveCity', { cityViewModelData: JSON.stringify(cityModel) }, function () { getCityList(areaId, citiesContainerId); });
+
+        cityNameInput.removeClass('invalid__field');
     }
     else {
         cityNameInput.addClass('invalid__field');
