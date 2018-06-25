@@ -1,22 +1,15 @@
 ﻿@model IReadOnlyCollection<Ad>
-<script>
-        $(document).ready(function () {
-            $('.carousel').carousel();
-        });
-</script>
 
 <div class="row">
-    @if (Model != null && Model.Count != 0)
+    @if (Model?.Count <= 0)
     {
-        foreach (var item in Model)
-        {
-            <div class="col m6 l4">
-                @{ Html.RenderPartial("Partial\\AdPartial", model: item); }
-            </div>
-        }
+        Html.RenderPartial("Partial\\NothingFound");
     }
-    else
+
+    @foreach (var item in Model)
     {
-        <div>Nothing found:(</div>
+        <div class="col m6 l4">
+            @{ Html.RenderPartial("Partial\\AdPartial", model: item); }
+        </div>
     }
 </div>

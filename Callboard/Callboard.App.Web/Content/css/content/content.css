@@ -1,3 +1,4 @@
 ﻿.content {
     min-height: calc(100vh - 70px);
+    line-height: 1em;
 }

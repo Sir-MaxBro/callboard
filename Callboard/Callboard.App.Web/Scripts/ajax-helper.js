@@ -34,3 +34,21 @@ function execActionAsync(obj, url, type, successFunc, errorFunc) {
         error: errorFunc
     });
 }
+
+function callAction(obj, url, updateTargetId, complete) {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        contentType: 'application/json',
+        data: obj,
+        dataType: "html",
+        async: false,
+        success: function (data) {
+            $('#' + updateTargetId).html(data);
+        },
+        error: function () {
+            $('#' + updateTargetId).html("Sorry:( Nothing found");
+        },
+        complete: complete
+    });
+}
